@@ -1,0 +1,18 @@
+.card-header-bg {
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 30vh;
+}
+
+.separator-vertical {
+    border-left: solid thin var(--ion-color-medium);
+}
+
+.school-image-tiles {
+    ion-col {
+        ion-img {
+            height: 150px;
+        }
+    }
+}

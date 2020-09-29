@@ -1,0 +1,46 @@
+<div class="w-100" style="">
+
+  <!-- <ion-icon name="caret-up-outline" class="fs-25 poppins-bold" style="
+position: absolute;
+    float: right;
+    text-align: right;
+    width: 160%;
+    margin-top: -22px;
+    z-index: 20921;
+    "></ion-icon> -->
+  <ion-row class="feed-filter-container fs-13">
+    <ion-col size="12" *ngIf="schools?.length>0">
+      <ion-list>
+        <ion-item>
+          <ion-label class="fs-13">#Opoku ware school</ion-label>
+          <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="fs-13">#Prempeh college</ion-label>
+          <ion-toggle [(ngModel)]="sausage" disabled="true"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="fs-13"> #Presbyterian boys shs</ion-label>
+          <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+    <ion-col size="12" *ngIf="schools?.length<=0">
+      <ion-row size="12" class="ion-text-center">
+        <ion-col size="12">
+          <ion-label class="fs-14">Your mates are waiting.</ion-label><br>
+        </ion-col>
+        <ion-col size="12">
+          <ion-label class="fs-12" color='primary' [routerLink]="['/links/schools-search']"
+            routerLinkActive="router-link-active">Find your school(s)
+          </ion-label>
+        </ion-col>
+        <!-- <ion-toggle [(ngModel)]="pepperoni"></ion-toggle> -->
+
+      </ion-row>
+
+    </ion-col>
+  </ion-row>
+</div>

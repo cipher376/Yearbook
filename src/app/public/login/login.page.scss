@@ -1,0 +1,111 @@
+// http://ionicframework.com/docs/theming/
+
+
+
+ion-item {
+  width: 100%;
+  height: auto;
+
+}
+
+.social {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+
+
+.text-center {
+  p {
+    margin: 0px
+  }
+}
+
+p {
+  padding: 0px;
+}
+
+form {
+  margin-top: 4vh !important;
+}
+
+
+
+
+// ANDROID
+.invalid.item-md.item-block .item-inner {
+  border-bottom: 1px solid red !important;
+}
+
+.item-md.item-block .item-inner {
+  border-bottom: 1px solid red !important;
+}
+
+//IOS
+.invalid.item-ios.item-block .item-inner {
+  border-bottom: 1px solid red !important;
+}
+
+.item-ios.item-block .item-inner {
+  border-bottom: 1px solid red !important;
+}
+
+.invalid-item-md {
+  .invalid.item-md.item-block .item-inner {
+    border-bottom: 1px solid red !important;
+  }
+
+  .item-md.item-block .item-inner {
+    border-bottom: 1px solid red !important;
+  }
+}
+
+.invalid-item-ios {
+
+  .invalid.item-ios.item-block .item-inner {
+    border-bottom: 1px solid red !important;
+  }
+
+  .item-ios.item-block .item-inner {
+    border-bottom: 1px solid black !important;
+  }
+}
+
+
+// ion-item {
+//   --background: $primary-color;
+//   --background-activated: red;
+
+//   ion-input {
+//     // --background: #336bd8 !important;
+//     --color: $light-color;
+//   }
+
+//   ion-icon {
+//     --color: $primary-dark;
+//   }
+// }
+
+.google-button {
+
+  button {
+    background: #902b22 !important;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+  }
+
+}
+.facebook-button {
+
+  button {
+    background: #902b22 !important;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+  }
+
+}
+.input {
+  
+}

@@ -1,0 +1,83 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false">
+    <ion-slide>
+      <img src="assets/icon/logo.png" class="slide-image" />
+      <h2 class="slide-title">
+        Welcome to
+        <b>Fame</b>
+      </h2>
+      <p>
+        Create, track, find and attend all events around you.
+        Publish your personal events and invite people to attend.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/background/party/5.jpg" class="slide-image" />
+      <h2 class="slide-title">What is fame?</h2>
+      <p>
+        Fame is an app intended to help you advertise your events to the world for free. Let your wedding, funeral and other  gatherings  known to million of users. Don't miss
+        out your friends birthday, use the reminder to keep track of your booked events.
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/social_network.jpg" class="slide-image" />
+      <h2 class="slide-title">Social life</h2>
+      <p>
+        Make new friends and connect with people who have booked for events you are interested in.
+        Chat with your new friends or join the event public room. Comment, like, dislike and share events with your
+        friends.
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/tickets/3.png" class="slide-image" />
+      <h2 class="slide-title">The digital tickets!</h2>
+      <p>
+        Are you an event organizer? If yes then fame is for you, just create electronic tickets and sell them online
+        with just a few clicks.
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/news.png" class="slide-image" />
+      <h2 class="slide-title">And...! the news</h2>
+      <p>
+        Don't miss the juicy gossips about the last event you attended. Its all live on
+        fame news.
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/yourway.jpg" class="slide-image" />
+      <h2 class="slide-title">Don't miss your way!</h2>
+      <p>
+        Fame is to remind you and give you the location of that important events you really don't want to miss. Find
+        that wedding, funeral, birthday party on google map that is happening live in your vicinity.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/imgs/how.jpg" class="slide-image" />
+      <h2 class="slide-title">How do I get started?</h2>
+      <p>
+        Its so easy, just register and start booking for events but don't forget to complete your profile if you want to stay connected with friends.
+        That's it.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/imgs/party.jpg" class="slide-image" />
+      <h2 class="slide-title">Now check it out!</h2>
+      <ion-button fill="clear" (click)="startApp()">
+        Continue
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

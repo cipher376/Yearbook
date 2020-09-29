@@ -1,0 +1,84 @@
+<ion-row>
+  <ion-col>
+    <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+      Trending schools &nbsp;&nbsp;
+      <ion-icon class="fs-14" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-col>
+
+</ion-row>
+<ion-row class="ion-no-padding ion-padding-bottom">
+  <ion-col size="12" class="ion-no-padding">
+    <ion-slides class="ion-no-padding" [options]="slideOptions" #slideWithNav
+      (ionSlideDidChange)="SlideDidChange(slider,slideWithNav)">
+      <ion-slide class="ion-no-padding">
+        <ion-card class="card-header-bg " style="background-image: url('../../../assets/images/car.jpg'); ">
+          <ion-row class="ion-no-padding">
+            <ion-item lines="none">
+              <ion-note slot="start" color="white" class="poppins-bold fs-12 text-shadow ion-color-light">
+                # Opoku ware school
+              </ion-note>
+            </ion-item>
+          </ion-row>
+          <ion-row class="ion-no-padding ion-padding-start">
+            <ion-label class="fs-10 text-shadow ion-color-light" color="white">
+              1,400 alumni last week
+            </ion-label>
+          </ion-row>
+        </ion-card>
+      </ion-slide>
+      
+      <ion-slide>
+        <ion-card class="card-header-bg" style="background-image: url('../../../assets/images/me.jpg'); ">
+            <ion-row class="ion-no-padding">
+              <ion-item lines="none">
+                <ion-note slot="start" color="white" class="poppins-bold fs-12 text-shadow ion-color-light">
+                  # Opoku ware school
+                </ion-note>
+              </ion-item>
+            </ion-row>
+            <ion-row class="ion-no-padding ion-padding-start">
+              <ion-label class="fs-10 text-shadow ion-color-light" color="white">
+                1,400 alumni last week
+              </ion-label>
+            </ion-row>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="card-header-bg" style="background-image: url('../../../assets/images/car.jpg'); ">
+            <ion-row class="ion-no-padding">
+              <ion-item lines="none">
+                <ion-note slot="start" color="white" class="poppins-bold fs-12 ion-color-light">
+                  # Opoku ware school
+                </ion-note>
+              </ion-item>
+            </ion-row>
+            <ion-row class="ion-no-padding ion-padding-start">
+              <ion-label class="fs-10 ion-color-light" color="white">
+                1,400 alumni last week
+              </ion-label>
+            </ion-row>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="card-header-bg" style="background-image: url('../../../assets/images/me.jpg');">
+            <ion-row class="ion-no-padding">
+              <ion-item lines="none">
+                <ion-note slot="start" color="white" class="poppins-bold fs-12 text-shadow ion-color-light">
+                  # Opoku ware school
+                </ion-note>
+              </ion-item>
+            </ion-row>
+            <ion-row class="ion-no-padding ion-padding-start">
+              <ion-label class="fs-10 text-shadow ion-color-light" color="white">
+                1,400 alumni last week
+              </ion-label>
+            </ion-row>
+          </ion-card>
+      </ion-slide>
+
+    </ion-slides>
+  </ion-col>
+</ion-row>

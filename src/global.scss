@@ -1,0 +1,253 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* custom css ***/
+// @import "~animate.css/animate.css";
+
+
+ion-item {
+    --background: transparent !important;
+    width: 100%;
+}
+
+ion-card {
+    padding: 0;
+    margin: 0;
+    // box-shadow: 0px 3px 8px -5px;
+    box-shadow: 0px 3px 10px -7px;
+}
+
+.ion-content-top_correction {
+    margin-top: 41px !important;
+}
+
+.top-row-header {
+    position: fixed !important;
+    width: 100% !important;
+    z-index: 1004 !important;
+    background: white;
+
+    ion-item {
+
+        // width: 108% !important;
+        // margin-left: -6% !important;
+        // margin-top: -6px !important;
+        .ion-row {
+            padding-left: 6px !important;
+        }
+    }
+}
+
+
+.poppins-regular {
+    --ion-font-family: 'Poppins-regular' !important;
+}
+
+.poppins-bold {
+    --ion-font-family: 'Poppins-bold' !important;
+}
+
+.poppins-extra-bold {
+    --ion-font-family: 'Poppins-extra-bold' !important;
+}
+
+.poppins-medium {
+    --ion-font-family: 'Poppins-medium' !important;
+}
+
+.poppins-semi-bold {
+    --ion-font-family: 'Poppins-semi-bold' !important;
+    font-weight: bold;
+}
+
+.hind-regular {
+    --ion-font-family: 'Hind-regular' !important;
+}
+
+.sf-bold {
+    --ion-font-family: 'SF-Pro-Display-Bold' !important;
+}
+
+.sf-regular {
+    --ion-font-family: 'SF-Pro-Display-Regular' !important;
+}
+
+.sf-text-regular {
+    --ion-font-family: 'SF-Pro-Text-Regular' !important;
+}
+
+
+.fs-10 {
+    font-size: 10px !important;
+}
+
+.fs-12 {
+    font-size: 12px !important;
+}
+
+.fs-13 {
+    font-size: 13px !important;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}
+
+.fs-16 {
+    font-size: 16px !important;
+}
+
+.fs-20 {
+    font-size: 20px !important;
+}
+
+.fs-25 {
+    font-size: 25px !important;
+}
+
+.fs-30 {
+    font-size: 30px !important;
+}
+
+.fs-37 {
+    font-size: 37px !important;
+}
+
+.fs-40 {
+    font-size: 40px !important;
+}
+
+.fc-primary {
+    color: var(--ion-color-primary)
+}
+
+
+.mt-1 {
+    margin-top: 1vh !important;
+}
+
+.mt-2 {
+    margin-top: 2vh !important;
+}
+
+.mt-5 {
+    margin-top: 5vh !important;
+}
+
+.mt-10 {
+    margin-top: 10vh !important;
+}
+
+.mt-13-px {
+    margin-top: 13px !important;
+}
+
+.br-10 {
+    --border-radius: 10% !important;
+}
+
+/**text colors**/
+.text-shadow {
+    text-shadow: 0px 0px 3px black !important;
+}
+
+.round-avatar {
+    border-radius: 50% !important;
+    width: 75px !important;
+    height: 75px !important;
+}
+
+.name-tag-icon {
+    margin-bottom: -0.2vh;
+    font-size: 14px !important;
+    font-weight: bolder;
+}
+
+.card-header-bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+}
+
+.curve-img {
+    border-radius: 5% !important;
+    height: 100px;
+    width: 100%;
+    box-shadow: 0px 0px 1px 0px;
+}
+
+
+
+/**Styling form inputs**/
+.input-w-icon {
+    border-bottom: inset thin;
+    // margin-right: -30px;
+}
+
+.input-w-image {
+    padding-left: 10vw !important;
+}
+
+.input-icon {
+    margin-right: -20px
+}
+
+.ripple-parent {
+    position: relative;
+    overflow: hidden;
+}
+
+.ion-activated {
+    //  background: var(--ion-color-primary) !important;
+    //  opacity: 0.05;
+}
+
+// ion-datetime {
+    .datetime-text {
+        background: #9f9f9f47 !important;
+        // --background: var(--ion-color-light-shade) !important;
+    }
+// }
+
+
+
+/****Styling popovers*************/
+.filter-feed .popover-content {
+    position: absolute !important;
+    top: 37px !important;
+    left: auto !important;
+    right: 18px !important;
+    box-shadow: 0px 3px 10px -7px;
+}
+
+ion-content {
+    animation: fadeInRight;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: .5s;
+    /* don't forget to set a duration! */
+}

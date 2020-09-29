@@ -1,0 +1,103 @@
+<ion-content >
+  <ion-row>
+    <ion-card class="h-25 w-100">
+      <ion-card-header style="background-image: url('../../../assets/images/ACOPROM1.jpg');"
+        class="card-header-bg ion-no-padding ion-padding-top ">
+      </ion-card-header>
+    </ion-card>
+  </ion-row>
+  <ion-row class="">
+    <ion-card class="w-100 ion-padding-top"
+      style="margin-top:-30px;border-top-right-radius: 20px;border-top-left-radius: 20px;">
+      <ion-row class="ion-padding-start ion-padding-end ion-padding-bottom">
+        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding">
+          <ion-note color="dark" class="poppins-bold fs-16">Alumni</ion-note><br>
+          <ion-note class="poppins-regular fs-12">+1000</ion-note>
+        </ion-col>
+
+        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
+          <ion-note color="dark" class="poppins-bold fs-16">Rating</ion-note><br>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon>
+
+        </ion-col>
+
+        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
+          <ion-note color="dark" class="poppins-bold fs-16">Likes</ion-note><br>
+          <ion-note class="poppins-regular fs-12">+1000</ion-note>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-segment [(ngModel)]="currentSegment" color="primary">
+        <ion-segment-button value="about">
+          <ion-label>A<span class="ion-text-lowercase">bout</span></ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="location">
+          <ion-label>L<span class="ion-text-lowercase">ocation</span></ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="photos">
+          <ion-label>P<span class="ion-text-lowercase">hotos</span></ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="more">
+          <!-- <ion-label>M<span class="ion-text-lowercase">ore</span></ion-label> -->
+          <ion-icon name="layers-outline"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-row [ngSwitch]="currentSegment" class="ion-no-padding">
+        <ion-row class="ion-padding" *ngSwitchCase="'about'">
+          <ion-note color="dark" class="poppins-semi-bold fs-12">Description</ion-note>
+          <ion-note class="poppins-regular fs-13">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </ion-note>
+          <ion-note color="dark" class="poppins-semi-bold fs-12">History</ion-note>
+          <ion-note class="poppins-regular fs-13 ">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </ion-note>
+        </ion-row>
+
+
+        <ion-row class="ion-padding" *ngSwitchCase="'location'">
+          <ion-note class="poppins-regular fs-14 ">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </ion-note>
+        </ion-row>
+
+        <ion-row class="ion-padding school-image-tiles w-100" *ngSwitchCase="'photos'">
+          <!-- <app-image-gallery class="w-100"></app-image-gallery> -->
+        </ion-row>
+
+        <ion-row class="ion-padding school-image-tiles w-100" *ngSwitchCase="'more'">
+          <ion-note color="dark" class="poppins-semi-bold fs-12">School has no videos and images</ion-note>
+        </ion-row>
+
+      </ion-row>
+    </ion-card>
+  </ion-row>
+
+
+</ion-content>

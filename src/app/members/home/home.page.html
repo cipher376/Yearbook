@@ -1,0 +1,77 @@
+<ion-content >
+  <!-- Page header -->
+  <ion-row class="top-row-header ion-no-padding ">
+    <ion-col size="12" class="ion-no-padding ">
+      <ion-item class="ion-no-padding ">
+        <ion-row class="ion-row">
+          <ion-label class="poppins-bold fs-12" style="margin-top: 10px;">Welcome, &nbsp; </ion-label>
+          <ion-note class="poppins fs-12" style="margin-top: 10px;">
+            Alfred
+          </ion-note>
+        </ion-row>
+        <ion-icon slot="end" name="reorder-three-outline" *ngIf="isAuthenticated()"></ion-icon>
+        <ion-label slot="end" class="ion-float-right fs-12 ion-text-right"  *ngIf="!isAuthenticated()" (click)="gotoRegister()">Sign up</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <!-- Page header ends -->
+
+
+  <!-- Top correction -->
+  <ion-row class="ion-content-top_correction">
+  </ion-row>
+  <!-- Top correction ends -->
+
+
+
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-trending></app-trending>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget1></app-post-widget1>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget3></app-post-widget3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget2></app-post-widget2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget2></app-post-widget2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget3></app-post-widget3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget3></app-post-widget3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget2></app-post-widget2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget2></app-post-widget2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget3></app-post-widget3>
+    </ion-col>
+  </ion-row>
+</ion-content>

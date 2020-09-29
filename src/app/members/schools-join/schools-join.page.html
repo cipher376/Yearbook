@@ -1,0 +1,62 @@
+<ion-content>
+  <ion-row class="top-row-header ion-no-padding " style="box-shadow: 0px 2px 4px -4px;">
+    <ion-col size="12" class="ion-no-padding">
+      <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+        <ion-row class="ion-row" (click)="goBack()">
+          <ion-icon class="fs-25" [src]="'../../../assets/icon/round-arrow_back.svg'"></ion-icon>&nbsp;&nbsp;
+          <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note>
+        </ion-row>
+        <ion-row slot="end" (click)="findSchool()">
+          &nbsp;&nbsp;
+          <ion-note class="fs-12 poppins-regular">Find school</ion-note>&nbsp;&nbsp;
+          <ion-icon color="dark" class="fs-14" name="search-outline"></ion-icon>
+        </ion-row>
+      </ion-item>
+    </ion-col>
+
+  </ion-row>
+  <!-- Top correction -->
+  <ion-row class="ion-content-top_correction">
+  </ion-row>
+  <!-- Top correction ends -->
+
+  <!-- Main body content -->
+  <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent">
+    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+    <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
+      padding-bottom: 7px;border-bottom: thin dotted lightgray;" [routerLink]="['/links/schools-search']"
+      routerLinkActive="router-link-active">
+      <ion-note class="poppins-bold fs-13 ion-padding-top ion-padding-bottom" color="dark">
+        Become alumni of {{school?.name}}<br>
+        <ion-label class="hind-regular fs-12">+100 alumni already</ion-label>
+      </ion-note>
+      <ion-avatar slot="end"><img src="{{school?.thumbnailUrl}}"></ion-avatar>
+    </ion-item>
+  </ion-row>
+
+  <form [formGroup]="joinForm">
+    <ion-row class="ion-padding ion-text-left">
+      <ion-col size="12">
+        <ion-note class="poppins-bold fs-14" color="dark">Date of enrollment into {{school?.name}}?</ion-note>
+        <ion-datetime value="" formControlName="yearStarted" placeholder="09/12/2021" display-timezone="utc">
+        </ion-datetime>
+      </ion-col>
+
+      <ion-item lines="none" style="padding-top: 7px;
+      padding-bottom: 7px;border-bottom: thin dotted lightgray;">
+        <ion-datetime value="" formControlName="yearCompleted" placeholder="Date of completion of {{school?.name}}?"
+          display-timezone="utc"></ion-datetime>
+      </ion-item>
+      <ion-item lines="none" style="padding-top: 7px;
+      padding-bottom: 7px;border-bottom: thin dotted lightgray;">
+        <!-- <ion-input class="input-w-icon" formControlName="email" type="email" placeholder="Email">
+        </ion-input> -->
+      </ion-item>
+    </ion-row>
+  </form>
+
+
+
+  <!-- Main body content ends -->
+
+</ion-content>

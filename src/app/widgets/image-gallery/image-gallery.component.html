@@ -1,0 +1,19 @@
+
+  <!-- <ion-grid class="w-100">
+    <ion-row class="w-100">
+      <ion-col size="4" *ngFor="let image of images">
+        <ion-card class="image-container" [style.background-image]="'url('+image+')'" imageViewer="{{image}}" ></ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+
+  <!-- More Pinterest floating gallery style -->
+  <div class="images" >
+    <ion-card class="one-image" *ngFor="let image of images">
+      <img src="{{image}}"  (click)="openViewer(image, '', 'long text for you image')"  >
+    </ion-card>
+  </div>
+
+
+<!-- </div> -->
