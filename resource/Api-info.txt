@@ -6,3 +6,5 @@ Database: c1yearbookdb
 
 API
 http://devtek-limited.tech:8082/explorer/
+
+configure API connection at /src/shared/services/config

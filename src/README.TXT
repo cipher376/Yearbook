@@ -11,4 +11,5 @@ PLEASE READ THIS INSTRUCTION
 7. The application was design to use signals to enhance component interaction.
 8. Data is passed to a component by disk, avoid routing data through URI unless necessary.
 9. All reusable components are placed in widgets.
+11. Consult /resource/api-info for more information about connecting to the api
 10. more to be added later 
