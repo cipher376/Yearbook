@@ -1,0 +1,8 @@
+phpmyadmin: 
+http://devtek-limited.tech:8081/phpmyadmin/
+user: c1yearbook_user
+password: #Dev2020_Db@M
+Database: c1yearbookdb
+
+API
+http://devtek-limited.tech:8082/explorer/
