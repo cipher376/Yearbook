@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -9,19 +10,27 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 })
 export class HomePage implements OnInit {
 
-  username: string = 'N/A';
+  firstname: string;
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
+    this.getUsername();
+  }
+
+  getUsername() {
+    this.userService.getUserLocal().then(
+      user => this.firstname = user.firstName
+    )
   }
 
   isAuthenticated(){
     return this.userService.isAuthenticated();
   }
+
   gotoLogin() {
     this.router.navigateByUrl('/login');
   }

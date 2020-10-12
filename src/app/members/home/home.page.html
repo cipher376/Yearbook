@@ -4,8 +4,8 @@
     <ion-col size="12" class="ion-no-padding ">
       <ion-item class="ion-no-padding">
         <ion-row class="ion-row">
-          <ion-label class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> Welcome, &nbsp; </ion-label>
-          <ion-text class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> N/A </ion-text>
+          <ion-label class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> Welcome, </ion-label>
+          <ion-text class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> {{ firstname }} </ion-text>
 
           <ion-label class="fs-13 pl-2 poppins" *ngIf="!isAuthenticated()" (click)="gotoLogin()">Log In</ion-label>
 

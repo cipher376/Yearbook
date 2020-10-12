@@ -72,4 +72,9 @@ export class SchoolsPage implements OnInit, AfterViewInit, OnDestroy {
     }
 
   }
+
+  isAuthenticated(){
+    return this.userService.isAuthenticated();
+  }
+
 }

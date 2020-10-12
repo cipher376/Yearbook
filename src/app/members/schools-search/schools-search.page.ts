@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { School } from 'src/app/models/school';
 import { MySignals } from 'src/app/shared/services/my-signals';
+import { UserService } from 'src/app/shared/services/model-service/user.service';
 
 @Component({
   selector: 'app-schools-search',
@@ -22,6 +23,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private alumniService: AlumniService,
     private schoolService: SchoolService,
+    private userService: UserService,
     private signal: MySignals) {
     this.history$ = this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
@@ -49,6 +51,10 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   gotoSchoolProfile(school: School) {
     this.signal.announceSchool(school);
     this.router.navigateByUrl('/links/school-profile');
+  }
+
+  isAuthenticated(){
+    return this.userService.isAuthenticated();
   }
 
   async join(school: School) {
