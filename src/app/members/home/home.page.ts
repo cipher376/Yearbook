@@ -9,6 +9,8 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 })
 export class HomePage implements OnInit {
 
+  username: string = 'N/A';
+
   constructor(
     private userService: UserService,
     private router: Router
@@ -20,8 +22,8 @@ export class HomePage implements OnInit {
   isAuthenticated(){
     return this.userService.isAuthenticated();
   }
-  gotoRegister() {
-    this.router.navigateByUrl('/register');
+  gotoLogin() {
+    this.router.navigateByUrl('/login');
   }
 
 }

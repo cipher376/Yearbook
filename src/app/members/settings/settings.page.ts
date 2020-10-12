@@ -11,6 +11,9 @@ import { AfterViewInit, Component, OnInit, OnDestroy } from '@angular/core';
 export class SettingsPage implements OnInit, AfterViewInit, OnDestroy {
   previousPage = '';
   history$;
+  mySchoolOnlyFeed;
+  flagAnnouncements;
+  countryOnly;
 
   constructor(private browserHistory: BrowserHistoryService,
     private router: Router) {

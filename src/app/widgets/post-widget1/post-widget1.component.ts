@@ -9,6 +9,8 @@ export class PostWidget1Component implements OnInit {
 
   constructor() { }
 
+  tags = ["irepmyschool", "back2school2020"];
+
   ngOnInit() {}
 
 }

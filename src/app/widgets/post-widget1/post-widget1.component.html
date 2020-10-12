@@ -6,35 +6,35 @@
                 height: 30px;">
                     <img src="../../../assets/images/me.jpg">
                 </ion-avatar>
-                <ion-note color="dark" class="poppins-semi-bold fs-14 " style=" margin-top: 5px">Jennifer
+                <ion-note color="dark" class="poppins-semi-bold fs-14 " style=" margin-top: 5px">
+                    Jennifer
                 </ion-note>
             </ion-row>
             <!-- <img [src]="'../../../assets/images/me.jpg'"  style="width: 35px !important;
             height: 35px !important;
             padding: 5px;" class="round-avatar"> -->
-
-
-
             <ion-label slot="end" class="fs-10 ion-text-right">2 seconds ago</ion-label>
         </ion-item>
     </ion-col>
+
+
     <ion-col size="12" class="ion-no-padding ion-padding-end ion-padding-start">
         <ion-card class=" ion-align-items-center">
             <ion-card-header style="background-image: url('../../../assets/images/me.jpg');"
                 class="card-header-bg ion-no-padding ion-padding-top ">
                 <ion-row class="ion-no-padding">
                     <ion-item lines="none">
-                        <ion-note slot="start" color="white" class="poppins-bold fs-12"
+                        <!-- <ion-note slot="start" color="white" class="poppins-bold fs-12"
                             style="text-shadow: 0px 0px 3px black !important;color: white;">
-                            # Opoku ware school
-                        </ion-note>
-                        <ion-row slot="end" class="avatar-group ion-align-items-end ion-text-right">
+                            Opoku ware school
+                        </ion-note> -->
+                        <!-- <ion-row slot="end" class="avatar-group ion-align-items-end ion-text-right">
                             <ion-avatar class="avatar-group-img" style="
                              margin-right: -18px;"><img [src]="'../../../assets/images/me.jpg'"></ion-avatar>
                             <ion-avatar class="avatar-group-img" style="
                              margin-right: -18px;"><img [src]="'../../../assets/images/me.jpg'"></ion-avatar>
                             <ion-avatar class="avatar-group-img avatar-count-icon" color="secondary">+2</ion-avatar>
-                        </ion-row>
+                        </ion-row> -->
                         <ion-row>
 
                         </ion-row>
@@ -45,22 +45,28 @@
                 <ion-item lines="none">
                     <ion-note slot="start" color="white" class="poppins-bold fs-12"
                         style="text-shadow: 0px 0px 3px black !important;color: white;">
-                        @Kumasi
+                        @opukuwareshs
                     </ion-note>
                     <ion-row slot="end" class="avatar-group ion-align-items-end ion-text-right">
                         <ion-avatar class="avatar-group-img avatar-count-icon" color="secondary">+2</ion-avatar>
                     </ion-row>
                 </ion-item>
             </ion-row>
-            <ion-row class="ion-no-padding" style="margin-top: -35px;">
-                <ion-col size="12" class="ion-align-items-center ion-text-center">
+            <!-- <ion-row class="ion-no-padding" style="margin-top: -35px;"> -->
+            <!-- <ion-col size="12" class="ion-align-items-center ion-text-center">
                     <ion-button color="secondary" shape="round" style="--box-shadow:none"
                         class="ion-padding ion-align-items-center ion-text-center fs-14 poppins-bold">V<span
-                            class="ion-text-lowercase">iew</span></ion-button>
-                </ion-col>
-            </ion-row>
-            <ion-card-content class="fs-12" style="z-index: 1000; padding-top: 12px; padding-bottom: 0;">
+                            class="ion-text-lowercase">iew</span>
+                    </ion-button>
+                </ion-col> -->
+            <!-- </ion-row> -->
+            <ion-card-content class="fs-12" style="z-index: 1000; padding-top: 22px; padding-bottom: 0;">
                 <ion-note class="fs-12">
+                    <ul class="tags">
+                        <li *ngFor="let tag of tags"> {{ "#" + tag }} </li>
+                    </ul>
+                </ion-note>
+                <ion-note class="fs-12" color="dark">
                     Keep close to Nature's heart... and break clear away, once in awhile,
                     and climb a mountain or spend a week in the woods. Wash your spirit clean.
                 </ion-note>
