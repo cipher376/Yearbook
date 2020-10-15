@@ -66,7 +66,8 @@ export class SchoolsPage implements OnInit, AfterViewInit, OnDestroy {
   goBack() {
     this.router.navigateByUrl(this.browserHistory.getPreviousUrl());
   }
-  gotoSchoolsFeed() {
+
+  gotoSchoolProfile() {
     if (this.userService.isAuthenticated) {
       this.router.navigateByUrl('/links/schools');
     } else {

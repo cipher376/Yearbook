@@ -22,9 +22,11 @@ export class HomePage implements OnInit {
   }
 
   getUsername() {
-    this.userService.getUserLocal().then(
-      user => this.firstname = user.firstName
-    )
+    if ( this.isAuthenticated() ) {
+      this.userService.getUserLocal().then(
+        user => this.firstname = user.firstName
+      )
+    }
   }
 
   isAuthenticated(){
