@@ -7,6 +7,10 @@ import { UtilityService } from 'src/app/shared/services/providers/utility.servic
 import { School } from 'src/app/models/school';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
+import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
+import { Alumni } from 'src/app/models/alumni';
+import { FeedFilterPopoverComponent } from 'src/app/widgets/feed-filter-popover/feed-filter-popover.component';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-schools-search',
@@ -16,15 +20,22 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   previousPage = '';
   history$;
-  schools: School[] = [];
   schools$;
+  selectedSchools: School[] = [];
+  userSchools: School[] = [];
+  schools: School[] = [];
+  userAlumni: Alumni[] = [];
+
   constructor(
     private browserHistory: BrowserHistoryService,
     private router: Router,
+    public filterPopover: PopoverController,
     private alumniService: AlumniService,
     private schoolService: SchoolService,
     private userService: UserService,
-    private signal: MySignals) {
+    private signal: MySignals,
+    private store: MyStorage
+    ) {
     this.history$ = this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
     });
@@ -32,11 +43,31 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.store.getObject<Alumni[]>('user-alumni').then(alumni => {
+      if (alumni) {
+        this.userAlumni = alumni;
+        this.userAlumni.forEach(alu => {
+          this.userSchools.push(alu.school);
+        });
+      }
+    });
   }
+
   ngAfterViewInit() {
     this.schools$ = this.schoolService.getSchools().subscribe(schools => {
       this.schools = schools;
     });
+  }
+
+  async presentPopover(ev: any) {
+    const popover = await this.filterPopover.create({
+      component: FeedFilterPopoverComponent,
+      cssClass: 'filter-feed',
+      event: ev,
+      translucent: true,
+      showBackdrop: false
+    });
+    return await popover.present();
   }
 
   ngOnDestroy() {

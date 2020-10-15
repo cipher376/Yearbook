@@ -31,22 +31,22 @@
 
   <ion-tabs name="bottom">
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="profile" *ngIf="isAuthenticated()">
-        <ion-icon name="person-outline" size="small"></ion-icon>
-      </ion-tab-button>
-
-      <ion-tab-button tab="schools" *ngIf="isAuthenticated()">
-        <ion-icon name="wifi-outline" size="small"></ion-icon>
-      </ion-tab-button>
 
       <ion-tab-button tab="home">
-        <ion-icon name="home-outline" *ngIf="isAuthenticated()" size="medium"></ion-icon>
-        <ion-icon name="home-outline" *ngIf="!isAuthenticated()" size="small"></ion-icon>
-        <ion-badge color="danger">6</ion-badge>
+        <ion-icon name="home-outline" size="small"></ion-icon>
+        <!-- <ion-badge color="danger">6</ion-badge> -->
       </ion-tab-button>
 
       <ion-tab-button tab="schools-search">
         <ion-icon name="search-outline" size="small"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab="schools" *ngIf="isAuthenticated()">
+        <ion-icon name="add-circle-outline" size="large"></ion-icon>      
+      </ion-tab-button>
+
+      <ion-tab-button tab="profile" *ngIf="isAuthenticated()">
+        <ion-icon name="person-outline" size="small"></ion-icon>
       </ion-tab-button>
 
       <ion-tab-button tab="settings">

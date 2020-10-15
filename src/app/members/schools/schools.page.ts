@@ -27,9 +27,11 @@ export class SchoolsPage implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public filterPopover: PopoverController,
     private browserHistory: BrowserHistoryService,
-    private router: Router, private userService: UserService,
+    private router: Router, 
+    private userService: UserService,
     private alumniService: AlumniService,
-    private store: MyStorage) {
+    private store: MyStorage
+    ) {
     this.history$ = this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
     });
@@ -70,7 +72,6 @@ export class SchoolsPage implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.router.navigateByUrl('/login');
     }
-
   }
 
   isAuthenticated(){

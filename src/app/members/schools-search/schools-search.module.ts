@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SchoolsSearchPageRoutingModule } from './schools-search-routing.module';
 
 import { SchoolsSearchPage } from './schools-search.page';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SchoolsSearchPageRoutingModule
+    SchoolsSearchPageRoutingModule,
+    WidgetsModule
   ],
   declarations: [SchoolsSearchPage]
 })
