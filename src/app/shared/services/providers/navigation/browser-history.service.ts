@@ -59,6 +59,10 @@ export class BrowserHistoryService {
     return this.history;
   }
 
+  get currentUrl() {
+    return this.history[this.history.length];
+  }
+
 
   public getPreviousUrl() {
     this.history.pop();
