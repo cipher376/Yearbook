@@ -1,4 +1,3 @@
-import { UserInterface, CredentialsInterface } from './../../../models/user';
 import { PageInfo, getPagedData } from '../../../models/page';
 import { Router } from '@angular/router';
 import { API_ROOT_URL } from '../../config';
@@ -6,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { User } from '../../../models/user';
+import { CredentialsInterface, User, UserInterface } from '../../../models/user';
 import { MyStorage } from '../providers/storage/my-storage.service';
 import { UtilityService } from '../providers/utility.service';
 
@@ -20,13 +19,13 @@ export interface Token {
   providedIn: 'root',
 })
 export class UserService {
-  private token: Token = null;
+  token: Token = null;
   redirectUrl = '';
 
   constructor(private http: HttpClient, private store: MyStorage,
     private router: Router) {
-    this.getToken().then(tk => {
-      this.token = tk;
+    this.getToken().then(token => {
+      this.token = token;
     });
 
   }
@@ -34,8 +33,7 @@ export class UserService {
   signUp(user: User) {
     return this.http.post<User>('/signup', user).pipe(
       map(res => {
-        console.log(res);
-        this.store.setObject('user', res).then(_ => _);
+        // console.log(res);
         return res;
       }),
       catchError(e => this.handleError(e))
@@ -64,21 +62,13 @@ export class UserService {
     this.deleteUserLocal(); // clear user details
   }
 
-  getToken(): Promise<Token> {
-    return this.store.getObject('token');
-  }
-
-  get Token() {
-    return this.token;
-  }
-  set Token(token: Token) {
-    this.token = token;
+  async getToken(): Promise<Token> {
+    return await this.store.getObject('token');
   }
 
   saveToken(token: Token) {
-    // tslint:disable-next-line:jsdoc-format
     /** Save the authentication token **/
-    this.store.setObject('token', token).then(_ => _);
+    this.store.setObject('token', token);
   }
 
   deleteToken() {
@@ -112,8 +102,6 @@ export class UserService {
 
 
 
-
-
   updateUser(user: CredentialsInterface | UserInterface): Observable<User> {
     return this.http.patch<User>('/users/' + user.id, user).pipe(
       map(res => {
@@ -132,7 +120,7 @@ export class UserService {
     return this.http.get<User>('/users/me').pipe(
       map(res => {
         /** Save the authentication token **/
-        this.store.setObject('user', res).then(_ => _);
+        this.store.setObject('user', res);
         return res as any;
       }),
       catchError(e => this.handleError(e))
@@ -144,7 +132,7 @@ export class UserService {
     return this.http.get<User>('/users/my-profile').pipe(
       map(res => {
         /** Save the authentication token **/
-        this.store.setObject('user', res).then(_ => _);
+        this.store.setObject('user', res);
         return res as any;
       }),
       catchError(e => this.handleError(e))
@@ -196,7 +184,7 @@ export class UserService {
     );
   }
 
-  getUserDetails(userId: string) {
+  getUserDetails(userId: any) {
     const filter = {
       include: [
         { relation: 'photos' },
@@ -209,14 +197,38 @@ export class UserService {
             include: [
               {
                 relation: 'school',
-                scope: {
-                  include: [
-                    { relation: 'photos' }]
-                }
+                // scope: {
+                //   include: [
+                //     { relation: 'photos' }]
+                // }
               }
             ]
           }
         }
+      ]
+    };
+    const url = `/users/${userId}?filter=` + JSON.stringify(filter);
+    return this.http.get<User[]>(url).pipe(
+      map(res => {
+        // console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
+  getUserProfile(userId: any): Observable<User> {
+    const filter = {
+      include: [
+        {
+          relation: 'photos',
+          scope: {
+            where: {
+              profile: true
+            }
+          }
+        },
+        { relation: 'address' }
       ]
     };
     const url = `/users/${userId}?filter=` + JSON.stringify(filter);
@@ -279,12 +291,16 @@ export class UserService {
 
 
   // Read user object from sesson storage
-  getUserLocal(): Promise<User> {
-    return this.store.getObject('user');
+  async getUserLocal(): Promise<User> {
+    return await this.store.getObject('user');
   }
 
   deleteUserLocal() {
-    this.store.remove('user').then(_ => _);
+    this.store.remove('user');
+  }
+
+  async setUserLocal(user: User): Promise<boolean> {
+    return await this.store.setObject('user', user);
   }
 
 

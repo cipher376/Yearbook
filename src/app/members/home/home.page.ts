@@ -24,8 +24,8 @@ export class HomePage implements OnInit {
   getUsername() {
     if ( this.isAuthenticated() ) {
       this.userService.getUserLocal().then(
-        user => this.firstname = user.firstName
-      )
+        user => this.firstname = user?.firstName
+      );
     }
   }
 

@@ -1,7 +1,8 @@
+import { PageInfo } from './../../models/page';
 import { SchoolService } from './../../shared/services/model-service/school.service';
 import { AlumniService } from './../../shared/services/model-service/alumni.service';
 import { BrowserHistoryService } from 'src/app/shared/services/providers/navigation/browser-history.service';
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { School } from 'src/app/models/school';
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { Alumni } from 'src/app/models/alumni';
 import { FeedFilterPopoverComponent } from 'src/app/widgets/feed-filter-popover/feed-filter-popover.component';
-import { PopoverController } from '@ionic/angular';
+import { IonInfiniteScroll, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-schools-search',
@@ -26,6 +27,15 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   schools: School[] = [];
   userAlumni: Alumni[] = [];
 
+  sub$ = [];
+
+  searchOffset = 0; // Begin search at zero index;
+  searchLimit = 20; // pull 20 schools at a time
+  searchKey = '';
+
+  infiniteScrollTarget: any;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+
   constructor(
     private browserHistory: BrowserHistoryService,
     private router: Router,
@@ -35,10 +45,10 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     private userService: UserService,
     private signal: MySignals,
     private store: MyStorage
-    ) {
-    this.history$ = this.browserHistory.previousPageSource$.subscribe(previousPage => {
+  ) {
+    this.sub$.push(this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
-    });
+    }));
 
   }
 
@@ -54,9 +64,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.schools$ = this.schoolService.getSchools().subscribe(schools => {
-      this.schools = schools;
-    });
+    this.search(false);
   }
 
   async presentPopover(ev: any) {
@@ -71,8 +79,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    UtilityService.destroySubscription(this.history$);
-    UtilityService.destroySubscription(this.schools$);
+    UtilityService.destroySubscription(this.sub$);
   }
 
   goBack() {
@@ -84,7 +91,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigateByUrl('/links/school-profile');
   }
 
-  isAuthenticated(){
+  isAuthenticated() {
     return this.userService.isAuthenticated();
   }
 
@@ -96,5 +103,42 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     // console.log(school.name);
   }
 
+
+  // if search term change, it means key
+  // trigger is true
+  search(keyTrigger = true) {
+    console.log('searching');
+    // refresh search
+    if (keyTrigger) {
+      this.searchOffset = 0;
+    }
+    const pageInfo = {
+      offset: this.searchOffset,
+      limit: this.searchLimit
+    } as PageInfo;
+
+    this.schoolService.searchSchool(this.searchKey, pageInfo).subscribe(schools => {
+      if (keyTrigger) {
+        console.log(schools);
+        this.schools = schools;
+      } else {
+        this.schools = this.schools.concat(schools);
+        this.searchOffset = this.schools.length;
+        this.infiniteScrollTarget?.complete();
+      }
+    });
+
+    // this.schoolService.getSchools(pageInfo).subscribe(schools => {
+    //   this.schools = this.schools.concat(schools);
+    //   this.searchOffset = this.schools.length;
+    //   console.log(this.schools.length);
+    // });
+  }
+
+
+  loadMoreEvents(event) {
+    this.infiniteScrollTarget = event.target;
+    this.search(false);
+  }
 
 }

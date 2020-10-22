@@ -210,4 +210,44 @@ export class School {
   public get address() {
     return this._address;
   }
+
+        /**
+ * school search sequence
+ * propery search-score
+ * name      6
+ * alias     5.8
+ * helpLines 5.7
+ * email     5.6
+ * latLng    6.0
+ *
+ * dateStarted 4.1
+ * studentAlias 4.2
+ * anthem   4
+ * address.street 4.3
+ * address.suburb 4.3
+ * address.city 4.3
+ *
+ *
+ * address.state 3.9
+ * address.country 3.9
+ * address.postcode 3.5
+ *
+ * type     3.2
+ * gender    3.1
+ * motto     3.0
+ * mission   3.0
+ * vision    3.0
+ *
+ * about     2.5
+ * website   2.0
+ *
+ *
+ *
+ * departments        1.5
+ * accommodationTypes 1.5
+ * totalStudents 1.2
+ * alumniCount 1.0
+ *
+ *
+ *  */
 }

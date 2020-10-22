@@ -19,7 +19,10 @@
     </ion-col>
 
     <ion-col>
-      <ion-searchbar animated showCancelButton="focus" debounce="500" placeholder="Search Schools"></ion-searchbar>
+      <ion-searchbar animated showCancelButton="focus" debounce="500" 
+      autocomplete="'on'|'name'|'country-name'|'email'|'organization'|'address-line1'|'address-line2'|'street-address'|'sex'|'tel-country-code'|'url'|'tel'"
+      placeholder="Search Schools" (ionChange)="search()"  type="'search'|'email'|'tel'|'text'|'url'"
+       inputmode="'text'|'tel'|'email'|'url'|'search'" [(ngModel)]="searchKey"></ion-searchbar>
     </ion-col>
   </ion-row>
 
@@ -45,7 +48,7 @@
   </ion-row>
 
   <ion-row>
-    <ion-col size="12" class="ion-no-padding" *ngFor="let school of [0,0,0,0]">
+    <ion-col size="12" class="ion-no-padding" *ngFor="let school of schools">
       <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent">
         <ion-ripple-effect type="unbounded"></ion-ripple-effect>
         <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
@@ -54,8 +57,9 @@
             routerLinkActive="router-link-active">
             <img src="../../../assets/images/me.jpg">
           </ion-thumbnail>
-          <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark" [routerLink]="['/links/school-profile']" routerLinkActive="router-link-active"> Opoku Ware SHS <br>
-            <ion-label class="hind-regular fs-12"> Accra, Ghana </ion-label>
+          <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark"
+           [routerLink]="['/links/school-profile']" routerLinkActive="router-link-active">{{school?.name}} <br>
+            <ion-label class="hind-regular fs-12">{{school?.address?.city}} {{school?.address?.country}} </ion-label>
           </ion-note>
         </ion-item>
       </ion-row>
@@ -63,5 +67,8 @@
   </ion-row>
 
   <!-- Main body content ends -->
-
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreEvents($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading events...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
