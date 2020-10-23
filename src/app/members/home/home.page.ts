@@ -18,15 +18,21 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUsername();
   }
 
   getUsername() {
-    if ( this.isAuthenticated() ) {
-      this.userService.getUserLocal().then(
-        user => this.firstname = user.firstName
-      )
-    }
+    this.userService.getUserLocal().then(
+      user => this.firstname = user.firstName
+    );
+  }
+
+  get username(): string | null {
+    return '';
+    // if ( this.isAuthenticated() ) {
+    //   this.getUsername();
+    //   return this.firstname;
+    // } 
+    // else return null;
   }
 
   isAuthenticated(){

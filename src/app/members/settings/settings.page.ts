@@ -39,6 +39,9 @@ export class SettingsPage implements OnInit, AfterViewInit, OnDestroy {
 
   logout() {
     this.userService.logout();
+    setTimeout(() => {
+      this.router.navigateByUrl('/login');
+    }, 500)
   }
 
   isAuthenticated(): boolean {
