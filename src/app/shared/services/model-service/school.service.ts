@@ -135,7 +135,7 @@ export class SchoolService {
     console.log(url);
     return this.http.get<School[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => this.handleError(e))
@@ -208,14 +208,16 @@ export class SchoolService {
 
   // Read school object from sesson storage
   async getSchoolLocal(): Promise<School> {
-    return this.store.getObject('school');
+    return this.store.getObject('selectedSchool');
   }
   async setSchoolLocal(school: School) {
+    this.signals.announceSchool(school);
     return this.store.setObject('selectedSchool', school);
   }
 
   async deleteSchoolLocal() {
-    this.store.remove('school');
+    this.signals.announceSchool(null);
+    this.store.remove('selectedSchool');
   }
 
 

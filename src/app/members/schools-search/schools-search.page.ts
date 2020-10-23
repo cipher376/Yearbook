@@ -12,6 +12,7 @@ import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.
 import { Alumni } from 'src/app/models/alumni';
 import { FeedFilterPopoverComponent } from 'src/app/widgets/feed-filter-popover/feed-filter-popover.component';
 import { IonInfiniteScroll, PopoverController } from '@ionic/angular';
+import { IdentityPhoto, Photo } from 'src/app/models/media';
 
 @Component({
   selector: 'app-schools-search',
@@ -20,11 +21,11 @@ import { IonInfiniteScroll, PopoverController } from '@ionic/angular';
 })
 export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   previousPage = '';
-  history$;
-  schools$;
   selectedSchools: School[] = [];
   userSchools: School[] = [];
   schools: School[] = [];
+  schoolsIdentityPhoto: IdentityPhoto[] = [];
+
   userAlumni: Alumni[] = [];
 
   sub$ = [];
@@ -87,8 +88,9 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   gotoSchoolProfile(school: School) {
-    this.signal.announceSchool(school);
-    this.router.navigateByUrl('/links/school-profile');
+    this.schoolService.setSchoolLocal(school).then(_ =>
+      this.router.navigateByUrl('/links/school-profile')
+    );
   }
 
   isAuthenticated() {
@@ -121,6 +123,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
       if (keyTrigger) {
         console.log(schools);
         this.schools = schools;
+        this.schoolsIdentityPhoto = UtilityService.getSchoolsIdentityPhotos(schools);
       } else {
         this.schools = this.schools.concat(schools);
         this.searchOffset = this.schools.length;
@@ -139,6 +142,10 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   loadMoreEvents(event) {
     this.infiniteScrollTarget = event.target;
     this.search(false);
+  }
+
+  getProfilePhotoUrl(identityPhoto: IdentityPhoto) {
+    return UtilityService.getSchoolProfilePhotoUrl(identityPhoto);
   }
 
 }

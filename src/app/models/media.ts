@@ -15,7 +15,7 @@ export interface MediaInterface {
   description?: string;
   fileName?: string;
   fileUrl?: string;
-  coverUrl?: string;
+  // coverUrl?: string;
   thumbnailUrl?: string;
   dateCreated?: Date;
   type: MediaType;
@@ -27,7 +27,7 @@ export class Media {
   fileName?: string;
   fileUrl: string;
   thumbnailUrl?: string;
-  coverUrl?: string;
+  // coverUrl?: string;
   dateCreated?: Date;
   type: MediaType;
 
@@ -35,14 +35,14 @@ export class Media {
    *
    */
   constructor(private data?: MediaInterface) {
-    this.id = data.id;
-    this.description = data.description;
-    this.fileName = data.fileName;
-    this.fileUrl = data.fileUrl;
-    this.thumbnailUrl = data.thumbnailUrl;
-    this.coverUrl = data.coverUrl;
-    this.dateCreated = data.dateCreated;
-    this.type = data.type;
+    this.id = data?.id;
+    this.description = data?.description;
+    this.fileName = data?.fileName;
+    this.fileUrl = data?.fileUrl;
+    this.thumbnailUrl = data?.thumbnailUrl;
+    // this.coverUrl = data.coverUrl;
+    this.dateCreated = data?.dateCreated;
+    this.type = data?.type;
   }
 }
 
@@ -50,18 +50,53 @@ export class Photo extends Media {
   /**
    *
    */
+  coverImage: boolean;
+  profile: boolean;
+  flag: boolean;
+
+
   constructor(data?: MediaInterface) {
     super(data);
+  }
 
+  get Info() {
+    return {
+      id: this.id,
+      description: this.description,
+      fileName: this.fileName,
+      fileUrl: this.fileUrl,
+      thumbnailUrl: this.thumbnailUrl,
+      dateCreated: this.dateCreated,
+      type: this.type,
+      coverImage: this.coverImage,
+      profile: this.profile,
+      flag: this.flag
+    };
   }
 }
 export class Video extends Media {
   /**
      *
      */
+  posterUrl?: string;
+  mimeType?: string;
+
   constructor(data?: MediaInterface) {
     super(data);
 
+  }
+  get Info() {
+    return {
+      id: this.id,
+      description: this.description,
+      fileName: this.fileName,
+      fileUrl: this.fileUrl,
+      thumbnailUrl: this.thumbnailUrl,
+      posterUrl: this.posterUrl,
+      dateCreated: this.dateCreated,
+      type: this.type,
+      mimeType: this.mimeType
+    };
   }
 }
 export class Audio extends Media {
@@ -90,4 +125,10 @@ export class Website extends Media {
     super(data);
 
   }
+}
+
+export interface IdentityPhoto {
+  profile: Photo;
+  cover: Photo;
+  flag: Photo;
 }
