@@ -15,7 +15,7 @@ import { NO_SCHOOL_COVER_PHOTO_URL } from 'src/app/shared/config';
   styleUrls: ['./schools-profile.page.scss'],
 })
 export class SchoolsProfilePage implements OnInit, OnDestroy {
-  currentSegment = 'photos';
+  currentSegment = 'about';
   school: School;
   identityPhoto: IdentityPhoto; // includes cover, profile and flag
 

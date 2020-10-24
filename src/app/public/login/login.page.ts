@@ -155,6 +155,7 @@ export class LoginPage implements OnInit, OnDestroy {
       },
       error => {
         console.log(error);
+        this.toaster.toast(error.message, 4000);
         this._loading.dismiss();
         // if (error.search('verified') > -1) {
         //   this.alertCtrl.create({
