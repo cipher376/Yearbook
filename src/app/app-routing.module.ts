@@ -43,19 +43,18 @@ const routes: Routes = [
     path: 'phone-number',
     loadChildren: () => import('./public/phone-number/phone-number.module').then( m => m.PhoneNumberPageModule)
   },
-  // {
-  //   canActivate: [ScreenLockGuardService],
-  //   path: 'home',
-  //   loadChildren: () => import('./members/home/home.module').then( m => m.HomePageModule)
-  // },
-  // {   canActivate: [ScreenLockGuardService],
-  //   path: 'schools',
-  //   loadChildren: () => import('./members/schools/schools.module').then( m => m.SchoolsPageModule)
-  // },
-  // {
-  //   path: 'settings',
-  //   loadChildren: () => import('./members/settings/settings.module').then( m => m.SettingsPageModule)
-  // },
+  {
+    path: 'privacy',
+    loadChildren: () => import('./public/privacy/privacy.module').then( m => m.PrivacyModule)
+  },
+  {   canActivate: [ScreenLockGuardService],
+    path: 'terms-of-service',
+    loadChildren: () => import('./public/terms-of-service/terms-of-service.module').then( m => m.TermsOfServiceModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./public/about/about.module').then( m => m.AboutModule)
+  },
   // {
   //   canActivate: [AuthGuardService, ScreenLockGuardService],
   //   canActivateChild: [AuthGuardService],
