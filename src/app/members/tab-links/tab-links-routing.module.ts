@@ -47,11 +47,17 @@ const routes: Routes = [
         path: 'schools-join',
         loadChildren: () => import('../schools-join/schools-join.module').then( m => m.SchoolsJoinPageModule)
       },
+      {
+        canActivate: [AuthGuardService, ScreenLockGuardService],
+        path: 'post', 
+        loadChildren: () => import('../post/post-routing.module').then( m => m.PostPageRoutingModule)
+      }
     ]
   },
   {
     path: '',
-    redirectTo: '/links/home'
+    redirectTo: '/links/home',
+    pathMatch: 'full'
   }
 ];
 

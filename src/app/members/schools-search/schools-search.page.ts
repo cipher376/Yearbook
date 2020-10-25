@@ -11,8 +11,9 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { Alumni } from 'src/app/models/alumni';
 import { FeedFilterPopoverComponent } from 'src/app/widgets/feed-filter-popover/feed-filter-popover.component';
-import { IonInfiniteScroll, PopoverController } from '@ionic/angular';
+import { IonInfiniteScroll, LoadingController, PopoverController } from '@ionic/angular';
 import { IdentityPhoto, Photo } from 'src/app/models/media';
+import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 
 @Component({
   selector: 'app-schools-search',
@@ -45,7 +46,9 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     private schoolService: SchoolService,
     private userService: UserService,
     private signal: MySignals,
-    private store: MyStorage
+    private store: MyStorage,
+    private loadingController: LoadingController,
+    private toast: ToasterService
   ) {
     this.sub$.push(this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
@@ -105,10 +108,28 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     // console.log(school.name);
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
 
   // if search term change, it means key
   // trigger is true
   search(keyTrigger = true) {
+
+    // if ( this.schools.length === 0 ) {
+    //   this.presentLoading().then((res: any) => {
+    //     this.schools.length === 0 ? res.dismiss() : this.toast.toast('Sorry, something went wrong!')
+    //   });
+    // }
+
     console.log('searching');
     // refresh search
     if (keyTrigger) {
