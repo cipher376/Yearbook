@@ -13,7 +13,7 @@ import { BrowserHistoryService } from 'src/app/shared/services/providers/navigat
   styleUrls: ['./schools-profile.page.scss'],
 })
 export class SchoolsProfilePage implements OnInit, OnDestroy {
-  currentSegment = 'photos';
+  currentSegment = 'about';
   school: School;
   identityPhoto: IdentityPhoto; // includes cover, profile and flag
 
