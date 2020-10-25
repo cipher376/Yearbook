@@ -1,3 +1,4 @@
+import { TimeLinePageModule } from './../time-line/time-line.module';
 import { SchoolsProfilePageModule } from './../schools-profile/schools-profile.module';
 import { SchoolsPageModule } from './../schools/schools.module';
 import { NgModule } from '@angular/core';
@@ -46,6 +47,14 @@ const routes: Routes = [
       {
         path: 'schools-join',
         loadChildren: () => import('../schools-join/schools-join.module').then( m => m.SchoolsJoinPageModule)
+      },
+      {
+        path: 'create-post1',
+        loadChildren: () => import('../create-post1/create-post1.module').then( m => m.CreatePostPage1Module)
+      },
+      {
+        path: 'timeline',
+        loadChildren: () => import('../time-line/time-line.module').then( m => m.TimeLinePageModule)
       },
     ]
   },

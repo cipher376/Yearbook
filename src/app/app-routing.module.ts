@@ -65,6 +65,14 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./members/tab-links/tab-links.module').then( m => m.TabLinksPageModule)
   },
+  {
+    path: 'create-post1',
+    loadChildren: () => import('./members/create-post1/create-post1.module').then( m => m.CreatePostPage1Module)
+  },
+  {
+    path: 'time-line',
+    loadChildren: () => import('./members/time-line/time-line.module').then( m => m.TimeLinePageModule)
+  },
  
   // {
   //   path: 'schools-search',

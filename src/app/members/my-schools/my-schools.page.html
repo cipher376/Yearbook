@@ -2,13 +2,13 @@
   <ion-row class="top-row-header ion-no-padding " style="box-shadow: 0px 2px 4px -4px;">
     <ion-col size="12" class="ion-no-padding">
       <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
-        <ion-row class="ion-row"(click)="goBack()" >
+        <ion-row class="ion-row" (click)="goBack()">
           <ion-icon class="fs-25" [src]="'../../../assets/icon/round-arrow_back.svg'"></ion-icon>&nbsp;&nbsp;
           <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note>
         </ion-row>
         <ion-row slot="end">
           <ion-toggle color="danger" (click)="toggleEdit()"></ion-toggle>
-          <ion-note class="fs-12 poppins-regular"  style="margin-top: 10px;">Edit schools</ion-note>&nbsp;&nbsp;
+          <ion-note class="fs-12 poppins-regular" style="margin-top: 10px;">Edit schools</ion-note>&nbsp;&nbsp;
         </ion-row>
       </ion-item>
     </ion-col>
@@ -18,76 +18,24 @@
   </ion-row>
   <!-- Top correction ends -->
 
-  <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent">
+  <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent"
+    *ngFor="let school of userSchools; let i = index">
     <ion-ripple-effect type="unbounded"></ion-ripple-effect>
     <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
       padding-bottom: 7px;border-bottom: thin dotted lightgray;">
       <ion-thumbnail class="ion-no-padding br-10" slot="start" [routerLink]="['/links/school-profile']"
         routerLinkActive="router-link-active">
-        <img src="../../../assets/images/me.jpg">
+        <img src="{{getProfilePhotoUrl(schoolsIdentityPhoto[i])}}">
       </ion-thumbnail>
-      <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark"
-        [routerLink]="['/links/school-profile']" routerLinkActive="router-link-active">
-        Opoku Ware School<br>
-        <ion-label class="hind-regular fs-12">+1000 alumni</ion-label>
+      <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark" (click)="view(school)">
+        {{school?.name}}<br>
+        <ion-label class="hind-regular fs-12">{{school?.alumniCount||'100+'}} alumni</ion-label>
       </ion-note>
       <!-- <ion-button slot="end" shape="round" fill="outline" color='danger' class="poppins-bold fs-13" style="--border-width: 2px;">R<span
           class="ion-text-lowercase">emove</span></ion-button> -->
-      <ion-icon slot="end" name='trash-outline' color="danger" *ngIf="isEdit" class="animate__animated animate__fadeInRight"></ion-icon>
+      <ion-icon slot="end" name='trash-outline' color="danger" *ngIf="isEdit"
+        class="animate__animated animate__fadeInRight" (click)="leaveSchool(school)"></ion-icon>
     </ion-item>
   </ion-row>
-  <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent">
-    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-    <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
-      padding-bottom: 7px;border-bottom: thin dotted lightgray;">
-      <ion-thumbnail class="ion-no-padding br-10" slot="start" [routerLink]="['/links/school-profile']"
-        routerLinkActive="router-link-active">
-        <img src="../../../assets/images/me.jpg">
-      </ion-thumbnail>
-      <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark"
-        [routerLink]="['/links/school-profile']" routerLinkActive="router-link-active">
-        Opoku Ware School<br>
-        <ion-label class="hind-regular fs-12">+1000 alumni</ion-label>
-      </ion-note>
-      <!-- <ion-button slot="end" shape="round" fill="outline" color='danger' class="poppins-bold fs-13" style="--border-width: 2px;">R<span
-          class="ion-text-lowercase">emove</span></ion-button> -->
-      <ion-icon slot="end" name='trash-outline' color="danger" *ngIf="isEdit" class="animate__animated animate__fadeInRight"></ion-icon>
-    </ion-item>
-  </ion-row>
-  <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent">
-    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-    <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
-      padding-bottom: 7px;border-bottom: thin dotted lightgray;">
-      <ion-thumbnail class="ion-no-padding br-10" slot="start" [routerLink]="['/links/school-profile']"
-        routerLinkActive="router-link-active">
-        <img src="../../../assets/images/me.jpg">
-      </ion-thumbnail>
-      <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark"
-        [routerLink]="['/links/school-profile']" routerLinkActive="router-link-active">
-        Opoku Ware School<br>
-        <ion-label class="hind-regular fs-12">+1000 alumni</ion-label>
-      </ion-note>
-      <!-- <ion-button slot="end" shape="round" fill="outline" color='danger' class="poppins-bold fs-13" style="--border-width: 2px;">R<span
-          class="ion-text-lowercase">emove</span></ion-button> -->
-      <ion-icon slot="end" name='trash-outline' color="danger" *ngIf="isEdit" class="animate__animated animate__fadeInRight"></ion-icon>
-    </ion-item>
-  </ion-row>
-  <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent">
-    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-    <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
-      padding-bottom: 7px;border-bottom: thin dotted lightgray;">
-      <ion-thumbnail class="ion-no-padding br-10" slot="start" [routerLink]="['/links/school-profile']"
-        routerLinkActive="router-link-active">
-        <img src="../../../assets/images/me.jpg">
-      </ion-thumbnail>
-      <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark"
-        [routerLink]="['/links/school-profile']" routerLinkActive="router-link-active">
-        Opoku Ware School<br>
-        <ion-label class="hind-regular fs-12">+1000 alumni</ion-label>
-      </ion-note>
-      <!-- <ion-button slot="end" shape="round" fill="outline" color='danger' class="poppins-bold fs-13" style="--border-width: 2px;">R<span
-          class="ion-text-lowercase">emove</span></ion-button> -->
-      <ion-icon slot="end" name='trash-outline' color="danger" *ngIf="isEdit" class="animate__animated animate__fadeInRight"></ion-icon>
-    </ion-item>
-  </ion-row>
+
 </ion-content>

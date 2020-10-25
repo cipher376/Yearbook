@@ -48,7 +48,16 @@ export class AlumniService {
     const filter = {
       include: [
         { relation: 'user' },
-        { relation: 'school' },
+        {
+          relation: 'school',
+          scope: {
+            include: [
+              { relation: 'address' },
+              { relation: 'schoolDetails' },
+              { relation: 'photos' }
+            ]
+          }
+        },
         { relation: 'degree' },
         // { relation: 'post' }
       ]
@@ -57,10 +66,9 @@ export class AlumniService {
       filter.offset = pageInfo.offset * pageInfo.limit;
       filter.limit = pageInfo.limit;
     }
+    filter.where = {};
     if (schoolId) {
-      filter.where = {
-        schoolId
-      };
+      filter.where.schoolId = schoolId;
     }
 
     if (userId) {
@@ -77,6 +85,65 @@ export class AlumniService {
     );
   }
 
+  getUserAlumni(userId: any, schoolId?: any): Observable<Alumni[]> {
+    const filter = {
+      include: [
+        { relation: 'degree' },
+        {
+          relation: 'school',
+          scope: {
+            include: [
+              { relation: 'address' },
+              { relation: 'schoolDetails' },
+              { relation: 'photos' }]
+          }
+        }
+        // { relation: 'post' }
+      ],
+      where: {
+        userId
+      }
+    } as any;
+
+    if (schoolId) {
+      filter.where.schoolId = schoolId;
+    }
+
+    // console.log(filter);
+    const url = `/alumni?filter=` + JSON.stringify(filter);
+    return this.http.get<Alumni[]>(url).pipe(
+      map(res => {
+        // console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+
+  }
+
+
+  getSchoolAlumni(schoolId: any): Observable<Alumni[]> {
+    const filter = {
+      where: {
+        schoolId
+      },
+      include: [
+        { relation: 'degree' },
+        // { relation: 'post' }
+      ]
+    } as any;
+
+    // console.log(filter);/schools/{id}/alumni
+    const url = `/alumni?filter=` + JSON.stringify(filter);
+    return this.http.get<Alumni[]>(url).pipe(
+      map(res => {
+        // console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+
+  }
   getAlumniByIds(ids: string[], pageInfo?: PageInfo): Observable<Alumni[]> {
     let filter;
     if (pageInfo) {
@@ -154,7 +221,7 @@ export class AlumniService {
   }
 
 
-  deleteAlumni(alumnusId?: number): Observable<any> {
+  deleteAlumniById(alumnusId?: number): Observable<any> {
     return this.http.delete<Alumni>('/alumni/' + alumnusId).pipe(
       map(res => {
         return res;
@@ -163,6 +230,14 @@ export class AlumniService {
     );
   }
 
+  deleteAlumni(userId: number, schoolId: number): Observable<any> {
+    return this.http.delete<Alumni>(`/alumni/delete/${userId}/${schoolId}`).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
   /////////////////////////////////////////////////////////////////////////
   /*************Local alumni access*****/
   ///////////////////////////////////////////////////////////////////////////

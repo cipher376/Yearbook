@@ -23,12 +23,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     },
     {
       title: 'Timeline',
-      url: '/folder/Outbox',
+      url: '/links/timeline',
       icon: 'stopwatch'
     },
     {
       title: 'Posts',
-      url: '/folder/Favorites',
+      url: '/links/create-post1',
       icon: 'paper-plane'
     }
   ];

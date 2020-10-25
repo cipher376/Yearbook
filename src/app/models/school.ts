@@ -101,7 +101,7 @@ export class School {
   posts: any;
 
 
-  constructor(private data?: SchoolInterface, private details?: SchoolDetailsInterface) {
+  constructor(private data?: SchoolInterface, public details?: SchoolDetailsInterface) {
     if (data) {
       this.id = data.id;
       this.name = data.name;
@@ -118,7 +118,7 @@ export class School {
       this.detailsId = details.id;
       this.about = details.about;
       this.alias = details.alias;
-      this.totalStudents = this.details.totalStudents;
+      this.totalStudents = details.totalStudents;
       this.accommodationTypes = details.accommodationTypes;
       this.helpLines = details.helpLines;
       this.motto = details.motto;
@@ -131,7 +131,7 @@ export class School {
       this.website = details.website;
       this.emblem = details.emblem;
       this.email = details.email;
-      this.alumniCount = this.detail.alumniCount;
+      this.alumniCount = details.alumniCount;
     }
   }
 

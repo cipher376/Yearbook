@@ -146,7 +146,7 @@ export class SchoolService {
   getSchoolDetails(schoolId: any) {
     const filter = {
       include: [
-        { relation: 'photos' },
+        // { relation: 'photos' },
         { relation: 'address' },
         { relation: 'schoolConfig' },
         { relation: 'post' },
@@ -200,6 +200,29 @@ export class SchoolService {
     );
   }
 
+
+  getUserSchools(userId: any): Observable<School[]> {
+    const filter = {
+      include: [
+        { relation: 'address' },
+        { relation: 'schoolDetails' },
+        { relation: 'photos' }
+      ]
+    } as any;
+
+    // console.log(filter);
+    const url = `/users/${userId}/schools?filter=` + JSON.stringify(filter);
+    return this.http.get<School[]>(url).pipe(
+      map(res => {
+        // console.log(res);
+        return this.flattenSchools(res) as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+
+  }
+
+
   /////////////////////////////////////////////////////////////////////////
   /*************Local school access*****/
   ///////////////////////////////////////////////////////////////////////////
@@ -220,6 +243,23 @@ export class SchoolService {
     this.store.remove('selectedSchool');
   }
 
+
+  ////////////////////////////////////////////////////////////
+  /**********************Helper function ******************* */
+  ////////////////////////////////////////////////////////////
+
+  flattenSchools(schools: any[]) {
+    const returnSchools: School[] = [];
+    schools.forEach(school => {
+      returnSchools.push(new School(school, school?.schoolDetails))
+    });
+    // console.log(returnSchools);
+    return returnSchools;
+  }
+
+  flattenSchool(school: any) {
+    return new School(school, school?.schoolDetails)
+  }
 
 
 
