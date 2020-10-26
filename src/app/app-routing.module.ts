@@ -10,7 +10,7 @@ const routes: Routes = [
   //   redirectTo: 'home',
   //   pathMatch: 'full'
   // },
-  
+
   {
     path: 'login',
     loadChildren: './public/login/login.module#LoginPageModule'
@@ -29,31 +29,32 @@ const routes: Routes = [
   },
   {
     path: 'login-unauth',
-    loadChildren: () => import('./public/login-preview-un-auth/login-preview-un-auth.module').then( m => m.LoginPreviewUnAuthPageModule)
+    loadChildren: () => import('./public/login-preview-un-auth/login-preview-un-auth.module').then(m => m.LoginPreviewUnAuthPageModule)
   },
   {
     canActivate: [AuthGuardService, ScreenLockGuardService],
     canActivateChild: [AuthGuardService],
     path: 'login-auth',
-    loadChildren: () => import('./public/login-preview-auth/login-preview-auth.module').then( m => m.LoginPreviewAuthPageModule)
+    loadChildren: () => import('./public/login-preview-auth/login-preview-auth.module').then(m => m.LoginPreviewAuthPageModule)
   },
   {
     canActivate: [AuthGuardService, ScreenLockGuardService],
     canActivateChild: [AuthGuardService],
     path: 'phone-number',
-    loadChildren: () => import('./public/phone-number/phone-number.module').then( m => m.PhoneNumberPageModule)
+    loadChildren: () => import('./public/phone-number/phone-number.module').then(m => m.PhoneNumberPageModule)
   },
   {
     path: 'privacy',
-    loadChildren: () => import('./public/privacy/privacy.module').then( m => m.PrivacyModule)
+    loadChildren: () => import('./public/privacy/privacy.module').then(m => m.PrivacyModule)
   },
-  {   canActivate: [ScreenLockGuardService],
+  {
+    canActivate: [ScreenLockGuardService],
     path: 'terms-of-service',
-    loadChildren: () => import('./public/terms-of-service/terms-of-service.module').then( m => m.TermsOfServiceModule)
+    loadChildren: () => import('./public/terms-of-service/terms-of-service.module').then(m => m.TermsOfServiceModule)
   },
   {
     path: 'about',
-    loadChildren: () => import('./public/about/about.module').then( m => m.AboutModule)
+    loadChildren: () => import('./public/about/about.module').then(m => m.AboutModule)
   },
   // {
   //   canActivate: [AuthGuardService, ScreenLockGuardService],
@@ -63,15 +64,31 @@ const routes: Routes = [
   // },
   {
     path: '',
-    loadChildren: () => import('./members/tab-links/tab-links.module').then( m => m.TabLinksPageModule)
-  },  {
+    loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
+  },
+  {
     path: 'map',
-    loadChildren: () => import('./public/map/map.module').then( m => m.MapPageModule)
-  }
+    loadChildren: () => import('./public/map/map.module').then(m => m.MapPageModule)
+  },
 
 
+  // {
+  //   path: '',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full'
+  // },
 
- 
+  // {
+  //   canActivate: [AuthGuardService, ScreenLockGuardService],
+  //   canActivateChild: [AuthGuardService],
+  //   path: 'profile',
+  //   loadChildren: () => import('./members/profile/profile.module').then( m => m.ProfilePageModule)
+  // },
+  {
+    path: '',
+    loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
+  },
+
   // {
   //   path: 'schools-search',
   //   loadChildren: () => import('./members/schools-search/schools-search.module').then( m => m.SchoolsSearchPageModule)
@@ -93,4 +110,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule, CommonModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
