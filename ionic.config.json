@@ -1,7 +1,8 @@
 {
   "name": "almata",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
