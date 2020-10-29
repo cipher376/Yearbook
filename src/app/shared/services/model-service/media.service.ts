@@ -119,10 +119,6 @@ export class MediaService {
     );
   }
 
-
-
-
-
   createUserPhoto(userId: any, photo: Photo) {
     if (!photo.id) {
       return this.http.post<Photo>(`/users/${userId}/photos`, photo).pipe(
@@ -159,5 +155,7 @@ export class MediaService {
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User photo')))
     );
   }
+
+  
 
 }

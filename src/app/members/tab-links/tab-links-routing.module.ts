@@ -57,7 +57,7 @@ const routes: Routes = [
         loadChildren: () => import('../time-line/time-line.module').then(m => m.TimeLinePageModule)
       },
       {
-        path: 'post',
+        path: 'posts',
         loadChildren: () => import('../post/post.module').then(m => m.PostPageModule)
       },
     ]

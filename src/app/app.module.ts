@@ -1,3 +1,4 @@
+import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { WidgetsModule } from './widgets/widgets.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import { httpInterceptorProviders } from './shared/services/my-interceptors';
 import { BrowserHistoryService } from './shared/services/providers/navigation/browser-history.service';
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,7 +47,9 @@ import { BrowserHistoryService } from './shared/services/providers/navigation/br
     Storage,
     UserService,
     BrowserHistoryService,
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    PhotoLibrary, 
+    File
   ],
   exports: [
     CommonModule,

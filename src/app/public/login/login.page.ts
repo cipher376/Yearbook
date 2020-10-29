@@ -72,7 +72,7 @@ export class LoginPage implements OnInit, OnDestroy {
     // this._fameIdentity = <FameIdentity>{};
     this.loginForm = this.fb.group({
       email: [
-        '',
+        'fslinn0@xinhuanet.com',
         [
           Validators.required,
           Validators.email,
@@ -81,7 +81,7 @@ export class LoginPage implements OnInit, OnDestroy {
         ]
       ],
       password: [
-        '',
+        'T775Vp15P',
         [Validators.required, Validators.minLength(5), Validators.maxLength(20)]
       ],
       remember: [false]

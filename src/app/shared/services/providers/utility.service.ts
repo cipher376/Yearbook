@@ -7,13 +7,14 @@ import { Subscription } from 'rxjs';
 import { Country } from '../../../models/country';
 import { School } from 'src/app/models/school';
 import { Photo } from 'src/app/models/media';
+import { GetLibraryOptions, LibraryItem } from '@ionic-native/photo-library/ngx';
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilityService {
-
-
 
   constructor(
     private store: MyStorage
@@ -1142,18 +1143,18 @@ export class UtilityService {
         ph.fileUrl = ph.fileUrl ?? SCHOOL_DEFAULT_PHOTO_URL;
         photo.profile = ph;
       }
-      
+
       if (ph.coverImage) {
         ph.fileUrl = ph.fileUrl ?? NO_SCHOOL_COVER_PHOTO_URL;
         ph.fileUrl = ph.thumbnailUrl ?? NO_SCHOOL_COVER_PHOTO_URL;
         photo.cover = ph;
       }
-      
+
       if (ph.flag) {
         ph.fileUrl = ph.fileUrl ?? CREST_DEFAULT_PHOTO_URL;
         photo.flag = ph;
       }
-    
+
     });
 
     if (!school?.photos) {
@@ -1178,5 +1179,44 @@ export class UtilityService {
   }
 
 
+
+  /**
+   * IonicNative.PhotoLibrary.getLibrary does not match CordovaPlugin.PhotoLibrary.getLibrary
+   *    IonicNative: PhotoLibrary.getLibrary = (options?: GetLibraryOptions)=>Observable<LibraryItem[]>;
+   * but `cordova-plugin-photo-library` expects:
+   *    Cordova: PhotoLibrary.getLibrary = (success, error, options)=>void
+   */
+  static patch_IonicNativePhotoLibrary(photoLibrary: any): void {
+    // force typescript type check to match cordova getLibrary()
+    let native_getLibrary: (success: any, error: any, options: GetLibraryOptions) => void = photoLibrary.getLibrary;
+    let done: Subscription;
+
+    if (!photoLibrary['getLibrary_0']) {
+      native_getLibrary = photoLibrary.getLibrary;
+      photoLibrary['getLibrary_0'] = native_getLibrary;
+    }
+
+    const resp$ = new Subject<LibraryItem[]>();
+
+    const callbacks = {
+      success: (resp: { isLastChunk: boolean, library: LibraryItem[] }) => {
+        resp$.next(resp.library);
+        if (resp.isLastChunk) {
+          resp$.complete();
+          done.unsubscribe();
+        }
+      },
+      error: (err) => {
+        resp$.error(err);
+        resp$.complete();
+        done.unsubscribe();
+      }
+    };
+    photoLibrary['getLibrary_patched'] = (options: GetLibraryOptions): Observable<LibraryItem[]> => {
+      done = photoLibrary['getLibrary_0'](callbacks.success, callbacks.error, options).subscribe();
+      return resp$.asObservable();
+    }
+    photoLibrary.getLibrary = photoLibrary['getLibrary_patched'];
+  }
 
 }

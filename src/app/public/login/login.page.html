@@ -28,7 +28,7 @@
         <ion-item lines="none">
           <!-- <ion-icon name="key" padding size="small"></ion-icon>  &nbsp; -->
           <ion-input class="input-w-icon" placeholder="Password"  type="{{isShow?'text':'password'}}" formControlName="password"
-            (keyup)="onValidate('password')">
+            (keyup)="onValidate('password')" >
           </ion-input>
           <ion-icon color="success" size="small" name="checkmark-circle-outline" *ngIf="
             !loginForm.get('password').errors &&

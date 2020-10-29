@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './shared/services/model-service/user.service';
 import { User } from './models/user';
+import { PermissionsService } from './shared/services/providers/permission.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     },
     {
       title: 'Posts',
-      url: '/links/create-post1',
+      url: '/links/posts',
       icon: 'paper-plane'
     }
   ];
@@ -62,7 +63,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private statusBar: StatusBar,
     private userService: UserService,
     private history: BrowserHistoryService,
-    private store: MyStorage
+    private store: MyStorage,
+    private permissions: PermissionsService
   ) {
     this.initializeApp();
   }
@@ -73,6 +75,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.permissions.initPermissions().then(_ => _);
     });
   }
 

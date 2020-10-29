@@ -1,63 +1,83 @@
-<ion-header>
-  <!-- Page header -->
-  <ion-row class="top-row-header ion-no-padding ">
-    <ion-col size="12" class="ion-no-padding ">
-      <ion-item class="ion-no-padding">
-        <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right"> Compose a Post </ion-label>
-      </ion-item>
-    </ion-col>
-  </ion-row>
-</ion-header>
+  <ion-content>
+    <!-- Page header -->
+    <ion-row class="top-row-header ion-no-padding ">
+      <ion-col size="12" class="ion-no-padding ">
+        <ion-item class="ion-no-padding">
+          <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right ion-no-margin">
+            <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)">
+              <!-- <ion-icon name="paper-plane-outline"></ion-icon> -->
+              Post
+            </ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- Page header ends -->
 
-<!-- Top correction -->
-<ion-row class="ion-content-top_correction"></ion-row>
-<!-- Top correction ends -->
+    <!-- Top correction -->
+    <ion-row class="ion-content-top_correction"></ion-row>
+    <!-- Top correction ends -->
 
 
-<ion-content>
-  <ion-segment [(ngModel)]="galleryType" color="primary">
-    <ion-segment-button value="cloud">
-      My Photos
-    </ion-segment-button>
-    <ion-segment-button value="local">
-      Device Gallery
-    </ion-segment-button>
-  </ion-segment>
-
-  <div [ngSwitch]="galleryType">
-    <ion-grid *ngSwitchCase="'cloud'" id="cloud">
-      <ion-row>
-        <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
-          <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'"></div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid *ngSwitchCase="'local'" id="device">
-      <ion-row>
-        <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1]">
-          <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'"></div>
-        </ion-col>
- 
-        <ion-col class="col-6 col-md-4 col-xl-3 px-1">
-          <div class="image-container add-container">
-            <ion-icon name="add-circle" size="large" class="add-btn"></ion-icon>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-segment class="mt-1">
-      <ion-item>
-        <ion-label position="stacked"> What's on your mind? </ion-label>
-        <ion-textarea rows="3" maxlength="2000"></ion-textarea>
-      </ion-item>      
+    <ion-segment [(ngModel)]="galleryType" color="primary">
+      <ion-segment-button value="cloud">
+        <ion-row>M<span class="ion-text-lowercase">y photos</span></ion-row>
+      </ion-segment-button>
+      <ion-segment-button value="local">
+        <ion-row>D<span class="ion-text-lowercase">evice gallery</span></ion-row>
+      </ion-segment-button>
     </ion-segment>
-    
-    <ion-button expand="block" class="mt-4 mx-2">
-      Post &nbsp; <ion-icon name="arrow-forward"></ion-icon> 
-    </ion-button>
 
-  </div>
+    <div [ngSwitch]="galleryType">
+      <ion-grid *ngSwitchCase="'cloud'" id="cloud">
+        <ion-row>
+          <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+            <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'"></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-</ion-content>
+      <ion-grid *ngSwitchCase="'local'" id="device">
+        <ion-row>
+          <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1]">
+            <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'"></div>
+          </ion-col>
+          <ion-col class="col-6 col-md-4 col-xl-3 px-1" (click)="readPhotos()">
+            <div class="image-container add-container">
+              <ion-icon name="add-circle" size="large" class="add-btn"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-row size="12" class="text-center p-1">
+        <ion-col size="4" class=" ion-no-padding ion-no-margin">
+          <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)">
+            <ion-icon name="camera-outline" size="small"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="4" class=" ion-no-padding ion-no-margin">
+          <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)">
+            <ion-icon name="videocam-outline" size="small"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="4" class=" ion-no-padding ion-no-margin">
+          <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)">
+            <ion-icon name="mic-outline" size="small"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-segment class="mt-1">
+        <ion-item>
+          <ion-label position="stacked"> What's on your mind? </ion-label>
+          <ion-textarea rows="3" maxlength="2000"></ion-textarea>
+        </ion-item>
+
+      </ion-segment>
+
+      <!-- <ion-button expand="block" class="mt-4 mx-2">
+      Post &nbsp; <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button> -->
+
+    </div>
+
+  </ion-content>
