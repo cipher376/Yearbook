@@ -19,7 +19,10 @@
 
     <ion-col size="12" class="ion-no-padding ion-padding-end ion-padding-start">
         <ion-card class=" ion-align-items-center">
-            <ion-img src="../../../assets/images/me.jpg"></ion-img>
+            <!-- <ion-img src="../../../assets/images/me.jpg"></ion-img> -->
+            <ion-img
+                src="https://i2.wp.com/quidtree.com/wp-content/uploads/2020/01/placeholder.png?fit=750%2C500&ssl=1">
+            </ion-img>
             <ion-card-header class="ion-no-padding info">
                 <ion-row class="ion-no-padding">
                     <ion-item lines="none">
@@ -46,9 +49,9 @@
                         style="text-shadow: 0px 0px 3px black !important;color: white;">
                         @opukuwareshs
                     </ion-note>
-                    <ion-row slot="end" class="avatar-group ion-align-items-end ion-text-right">
+                    <!-- <ion-row slot="end" class="avatar-group ion-align-items-end ion-text-right">
                         <ion-avatar class="avatar-group-img avatar-count-icon" color="secondary">+2</ion-avatar>
-                    </ion-row>
+                    </ion-row> -->
                 </ion-item>
             </ion-row>
             <!-- <ion-row class="ion-no-padding" style="margin-top: -35px;"> -->
@@ -60,14 +63,19 @@
                 </ion-col> -->
             <!-- </ion-row> -->
             <ion-card-content class="fs-12" style="z-index: 1000; padding-top: 22px; padding-bottom: 0;">
+                <ion-note class="fs-12" color="dark">
+                    <p class="fs-12" color="dark">
+                        <b> 3452 likes </b> &nbsp; <b> 300 comments </b>
+                    </p>
+                    <ion-text>
+                        Keep close to Nature's heart... and break clear away, once in awhile,
+                        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                    </ion-text>
+                </ion-note>
                 <ion-note class="fs-12">
                     <ul class="tags">
                         <li *ngFor="let tag of tags"> {{ "#" + tag }} </li>
                     </ul>
-                </ion-note>
-                <ion-note class="fs-12" color="dark">
-                    Keep close to Nature's heart... and break clear away, once in awhile,
-                    and climb a mountain or spend a week in the woods. Wash your spirit clean.
                 </ion-note>
                 <ion-row>
                     <ion-col class="ion-no-padding" size="12">
