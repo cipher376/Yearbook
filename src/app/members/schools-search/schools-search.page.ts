@@ -12,7 +12,7 @@ import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.
 import { Alumni } from 'src/app/models/alumni';
 import { FeedFilterPopoverComponent } from 'src/app/widgets/feed-filter-popover/feed-filter-popover.component';
 import { IonInfiniteScroll, LoadingController, PopoverController } from '@ionic/angular';
-import { IdentityPhoto, Photo } from 'src/app/models/media';
+import { IdentityPhoto, Photo } from 'src/app/models/my-media';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 
 @Component({

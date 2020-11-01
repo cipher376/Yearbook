@@ -1,0 +1,54 @@
+<ion-segment [(ngModel)]="galleryType" color="primary" class="pt-2">
+  <ion-segment-button value="cloud">
+    <ion-icon class="ion-no-margin" name="cloudy-outline" size="small"></ion-icon>
+    <ion-row class="fs-10">M<span class="ion-text-lowercase">y photos</span></ion-row>
+  </ion-segment-button>
+  <ion-segment-button value="local">
+    <ion-icon class="ion-no-margin" name="phone-portrait-outline" size="small"></ion-icon>
+    <ion-row class="fs-10">D<span class="ion-text-lowercase">evice gallery</span></ion-row>
+  </ion-segment-button>
+</ion-segment>
+<div [ngSwitch]="galleryType">
+  <ion-grid *ngSwitchCase="'cloud'" id="cloud">
+    <ion-row>
+      <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+        <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'">
+          <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromCloudPhotos(image)" size="small"
+            style="--border-width: 0px;float: right;background:#ffffff5c;">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngSwitchCase="'local'" id="device">
+    <ion-row>
+      <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of devicePhotos">
+        <div class="image-container" [style.background-image]="'url(\''+image?.thumbnailResolvedURL+'\')'"
+          (click)="viewPhoto(image?.photoNativeURL)">
+          <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromDevicePhotos(image)" size="small"
+            style="--border-width: 0px;float: right;background:#ffffff5c;">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+
+      <ion-row class="col-12">
+        <ion-col class="col-6 col-md-4 col-xl-3 px-1">
+          <div class="image-container add-container" (click)="selectPhoto()">
+            <ion-icon name="add-circle" size="small" class="add-btn"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col class="col-6 col-md-4 col-xl-3 px-1">
+          <div class="image-container add-container" (click)="takePhoto()">
+            <ion-icon name="camera-outline" size="small" class="add-btn"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-button expand="block" class="mt-4 mx-2">
+  Post &nbsp; <ion-icon name="arrow-forward"></ion-icon>
+</ion-button> -->
+</div>

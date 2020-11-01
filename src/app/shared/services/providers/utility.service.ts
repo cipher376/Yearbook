@@ -1,12 +1,12 @@
 import { NO_SCHOOL_COVER_PHOTO_URL, SCHOOL_DEFAULT_PHOTO_URL, CREST_DEFAULT_PHOTO_URL } from './../../config';
-import { IdentityPhoto } from './../../../models/media';
+import { IdentityPhoto } from '../../../models/my-media';
 import { MyStorage } from './storage/my-storage.service';
 import { Injectable } from '@angular/core';
 import { UserService } from '../model-service/user.service';
 import { Subscription } from 'rxjs';
 import { Country } from '../../../models/country';
 import { School } from 'src/app/models/school';
-import { Photo } from 'src/app/models/media';
+import { Photo } from 'src/app/models/my-media';
 import { GetLibraryOptions, LibraryItem } from '@ionic-native/photo-library/ngx';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
@@ -1217,6 +1217,13 @@ export class UtilityService {
       return resp$.asObservable();
     }
     photoLibrary.getLibrary = photoLibrary['getLibrary_patched'];
+  }
+
+  static log(func:string, data: any){
+    console.log('****************************')
+    console.log(`${func}: `);
+    console.log(data);
+    console.log('******************************')
   }
 
 }

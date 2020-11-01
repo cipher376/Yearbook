@@ -4,7 +4,7 @@ import { School } from './../../models/school';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { User } from '../../models/user';
-import { Photo, Video } from 'src/app/models/media';
+import { Photo, Video } from 'src/app/models/my-media';
 import { LatLng } from 'src/app/models/latLng';
 
 @Injectable({
@@ -14,7 +14,13 @@ export class MySignals {
 
   constructor(private store: MyStorage) { }
 
-  
+  private loggerSource = new Subject<any>();
+  loggerSource$ = this.loggerSource.asObservable();
+
+  private closeModalSource = new Subject<any>();
+  closeModalSource$ = this.closeModalSource.asObservable();
+
+
   private selectedUsersSource = new Subject<User[]>();
   selectedUsersSource$ = this.selectedUsersSource.asObservable();
 
@@ -76,6 +82,13 @@ export class MySignals {
   // countRoleSource$ = this.countRoleSource.asObservable();
   // private newRoleSource = new Subject<Policy>();
   // newRoleSource$ = this.newRoleSource.asObservable();
+
+  log(data: any) {
+    this.loggerSource.next(data);
+  }
+  announceCloseModal(data?: any) {
+    this.closeModalSource.next(data);
+  }
 
   announceSelectedUsers(users: User[]) {
     this.selectedUsersSource.next(users);

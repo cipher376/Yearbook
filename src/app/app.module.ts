@@ -19,7 +19,15 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import { httpInterceptorProviders } from './shared/services/my-interceptors';
 import { BrowserHistoryService } from './shared/services/providers/navigation/browser-history.service';
 import { File } from '@ionic-native/file/ngx';
-
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { MediaCapture } from '@ionic-native/media-capture/ngx';
+import { Media } from '@ionic-native/media/ngx';
+import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import '@teamhive/capacitor-video-recorder';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -48,8 +56,16 @@ import { File } from '@ionic-native/file/ngx';
     UserService,
     BrowserHistoryService,
     httpInterceptorProviders,
-    PhotoLibrary, 
-    File
+    PhotoLibrary,
+    File,
+    FilePath,
+    ImagePicker,
+    PhotoViewer,
+    MediaCapture,
+    Media,
+    StreamingMedia,
+    AndroidPermissions,
+    FileTransfer
   ],
   exports: [
     CommonModule,
@@ -58,4 +74,4 @@ import { File } from '@ionic-native/file/ngx';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

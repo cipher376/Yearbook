@@ -1,3 +1,4 @@
+import { MySignals } from 'src/app/shared/services/my-signals';
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { BrowserHistoryService } from './shared/services/providers/navigation/browser-history.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -16,6 +17,7 @@ import { PermissionsService } from './shared/services/providers/permission.servi
 })
 export class AppComponent implements OnInit, AfterViewInit {
   public selectedIndex = 0;
+  public logs = [];
   public appPages = [
     {
       title: 'Schools',
@@ -64,7 +66,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private history: BrowserHistoryService,
     private store: MyStorage,
-    private permissions: PermissionsService
+    private permissions: PermissionsService,
+    private signals: MySignals
   ) {
     this.initializeApp();
   }
@@ -77,6 +80,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.splashScreen.hide();
 
       this.permissions.initPermissions().then(_ => _);
+
+      
+
+
     });
   }
 

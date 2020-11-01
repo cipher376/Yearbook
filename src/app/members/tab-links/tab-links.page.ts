@@ -1,4 +1,7 @@
+import { MySignals } from 'src/app/shared/services/my-signals';
+import { CreatePostPage1 } from './../create-post1/create-post1.page';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 
 @Component({
@@ -7,9 +10,12 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
   styleUrls: ['./tab-links.page.scss'],
 })
 export class TabLinksPage implements OnInit {
-
+  modal;
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    public modalController: ModalController,
+    public signals: MySignals
+
   ) { }
 
   ngOnInit() {
@@ -17,6 +23,22 @@ export class TabLinksPage implements OnInit {
 
   isAuthenticated() {
     return this.userService.isAuthenticated();
+  }
+
+  async showLogs() {
+    if (this.modal) {
+      this.modal.hidden = false;
+      return;
+    }
+
+    this.modal = await this.modalController.create({
+      component: CreatePostPage1,
+      cssClass: 'my-custom-class'
+    });
+    this.signals.closeModalSource$.subscribe(log => {
+      this.modal.hidden = true;
+    });
+    return await this.modal.present();
   }
 
 }

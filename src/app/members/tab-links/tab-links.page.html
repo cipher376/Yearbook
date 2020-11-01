@@ -1,6 +1,4 @@
 <ion-content>
-
-
   <!-- <ion-header>
     <ion-row class="ion-no-padding ">
       <ion-col size="12" class="ion-no-padding ion-padding-start ion-padding-end">
@@ -25,10 +23,6 @@
       </ion-col>
     </ion-row>
   </ion-header> -->
-
-
-
-
   <ion-tabs name="bottom">
     <ion-tab-bar slot="bottom">
 
@@ -42,15 +36,17 @@
       </ion-tab-button>
 
       <ion-tab-button tab="posts" *ngIf="isAuthenticated()">
-        <ion-icon name="add-circle-outline" size="large"></ion-icon>      
+        <ion-icon name="add-circle-outline" size="large"></ion-icon>
       </ion-tab-button>
 
       <ion-tab-button tab="profile" *ngIf="isAuthenticated()">
         <ion-icon name="person-outline" size="small"></ion-icon>
       </ion-tab-button>
-
       <ion-tab-button tab="settings">
         <ion-icon name="cog-outline" size="small"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="showLogs()">
+        <ion-icon name="list-outline" size="small"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

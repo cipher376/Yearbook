@@ -1,3 +1,4 @@
+import { MySignals } from 'src/app/shared/services/my-signals';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatePostPage1 implements OnInit {
 
-  constructor() { }
+  logs = [];
+  constructor(
+    private signals: MySignals
+  ) { }
 
   ngOnInit() {
+    this.signals.loggerSource$.subscribe(log => {
+      this.logs.push(JSON.stringify(log));
+    });
+  }
+
+  closeModals(){
+    this.signals.announceCloseModal();
   }
 
 }

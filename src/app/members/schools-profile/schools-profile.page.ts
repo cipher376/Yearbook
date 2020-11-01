@@ -1,4 +1,4 @@
-import { IdentityPhoto } from './../../models/media';
+import { IdentityPhoto } from '../../models/my-media';
 import { SchoolService } from './../../shared/services/model-service/school.service';
 import { MySignals } from './../../shared/services/my-signals';
 import { Component, OnInit, OnDestroy } from '@angular/core';

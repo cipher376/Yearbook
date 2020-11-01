@@ -1,4 +1,4 @@
-import { Photo, Video } from './../../../models/media';
+import { Photo, Video } from '../../../models/my-media';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MyStorage } from '../providers/storage/my-storage.service';

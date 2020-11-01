@@ -1,3 +1,4 @@
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import { PostPage } from './post.page';
     FormsModule,
     IonicModule,
     PostPageRoutingModule,
+    WidgetsModule
   ],
   declarations: [PostPage]
 })

@@ -228,10 +228,11 @@ ion-card {
 }
 
 // ion-datetime {
-    .datetime-text {
-        background: #9f9f9f47 !important;
-        // --background: var(--ion-color-light-shade) !important;
-    }
+.datetime-text {
+    background: #9f9f9f47 !important;
+    // --background: var(--ion-color-light-shade) !important;
+}
+
 // }
 
 
@@ -250,4 +251,45 @@ ion-content {
     /* referring directly to the animation's @keyframe declaration */
     animation-duration: .5s;
     /* don't forget to set a duration! */
+}
+
+
+/***** Styling post widgets***************/
+.image-container {
+    min-height: 130px;
+    height: 200px;
+    background-size: cover;
+}
+
+.add-container {
+    width: 100%;
+    height: 100%;
+    // background-color: turquoise;
+}
+
+#cloud,
+#device {
+    min-height: 200px;
+    height: 50vh;
+    overflow-y: scroll;
+    border-bottom: 1px solid var(--ion-color-light-tint);
+}
+
+.add-btn {
+    width: 100%;
+    height: 35px;
+    padding-top: calc(50% - 25px);
+    color: var(--ion-color-light-shade);
+    margin: auto;
+    // border: 2px solid red;
+}
+
+ion-segment-button {
+    --color: var(--ion-color-medium-shade);
+    --color-checked: var(--primary);
+    --indicator-height: .6px
+}
+
+.fint-line-under {
+    border-bottom: 1px solid var(--ion-color-light-shade);
 }

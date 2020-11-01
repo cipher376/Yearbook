@@ -1,38 +1,12 @@
-<ion-row class="ion-no-padding ion-padding-bottom">
-  <ion-col size="12" class="ion-no-padding">
-    <ion-item lines="none" class="ion-align-items-center">
-      <ion-row slot="start" style="height:30px">
-        <ion-avatar class="ion-padding-end" style="width: 45px;
-              height: 30px;">
-          <img src="../../../assets/images/me.jpg">
-        </ion-avatar>
-        <ion-note color="dark" class="poppins-semi-bold fs-14 " style=" margin-top: 5px">
-          Jennifer
-        </ion-note>
-      </ion-row>
-      <!-- <img [src]="'../../../assets/images/me.jpg'"  style="width: 35px !important;
-          height: 35px !important;
-          padding: 5px;" class="round-avatar"> -->
-      <!-- <ion-label slot="end" class="fs-10 ion-text-right">2 seconds ago</ion-label> -->
-    </ion-item>
+<ion-content class="ion-no-padding ion-padding-bottom">
+  <ion-button fill="outline" shape="round" color="danger" (click)="closeModals()" size="small"
+    style="--border-width: 0px;float: right;">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+
+  <ion-col>
+    <ol>
+      <li *ngFor="let log of logs">{{log}}</li>
+    </ol>
   </ion-col>
-</ion-row>
-<ion-content>
-  <ion-item lines="none" class="ion-no-padding" style="height: 30vh; width: 105%;">
-    <!-- <ion-label slot="start" class="fs-15 poppins-bold">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-label> -->
-    <!-- <ion-input placeholder="Write a message"></ion-input> -->
-    <ion-textarea class="text-center post-text-area" placeholder="Leave a message ..." [maxlength]='150'
-      spellcheck="true"></ion-textarea>
-    <!-- <ion-label slot="end" class="fs-13 poppins-bold">
-      <ion-icon name="send-outline"></ion-icon>
-    </ion-label> -->
-  </ion-item>
-  <ion-row>
-    <ion-button size="small">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-button>
-    <ion-button size="small"><ion-icon name="send-outline"></ion-icon></ion-button>
-  </ion-row>
 </ion-content>

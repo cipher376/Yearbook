@@ -1,6 +1,6 @@
 import { Address } from './address';
 import { Alumni } from './alumni';
-import { Photo } from './media';
+import { Photo } from './my-media';
 
 
 export interface CredentialsInterface {

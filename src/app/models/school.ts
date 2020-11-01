@@ -1,4 +1,4 @@
-import { Audio, Photo } from './media';
+import { Audio, Photo } from './my-media';
 import { Address } from './address';
 
 export const SCHOOL_TYPE = [

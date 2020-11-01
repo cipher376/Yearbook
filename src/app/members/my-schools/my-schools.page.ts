@@ -1,5 +1,5 @@
 import { AlertController } from '@ionic/angular';
-import { IdentityPhoto } from 'src/app/models/media';
+import { IdentityPhoto } from 'src/app/models/my-media';
 import { SchoolService } from './../../shared/services/model-service/school.service';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { AlumniService } from './../../shared/services/model-service/alumni.service';
