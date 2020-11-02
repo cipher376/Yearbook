@@ -23,7 +23,19 @@
   </ion-grid>
 
   <ion-grid *ngSwitchCase="'local'" id="device">
-    <ion-row>
+    <ion-row class="col-12 add-btn-row">
+      <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
+        <div class="" (click)="selectPhoto()">
+          <ion-icon name="add-circle" size="small" class="add-btn"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
+        <div class="" (click)="takePhoto()">
+          <ion-icon name="camera-outline" size="small" class="add-btn"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="image-container-row">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of devicePhotos">
         <div class="image-container" [style.background-image]="'url(\''+image?.thumbnailResolvedURL+'\')'"
           (click)="viewPhoto(image?.photoNativeURL)">
@@ -33,19 +45,6 @@
           </ion-button>
         </div>
       </ion-col>
-
-      <ion-row class="col-12">
-        <ion-col class="col-6 col-md-4 col-xl-3 px-1">
-          <div class="image-container add-container" (click)="selectPhoto()">
-            <ion-icon name="add-circle" size="small" class="add-btn"></ion-icon>
-          </div>
-        </ion-col>
-        <ion-col class="col-6 col-md-4 col-xl-3 px-1">
-          <div class="image-container add-container" (click)="takePhoto()">
-            <ion-icon name="camera-outline" size="small" class="add-btn"></ion-icon>
-          </div>
-        </ion-col>
-      </ion-row>
     </ion-row>
   </ion-grid>
   <!-- <ion-button expand="block" class="mt-4 mx-2">

@@ -1,3 +1,4 @@
+import { AudioLocal, VideoLocal } from './../../../models/LocalMediaInterfaces';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { MySignals } from 'src/app/shared/services/my-signals';
@@ -7,8 +8,8 @@ import { Platform } from '@ionic/angular';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { Injectable } from '@angular/core';
 import { MyStorage } from './storage/my-storage.service';
-import { Capacitor, CameraResultType, Plugins, FilesystemDirectory, FilesystemEncoding, ReaddirOptions, FileWriteOptions, CameraOptions, CameraSource } from '@capacitor/core';
-import { Entry, File, FileEntry, FileSaver, IWriteOptions } from '@ionic-native/file/ngx';
+import { Capacitor, CameraResultType, Plugins, FilesystemDirectory, CameraOptions, CameraSource, FileWriteOptions } from '@capacitor/core';
+import { Entry, File, } from '@ionic-native/file/ngx';
 import { PhotoLocal } from 'src/app/models/LocalMediaInterfaces';
 import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-capture/ngx';
 import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
@@ -16,8 +17,13 @@ import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { VideoRecorderCamera, VideoRecorderPreviewFrame } from '@teamhive/capacitor-video-recorder';
 
+// not mandatory, only for code completion
+import { RecordingData, GenericResponse } from 'capacitor-voice-recorder'
 
-const { Camera, Filesystem } = Plugins;
+// without types
+const { VoiceRecorder } = Plugins
+
+const { Camera, Filesystem, VideoRecorder } = Plugins;
 
 @Injectable({
   providedIn: 'root',
@@ -30,14 +36,11 @@ export class LocalMediaService {
 
   constructor(
     private store: MyStorage,
-    private photoLibrary: PhotoLibrary,
     private file: File,
     private platform: Platform,
     private filePath: FilePath,
     private signals: MySignals,
-    private mediaCapture: MediaCapture,
     private streamingMedia: StreamingMedia,
-    private photoViewer: PhotoViewer,
     private androidPermissions: AndroidPermissions
   ) {
     this.mediaPath = this.file.dataDirectory;
@@ -150,7 +153,7 @@ export class LocalMediaService {
       recursive: true // create any parent directory
     };
     try {
-        return await Filesystem.mkdir(options);
+      return await Filesystem.mkdir(options);
       // }
     } catch (e) {
       console.log(e);
@@ -164,22 +167,11 @@ export class LocalMediaService {
         data,
         path: this.mediaFolderName + '/' + filename,
         directory: FilesystemDirectory.Data // sho
-      });
+      } as FileWriteOptions);
     } catch (error) {
       console.log(error);
     }
   }
-
-  // async cordovaWriteToMediaDirectory(fileName: string, data: string | ArrayBuffer| Blob) {
-  //   const options: IWriteOptions = {
-  //     replace: true
-  //   };
-  //   try {
-  //     return await this.file.writeFile(this.mediaFullPath, fileName, data, options);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
 
   async getMediaUri(fileName: string) {
@@ -229,12 +221,98 @@ export class LocalMediaService {
   }
 
 
-  recordAudio() {
-    
+  async recordAudio() {
+    try {
+
+      // will print true / false based on the device ability to record
+      if (!((await VoiceRecorder.canDeviceVoiceRecord()) as GenericResponse).value) {
+        console.log('Your device does not support audio recording');
+        return;
+      }
+
+
+      // will print true / false based on the status of the recording permission
+      if (!((await VoiceRecorder.hasAudioRecordingPermission()) as GenericResponse).value) {
+        console.log('You do not have permission to record voice');
+        // will prompt the user to give the required permission, after that
+        // the function will print true / false based on the user response
+        if (!((await VoiceRecorder.requestAudioRecordingPermission()) as GenericResponse).value) {
+          console.log('Permission denied by user');
+          return;
+        }
+      }
+      // In case of success the promise will resolve with {"value": true}
+      // in case of an error the promise will reject with one of the following messages:
+      // "MISSING_PERMISSION", "ALREADY_RECORDING", "CANNOT_RECORD_ON_THIS_PHONE", "MICROPHONE_BEING_USED" or "FAILED_TO_RECORD"
+      if (!((await VoiceRecorder.startRecording()) as GenericResponse).value) {
+        console.log('Failed to record voice');
+      }
+
+
+      // In case of success the promise will resolve with:
+      // {"value": { recordDataBase64: string, msDuration: number, mimeType: string }},
+      // the file will be in *.acc format.
+      // in case of an error the promise will reject with one of the following messages:
+      // "RECORDING_HAS_NOT_STARTED" or "FAILED_TO_FETCH_RECORDING"
+      const result: RecordingData = await VoiceRecorder.stopRecording();
+      const fileName = this.createFileName('temp.aac'); // create new unique file name; dummy file name as arg to generate new
+      await this.writeToMediaDirectory(result?.value?.recordDataBase64, fileName); // Write to media folder for permanent storage
+      const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
+      const resolvedUri = Capacitor.convertFileSrc(uri);
+
+      // create a local video object and return
+      return {
+        id: '0;' + uri,
+        audioNativeURL: uri,
+        posterNativeURL: uri,
+        audioResolvedURL: resolvedUri,
+        posterResolvedURL: resolvedUri,
+        fileName,
+        creationDate: new Date(Date.now())
+      } as AudioLocal;
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  recordVideo() {
-    
+  async recordVideo() {
+    const config: VideoRecorderPreviewFrame = {
+      id: 'video-record',
+      stackPosition: 'front', // 'front' overlays your app', 'back' places behind your app.
+      width: 'fill',
+      height: 'fill',
+      x: 0,
+      y: 0,
+      borderRadius: 0
+    };
+    await VideoRecorder.initialize({
+      camera: VideoRecorderCamera.FRONT, // Can use BACK
+      previewFrames: [config]
+    });
+    try {
+      await VideoRecorder.startRecording();
+      const res = await VideoRecorder.stopRecording(); // The video url is the local file path location of the video output.
+      const fileName = this.createFileName(res.videoUrl); // create new unique file name; dummy file name as arg to generate new
+      const fileResult = await Filesystem.readFile({ path: res.videoUrl }); // Read file from cache
+      await this.writeToMediaDirectory(fileResult.data, fileName); // Write to media folder for permanent storage
+      const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
+      const resolvedUri = Capacitor.convertFileSrc(uri);
+
+      VideoRecorder.destroy();
+      // create a local video object and return
+      return {
+        id: '0;' + uri,
+        videoNativeURL: uri,
+        posterNativeURL: uri,
+        videoResolvedURL: resolvedUri,
+        posterResolvedURL: resolvedUri,
+        fileName,
+        creationDate: new Date(Date.now())
+      } as VideoLocal;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   /***
@@ -249,52 +327,4 @@ export class LocalMediaService {
     return myPath;
   }
 
-  // async copyFileToLocalDir(fullPath, copyTo: string) {
-  //   try {
-  //     const myPath = this.correctCordovaNativeFilePath(fullPath);
-  //     const newName = this.createFileName(myPath);
-
-  //     const name = myPath.substr(myPath.lastIndexOf('/') + 1);
-  //     const copyFrom = myPath.substr(0, myPath.lastIndexOf('/') + 1);
-  //     console.log(copyFrom);
-  //     console.log(copyTo);
-  //     return await this.file.copyFile(copyFrom, name, copyTo, newName).then(entry => {
-  //       return entry;
-  //     }, error => console.log(error));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // openFile(f: FileEntry) {
-  //   if (f.name.indexOf('.wav') > -1) {
-  //     // We need to remove file:/// from the path for the audio plugin to work
-  //     const path = f.nativeURL.replace(/^file:\/\//, '');
-  //     const audioFile: MediaObject = this.media.create(path);
-  //     audioFile.play();
-  //   } else if (f.name.indexOf('.MOV') > -1 || f.name.indexOf('.mp4') > -1) {
-  //     // E.g: Use the Streaming Media plugin to play a video
-  //     this.streamingMedia.playVideo(f.nativeURL);
-  //   } else if (f.name.indexOf('.jpg') > -1) {
-  //     // E.g: Use the Photoviewer to present an Image
-  //     this.photoViewer.show(f.nativeURL, 'MY awesome image');
-  //   }
-  // }
-
-  // deleteFile(f: FileEntry) {
-  //   const path = f.nativeURL.substr(0, f.nativeURL.lastIndexOf('/') + 1);
-  //   this.file.removeFile(path, f.name).then(() => {
-  //     this.loadFiles();
-  //   }, err => console.log('error remove: ', err));
-  // }
-
-  // loadFiles() {
-  //   this.file.listDir(this.file.dataDirectory, this.mediaFolderName).then(
-  //     res => {
-  //       // this.files = res;
-  //       console.log(res);
-  //     },
-  //     err => console.log('error loading files: ', err)
-  //   );
-  // }
 }

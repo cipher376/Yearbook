@@ -260,6 +260,9 @@ ion-content {
     height: 200px;
     background-size: cover;
 }
+.image-container-row{
+    margin-top: -185px;
+}
 
 .add-container {
     width: 100%;
@@ -277,17 +280,33 @@ ion-content {
 
 .add-btn {
     width: 100%;
-    height: 35px;
-    padding-top: calc(50% - 25px);
+    height: 27px;
+    // padding-top: calc(10% - 10px);
     color: var(--ion-color-light-shade);
     margin: auto;
     // border: 2px solid red;
+}
+
+.add-btn-row {
+    position: absolute;
+    margin-top: -6px;
+    z-index: 1;
+    padding: 0;
+    background: var(--ion-color-light);
+    padding: 0;
+    width: 100%;
+    border-top: 1px solid #00000017;
+    padding-top: 2px;
+    margin-left: -9px;
 }
 
 ion-segment-button {
     --color: var(--ion-color-medium-shade);
     --color-checked: var(--primary);
     --indicator-height: .6px
+}
+ion-segment{
+    z-index: 2;
 }
 
 .fint-line-under {

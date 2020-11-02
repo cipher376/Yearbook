@@ -49,6 +49,10 @@
     <param name="android-package" value="com.synconset.ImagePicker"/>
   </feature>
 
+  <feature name="VideoCapturePlus">
+    <param name="android-package" value="nl.xservices.plugins.videocaptureplus.VideoCapturePlus"/>
+  </feature>
+
   <feature name="Safe">
     <param name="android-package" value="com.disusered.Safe"/>
   </feature>

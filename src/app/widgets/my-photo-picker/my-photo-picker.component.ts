@@ -18,7 +18,7 @@ import { UtilityService } from 'src/app/shared/services/providers/utility.servic
   styleUrls: ['./my-photo-picker.component.scss'],
 })
 export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit {
-  galleryType = 'cloud';
+  galleryType = 'local'; // local or cloud
   sub$ = [];
   devicePhotos: PhotoLocal[] = [];
   cloudPhotos: Photo[] = [];
@@ -45,7 +45,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   async ngAfterViewInit() {
-    await this.get3LatestPhotos();
+    await this.getLatestPhotos();
   }
 
   async ngOnInit() {
@@ -59,7 +59,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
 
   // Read photos from device and set it to the view
   // Uri path must be result from filesystem to http type
-  async get3LatestPhotos() {
+  async getLatestPhotos() {
     // this.signals.log('----------------');
     if (this.isAccessDenied) {
       await this.permissionService.getPhotolibraryPermission();
@@ -68,8 +68,8 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     this.photoLibrary.getLibrary().subscribe({
       next: library => {
         this.isAccessDenied = false;
-        if (library.length > 3) {
-          library = library.slice(0, 3); // slice first 3 items
+        if (library.length > 4) {
+          library = library.slice(0, 4); // slice first 4 items
         }
         // reset photos array
         this.devicePhotos = [];
