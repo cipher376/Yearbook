@@ -1,6 +1,9 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
 import { API_ROOT_URL } from '../config';
 import { UserService } from './model-service/user.service';
 
@@ -58,7 +61,43 @@ export class RootUrlInterceptor implements HttpInterceptor {
   }
 }
 
+@Injectable()
+export class ErrorHandlerInterceptor implements HttpInterceptor {
+  /**
+   *
+   */
+  constructor(
+    private router: Router
+  ) {
+  }
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    // console.log('Error handling: ');
+    return next.handle(req).pipe(map(res => {
+      return res;
+    }), catchError(err => {
+      // onError
+      console.log(err);
+      let myError = err;
+      if (err instanceof HttpErrorResponse) {
+        console.log(err.status);
+        console.log(err.statusText);
+
+        if (err.status === 401) {
+          // redirect the user to login page
+          // 401 unauthorised user
+          console.log('Unauthenticated');
+          myError = new HttpErrorResponse({ status: 401, statusText: 'Authentication failed' });
+          this.router.navigateByUrl('/login-auth');
+        } else if (err.status === 0) {
+          console.log('No connection');
+          myError = new HttpErrorResponse({ status: 0, statusText: 'No internet connection' });
+        }
+      }
+      return of(myError); // forward error to service or component for proper handling
+    }));
+  }
+}
 
 
 
@@ -71,4 +110,5 @@ export class RootUrlInterceptor implements HttpInterceptor {
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: RootUrlInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true },
 ];

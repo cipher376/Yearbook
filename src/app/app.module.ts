@@ -27,7 +27,11 @@ import { Media } from '@ionic-native/media/ngx';
 import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
-import '@teamhive/capacitor-video-recorder';
+import { FileChooser } from '@ionic-native/file-chooser/ngx'; // Android only
+import { IOSFilePicker } from '@ionic-native/file-picker/ngx'; // IOS only
+import { VideoEditor } from '@ionic-native/video-editor/ngx';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -65,7 +69,11 @@ import '@teamhive/capacitor-video-recorder';
     Media,
     StreamingMedia,
     AndroidPermissions,
-    FileTransfer
+    FileTransfer,
+    FileChooser,
+    IOSFilePicker,
+    VideoEditor,
+    PreviewAnyFile
   ],
   exports: [
     CommonModule,

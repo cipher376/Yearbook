@@ -1,0 +1,7 @@
+<div #photoThumbnail class="image-container" [ngClass]="{'image-selected': selected}"
+  [style.background-image]="'url(\''+getUrl()+'\')'" (click)="select()">
+  <ion-button fill="outline" shape="round" color="danger" size="small"
+    style="--border-width: 0px;float: right;background:transparent" (click)="onDelete()">
+    <ion-icon name="close" (click)="onDelete()"></ion-icon>
+  </ion-button>
+</div>

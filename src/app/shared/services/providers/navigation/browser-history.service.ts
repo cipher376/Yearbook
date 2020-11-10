@@ -60,14 +60,14 @@ export class BrowserHistoryService {
   }
 
   get currentUrl() {
-    return this.history[this.history.length];
+    return '/' + this.history[this.history.length];
   }
 
 
   public getPreviousUrl() {
     this.history.pop();
-    const url = this.history[this.history.length - 1] || '/link/home';
-    return url;
+    const url = this.history[this.history.length - 1] || 'link/home';
+    return '/' + url;
   }
 
 }

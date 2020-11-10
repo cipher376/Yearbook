@@ -20,6 +20,12 @@ export class MySignals {
   private closeModalSource = new Subject<any>();
   closeModalSource$ = this.closeModalSource.asObservable();
 
+  private uploadCompleteSource = new Subject<any>();
+  uploadCompleteSource$ = this.uploadCompleteSource.asObservable();
+
+  private allUploadCompleteSource = new Subject<any[]>();
+  allUploadCompleteSource$ = this.allUploadCompleteSource.asObservable();
+
 
   private selectedUsersSource = new Subject<User[]>();
   selectedUsersSource$ = this.selectedUsersSource.asObservable();
@@ -139,8 +145,12 @@ export class MySignals {
     this.locationChangeSource.next(latLng);
   }
 
-
-
+  announceAllUploadCompleteSource(files: any[]) {
+    this.allUploadCompleteSource.next(files);
+  }
+  announceUploadCompleteSource(file: any) {
+    this.uploadCompleteSource.next(file);
+  }
   // announceSelectedPolicies(policy: Policy[]) {
   //   this.selectedPoliciesSource.next(policy);
   // }

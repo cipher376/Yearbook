@@ -1032,7 +1032,7 @@ export class UtilityService {
   }
 
   static myHttpErrorFormat(e, entityName = ''): { title: string, message: string } {
-    console.log(e);
+    console.log(JSON.stringify(e));
     let msg = {} as { title: string, message: string };
     let statusCode = 0;
     console.log(e.error);
@@ -1047,6 +1047,16 @@ export class UtilityService {
       case 422:
         msg.title = `Invalid ${entityName} data`;
         msg.message = 'Check all required fields';
+        break;
+      default:
+        if (JSON.stringify(e).search('401') > -1) { // Authorization error, token expired
+          msg.title = 'Authorization error',
+            msg.message = JSON.stringify(e);
+        } else {
+          msg.title = 'Unknown error',
+            msg.message = JSON.stringify(e);
+        }
+
         break;
     }
     return msg;
@@ -1219,7 +1229,7 @@ export class UtilityService {
     photoLibrary.getLibrary = photoLibrary['getLibrary_patched'];
   }
 
-  static log(func:string, data: any){
+  static log(func: string, data: any) {
     console.log('****************************')
     console.log(`${func}: `);
     console.log(data);

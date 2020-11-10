@@ -9,13 +9,15 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
-
+    implementation project(':capacitor-video-player')
+    implementation project(':capacitor-voice-recorder')
     implementation "com.android.support:support-v4:27.+"
     implementation "com.android.support:appcompat-v7:27.+"
 }
 apply from: "../../node_modules/com-sarriaroman-photoviewer/src/android/photoviewer.gradle"
 apply from: "../../node_modules/cordova-plugin-telerik-imagepicker/src/android/ignorelinterrors.gradle"
 apply from: "../../node_modules/cordova-plugin-telerik-imagepicker/src/android/androidtarget.gradle"
+apply from: "../../node_modules/cordova-plugin-video-editor/src/android/build.gradle"
 apply from: "../../node_modules/cordova-safe/src/android/conceal.gradle"
 
 if (hasProperty('postBuildExtras')) {

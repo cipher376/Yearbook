@@ -1,8 +1,8 @@
 import { MyStorage } from './../../shared/services/providers/storage/my-storage.service';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { MenuController, LoadingController, AlertController, Platform } from '@ionic/angular';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
@@ -17,7 +17,7 @@ import { User } from 'src/app/models/user';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss']
 })
-export class LoginPage implements OnInit, OnDestroy {
+export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
   previousPage = '';
   history$;
 
@@ -52,6 +52,7 @@ export class LoginPage implements OnInit, OnDestroy {
     private browserHistory: BrowserHistoryService
 
   ) {
+
     // this.fb.logout().then(_ => {
     //   console.log(_);
     // });
@@ -63,6 +64,13 @@ export class LoginPage implements OnInit, OnDestroy {
       this.user = user;
       console.log(this.user);
     });
+
+  }
+  ngAfterViewInit(): void {
+    if (this.route?.snapshot?.params?.clear) {
+      // clear data from store 
+      this.userService.logout();
+    }
   }
 
   ngOnInit() {

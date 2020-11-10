@@ -1,3 +1,4 @@
+import { PhotoThumbnailComponent } from './photo-thumbnail/photo-thumbnail.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { MyVideoPickerComponent } from './my-video-picker/my-video-picker.component';
 import { MyPhotoPickerComponent } from './my-photo-picker/my-photo-picker.component';
@@ -26,9 +27,9 @@ import { MyAudioPickerComponent } from './my-audio-picker/my-audio-picker.compon
   ],
   declarations: [PostWidget1Component, PostWidget2Component, TrendingComponent, PopularSchoolsComponent,
     ImageGalleryComponent, PostWidget3Component, FeedFilterPopoverComponent, MyPhotoPickerComponent, MyAudioPickerComponent
-    , MyVideoPickerComponent, CreatePostComponent],
+    , MyVideoPickerComponent, CreatePostComponent, PhotoThumbnailComponent],
   exports: [FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
     PopularSchoolsComponent, PostWidget3Component, ImageGalleryComponent, FeedFilterPopoverComponent,
-    MyPhotoPickerComponent, MyAudioPickerComponent, MyVideoPickerComponent, CreatePostComponent]
+    MyPhotoPickerComponent, MyAudioPickerComponent, MyVideoPickerComponent, CreatePostComponent, PhotoThumbnailComponent]
 })
 export class WidgetsModule { }

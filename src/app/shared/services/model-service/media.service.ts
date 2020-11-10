@@ -1,9 +1,9 @@
-import { Photo, Video } from '../../../models/my-media';
+import { Photo, PostPhotoLink, Video } from '../../../models/my-media';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MyStorage } from '../providers/storage/my-storage.service';
 import { catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { UtilityService } from '../providers/utility.service';
 
 @Injectable({
@@ -14,6 +14,25 @@ export class MediaService {
 
   constructor(private http: HttpClient, private store: MyStorage) {
 
+  }
+  createManyPhotos(photos: Photo[]): Observable<Photo[]> {
+    return this.http.post<Photo[]>(`/photos-createMany`, photos).pipe(
+      map(res => {
+        console.log(res);
+        return res as any;
+      }),
+      catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'School photo')))
+    );
+  }
+
+  linkPostToPhoto(links: PostPhotoLink[]): Observable<PostPhotoLink[]> {
+    return this.http.post<PostPhotoLink[]>(`/link-post-to-photo-many`, links).pipe(
+      map(res => {
+        console.log(res);
+        return res as any;
+      }),
+      catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'School photo')))
+    );
   }
 
   updatePhoto(photo: Photo) {
@@ -123,7 +142,7 @@ export class MediaService {
     if (!photo.id) {
       return this.http.post<Photo>(`/users/${userId}/photos`, photo).pipe(
         map(res => {
-          console.log(res);
+          console.log(JSON.stringify(res));
           return res as any;
         }),
         catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User photo')))
@@ -141,6 +160,7 @@ export class MediaService {
 
   getUserPhotos(userId: any, filter: any = null) {
     if (!userId) {
+      console.log('Invalid user id');
       return;
     }
     if (!filter) {
@@ -156,6 +176,6 @@ export class MediaService {
     );
   }
 
-  
+
 
 }

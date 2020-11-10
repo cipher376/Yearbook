@@ -23,6 +23,10 @@
     <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer"/>
   </feature>
 
+  <feature name="FileChooser">
+    <param name="android-package" value="com.megster.cordova.FileChooser"/>
+  </feature>
+
   <feature name="FilePath">
     <param name="android-package" value="com.hiddentao.cordova.filepath.FilePath"/>
     <param name="onload" value="true"/>
@@ -41,6 +45,10 @@
     <param name="onload" value="true"/>
   </feature>
 
+  <feature name="PreviewAnyFile">
+    <param name="android-package" value="com.mostafa.previewanyfile.PreviewAnyFile"/>
+  </feature>
+
   <feature name="StreamingMedia">
     <param name="android-package" value="com.hutchind.cordova.plugins.streamingmedia.StreamingMedia"/>
   </feature>
@@ -49,8 +57,8 @@
     <param name="android-package" value="com.synconset.ImagePicker"/>
   </feature>
 
-  <feature name="VideoCapturePlus">
-    <param name="android-package" value="nl.xservices.plugins.videocaptureplus.VideoCapturePlus"/>
+  <feature name="VideoEditor">
+    <param name="android-package" value="org.apache.cordova.videoeditor.VideoEditor"/>
   </feature>
 
   <feature name="Safe">

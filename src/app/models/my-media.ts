@@ -12,6 +12,8 @@ export enum MediaType {
 
 export interface MediaInterface {
   id?: number;
+  userId?: number;
+  schoolId?: number;
   description?: string;
   fileName?: string;
   fileUrl?: string;
@@ -23,6 +25,9 @@ export interface MediaInterface {
 
 export class Media {
   id: number;
+  userId?: number;
+  schoolId?: number;
+  postId?: number;
   description?: string;
   fileName?: string;
   fileUrl: string;
@@ -50,9 +55,9 @@ export class Photo extends Media {
   /**
    *
    */
-  coverImage: boolean;
-  profile: boolean;
-  flag: boolean;
+  coverImage?: boolean;
+  profile?: boolean;
+  flag?: boolean;
 
 
   constructor(data?: MediaInterface) {
@@ -131,4 +136,10 @@ export interface IdentityPhoto {
   profile: Photo;
   cover: Photo;
   flag: Photo;
+}
+
+export class PostPhotoLink{
+  id?: number;
+  postId: number;
+  photoId: number;
 }

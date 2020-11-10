@@ -1,6 +1,6 @@
 <app-my-photo-picker #myPhotoPicker *ngIf="mediaPage === 'photos'"></app-my-photo-picker>
-<app-my-video-picker *ngIf="mediaPage === 'videos'"></app-my-video-picker>
-<app-my-audio-picker *ngIf="mediaPage === 'audios'"></app-my-audio-picker>
+<app-my-video-picker  #myVideoPicker *ngIf="mediaPage === 'videos'"></app-my-video-picker>
+<app-my-audio-picker  #myAudioPicker *ngIf="mediaPage === 'audios'"></app-my-audio-picker>
 <ion-row size="12" class="text-center p-1 fint-line-under">
   <ion-col size="3" class=" ion-no-padding ion-no-margin">
     <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)"
@@ -29,18 +29,19 @@
 </ion-row>
 <ion-segment class="ion-no-padding ion-no-margin">
   <ion-item>
-    <ion-row class="ion-no-padding ion-no-margin" style="    height: 30px;">
+    <ion-row class="ion-no-padding ion-no-margin" style="height: 40px;">
       <ion-col size="9" class="ion-no-padding ion-no-margin">
         <ion-label position="stacked"> What's on your mind? </ion-label>
       </ion-col>
-      <ion-col siz="3" class="ion-no-padding ion-no-margin ion-activatable ripple-parent">
+      <ion-col siz="3" class="ion-no-padding ion-no-margin ion-activatable ripple-parent" (click)="post()">
         <ion-button  class=" ion-text-right fs-20 poppins-bold" size="small"  
-        style="--border-width:0px; float:right"  fill="outline" shape="round">
+        style="--border-width:0px; float:right"  fill="outline" shape="round"
+       >
           <ion-icon class="" name="send-outline" size="small"  ></ion-icon>
           <!-- Post -->
         </ion-button>
       </ion-col>
     </ion-row>
-    <ion-textarea rows="3" maxlength="2000"></ion-textarea>
+    <ion-textarea rows="3" maxlength="2000" [(ngModel)]="message"></ion-textarea>
   </ion-item>
 </ion-segment>

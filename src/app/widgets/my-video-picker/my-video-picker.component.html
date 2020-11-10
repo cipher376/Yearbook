@@ -11,13 +11,18 @@
 <div [ngSwitch]="galleryType">
   <ion-grid *ngSwitchCase="'cloud'" id="cloud">
     <ion-row>
-      <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
-        <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'">
-          <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromCloudPhotos(image)" size="small"
-            style="--border-width: 0px;float: right;background:#ffffff5c;">
+      <ion-col class="col-6 col-md-4 col-xl-3 px-1 mb-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+        <ion-row class="ion-no-padding ion-no-margin image-container " [style.background-color]="'ffffff5c'">
+          <ion-img [src]="'https://via.placeholder.com/200'" style="height: 100%;
+          background: #495057; position:absolute;width: 96%;">
+          </ion-img>
+          <ion-button fill="outline" shape="round" color="light" size="small" class="thumbnailPlay">
+            <ion-icon name="play-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="outline" shape="round" color="danger" size="small" class="thumbnailClose">
             <ion-icon name="close"></ion-icon>
           </ion-button>
-        </div>
+        </ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -25,25 +30,31 @@
   <ion-grid *ngSwitchCase="'local'" id="device">
     <ion-row class="col-12 add-btn-row">
       <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
-        <div class="" (click)="selectPhoto()">
-          <ion-icon name="add-circle" size="small" class="add-btn"></ion-icon>
+        <div class="" (click)="selectVideo()">
+          <ion-icon name="folder-open-outline" size="small" class="add-btn"></ion-icon>
         </div>
       </ion-col>
       <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
-        <div class="" (click)="takePhoto()">
+        <div class="" (click)="recordVideo()">
           <ion-icon name="videocam-outline" size="small" class="add-btn"></ion-icon>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row class="image-container-row">
-      <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of devicePhotos">
-        <div class="image-container" [style.background-image]="'url(\''+image?.thumbnailResolvedURL+'\')'"
-          (click)="viewPhoto(image?.photoNativeURL)">
-          <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromDevicePhotos(image)" size="small"
-            style="--border-width: 0px;float: right;background:#ffffff5c;">
+    <ion-row class="image-container-row" *ngIf="deviceVideos?.length>0">
+      <ion-col class="col-6 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let vid of deviceVideos">
+        <ion-row class="ion-no-padding ion-no-margin image-container " [style.background-color]="'ffffff5c'">
+          <ion-img [src]="vid?.posterResolvedURL" style="height: 100%;
+          background: #495057; position:absolute;width: 96%;">
+          </ion-img>
+          <ion-button fill="outline" shape="round" color="light" size="small" 
+          (click)="previewVideo(vid)" class="thumbnailPlay">
+            <ion-icon name="play-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="outline" shape="round" color="danger" size="small" 
+          (click)="deleteFromDeviceVideos(vid)" class="thumbnailClose">
             <ion-icon name="close"></ion-icon>
           </ion-button>
-        </div>
+        </ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>

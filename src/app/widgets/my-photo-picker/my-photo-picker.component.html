@@ -11,13 +11,8 @@
 <div [ngSwitch]="galleryType">
   <ion-grid *ngSwitchCase="'cloud'" id="cloud">
     <ion-row>
-      <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
-        <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'">
-          <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromCloudPhotos(image)" size="small"
-            style="--border-width: 0px;float: right;background:#ffffff5c;">
-            <ion-icon name="close"></ion-icon>
-          </ion-button>
-        </div>
+      <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let ph of cloudPhotos">
+        <app-photo-thumbnail [thumb]='ph' (delete)="deleteFromCloudPhotos(ph)" (isSelected)="selectFromCloudPhotos($event)"> </app-photo-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -26,7 +21,7 @@
     <ion-row class="col-12 add-btn-row">
       <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
         <div class="" (click)="selectPhoto()">
-          <ion-icon name="add-circle" size="small" class="add-btn"></ion-icon>
+          <ion-icon name="folder-open-outline" size="small" class="add-btn"></ion-icon>
         </div>
       </ion-col>
       <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
@@ -37,13 +32,14 @@
     </ion-row>
     <ion-row class="image-container-row">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of devicePhotos">
-        <div class="image-container" [style.background-image]="'url(\''+image?.thumbnailResolvedURL+'\')'"
+        <app-photo-thumbnail [thumb]='image' (delete)="deleteFromDevicePhotos(image)"> </app-photo-thumbnail>
+        <!-- <div class="image-container" [style.background-image]="'url(\''+image?.thumbnailResolvedURL+'\')'"
           (click)="viewPhoto(image?.photoNativeURL)">
           <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromDevicePhotos(image)" size="small"
-            style="--border-width: 0px;float: right;background:#ffffff5c;">
+            style="--border-width: 0px;float: right;background:transparent;">
             <ion-icon name="close"></ion-icon>
           </ion-button>
-        </div>
+        </div> -->
       </ion-col>
     </ion-row>
   </ion-grid>

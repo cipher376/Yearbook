@@ -47,6 +47,7 @@ export class SchoolService {
       );
     }
   }
+  
   createUpdateSchoolDetails(schoolId: number, details: SchoolDetailsInterface): Observable<SchoolDetailsInterface> {
     if (details.id) { // perform update
       return this.http.patch<SchoolInterface>(`/schools/${schoolId}/school-details`, details).pipe(

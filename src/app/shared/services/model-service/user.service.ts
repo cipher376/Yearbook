@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { API_ROOT_URL } from '../../config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { throwError, Observable, of } from 'rxjs';
+import { throwError, Observable, of, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CredentialsInterface, User, UserInterface } from '../../../models/user';
 import { MyStorage } from '../providers/storage/my-storage.service';
@@ -22,12 +22,21 @@ export class UserService {
   token: Token = null;
   redirectUrl = '';
 
+
+
+  private userAuthenticatedSource = new Subject<User>();
+  userAuthenticatedSource$ = this.userAuthenticatedSource.asObservable();
+
   constructor(private http: HttpClient, private store: MyStorage,
     private router: Router) {
     this.getToken().then(token => {
       this.token = token;
     });
 
+  }
+
+  announceUserAuthenticated(user: User) {
+    this.userAuthenticatedSource.next(user);
   }
 
   signUp(user: User) {
@@ -58,8 +67,10 @@ export class UserService {
   }
 
   logout() {
+    this.token = null;
     this.deleteToken(); // delete jwt auth token
     this.deleteUserLocal(); // clear user details
+    this.announceUserAuthenticated(null); // send signal to log user out
   }
 
   async getToken(): Promise<Token> {
@@ -133,6 +144,7 @@ export class UserService {
       map(res => {
         /** Save the authentication token **/
         this.store.setObject('user', res);
+        this.announceUserAuthenticated(res);
         return res as any;
       }),
       catchError(e => this.handleError(e))

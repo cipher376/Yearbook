@@ -1,0 +1,23 @@
+.image-container {
+    min-height: 100px;
+    height: 99px;
+    /* background-size: cover; */
+    background-color: var(--ion-color-light-tint);
+}
+
+.thumbnailPlay {
+    --border-width: 0px;
+    position: absolute;
+    margin-top: 20%;
+    right: 9vh;
+    font-size: large;
+    font-weight: bold;
+    background: var(--ion-color-tertiary-tint);
+    border-radius: 1000px;
+}
+.time-label{
+    float: right;
+    position: absolute;
+    right: 10%;
+    margin-top: 44%;
+}

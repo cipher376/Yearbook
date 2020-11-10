@@ -19,6 +19,10 @@
     <param name="ios-package" value="CDVFileTransfer"/>
   </feature>
 
+  <feature name="FilePicker">
+    <param name="ios-package" value="FilePicker"/>
+  </feature>
+
   <feature name="Media">
     <param name="ios-package" value="CDVSound"/>
   </feature>
@@ -32,12 +36,20 @@
     <param name="onload" value="true"/>
   </feature>
 
+  <feature name="PreviewAnyFile">
+    <param name="ios-package" value="HWPPreviewAnyFile"/>
+  </feature>
+
   <feature name="StreamingMedia">
     <param name="ios-package" value="StreamingMedia"/>
   </feature>
 
   <feature name="ImagePicker">
     <param name="ios-package" value="SOSPicker"/>
+  </feature>
+
+  <feature name="VideoEditor">
+    <param name="ios-package" value="VideoEditor"/>
   </feature>
 
   <feature name="Safe">

@@ -1,7 +1,7 @@
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { BrowserHistoryService } from './shared/services/providers/navigation/browser-history.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, ChangeDetectorRef } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -15,7 +15,7 @@ import { PermissionsService } from './shared/services/providers/permission.servi
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   public selectedIndex = 0;
   public logs = [];
   public appPages = [
@@ -35,27 +35,28 @@ export class AppComponent implements OnInit, AfterViewInit {
       icon: 'paper-plane'
     }
   ];
-  public otherPages = [
+  public publicPages = [
     {
       title: 'Settings',
       url: '/links/settings',
-      icon: 'cog'
+      icon: 'cog',
+      params: {}
     },
     {
       title: 'Login',
       url: '/login',
-      icon: 'person-circle'
+      icon: 'person-circle',
+      params: {}
     },
     {
       title: 'Sign up',
       url: '/register',
-      icon: 'person-add'
+      icon: 'person-add',
+      params: {}
     },
-    {
-      title: 'Login',
-      url: '/login',
-      icon: 'person-circle'
-    },
+  ]
+  public otherPages = [
+    ...this.publicPages
   ];
 
   user: User;
@@ -67,7 +68,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private history: BrowserHistoryService,
     private store: MyStorage,
     private permissions: PermissionsService,
-    private signals: MySignals
+    private signals: MySignals,
+    private cdr: ChangeDetectorRef
   ) {
     this.initializeApp();
   }
@@ -80,10 +82,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.splashScreen.hide();
 
       this.permissions.initPermissions().then(_ => _);
-
-      
-
-
     });
   }
 
@@ -92,30 +90,52 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    this.userService.userAuthenticatedSource$.subscribe(user => {
+      this.setMenu();
+    });
   }
 
   ngAfterViewInit() {
-    if (this.userService.isAuthenticated) {
-      setTimeout(() => {
-        this.otherPages = [
-          {
-            title: 'Settings',
-            url: '/links/settings',
-            icon: 'cog'
-          },
-          {
-            title: 'Log out',
-            url: '/login',
-            icon: 'log-out'
-          },
-        ];
-      }, 20);
-      this.store.getObject<User>('user').then(user => this.user = user);
-    }
+    setTimeout(() => {
+      this.setMenu();
+      this.cdr.detectChanges();
+      console.log(this.otherPages);
+    }, 100);
   }
 
   checkAuthentication() {
     return this.userService.isAuthenticated();
   }
+
+  ngAfterContentInit(): void {
+
+  }
+
+  setMenu(user?: User) {
+    this.store.getObject<User>('user').then(localUser => {
+      if (user || localUser) {
+        this.otherPages = [
+          {
+            title: 'Settings',
+            url: '/links/settings',
+            icon: 'cog',
+            params: {}
+          },
+          {
+            title: 'Log out',
+            url: '/login',
+            icon: 'log-out',
+            params: { clear: true }
+          },
+        ];
+        this.user = user ?? localUser;
+      } else {
+        this.otherPages = [...this.publicPages
+        ];
+      }
+
+    });
+  }
+
 
 }

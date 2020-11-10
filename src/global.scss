@@ -260,8 +260,10 @@ ion-content {
     height: 200px;
     background-size: cover;
 }
-.image-container-row{
-    margin-top: -185px;
+
+.image-container-row {
+    margin-top: 44px;
+    padding-bottom: 3px;
 }
 
 .add-container {
@@ -280,7 +282,7 @@ ion-content {
 
 .add-btn {
     width: 100%;
-    height: 27px;
+    height: 50px;
     // padding-top: calc(10% - 10px);
     color: var(--ion-color-light-shade);
     margin: auto;
@@ -305,10 +307,32 @@ ion-segment-button {
     --color-checked: var(--primary);
     --indicator-height: .6px
 }
-ion-segment{
+
+ion-segment {
     z-index: 2;
 }
 
 .fint-line-under {
     border-bottom: 1px solid var(--ion-color-light-shade);
+}
+
+.thumbnailClose {
+    --border-width: 0px;
+    // position: absolute;
+    // float: right;
+    // margin-left: calc(34vw - 20px);
+    right: 0%;
+    position: absolute;
+}
+
+.thumbnailPlay {
+    --border-width: 0px;
+    position: absolute;
+    margin-top: 47%;
+    right: 8vh;
+    font-size: large;
+    font-weight: bold;
+    // background: #00000017;
+    background: var(--ion-color-tertiary-tint);
+    border-radius: 1000px;
 }

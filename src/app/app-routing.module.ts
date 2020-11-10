@@ -12,7 +12,7 @@ const routes: Routes = [
   // },
 
   {
-    path: 'login',
+    path: 'login', 
     loadChildren: './public/login/login.module#LoginPageModule'
   },
   {

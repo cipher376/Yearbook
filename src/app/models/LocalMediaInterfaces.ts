@@ -1,8 +1,8 @@
 export interface PhotoLocal {
     id: string;
-    photoNativeURL: string;
+    nativeURL: string;
     thumbnailNativeURL: string;
-    photoResolvedURL?: string;
+    resolvedURL?: string;
     thumbnailResolvedURL?: string;
     fileName: string;
     creationDate: Date;
@@ -14,9 +14,9 @@ export interface PhotoLocal {
 
 export interface VideoLocal {
     id: string;
-    videoNativeURL: string;
+    nativeURL: string;
     posterNativeURL: string;
-    videoResolvedURL?: string;
+    resolvedURL?: string;
     posterResolvedURL?: string;
     fileName: string;
     creationDate: Date;
@@ -29,9 +29,9 @@ export interface VideoLocal {
 
 export interface AudioLocal {
     id: string;
-    audioNativeURL: string;
+    nativeURL: string;
     posterNativeURL: string;
-    audioResolvedURL?: string;
+    resolvedURL?: string;
     posterResolvedURL?: string;
     fileName: string;
     creationDate: Date;

@@ -1,27 +1,37 @@
-import { AudioLocal, VideoLocal } from './../../../models/LocalMediaInterfaces';
+import { UserService } from 'src/app/shared/services/model-service/user.service';
+import { HttpHeaders } from '@angular/common/http';
+import { Video } from 'src/app/models/my-media';
+import { AudioLocal, VideoLocal, PhotoLocal } from './../../../models/LocalMediaInterfaces';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { FilePath } from '@ionic-native/file-path/ngx';
-import { throwError } from 'rxjs';
+import { Subject, throwError, Observable, observable } from 'rxjs';
 import { Platform } from '@ionic/angular';
-import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
+import { PhotoLibrary, GetLibraryOptions } from '@ionic-native/photo-library/ngx';
 import { Injectable } from '@angular/core';
 import { MyStorage } from './storage/my-storage.service';
-import { Capacitor, CameraResultType, Plugins, FilesystemDirectory, CameraOptions, CameraSource, FileWriteOptions } from '@capacitor/core';
+import { Capacitor, CameraResultType, Plugins, FilesystemDirectory, CameraOptions, CameraSource, FileWriteOptions, FileReadResult } from '@capacitor/core';
 import { Entry, File, } from '@ionic-native/file/ngx';
-import { PhotoLocal } from 'src/app/models/LocalMediaInterfaces';
 import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-capture/ngx';
 import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
 // import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-import { VideoRecorderCamera, VideoRecorderPreviewFrame } from '@teamhive/capacitor-video-recorder';
 
 // not mandatory, only for code completion
-import { RecordingData, GenericResponse } from 'capacitor-voice-recorder'
+import { RecordingData, GenericResponse } from 'capacitor-voice-recorder';
+import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx';
+import { FileChooser, FileChooserOptions } from '@ionic-native/file-chooser/ngx';
+
+import { CreateThumbnailOptions, VideoEditor } from '@ionic-native/video-editor/ngx';
+import * as PluginsLibrary from 'capacitor-video-player'; // ios
+import { PermissionsService } from './permission.service';
+import { FileTransfer, FileTransferObject, FileUploadOptions, FileUploadResult } from '@ionic-native/file-transfer/ngx';
+import { UPLOAD_URL } from '../../config';
+const { CapacitorVideoPlayer, Device } = Plugins; // android
 
 // without types
-const { VoiceRecorder } = Plugins
+const { VoiceRecorder } = Plugins;
 
 const { Camera, Filesystem, VideoRecorder } = Plugins;
 
@@ -35,20 +45,28 @@ export class LocalMediaService {
   mediaFullPath = '';
 
   constructor(
-    private store: MyStorage,
+    private userService: UserService,
     private file: File,
     private platform: Platform,
     private filePath: FilePath,
     private signals: MySignals,
     private streamingMedia: StreamingMedia,
-    private androidPermissions: AndroidPermissions
+    private androidPermissions: AndroidPermissions,
+    private imagePicker: ImagePicker,
+    private fileChooser: FileChooser,
+    private mediaCapture: MediaCapture,
+    private videoEditor: VideoEditor,
+    private photoLibrary: PhotoLibrary,
+    private permissionService: PermissionsService,
+    private fileTransfer: FileTransfer
+
   ) {
     this.mediaPath = this.file.dataDirectory;
     this.mediaFullPath = this.mediaPath + this.mediaFolderName;
 
     this.createMediaDirectory().then(results => {
       console.log('Media directory created');
-      console.log(results)
+      console.log(results);
     }).catch(e => console.error('Media directory creation failed'));
 
     this.getPermissions().then(_ => _).catch(error => {
@@ -92,7 +110,7 @@ export class LocalMediaService {
     // this.signals.log(await (await this.file.resolveDirectoryUrl(this.file.dataDirectory)).toURL());//18
 
     // this.signals.log(ph.id);//19
-    // this.signals.log(ph.photoNativeURL);//20
+    // this.signals.log(ph.nativeURL);//20
 
     // this.signals.log(await this.localMediaService.convertPhotoLibraryPathToFullPath(ph));//22
     // this.signals.log(await this.localMediaService.convertPhotoLibraryPathToUrl(ph));//23
@@ -136,7 +154,7 @@ export class LocalMediaService {
   async convertPhotoLibraryPathToUrl(ph: PhotoLocal) {
     return (await this.file.resolveLocalFilesystemUrl('file://' + ph?.id?.split(';')[1])).toURL();
   }
-  async convertPhotoLibraryPathToFullPath(ph: PhotoLocal) {
+  async convertPhotoLibraryPathToFullPath(ph: PhotoLocal | VideoLocal) {
     return (await this.file.resolveLocalFilesystemUrl('file://' + ph?.id?.split(';')[1])).fullPath;
   }
 
@@ -194,20 +212,16 @@ export class LocalMediaService {
     };
     // get the photo object
     try {
-      const fileName = this.createFileName('temp.jpeg'); // create new unique file name; dummy file name as arg to generate new
       const photo = await Camera.getPhoto(options); // request to take Photo or select Photo
-      const fileResult = await Filesystem.readFile({ path: photo.path }); // Read file from cache
-      await this.writeToMediaDirectory(fileResult.data, fileName); // Write to media folder for permanent storage
-      const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
-      const resolvedUri = Capacitor.convertFileSrc(uri);
+      const fileName = photo?.path?.substr(photo?.path?.lastIndexOf('/') + 1);
 
       // create a local photo object and return
       return {
-        id: '0;' + uri,
-        photoNativeURL: uri,
-        thumbnailNativeURL: uri,
-        photoResolvedURL: resolvedUri,
-        thumbnailResolvedURL: resolvedUri,
+        id: '0;' + photo?.path,
+        nativeURL: photo?.path,
+        thumbnailNativeURL: photo?.path,
+        resolvedURL: Capacitor.convertFileSrc(photo?.path),
+        thumbnailResolvedURL: Capacitor.convertFileSrc(photo?.path),
         fileName,
         creationDate: new Date(Date.now())
       } as PhotoLocal;
@@ -216,109 +230,206 @@ export class LocalMediaService {
     }
   }
 
-  async getPhoto() {
-    return await this.takePhoto();
-  }
-
-
-  async recordAudio() {
+  async writePhotoToMediaDirectory(fullPath: string) {
     try {
-
-      // will print true / false based on the device ability to record
-      if (!((await VoiceRecorder.canDeviceVoiceRecord()) as GenericResponse).value) {
-        console.log('Your device does not support audio recording');
-        return;
-      }
-
-
-      // will print true / false based on the status of the recording permission
-      if (!((await VoiceRecorder.hasAudioRecordingPermission()) as GenericResponse).value) {
-        console.log('You do not have permission to record voice');
-        // will prompt the user to give the required permission, after that
-        // the function will print true / false based on the user response
-        if (!((await VoiceRecorder.requestAudioRecordingPermission()) as GenericResponse).value) {
-          console.log('Permission denied by user');
-          return;
-        }
-      }
-      // In case of success the promise will resolve with {"value": true}
-      // in case of an error the promise will reject with one of the following messages:
-      // "MISSING_PERMISSION", "ALREADY_RECORDING", "CANNOT_RECORD_ON_THIS_PHONE", "MICROPHONE_BEING_USED" or "FAILED_TO_RECORD"
-      if (!((await VoiceRecorder.startRecording()) as GenericResponse).value) {
-        console.log('Failed to record voice');
-      }
-
-
-      // In case of success the promise will resolve with:
-      // {"value": { recordDataBase64: string, msDuration: number, mimeType: string }},
-      // the file will be in *.acc format.
-      // in case of an error the promise will reject with one of the following messages:
-      // "RECORDING_HAS_NOT_STARTED" or "FAILED_TO_FETCH_RECORDING"
-      const result: RecordingData = await VoiceRecorder.stopRecording();
-      const fileName = this.createFileName('temp.aac'); // create new unique file name; dummy file name as arg to generate new
-      await this.writeToMediaDirectory(result?.value?.recordDataBase64, fileName); // Write to media folder for permanent storage
+      const fileName = this.createFileName(fullPath); // create new unique file name; dummy file name as arg to generate new
+      const fileResult = await Filesystem.readFile({ path: fullPath }); // Read file from cache
+      await this.writeToMediaDirectory(fileResult.data, fileName); // Write to media folder for permanent storage
       const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
       const resolvedUri = Capacitor.convertFileSrc(uri);
 
-      // create a local video object and return
+      // create a local photo object and return
       return {
         id: '0;' + uri,
-        audioNativeURL: uri,
-        posterNativeURL: uri,
-        audioResolvedURL: resolvedUri,
-        posterResolvedURL: resolvedUri,
+        nativeURL: uri,
+        thumbnailNativeURL: uri,
+        resolvedURL: resolvedUri,
+        thumbnailResolvedURL: resolvedUri,
         fileName,
         creationDate: new Date(Date.now())
-      } as AudioLocal;
-
+      } as PhotoLocal;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async recordVideo() {
-    const config: VideoRecorderPreviewFrame = {
-      id: 'video-record',
-      stackPosition: 'front', // 'front' overlays your app', 'back' places behind your app.
-      width: 'fill',
-      height: 'fill',
-      x: 0,
-      y: 0,
-      borderRadius: 0
-    };
-    await VideoRecorder.initialize({
-      camera: VideoRecorderCamera.FRONT, // Can use BACK
-      previewFrames: [config]
-    });
-    try {
-      await VideoRecorder.startRecording();
-      const res = await VideoRecorder.stopRecording(); // The video url is the local file path location of the video output.
-      const fileName = this.createFileName(res.videoUrl); // create new unique file name; dummy file name as arg to generate new
-      const fileResult = await Filesystem.readFile({ path: res.videoUrl }); // Read file from cache
-      await this.writeToMediaDirectory(fileResult.data, fileName); // Write to media folder for permanent storage
-      const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
-      const resolvedUri = Capacitor.convertFileSrc(uri);
+  async selectPhotosFromDevice() {
+    const MAX_PHOTO_POST_COUNT = 10;
+    const options = {
+      // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
+      // selection of a single image, the plugin will return it.
+      maximumImagesCount: MAX_PHOTO_POST_COUNT,
 
-      VideoRecorder.destroy();
-      // create a local video object and return
-      return {
-        id: '0;' + uri,
-        videoNativeURL: uri,
-        posterNativeURL: uri,
-        videoResolvedURL: resolvedUri,
-        posterResolvedURL: resolvedUri,
-        fileName,
-        creationDate: new Date(Date.now())
-      } as VideoLocal;
+      // max width and height to allow the images to be.  Will keep aspect
+      // ratio no matter what.  So if both are 800, the returned image
+      // will be at most 800 pixels wide and 800 pixels tall.  If the width is
+      // 800 and height 0 the image will be 800 pixels wide if the source
+      // is at least that wide.
+      width: 800,
+      height: 800,
+
+      // quality of resized image, defaults to 100
+      quality: 70,
+
+      // output type, defaults to FILE_URIs.
+      // available options are
+      // window.imagePicker.OutputType.FILE_URI (0) or
+      // window.imagePicker.OutputType.BASE64_STRING (1)
+      outputType: 0,
+      allow_video: true,
+      allow_image: false,
+      allow_photo: false
+    } as ImagePickerOptions;
+    const photos: PhotoLocal[] = [];
+    try {
+      const results = await this.imagePicker.getPictures(options);
+      results.forEach(fileUri => {
+        photos.push({
+          id: '0;' + fileUri,
+          fileName: this.getFileName(fileUri),
+          nativeURL: fileUri,
+          thumbnailNativeURL: fileUri,
+          creationDate: new Date(Date.now()),
+          resolvedURL: Capacitor.convertFileSrc(fileUri),
+          thumbnailResolvedURL: Capacitor.convertFileSrc(fileUri),
+        });
+      });
+      return photos;
     } catch (e) {
       console.log(e);
     }
   }
 
-  /***
-   * Helper functions
-   */
-  correctCordovaNativeFilePath(fullPath: string) {
+
+  async recordVideo() {
+    try {
+      const data: MediaFile[] = (await this.mediaCapture.captureVideo()) as any;
+      // console.log(data);
+      if (data?.length > 0) {
+        console.log(data[0].fullPath);
+        const uri = data[0].fullPath;
+        const fileName = uri.substr(uri.lastIndexOf('/') + 1);
+        const resolvedUri = Capacitor.convertFileSrc(uri);
+        console.log('working');
+        // create a local video object and return
+        const vid = {
+          id: '0;' + uri,
+          nativeURL: uri,
+          posterNativeURL: uri,
+          resolvedURL: resolvedUri,
+          posterResolvedURL: resolvedUri,
+          fileName,
+          creationDate: new Date(Date.now())
+        } as VideoLocal;
+        const thumbUrl: string = await this.generateVideoThumbnail(vid, true);
+        console.log(thumbUrl);
+        vid.posterNativeURL = thumbUrl;
+        vid.posterResolvedURL = Capacitor.convertFileSrc(thumbUrl);
+        return vid;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+  async selectVideoFromDevice() {
+    try {
+      let path: string = (await this.fileChooser.open().catch(e => console.log(e))) as any;
+      path = (await this.filePath.resolveNativePath(path).catch(e => console.log(e))) as any;
+      if (!this.isVideo(path)) { // filter photos
+        return;
+      }
+      path = this.correctNativeFilePath(path);
+      console.log(path);
+
+      const vid = {
+        id: '0;' + path,
+        nativeURL: path,
+        posterNativeURL: path,
+        resolvedURL: '',
+        posterResolvedURL: '',
+        fileName: path.substr(path.lastIndexOf('/') + 1),
+        creationDate: new Date(Date.now())
+      } as VideoLocal;
+      vid.resolvedURL = Capacitor.convertFileSrc(vid.nativeURL);
+      const thumbUrl: string = await this.generateVideoThumbnail(vid);
+      console.log(thumbUrl);
+      vid.posterNativeURL = thumbUrl;
+      vid.posterResolvedURL = Capacitor.convertFileSrc(thumbUrl);
+
+      return vid;
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async generateVideoThumbnail(vid: VideoLocal, toMediaFolder = false) {
+    const outputFileName = 'thumb_' + vid.fileName.substr(0, vid.fileName.lastIndexOf('.'));
+    console.log(outputFileName);
+    try {
+      const option: CreateThumbnailOptions = {
+        fileUri: vid.nativeURL,
+        /** The file name for the JPEG image */
+        outputFileName,
+        /** Location in the video to create the thumbnail (in seconds) */
+        atTime: 3,
+        /** Width of the thumbnail. */
+        width: 800,
+        /** Height of the thumbnail. */
+        height: 600,
+        /** Quality of the thumbnail (between 1 and 100). */
+        quality: 90
+      };
+      const thumbURL: string = (await this.videoEditor.createThumbnail(option).catch(e => console.log(e))) as any;
+      console.log(thumbURL);
+      if (toMediaFolder) {
+        // Read file from cache
+        const fileResult: FileReadResult = (await Filesystem.readFile({ path: this.correctNativeFilePath(thumbURL) })
+          .catch(e => console.log(e))) as any;
+        // Write to media folder for permanent storage
+        await this.writeToMediaDirectory(fileResult.data, outputFileName + '.jpg')
+          .catch(e => console.log(e));
+        // get full path of the file in the media folder
+        const uri = (await this.getMediaUri(outputFileName + '.jpg')
+          .catch(e => { console.log(e); }) as any)?.uri;
+        return uri;
+      }
+      return thumbURL;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async writeVideoToMediaDirectory(fullPath: string) {
+    const fileName = this.createFileName(fullPath); // create new unique file name; dummy file name as arg to generate new
+    const fileResult = await Filesystem.readFile({ path: fullPath }); // Read file from cache
+    await this.writeToMediaDirectory(fileResult.data, fileName); // Write to media folder for permanent storage
+    const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
+    const resolvedUri = Capacitor.convertFileSrc(uri);
+    console.log('working');
+    // create a local video object and return
+    const vid = {
+      id: '0;' + uri,
+      nativeURL: uri,
+      posterNativeURL: uri,
+      resolvedURL: resolvedUri,
+      posterResolvedURL: resolvedUri,
+      fileName,
+      creationDate: new Date(Date.now())
+    } as VideoLocal;
+    const thumbUrl: string = await this.generateVideoThumbnail(vid, true);
+    console.log(thumbUrl);
+    vid.posterNativeURL = thumbUrl;
+    vid.posterResolvedURL = Capacitor.convertFileSrc(thumbUrl);
+    return vid;
+
+  }
+
+  // /***
+  //  * Helper functions
+  //  */
+  correctNativeFilePath(fullPath: string) {
     let myPath = fullPath;
     // Make sure we copy from the right location
     if (fullPath.indexOf('file://') < 0) {
@@ -327,4 +438,117 @@ export class LocalMediaService {
     return myPath;
   }
 
+
+
+  async recordAudio() {
+    try {
+      const data: MediaFile[] = (await this.mediaCapture.captureAudio().catch(e => console.log(e))) as any;
+      console.log(data);
+      if (data?.length > 0) {
+        console.log(data[0].fullPath);
+        const uri = data[0].fullPath;
+        const fileName = uri.substr(uri.lastIndexOf('/') + 1);
+        const resolvedUri = Capacitor.convertFileSrc(uri);
+        console.log('working');
+        // create a local video object and return
+        const aud = {
+          id: '0;' + uri,
+          nativeURL: uri,
+          posterNativeURL: '',
+          resolvedURL: resolvedUri,
+          posterResolvedURL: '',
+          fileName,
+          creationDate: new Date(Date.now())
+        } as AudioLocal;
+        return aud;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async selectAudioFromDevice() {
+    try {
+      let path: string = (await this.fileChooser.open().catch(e => console.log(e))) as any;
+      path = (await this.filePath.resolveNativePath(path).catch(e => console.log(e))) as any;
+      if (!this.isAudio(path)) { // filter photos
+        return;
+      }
+      path = this.correctNativeFilePath(path);
+      console.log(path);
+
+      const aud = {
+        id: '0;' + path,
+        nativeURL: path,
+        posterNativeURL: '',
+        resolvedURL: Capacitor.convertFileSrc(path),
+        posterResolvedURL: '',
+        fileName: path.substr(path.lastIndexOf('/') + 1),
+        creationDate: new Date(Date.now())
+      } as AudioLocal;
+      return aud;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  isPhoto(uri: string) {
+    if (uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.png') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.jpg') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.jpeg') > -1 || uri?.toLocaleLowerCase()?.search('.bmp') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.gif') > -1) {
+      return true;
+    }
+  }
+
+  isVideo(uri: string) {
+    if (uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.avi') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mov') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mp4') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.3gp') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.webm') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.ogg') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mkv') > -1) {
+      return true;
+    }
+  }
+
+  isAudio(uri: string) {
+    if (uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.au') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.m3u') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.midi') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mod') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mp2') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mp3') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.wav') > -1 ||
+      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.voc') > -1) {
+      return true;
+    }
+  }
+
+
+  upload(fileUri: string, fileName: string, createThumb = false) {
+    const fileTransfer: FileTransferObject = this.fileTransfer.create();
+    // const headers = new HttpHeaders();
+    // headers.set('boundary', '---------------------------293582696224464');
+
+    const options: FileUploadOptions = {
+      fileKey: 'file',
+      fileName,
+      headers: { ['Authorization']: 'Bearer ' + this.userService.token.token }
+    };
+    console.log(JSON.stringify(options));
+    return fileTransfer
+      .upload(fileUri, UPLOAD_URL + `/${createThumb}`, options)
+      .then(
+        data => {
+          console.log(data);
+          return data;
+        },
+        e => {
+          throwError(UtilityService.myHttpErrorFormat(e, 'Upload'));
+        }
+      );
+  }
 }
