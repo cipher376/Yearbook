@@ -33,8 +33,8 @@
         <ion-col class="ion-no-padding" size="12">
           <hr style="background: #e8e9ed;" width="30%">
         </ion-col>
-        <ion-text class="px-2 text-center">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos, alias.
+        <ion-text class="px-2 bio">
+          {{ profile_bio.length > 60 ? (profile_bio | slice:0:60) + '...' : profile_bio | slice:0:60 }} 
         </ion-text>
 
         <ion-col class="ion-no-padding mt-2" size="12">

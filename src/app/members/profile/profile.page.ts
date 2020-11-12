@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProfilePage implements OnInit {
 
   currentSegment = 'about';
+  profile_bio: string = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos, alias Lorem ipsum dolor.';
 
   constructor() { }
 

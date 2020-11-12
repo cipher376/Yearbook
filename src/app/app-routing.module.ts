@@ -65,7 +65,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./members/tab-links/tab-links.module').then( m => m.TabLinksPageModule)
+  },  {
+    path: 'comments',
+    loadChildren: () => import('./members/comments/comments.module').then( m => m.CommentsPageModule)
   },
+
  
   // {
   //   path: 'schools-search',
