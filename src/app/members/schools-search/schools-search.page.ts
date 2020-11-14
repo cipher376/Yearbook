@@ -1,7 +1,8 @@
+import { PageInfo } from './../../models/page';
 import { SchoolService } from './../../shared/services/model-service/school.service';
 import { AlumniService } from './../../shared/services/model-service/alumni.service';
 import { BrowserHistoryService } from 'src/app/shared/services/providers/navigation/browser-history.service';
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { School } from 'src/app/models/school';
@@ -10,7 +11,9 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { Alumni } from 'src/app/models/alumni';
 import { FeedFilterPopoverComponent } from 'src/app/widgets/feed-filter-popover/feed-filter-popover.component';
-import { PopoverController } from '@ionic/angular';
+import { IonInfiniteScroll, LoadingController, PopoverController } from '@ionic/angular';
+import { IdentityPhoto, Photo } from 'src/app/models/media';
+import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 
 @Component({
   selector: 'app-schools-search',
@@ -19,12 +22,21 @@ import { PopoverController } from '@ionic/angular';
 })
 export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   previousPage = '';
-  history$;
-  schools$;
   selectedSchools: School[] = [];
   userSchools: School[] = [];
   schools: School[] = [];
+  schoolsIdentityPhoto: IdentityPhoto[] = [];
+
   userAlumni: Alumni[] = [];
+
+  sub$ = [];
+
+  searchOffset = 0; // Begin search at zero index;
+  searchLimit = 20; // pull 20 schools at a time
+  searchKey = '';
+
+  infiniteScrollTarget: any;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   constructor(
     private browserHistory: BrowserHistoryService,
@@ -34,11 +46,13 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     private schoolService: SchoolService,
     private userService: UserService,
     private signal: MySignals,
-    private store: MyStorage
-    ) {
-    this.history$ = this.browserHistory.previousPageSource$.subscribe(previousPage => {
+    private store: MyStorage,
+    private loadingController: LoadingController,
+    private toast: ToasterService
+  ) {
+    this.sub$.push(this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
-    });
+    }));
 
   }
 
@@ -54,9 +68,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.schools$ = this.schoolService.getSchools().subscribe(schools => {
-      this.schools = schools;
-    });
+    this.search(false);
   }
 
   async presentPopover(ev: any) {
@@ -71,8 +83,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    UtilityService.destroySubscription(this.history$);
-    UtilityService.destroySubscription(this.schools$);
+    UtilityService.destroySubscription(this.sub$);
   }
 
   goBack() {
@@ -80,11 +91,12 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   gotoSchoolProfile(school: School) {
-    this.signal.announceSchool(school);
-    this.router.navigateByUrl('/links/school-profile');
+    this.schoolService.setSchoolLocal(school).then(_ =>
+      this.router.navigateByUrl('/links/school-profile')
+    );
   }
 
-  isAuthenticated(){
+  isAuthenticated() {
     return this.userService.isAuthenticated();
   }
 
@@ -96,5 +108,65 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     // console.log(school.name);
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
+  // if search term change, it means key
+  // trigger is true
+  search(keyTrigger = true) {
+
+    // if ( this.schools.length === 0 ) {
+    //   this.presentLoading().then((res: any) => {
+    //     this.schools.length === 0 ? res.dismiss() : this.toast.toast('Sorry, something went wrong!')
+    //   });
+    // }
+
+    console.log('searching');
+    // refresh search
+    if (keyTrigger) {
+      this.searchOffset = 0;
+    }
+    const pageInfo = {
+      offset: this.searchOffset,
+      limit: this.searchLimit
+    } as PageInfo;
+
+    this.schoolService.searchSchool(this.searchKey, pageInfo).subscribe(schools => {
+      if (keyTrigger) {
+        console.log(schools);
+        this.schools = schools;
+        this.schoolsIdentityPhoto = UtilityService.getSchoolsIdentityPhotos(schools);
+      } else {
+        this.schools = this.schools.concat(schools);
+        this.searchOffset = this.schools.length;
+        this.infiniteScrollTarget?.complete();
+      }
+    });
+
+    // this.schoolService.getSchools(pageInfo).subscribe(schools => {
+    //   this.schools = this.schools.concat(schools);
+    //   this.searchOffset = this.schools.length;
+    //   console.log(this.schools.length);
+    // });
+  }
+
+
+  loadMoreEvents(event) {
+    this.infiniteScrollTarget = event.target;
+    this.search(false);
+  }
+
+  getProfilePhotoUrl(identityPhoto: IdentityPhoto) {
+    return UtilityService.getSchoolProfilePhotoUrl(identityPhoto);
+  }
 
 }

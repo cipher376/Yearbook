@@ -21,18 +21,11 @@ export class HomePage implements OnInit {
   }
 
   getUsername() {
-    this.userService.getUserLocal().then(
-      user => this.firstname = user.firstName
-    );
-  }
-
-  get username(): string | null {
-    return '';
-    // if ( this.isAuthenticated() ) {
-    //   this.getUsername();
-    //   return this.firstname;
-    // } 
-    // else return null;
+    if ( this.isAuthenticated() ) {
+      this.userService.getUserLocal().then(
+        user => this.firstname = user?.firstName
+      );
+    }
   }
 
   isAuthenticated(){

@@ -1,7 +1,10 @@
+import { MySignals } from './../my-signals';
 import { UtilityService } from './../providers/utility.service';
 import { Address } from './../../../models/address';
 import { School, SchoolInterface, SchoolDetailsInterface } from './../../../models/school';
 import { PageInfo, getPagedData } from '../../../models/page';
+import { Router } from '@angular/router';
+import { API_ROOT_URL } from '../../config';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
@@ -20,7 +23,8 @@ export interface Token {
 export class SchoolService {
   redirectUrl = '';
 
-  constructor(private http: HttpClient, private store: MyStorage) {
+  constructor(private http: HttpClient, private store: MyStorage,
+    private signals: MySignals) {
 
   }
 
@@ -88,9 +92,6 @@ export class SchoolService {
       relation: 'address',
     },
     {
-      relation: 'photos'
-    },
-    {
       relation: 'schoolDetails'
     }]
   }): Observable<School[]> {
@@ -104,33 +105,48 @@ export class SchoolService {
         },
         {
           relation: 'schoolDetails'
-        },
-        {
-          relation: 'photos'
         }]
       };
     }
-    filter = filter ? '?filter=' + JSON.stringify(filter) : '';
-    const url = '/schools' + filter;
+    filter = filter ? 'filter=' + JSON.stringify(filter) : '';
+    const url = '/schools?' + filter;
     // // console.log(url);
     return this.http.get<School[]>(url).pipe(
       map(res => {
-        const schools: School[] = [];
         // console.log(res);
-        res.forEach(school => {
-          schools.push(this.parseSchool(school));
-        });
-        this.store.setObject('schools', schools).then(_ => _);
-        return schools as any;
+        return res as any;
       }),
       catchError(e => this.handleError(e))
     );
   }
 
-  getSchoolDetails(schoolId: string) {
+  searchSchool(searchKey = 'all', pageInfo?: PageInfo): Observable<School[]> {
+    let filter = {};
+    if (pageInfo) {
+      filter = {
+        offset: pageInfo.offset,
+        limit: pageInfo.limit,
+      };
+    }
+    if (!searchKey) {
+      searchKey = 'all';
+    }
+    const url = '/schools-search/' + searchKey + '?filter=' + JSON.stringify(filter) ?? '';
+    console.log(url);
+    return this.http.get<School[]>(url).pipe(
+      map(res => {
+        console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
+
+  getSchoolDetails(schoolId: any) {
     const filter = {
       include: [
-        { relation: 'photos' },
+        // { relation: 'photos' },
         { relation: 'address' },
         { relation: 'schoolConfig' },
         { relation: 'post' },
@@ -159,46 +175,13 @@ export class SchoolService {
       catchError(e => this.handleError(e))
     );
   }
-
-  getUserSchools(userId: number) {
-    let filter: any = {
-      include: [
-        { relation: 'photos' },
-        { relation: 'address' },
-        { relation: 'schoolConfig' },
-        { relation: 'post' },
-        {
-          relation: 'alumni',
-          // scope: {
-          //   include: [
-          //     {
-          //       relation: 'school',
-          //       scope: {
-          //         include: [
-          //           { relation: 'photos' }]
-          //       }
-          //     }
-          //   ]
-          // }
-        }
-      ]
-    };
-    filter = filter ? '?filter=' + JSON.stringify(filter) : '';
-    const url = '/schools' + filter;
-    // // console.log(url);
-    return this.http.get<School[]>(url).pipe(
-      map(res => {
-        // console.log(res);
-        return res as any;
-      }),
-      catchError(e => this.handleError(e))
-    );
-  }
   countSchools(): Observable<number> {
     return this.http.get<School[]>('/schools/count').pipe(
       map(res => {
         if (res) {
+          this.signals.announceSchoolsCount((res as any).count);
           return (res as any).count;
+
         }
         return 0;
       }),
@@ -217,6 +200,29 @@ export class SchoolService {
     );
   }
 
+
+  getUserSchools(userId: any): Observable<School[]> {
+    const filter = {
+      include: [
+        { relation: 'address' },
+        { relation: 'schoolDetails' },
+        { relation: 'photos' }
+      ]
+    } as any;
+
+    // console.log(filter);
+    const url = `/users/${userId}/schools?filter=` + JSON.stringify(filter);
+    return this.http.get<School[]>(url).pipe(
+      map(res => {
+        // console.log(res);
+        return this.flattenSchools(res) as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+
+  }
+
+
   /////////////////////////////////////////////////////////////////////////
   /*************Local school access*****/
   ///////////////////////////////////////////////////////////////////////////
@@ -224,42 +230,41 @@ export class SchoolService {
 
 
   // Read school object from sesson storage
-  getSchoolLocal(): Promise<School> {
-    return this.store.getObject('school');
+  async getSchoolLocal(): Promise<School> {
+    return this.store.getObject('selectedSchool');
+  }
+  async setSchoolLocal(school: School) {
+    this.signals.announceSchool(school);
+    return this.store.setObject('selectedSchool', school);
   }
 
-  setSchoolLocal(school: School) {
-    return this.store.setObject<School>('school', school).then(_ => _);
-  }
-  deleteSchoolLocal() {
-    this.store.remove('school').then(_ => _);
+  async deleteSchoolLocal() {
+    this.signals.announceSchool(null);
+    this.store.remove('selectedSchool');
   }
 
+
+  ////////////////////////////////////////////////////////////
+  /**********************Helper function ******************* */
+  ////////////////////////////////////////////////////////////
+
+  flattenSchools(schools: any[]) {
+    const returnSchools: School[] = [];
+    schools.forEach(school => {
+      returnSchools.push(new School(school, school?.schoolDetails))
+    });
+    // console.log(returnSchools);
+    return returnSchools;
+  }
+
+  flattenSchool(school: any) {
+    return new School(school, school?.schoolDetails)
+  }
 
 
 
   private handleError(e: any): any {
     // console.log(e);
     return throwError(UtilityService.myHttpErrorFormat(e, 'school'));
-  }
-
-  private parseSchool(serverSchool): School {
-    const school = new School(serverSchool);
-    if (serverSchool?.schoolDetails) {
-      school.detail = serverSchool.schoolDetails;
-    }
-    if (serverSchool?.photos) {
-      school.photos = serverSchool.photos;
-    }
-    if (serverSchool?.address) {
-      school.address = serverSchool?.address;
-    }
-    if (serverSchool?.schoolConfig) {
-      school.config = serverSchool?.schoolConfig;
-    }
-    if (serverSchool?.posts) {
-      school.posts = serverSchool?.post;
-    }
-    return school;
   }
 }

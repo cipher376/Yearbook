@@ -17,7 +17,8 @@ export class TokenInterceptor implements HttpInterceptor {
     // All HTTP requests are going to go through this method
     // console.log('INTERCEPTOR');
     // We retrieve the token, if any
-    const token = this.userService.Token;
+    // const token = this.userService.getToken();
+    const token = this.userService.token;
 
     // if content type is not set, default to  application/json
     let newHeaders = req.headers;

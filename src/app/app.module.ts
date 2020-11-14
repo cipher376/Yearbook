@@ -36,7 +36,7 @@ import { BrowserHistoryService } from './shared/services/providers/navigation/br
     }),
     NgxIonicImageViewerModule,
     WidgetsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     StatusBar,

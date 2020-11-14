@@ -1,0 +1,2702 @@
+[{
+    "street": "84 Bartelt Place",
+    "suburb": "rutrum",
+    "city": "Lansing",
+    "postcode": "48956",
+    "state": "Michigan",
+    "country": "United States",
+    "schoolId": 1,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "31865 Ramsey Way",
+    "suburb": "mauris non",
+    "city": "Charleston",
+    "postcode": "25321",
+    "state": "West Virginia",
+    "country": "United States",
+    "schoolId": 2,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "6 Daystar Circle",
+    "suburb": "mauris",
+    "city": "Pinellas Park",
+    "postcode": "34665",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 3,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "5557 Debs Plaza",
+    "suburb": "nullam orci",
+    "city": "Portland",
+    "postcode": "97216",
+    "state": "Oregon",
+    "country": "United States",
+    "schoolId": 4,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "30308 Waxwing Center",
+    "suburb": "vitae nisi",
+    "city": "Lake Charles",
+    "postcode": "70607",
+    "state": "Louisiana",
+    "country": "United States",
+    "schoolId": 5,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "567 Milwaukee Alley",
+    "suburb": "dignissim",
+    "city": "San Antonio",
+    "postcode": "78296",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 6,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "1232 Lotheville Hill",
+    "suburb": "potenti nullam",
+    "city": "Washington",
+    "postcode": "20580",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 7,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "37 Arrowood Pass",
+    "suburb": "lobortis",
+    "city": "Pittsburgh",
+    "postcode": "15266",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 8,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "1886 Sommers Parkway",
+    "suburb": "nam dui",
+    "city": "Dallas",
+    "postcode": "75379",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 9,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "5305 Tennessee Junction",
+    "suburb": "praesent lectus",
+    "city": "Philadelphia",
+    "postcode": "19109",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 10,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "448 Waubesa Park",
+    "suburb": "parturient montes",
+    "city": "Salt Lake City",
+    "postcode": "84110",
+    "state": "Utah",
+    "country": "United States",
+    "schoolId": 11,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "4149 Red Cloud Lane",
+    "suburb": "amet",
+    "city": "Tuscaloosa",
+    "postcode": "35405",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 12,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "1 Coleman Hill",
+    "suburb": "non sodales",
+    "city": "Irvine",
+    "postcode": "92612",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 13,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "05674 Melody Terrace",
+    "suburb": "luctus et",
+    "city": "Portland",
+    "postcode": "97240",
+    "state": "Oregon",
+    "country": "United States",
+    "schoolId": 14,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "839 Graedel Drive",
+    "suburb": "at nibh",
+    "city": "Cleveland",
+    "postcode": "44197",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 15,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "308 Dryden Trail",
+    "suburb": "ut",
+    "city": "Phoenix",
+    "postcode": "85020",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 16,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "33324 Reinke Plaza",
+    "suburb": "fermentum",
+    "city": "Independence",
+    "postcode": "64054",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 17,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "29098 Weeping Birch Center",
+    "suburb": "vel lectus",
+    "city": "Tacoma",
+    "postcode": "98442",
+    "state": "Washington",
+    "country": "United States",
+    "schoolId": 18,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "4 Marcy Court",
+    "suburb": "turpis elementum",
+    "city": "Bethesda",
+    "postcode": "20892",
+    "state": "Maryland",
+    "country": "United States",
+    "schoolId": 19,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "77611 Donald Crossing",
+    "suburb": "erat volutpat",
+    "city": "Canton",
+    "postcode": "44705",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 20,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "34010 Bowman Pass",
+    "suburb": "cursus",
+    "city": "Monroe",
+    "postcode": "71208",
+    "state": "Louisiana",
+    "country": "United States",
+    "schoolId": 21,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "1160 Talmadge Place",
+    "suburb": "donec",
+    "city": "Lima",
+    "postcode": "45807",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 22,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "443 Prairie Rose Junction",
+    "suburb": "amet",
+    "city": "Jacksonville",
+    "postcode": "32244",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 23,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "1221 Reinke Hill",
+    "suburb": "magna",
+    "city": "Dulles",
+    "postcode": "20189",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 24,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "6 American Ash Lane",
+    "suburb": "convallis duis",
+    "city": "Washington",
+    "postcode": "20535",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 25,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "138 Paget Park",
+    "suburb": "eleifend",
+    "city": "Boise",
+    "postcode": "83722",
+    "state": "Idaho",
+    "country": "United States",
+    "schoolId": 26,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "97870 Bellgrove Parkway",
+    "suburb": "sociis",
+    "city": "Memphis",
+    "postcode": "38119",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 27,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "4 Karstens Lane",
+    "suburb": "dapibus dolor",
+    "city": "Charlotte",
+    "postcode": "28263",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 28,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "2 Mayer Court",
+    "suburb": "ut",
+    "city": "Salem",
+    "postcode": "97312",
+    "state": "Oregon",
+    "country": "United States",
+    "schoolId": 29,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "680 Forest Run Parkway",
+    "suburb": "suscipit",
+    "city": "Winston Salem",
+    "postcode": "27105",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 30,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "3183 Stuart Avenue",
+    "suburb": "curabitur at",
+    "city": "Atlanta",
+    "postcode": "30323",
+    "state": "Georgia",
+    "country": "United States",
+    "schoolId": 31,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "10 David Trail",
+    "suburb": "sapien",
+    "city": "Richmond",
+    "postcode": "23285",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 32,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "434 Steensland Trail",
+    "suburb": "eget",
+    "city": "Boston",
+    "postcode": "02298",
+    "state": "Massachusetts",
+    "country": "United States",
+    "schoolId": 33,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "1 Havey Alley",
+    "suburb": "consequat",
+    "city": "Nashville",
+    "postcode": "37220",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 34,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "79 Sage Place",
+    "suburb": "turpis",
+    "city": "Orlando",
+    "postcode": "32808",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 35,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "97 Welch Trail",
+    "suburb": "rhoncus",
+    "city": "Myrtle Beach",
+    "postcode": "29579",
+    "state": "South Carolina",
+    "country": "United States",
+    "schoolId": 36,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "7912 Stephen Crossing",
+    "suburb": "nulla quisque",
+    "city": "San Francisco",
+    "postcode": "94169",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 37,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "9 Mallard Avenue",
+    "suburb": "velit",
+    "city": "Memphis",
+    "postcode": "38161",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 38,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "307 Farmco Park",
+    "suburb": "eros viverra",
+    "city": "Bloomington",
+    "postcode": "47405",
+    "state": "Indiana",
+    "country": "United States",
+    "schoolId": 39,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "639 Hagan Park",
+    "suburb": "erat",
+    "city": "Syracuse",
+    "postcode": "13224",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 40,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "4314 Dorton Lane",
+    "suburb": "donec pharetra",
+    "city": "Baton Rouge",
+    "postcode": "70883",
+    "state": "Louisiana",
+    "country": "United States",
+    "schoolId": 41,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "74900 Utah Junction",
+    "suburb": "vestibulum",
+    "city": "Jefferson City",
+    "postcode": "65105",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 42,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "225 Coolidge Point",
+    "suburb": "et ultrices",
+    "city": "Evansville",
+    "postcode": "47712",
+    "state": "Indiana",
+    "country": "United States",
+    "schoolId": 43,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "20 Melby Parkway",
+    "suburb": "augue aliquam",
+    "city": "Jackson",
+    "postcode": "39296",
+    "state": "Mississippi",
+    "country": "United States",
+    "schoolId": 44,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "84 Arrowood Street",
+    "suburb": "eleifend quam",
+    "city": "Utica",
+    "postcode": "13505",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 45,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "009 International Way",
+    "suburb": "eget massa",
+    "city": "Austin",
+    "postcode": "78710",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 46,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "8623 Oxford Trail",
+    "suburb": "felis",
+    "city": "Tampa",
+    "postcode": "33661",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 47,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "0631 Tony Plaza",
+    "suburb": "convallis",
+    "city": "Pensacola",
+    "postcode": "32590",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 48,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "8 Portage Street",
+    "suburb": "morbi porttitor",
+    "city": "Bronx",
+    "postcode": "10469",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 49,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "80 Sachs Drive",
+    "suburb": "mollis",
+    "city": "Shreveport",
+    "postcode": "71151",
+    "state": "Louisiana",
+    "country": "United States",
+    "schoolId": 50,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "19283 Rusk Court",
+    "suburb": "orci",
+    "city": "Saint Paul",
+    "postcode": "55188",
+    "state": "Minnesota",
+    "country": "United States",
+    "schoolId": 51,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "553 Colorado Park",
+    "suburb": "in",
+    "city": "San Francisco",
+    "postcode": "94137",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 52,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "915 Vermont Hill",
+    "suburb": "orci",
+    "city": "Sioux Falls",
+    "postcode": "57105",
+    "state": "South Dakota",
+    "country": "United States",
+    "schoolId": 53,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "01 Beilfuss Circle",
+    "suburb": "nulla",
+    "city": "New Orleans",
+    "postcode": "70174",
+    "state": "Louisiana",
+    "country": "United States",
+    "schoolId": 54,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "3013 East Crossing",
+    "suburb": "dui vel",
+    "city": "Fresno",
+    "postcode": "93726",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 55,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "27491 Pawling Street",
+    "suburb": "lorem vitae",
+    "city": "San Antonio",
+    "postcode": "78215",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 56,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "07 Union Park",
+    "suburb": "diam",
+    "city": "Santa Monica",
+    "postcode": "90410",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 57,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "43771 Blue Bill Park Lane",
+    "suburb": "sapien",
+    "city": "Phoenix",
+    "postcode": "85083",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 58,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "5018 Longview Circle",
+    "suburb": "nec nisi",
+    "city": "Indianapolis",
+    "postcode": "46295",
+    "state": "Indiana",
+    "country": "United States",
+    "schoolId": 59,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "28 Florence Street",
+    "suburb": "luctus rutrum",
+    "city": "Virginia Beach",
+    "postcode": "23471",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 60,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "22103 Hintze Trail",
+    "suburb": "ipsum primis",
+    "city": "Shawnee Mission",
+    "postcode": "66286",
+    "state": "Kansas",
+    "country": "United States",
+    "schoolId": 61,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "5 Florence Terrace",
+    "suburb": "purus",
+    "city": "Garland",
+    "postcode": "75044",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 62,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "27 Katie Junction",
+    "suburb": "congue",
+    "city": "New Haven",
+    "postcode": "06538",
+    "state": "Connecticut",
+    "country": "United States",
+    "schoolId": 63,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "744 Spohn Avenue",
+    "suburb": "adipiscing",
+    "city": "Tallahassee",
+    "postcode": "32309",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 64,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "67 1st Alley",
+    "suburb": "pulvinar lobortis",
+    "city": "Charleston",
+    "postcode": "25305",
+    "state": "West Virginia",
+    "country": "United States",
+    "schoolId": 65,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "25829 Summerview Plaza",
+    "suburb": "erat volutpat",
+    "city": "Colorado Springs",
+    "postcode": "80995",
+    "state": "Colorado",
+    "country": "United States",
+    "schoolId": 66,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "11 New Castle Terrace",
+    "suburb": "fusce consequat",
+    "city": "Albany",
+    "postcode": "12247",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 67,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "8134 Porter Place",
+    "suburb": "rhoncus",
+    "city": "Dayton",
+    "postcode": "45419",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 68,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "86405 Scofield Avenue",
+    "suburb": "eros",
+    "city": "Johnson City",
+    "postcode": "37605",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 69
+}, {
+    "street": "73 Norway Maple Crossing",
+    "suburb": "nullam",
+    "city": "Philadelphia",
+    "postcode": "19109",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 70,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "3765 Warner Way",
+    "suburb": "pede ullamcorper",
+    "city": "Louisville",
+    "postcode": "40220",
+    "state": "Kentucky",
+    "country": "United States",
+    "schoolId": 71,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "3 Ramsey Lane",
+    "suburb": "nunc purus",
+    "city": "Clearwater",
+    "postcode": "33763",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 72,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "225 Ridgeway Parkway",
+    "suburb": "vitae ipsum",
+    "city": "Corpus Christi",
+    "postcode": "78470",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 73,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "4872 Artisan Circle",
+    "suburb": "proin interdum",
+    "city": "Newark",
+    "postcode": "19725",
+    "state": "Delaware",
+    "country": "United States",
+    "schoolId": 74,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "5 Grover Crossing",
+    "suburb": "ut erat",
+    "city": "Los Angeles",
+    "postcode": "90094",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 75,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "14 Kedzie Circle",
+    "suburb": "interdum",
+    "city": "Alexandria",
+    "postcode": "22313",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 76,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "9 Heath Terrace",
+    "suburb": "rutrum",
+    "city": "Dallas",
+    "postcode": "75260",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 77,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "688 Eagle Crest Park",
+    "suburb": "ultrices",
+    "city": "Corpus Christi",
+    "postcode": "78470",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 78,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "64 Prairie Rose Plaza",
+    "suburb": "morbi vel",
+    "city": "Akron",
+    "postcode": "44315",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 79,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "19 Mandrake Plaza",
+    "suburb": "nibh",
+    "city": "Pasadena",
+    "postcode": "91186",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 80,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "993 Delladonna Parkway",
+    "suburb": "cursus",
+    "city": "Long Beach",
+    "postcode": "90805",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 81,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "76516 Ridgeway Center",
+    "suburb": "ac",
+    "city": "Wichita",
+    "postcode": "67205",
+    "state": "Kansas",
+    "country": "United States",
+    "schoolId": 82,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "787 Sutherland Junction",
+    "suburb": "id",
+    "city": "Rochester",
+    "postcode": "14609",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 83,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "7 Prentice Court",
+    "suburb": "vel augue",
+    "city": "Pittsburgh",
+    "postcode": "15235",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 84,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "7360 Lake View Court",
+    "suburb": "lorem ipsum",
+    "city": "Lake Worth",
+    "postcode": "33467",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 85,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "35 Bay Trail",
+    "suburb": "lectus suspendisse",
+    "city": "Bismarck",
+    "postcode": "58505",
+    "state": "North Dakota",
+    "country": "United States",
+    "schoolId": 86,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "4910 Maywood Place",
+    "suburb": "pulvinar nulla",
+    "city": "El Paso",
+    "postcode": "79994",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 87,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "70888 Hoepker Plaza",
+    "suburb": "nisi",
+    "city": "Tampa",
+    "postcode": "33610",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 88,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "54803 Monterey Parkway",
+    "suburb": "faucibus cursus",
+    "city": "Charleston",
+    "postcode": "25389",
+    "state": "West Virginia",
+    "country": "United States",
+    "schoolId": 89,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "36216 Goodland Drive",
+    "suburb": "duis",
+    "city": "Anchorage",
+    "postcode": "99522",
+    "state": "Alaska",
+    "country": "United States",
+    "schoolId": 90,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "378 Blue Bill Park Center",
+    "suburb": "aliquet massa",
+    "city": "Birmingham",
+    "postcode": "35210",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 91,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "5 Pierstorff Plaza",
+    "suburb": "nullam porttitor",
+    "city": "Gilbert",
+    "postcode": "85297",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 92,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "08603 Bunker Hill Lane",
+    "suburb": "a suscipit",
+    "city": "Washington",
+    "postcode": "20268",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 93,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "3 Elka Avenue",
+    "suburb": "volutpat",
+    "city": "Boca Raton",
+    "postcode": "33432",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 94,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "871 Pearson Lane",
+    "suburb": "odio in",
+    "city": "Bakersfield",
+    "postcode": "93386",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 95,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "2310 Reindahl Crossing",
+    "suburb": "dignissim",
+    "city": "Seattle",
+    "postcode": "98127",
+    "state": "Washington",
+    "country": "United States",
+    "schoolId": 96,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "168 La Follette Street",
+    "suburb": "a feugiat",
+    "city": "Montgomery",
+    "postcode": "36104",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 97,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "77 Marquette Trail",
+    "suburb": "lacus",
+    "city": "Brooklyn",
+    "postcode": "11231",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 98,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "5 Hoffman Street",
+    "suburb": "sagittis nam",
+    "city": "Houston",
+    "postcode": "77234",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 99,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "0839 Colorado Point",
+    "suburb": "erat eros",
+    "city": "Seattle",
+    "postcode": "98158",
+    "state": "Washington",
+    "country": "United States",
+    "schoolId": 100,
+    "latLng": "6.9856561,-1.4822218"
+}]
+
+
+
+[{
+    "street": "0318 Mifflin Lane",
+    "suburb": "lacus",
+    "city": "Orlando",
+    "postcode": "32819",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 101,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "21619 Thompson Plaza",
+    "suburb": "ut",
+    "city": "Schenectady",
+    "postcode": "12305",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 102,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "983 Troy Crossing",
+    "suburb": "tincidunt lacus",
+    "city": "Washington",
+    "postcode": "20238",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 103,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "12775 Sycamore Point",
+    "suburb": "sit amet",
+    "city": "Tampa",
+    "postcode": "33673",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 104,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "082 Fair Oaks Drive",
+    "suburb": "ante",
+    "city": "Atlanta",
+    "postcode": "31136",
+    "state": "Georgia",
+    "country": "United States",
+    "schoolId": 105,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "67 Fairview Lane",
+    "suburb": "tortor risus",
+    "city": "Grand Forks",
+    "postcode": "58207",
+    "state": "North Dakota",
+    "country": "United States",
+    "schoolId": 106,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "82281 Main Park",
+    "suburb": "in",
+    "city": "Dayton",
+    "postcode": "45426",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 107,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "86273 Columbus Park",
+    "suburb": "eros",
+    "city": "New York City",
+    "postcode": "10019",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 108,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "897 Service Point",
+    "suburb": "volutpat",
+    "city": "Dallas",
+    "postcode": "75277",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 109,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "92 Waywood Lane",
+    "suburb": "parturient",
+    "city": "Moreno Valley",
+    "postcode": "92555",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 110,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "718 Elka Court",
+    "suburb": "neque",
+    "city": "Charleston",
+    "postcode": "29424",
+    "state": "South Carolina",
+    "country": "United States",
+    "schoolId": 111,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "6 Badeau Drive",
+    "suburb": "ipsum",
+    "city": "Battle Creek",
+    "postcode": "49018",
+    "state": "Michigan",
+    "country": "United States",
+    "schoolId": 112,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "639 Dottie Circle",
+    "suburb": "et",
+    "city": "Las Vegas",
+    "postcode": "89193",
+    "state": "Nevada",
+    "country": "United States",
+    "schoolId": 113,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "5116 Schurz Street",
+    "suburb": "iaculis",
+    "city": "Huntsville",
+    "postcode": "35895",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 114,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "5397 Lindbergh Drive",
+    "suburb": "nisi",
+    "city": "New Orleans",
+    "postcode": "70165",
+    "state": "Louisiana",
+    "country": "United States",
+    "schoolId": 115,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "765 Mosinee Parkway",
+    "suburb": "ullamcorper",
+    "city": "Salinas",
+    "postcode": "93907",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 116,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "94 Acker Drive",
+    "suburb": "vel nisl",
+    "city": "Montgomery",
+    "postcode": "36177",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 117
+}, {
+    "street": "83 Scott Avenue",
+    "suburb": "in",
+    "city": "Washington",
+    "postcode": "20409",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 118,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "410 American Park",
+    "suburb": "at",
+    "city": "Greensboro",
+    "postcode": "27404",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 119,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "07306 Scott Junction",
+    "suburb": "nibh ligula",
+    "city": "Huntsville",
+    "postcode": "35895",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 120,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "558 Hoard Place",
+    "suburb": "eros",
+    "city": "Mc Keesport",
+    "postcode": "15134",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 121,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "53 Lake View Circle",
+    "suburb": "platea dictumst",
+    "city": "Carol Stream",
+    "postcode": "60158",
+    "state": "Illinois",
+    "country": "United States",
+    "schoolId": 122,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "0969 Helena Park",
+    "suburb": "sapien arcu",
+    "city": "Springfield",
+    "postcode": "62794",
+    "state": "Illinois",
+    "country": "United States",
+    "schoolId": 123,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "0758 Barnett Alley",
+    "suburb": "sagittis",
+    "city": "Paterson",
+    "postcode": "07522",
+    "state": "New Jersey",
+    "country": "United States",
+    "schoolId": 124,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "75708 Twin Pines Crossing",
+    "suburb": "justo",
+    "city": "San Rafael",
+    "postcode": "94913",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 125,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "37567 Eastlawn Crossing",
+    "suburb": "justo",
+    "city": "Houston",
+    "postcode": "77201",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 126
+}, {
+    "street": "5967 Logan Road",
+    "suburb": "donec",
+    "city": "Honolulu",
+    "postcode": "96835",
+    "state": "Hawaii",
+    "country": "United States",
+    "schoolId": 127,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "14634 Golf Point",
+    "suburb": "eros vestibulum",
+    "city": "Raleigh",
+    "postcode": "27635",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 128,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "47 Norway Maple Crossing",
+    "suburb": "dictumst aliquam",
+    "city": "Charlottesville",
+    "postcode": "22903",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 129,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "95 Dapin Center",
+    "suburb": "magna ac",
+    "city": "Corpus Christi",
+    "postcode": "78465",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 130,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "5952 Roxbury Drive",
+    "suburb": "iaculis congue",
+    "city": "Sacramento",
+    "postcode": "95828",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 131,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "85916 Cordelia Street",
+    "suburb": "maecenas leo",
+    "city": "Saint Louis",
+    "postcode": "63180",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 132,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "2 Northridge Pass",
+    "suburb": "libero",
+    "city": "Phoenix",
+    "postcode": "85045",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 133,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "8 Heffernan Place",
+    "suburb": "augue vestibulum",
+    "city": "Pueblo",
+    "postcode": "81005",
+    "state": "Colorado",
+    "country": "United States",
+    "schoolId": 134,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "8 Farmco Park",
+    "suburb": "pede",
+    "city": "Peoria",
+    "postcode": "61651",
+    "state": "Illinois",
+    "country": "United States",
+    "schoolId": 135,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "5 Bartillon Lane",
+    "suburb": "faucibus",
+    "city": "Long Beach",
+    "postcode": "90847",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 136,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "09 Schmedeman Point",
+    "suburb": "vivamus in",
+    "city": "Meridian",
+    "postcode": "39305",
+    "state": "Mississippi",
+    "country": "United States",
+    "schoolId": 137,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "276 Northridge Lane",
+    "suburb": "venenatis",
+    "city": "Kansas City",
+    "postcode": "64160",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 138,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "5 Pond Street",
+    "suburb": "massa",
+    "city": "Sioux Falls",
+    "postcode": "57193",
+    "state": "South Dakota",
+    "country": "United States",
+    "schoolId": 139,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "0 Dakota Center",
+    "suburb": "eu tincidunt",
+    "city": "Los Angeles",
+    "postcode": "90040",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 140,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "57613 North Hill",
+    "suburb": "ut volutpat",
+    "city": "Muncie",
+    "postcode": "47306",
+    "state": "Indiana",
+    "country": "United States",
+    "schoolId": 141,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "15 Monica Lane",
+    "suburb": "curabitur in",
+    "city": "Charlottesville",
+    "postcode": "22903",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 142,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "49 Spaight Avenue",
+    "suburb": "magna at",
+    "city": "Inglewood",
+    "postcode": "90398",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 143,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "7 Butterfield Parkway",
+    "suburb": "adipiscing",
+    "city": "Arvada",
+    "postcode": "80005",
+    "state": "Colorado",
+    "country": "United States",
+    "schoolId": 144,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "08 Ronald Regan Way",
+    "suburb": "ridiculus",
+    "city": "Miami",
+    "postcode": "33158",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 145,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "7465 Kenwood Street",
+    "suburb": "nulla dapibus",
+    "city": "Richmond",
+    "postcode": "23277",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 146,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "88 Utah Circle",
+    "suburb": "eu felis",
+    "city": "Tallahassee",
+    "postcode": "32309",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 147,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "6480 Division Hill",
+    "suburb": "eu",
+    "city": "Columbia",
+    "postcode": "29225",
+    "state": "South Carolina",
+    "country": "United States",
+    "schoolId": 148,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "0 Kinsman Place",
+    "suburb": "aenean",
+    "city": "Sacramento",
+    "postcode": "95818",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 149,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "67549 Golden Leaf Parkway",
+    "suburb": "in faucibus",
+    "city": "Orlando",
+    "postcode": "32803",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 150,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "13896 Mendota Circle",
+    "suburb": "donec",
+    "city": "Seminole",
+    "postcode": "34642",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 151,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "0 Main Avenue",
+    "suburb": "felis fusce",
+    "city": "Newark",
+    "postcode": "07112",
+    "state": "New Jersey",
+    "country": "United States",
+    "schoolId": 152,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "9 Valley Edge Plaza",
+    "suburb": "dapibus duis",
+    "city": "Washington",
+    "postcode": "20425",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 153
+}, {
+    "street": "3068 Stang Plaza",
+    "suburb": "nisi",
+    "city": "Saint Louis",
+    "postcode": "63110",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 154,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "48 Briar Crest Point",
+    "suburb": "platea",
+    "city": "Staten Island",
+    "postcode": "10310",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 155,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "7 Bowman Drive",
+    "suburb": "amet eros",
+    "city": "Oklahoma City",
+    "postcode": "73104",
+    "state": "Oklahoma",
+    "country": "United States",
+    "schoolId": 156,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "93926 Declaration Plaza",
+    "suburb": "id",
+    "city": "Louisville",
+    "postcode": "40233",
+    "state": "Kentucky",
+    "country": "United States",
+    "schoolId": 157,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "67700 Elmside Court",
+    "suburb": "hac habitasse",
+    "city": "Wilkes Barre",
+    "postcode": "18768",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 158,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "82048 Toban Parkway",
+    "suburb": "quis",
+    "city": "Cincinnati",
+    "postcode": "45233",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 159,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "4702 Dahle Drive",
+    "suburb": "faucibus cursus",
+    "city": "Fredericksburg",
+    "postcode": "22405",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 160,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "4 Memorial Point",
+    "suburb": "dolor sit",
+    "city": "North Little Rock",
+    "postcode": "72118",
+    "state": "Arkansas",
+    "country": "United States",
+    "schoolId": 161,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "4 Randy Trail",
+    "suburb": "orci luctus",
+    "city": "Tacoma",
+    "postcode": "98447",
+    "state": "Washington",
+    "country": "United States",
+    "schoolId": 162,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "511 Carioca Place",
+    "suburb": "iaculis justo",
+    "city": "Plano",
+    "postcode": "75074",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 163,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "5 Rockefeller Trail",
+    "suburb": "tellus",
+    "city": "Riverside",
+    "postcode": "92519",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 164,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "136 Independence Circle",
+    "suburb": "luctus et",
+    "city": "Las Vegas",
+    "postcode": "89130",
+    "state": "Nevada",
+    "country": "United States",
+    "schoolId": 165,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "6777 Sloan Junction",
+    "suburb": "potenti",
+    "city": "Waterloo",
+    "postcode": "50706",
+    "state": "Iowa",
+    "country": "United States",
+    "schoolId": 166,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "327 Beilfuss Parkway",
+    "suburb": "sapien",
+    "city": "Sioux Falls",
+    "postcode": "57198",
+    "state": "South Dakota",
+    "country": "United States",
+    "schoolId": 167,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "533 Sunbrook Way",
+    "suburb": "mauris",
+    "city": "Columbus",
+    "postcode": "43268",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 168,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "7467 Brickson Park Street",
+    "suburb": "velit",
+    "city": "Macon",
+    "postcode": "31296",
+    "state": "Georgia",
+    "country": "United States",
+    "schoolId": 169,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "622 Homewood Way",
+    "suburb": "nec",
+    "city": "Hagerstown",
+    "postcode": "21747",
+    "state": "Maryland",
+    "country": "United States",
+    "schoolId": 170,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "30197 Esker Hill",
+    "suburb": "cubilia curae",
+    "city": "Knoxville",
+    "postcode": "37924",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 171,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "3 Fairview Alley",
+    "suburb": "sit amet",
+    "city": "Las Vegas",
+    "postcode": "89178",
+    "state": "Nevada",
+    "country": "United States",
+    "schoolId": 172,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "857 Fremont Center",
+    "suburb": "tortor",
+    "city": "Harrisburg",
+    "postcode": "17105",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 173,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "7022 Monica Pass",
+    "suburb": "ultrices libero",
+    "city": "El Paso",
+    "postcode": "79945",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 174,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "547 Buena Vista Lane",
+    "suburb": "lacinia nisi",
+    "city": "Richmond",
+    "postcode": "23289",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 175,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "50998 Knutson Crossing",
+    "suburb": "neque",
+    "city": "Olympia",
+    "postcode": "98506",
+    "state": "Washington",
+    "country": "United States",
+    "schoolId": 176,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "8 Shopko Crossing",
+    "suburb": "at feugiat",
+    "city": "Jacksonville",
+    "postcode": "32209",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 177,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "146 Melvin Circle",
+    "suburb": "amet consectetuer",
+    "city": "San Antonio",
+    "postcode": "78285",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 178,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "29462 Surrey Lane",
+    "suburb": "ultrices phasellus",
+    "city": "Stamford",
+    "postcode": "06912",
+    "state": "Connecticut",
+    "country": "United States",
+    "schoolId": 179,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "15 Monument Place",
+    "suburb": "arcu libero",
+    "city": "Los Angeles",
+    "postcode": "90055",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 180,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "4243 Melby Point",
+    "suburb": "suspendisse potenti",
+    "city": "Houston",
+    "postcode": "77070",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 181,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "22 Petterle Pass",
+    "suburb": "lacinia eget",
+    "city": "Arlington",
+    "postcode": "22205",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 182
+}, {
+    "street": "9 Stone Corner Avenue",
+    "suburb": "quis lectus",
+    "city": "Omaha",
+    "postcode": "68110",
+    "state": "Nebraska",
+    "country": "United States",
+    "schoolId": 183,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "6181 Victoria Hill",
+    "suburb": "est lacinia",
+    "city": "Jacksonville",
+    "postcode": "32255",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 184,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "1 Pond Lane",
+    "suburb": "ac",
+    "city": "Oklahoma City",
+    "postcode": "73119",
+    "state": "Oklahoma",
+    "country": "United States",
+    "schoolId": 185,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "85442 John Wall Hill",
+    "suburb": "nisl",
+    "city": "San Antonio",
+    "postcode": "78265",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 186,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "917 Anniversary Hill",
+    "suburb": "lorem",
+    "city": "Maple Plain",
+    "postcode": "55572",
+    "state": "Minnesota",
+    "country": "United States",
+    "schoolId": 187,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "47807 Fair Oaks Trail",
+    "suburb": "amet",
+    "city": "Kansas City",
+    "postcode": "64187",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 188,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "8550 Oakridge Way",
+    "suburb": "dapibus augue",
+    "city": "Boise",
+    "postcode": "83716",
+    "state": "Idaho",
+    "country": "United States",
+    "schoolId": 189,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "66624 Miller Terrace",
+    "suburb": "velit eu",
+    "city": "Houston",
+    "postcode": "77050",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 190,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "86856 Armistice Alley",
+    "suburb": "nulla",
+    "city": "Alexandria",
+    "postcode": "22313",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 191,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "15 Arkansas Terrace",
+    "suburb": "montes nascetur",
+    "city": "Detroit",
+    "postcode": "48217",
+    "state": "Michigan",
+    "country": "United States",
+    "schoolId": 192,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "80267 Forest Run Hill",
+    "suburb": "eget",
+    "city": "Miami",
+    "postcode": "33147",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 193
+}, {
+    "street": "3 Quincy Center",
+    "suburb": "quisque",
+    "city": "Grand Rapids",
+    "postcode": "49544",
+    "state": "Michigan",
+    "country": "United States",
+    "schoolId": 194,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "3341 Tomscot Crossing",
+    "suburb": "primis",
+    "city": "Savannah",
+    "postcode": "31410",
+    "state": "Georgia",
+    "country": "United States",
+    "schoolId": 195,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "3 Nova Lane",
+    "suburb": "magna ac",
+    "city": "Crawfordsville",
+    "postcode": "47937",
+    "state": "Indiana",
+    "country": "United States",
+    "schoolId": 196,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "27 Alpine Terrace",
+    "suburb": "et",
+    "city": "Pomona",
+    "postcode": "91797",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 197,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "46571 Ryan Drive",
+    "suburb": "mattis nibh",
+    "city": "Anaheim",
+    "postcode": "92812",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 198,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "5 Claremont Street",
+    "suburb": "metus arcu",
+    "city": "Sacramento",
+    "postcode": "94291",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 199,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "17 Oriole Drive",
+    "suburb": "dapibus nulla",
+    "city": "Idaho Falls",
+    "postcode": "83405",
+    "state": "Idaho",
+    "country": "United States",
+    "schoolId": 200,
+    "latLng": "4.968249,-1.7531568"
+}]
+
+
+[{
+    "street": "92 Randy Parkway",
+    "suburb": "dolor vel",
+    "city": "Saint Joseph",
+    "postcode": "64504",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 201,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "87965 Pierstorff Avenue",
+    "suburb": "consectetuer",
+    "city": "Newton",
+    "postcode": "02458",
+    "state": "Massachusetts",
+    "country": "United States",
+    "schoolId": 202,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "712 Atwood Circle",
+    "suburb": "ac lobortis",
+    "city": "Memphis",
+    "postcode": "38168",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 203,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "53705 Mandrake Terrace",
+    "suburb": "libero",
+    "city": "Boston",
+    "postcode": "02216",
+    "state": "Massachusetts",
+    "country": "United States",
+    "schoolId": 204,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "5853 Coolidge Road",
+    "suburb": "eu",
+    "city": "Nashville",
+    "postcode": "37245",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 205,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "0 Florence Drive",
+    "suburb": "tincidunt nulla",
+    "city": "Laurel",
+    "postcode": "20709",
+    "state": "Maryland",
+    "country": "United States",
+    "schoolId": 206,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "91925 7th Circle",
+    "suburb": "consectetuer",
+    "city": "Lexington",
+    "postcode": "40591",
+    "state": "Kentucky",
+    "country": "United States",
+    "schoolId": 207,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "142 Bellgrove Park",
+    "suburb": "pharetra magna",
+    "city": "Huntsville",
+    "postcode": "35895",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 208,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "4 Duke Hill",
+    "suburb": "magna",
+    "city": "Minneapolis",
+    "postcode": "55441",
+    "state": "Minnesota",
+    "country": "United States",
+    "schoolId": 209,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "5278 Scott Crossing",
+    "suburb": "curabitur",
+    "city": "Philadelphia",
+    "postcode": "19125",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 210,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "2 Basil Pass",
+    "suburb": "convallis",
+    "city": "Wilmington",
+    "postcode": "19897",
+    "state": "Delaware",
+    "country": "United States",
+    "schoolId": 211,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "6388 Schmedeman Point",
+    "suburb": "odio condimentum",
+    "city": "Omaha",
+    "postcode": "68105",
+    "state": "Nebraska",
+    "country": "United States",
+    "schoolId": 212,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "6 Armistice Drive",
+    "suburb": "malesuada",
+    "city": "Phoenix",
+    "postcode": "85035",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 213,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "2891 Maple Parkway",
+    "suburb": "accumsan tortor",
+    "city": "San Antonio",
+    "postcode": "78230",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 214,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "0 Hallows Lane",
+    "suburb": "curae duis",
+    "city": "Tuscaloosa",
+    "postcode": "35405",
+    "state": "Alabama",
+    "country": "United States",
+    "schoolId": 215,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "2 Center Drive",
+    "suburb": "primis in",
+    "city": "Greensboro",
+    "postcode": "27409",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 216,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "42 Grayhawk Way",
+    "suburb": "id",
+    "city": "Oklahoma City",
+    "postcode": "73142",
+    "state": "Oklahoma",
+    "country": "United States",
+    "schoolId": 217,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "87790 Hudson Trail",
+    "suburb": "tempor convallis",
+    "city": "Buffalo",
+    "postcode": "14263",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 218,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "47508 Dawn Way",
+    "suburb": "vel sem",
+    "city": "Valley Forge",
+    "postcode": "19495",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 219,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "240 Crownhardt Avenue",
+    "suburb": "turpis",
+    "city": "Charlotte",
+    "postcode": "28256",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 220,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "2 Westport Road",
+    "suburb": "faucibus",
+    "city": "Norfolk",
+    "postcode": "23520",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 221,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "2844 Esch Place",
+    "suburb": "tortor",
+    "city": "Nashville",
+    "postcode": "37215",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 222,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "31 Warbler Park",
+    "suburb": "in sagittis",
+    "city": "Atlanta",
+    "postcode": "30316",
+    "state": "Georgia",
+    "country": "United States",
+    "schoolId": 223,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "425 Dexter Crossing",
+    "suburb": "maecenas leo",
+    "city": "West Hartford",
+    "postcode": "06127",
+    "state": "Connecticut",
+    "country": "United States",
+    "schoolId": 224,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "48806 Reinke Road",
+    "suburb": "aliquam",
+    "city": "Santa Barbara",
+    "postcode": "93106",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 225,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "590 Oriole Plaza",
+    "suburb": "sit",
+    "city": "Henderson",
+    "postcode": "89012",
+    "state": "Nevada",
+    "country": "United States",
+    "schoolId": 226,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "64196 John Wall Lane",
+    "suburb": "eu felis",
+    "city": "Albany",
+    "postcode": "12237",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 227,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "1293 Sloan Pass",
+    "suburb": "pellentesque quisque",
+    "city": "San Diego",
+    "postcode": "92191",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 228,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "518 Eliot Way",
+    "suburb": "pulvinar",
+    "city": "San Bernardino",
+    "postcode": "92424",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 229,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "285 Fairfield Court",
+    "suburb": "facilisi",
+    "city": "Orange",
+    "postcode": "92668",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 230,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "25887 Fremont Terrace",
+    "suburb": "integer ac",
+    "city": "Washington",
+    "postcode": "20299",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 231,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "79802 Moland Way",
+    "suburb": "etiam pretium",
+    "city": "Oakland",
+    "postcode": "94660",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 232,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "5563 Melby Point",
+    "suburb": "vestibulum velit",
+    "city": "Richmond",
+    "postcode": "23272",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 233,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "05 Eggendart Pass",
+    "suburb": "pede morbi",
+    "city": "San Diego",
+    "postcode": "92137",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 234,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "899 Dawn Crossing",
+    "suburb": "vitae",
+    "city": "Peoria",
+    "postcode": "61629",
+    "state": "Illinois",
+    "country": "United States",
+    "schoolId": 235,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "4376 Old Gate Pass",
+    "suburb": "tortor duis",
+    "city": "Saint Louis",
+    "postcode": "63150",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 236,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "600 Bay Way",
+    "suburb": "non",
+    "city": "Tyler",
+    "postcode": "75710",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 237,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "06928 Green Ridge Avenue",
+    "suburb": "integer",
+    "city": "Boston",
+    "postcode": "02216",
+    "state": "Massachusetts",
+    "country": "United States",
+    "schoolId": 238,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "826 Scoville Park",
+    "suburb": "erat",
+    "city": "Charlotte",
+    "postcode": "28256",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 239,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "8726 Darwin Place",
+    "suburb": "pulvinar sed",
+    "city": "Trenton",
+    "postcode": "08608",
+    "state": "New Jersey",
+    "country": "United States",
+    "schoolId": 240,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "87652 Melrose Center",
+    "suburb": "eget elit",
+    "city": "Milwaukee",
+    "postcode": "53285",
+    "state": "Wisconsin",
+    "country": "United States",
+    "schoolId": 241,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "0 Jay Parkway",
+    "suburb": "maecenas tincidunt",
+    "city": "Minneapolis",
+    "postcode": "55480",
+    "state": "Minnesota",
+    "country": "United States",
+    "schoolId": 242,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "225 Northwestern Way",
+    "suburb": "cubilia",
+    "city": "Des Moines",
+    "postcode": "50369",
+    "state": "Iowa",
+    "country": "United States",
+    "schoolId": 243,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "9515 Schmedeman Parkway",
+    "suburb": "a",
+    "city": "Charleston",
+    "postcode": "25336",
+    "state": "West Virginia",
+    "country": "United States",
+    "schoolId": 244,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "4 Golf Course Plaza",
+    "suburb": "a ipsum",
+    "city": "San Jose",
+    "postcode": "95150",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 245,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "65 Bobwhite Center",
+    "suburb": "hac",
+    "city": "Memphis",
+    "postcode": "38161",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 246,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "6 David Center",
+    "suburb": "ut odio",
+    "city": "Houston",
+    "postcode": "77025",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 247,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "14 Nobel Trail",
+    "suburb": "ligula nec",
+    "city": "San Antonio",
+    "postcode": "78205",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 248,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "8953 Susan Way",
+    "suburb": "erat",
+    "city": "Cincinnati",
+    "postcode": "45271",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 249,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "72 Hanson Circle",
+    "suburb": "malesuada",
+    "city": "San Jose",
+    "postcode": "95118",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 250,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "40738 Manley Place",
+    "suburb": "suspendisse",
+    "city": "Honolulu",
+    "postcode": "96835",
+    "state": "Hawaii",
+    "country": "United States",
+    "schoolId": 251,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "3 Manitowish Place",
+    "suburb": "morbi odio",
+    "city": "Memphis",
+    "postcode": "38114",
+    "state": "Tennessee",
+    "country": "United States",
+    "schoolId": 252,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "4653 Brown Terrace",
+    "suburb": "tellus",
+    "city": "Corpus Christi",
+    "postcode": "78410",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 253,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "6 Cottonwood Crossing",
+    "suburb": "id lobortis",
+    "city": "Norwalk",
+    "postcode": "06859",
+    "state": "Connecticut",
+    "country": "United States",
+    "schoolId": 254,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "8910 Dexter Street",
+    "suburb": "odio",
+    "city": "Shreveport",
+    "postcode": "71137",
+    "state": "Louisiana",
+    "country": "United States",
+    "schoolId": 255,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "124 Union Parkway",
+    "suburb": "nullam",
+    "city": "Alexandria",
+    "postcode": "22313",
+    "state": "Virginia",
+    "country": "United States",
+    "schoolId": 256,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "80 Di Loreto Street",
+    "suburb": "mauris viverra",
+    "city": "Davenport",
+    "postcode": "52809",
+    "state": "Iowa",
+    "country": "United States",
+    "schoolId": 257,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "550 Utah Lane",
+    "suburb": "a suscipit",
+    "city": "Salinas",
+    "postcode": "93907",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 258,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "6821 Evergreen Pass",
+    "suburb": "amet",
+    "city": "New York City",
+    "postcode": "10090",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 259,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "99 Ohio Drive",
+    "suburb": "condimentum neque",
+    "city": "Bakersfield",
+    "postcode": "93311",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 260,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "086 Hooker Avenue",
+    "suburb": "donec",
+    "city": "Milwaukee",
+    "postcode": "53285",
+    "state": "Wisconsin",
+    "country": "United States",
+    "schoolId": 261,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "9270 Meadow Vale Park",
+    "suburb": "sit amet",
+    "city": "Syracuse",
+    "postcode": "13210",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 262,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "9 Jackson Junction",
+    "suburb": "ante ipsum",
+    "city": "Provo",
+    "postcode": "84605",
+    "state": "Utah",
+    "country": "United States",
+    "schoolId": 263,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "28 Park Meadow Center",
+    "suburb": "nisl",
+    "city": "Sacramento",
+    "postcode": "95813",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 264,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "10 Prairieview Circle",
+    "suburb": "ultrices",
+    "city": "Norwalk",
+    "postcode": "06859",
+    "state": "Connecticut",
+    "country": "United States",
+    "schoolId": 265,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "45 Bashford Place",
+    "suburb": "nisi venenatis",
+    "city": "Washington",
+    "postcode": "20073",
+    "state": "District of Columbia",
+    "country": "United States",
+    "schoolId": 266,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "96307 Jackson Court",
+    "suburb": "nisl aenean",
+    "city": "Rochester",
+    "postcode": "14619",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 267,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "86173 Chive Drive",
+    "suburb": "dapibus augue",
+    "city": "Augusta",
+    "postcode": "30911",
+    "state": "Georgia",
+    "country": "United States",
+    "schoolId": 268,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "7253 Huxley Point",
+    "suburb": "enim",
+    "city": "Honolulu",
+    "postcode": "96820",
+    "state": "Hawaii",
+    "country": "United States",
+    "schoolId": 269,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "157 Swallow Lane",
+    "suburb": "non",
+    "city": "San Antonio",
+    "postcode": "78240",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 270,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "34208 Mesta Alley",
+    "suburb": "vel",
+    "city": "Boise",
+    "postcode": "83732",
+    "state": "Idaho",
+    "country": "United States",
+    "schoolId": 271,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "05 Donald Alley",
+    "suburb": "ligula in",
+    "city": "San Antonio",
+    "postcode": "78255",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 272,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "985 Ramsey Parkway",
+    "suburb": "sollicitudin",
+    "city": "Panama City",
+    "postcode": "32412",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 273,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "26016 Kropf Point",
+    "suburb": "lacus at",
+    "city": "Tucson",
+    "postcode": "85720",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 274,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "30097 Chinook Junction",
+    "suburb": "nulla",
+    "city": "Apache Junction",
+    "postcode": "85219",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 275,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "21714 Longview Circle",
+    "suburb": "orci",
+    "city": "Jefferson City",
+    "postcode": "65105",
+    "state": "Missouri",
+    "country": "United States",
+    "schoolId": 276,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "0647 Anzinger Drive",
+    "suburb": "sed",
+    "city": "Conroe",
+    "postcode": "77305",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 277,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "58 Oak Valley Lane",
+    "suburb": "vel",
+    "city": "Santa Monica",
+    "postcode": "90410",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 278,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "75 Grasskamp Way",
+    "suburb": "in hac",
+    "city": "Erie",
+    "postcode": "16534",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 279,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "57018 Messerschmidt Park",
+    "suburb": "eget",
+    "city": "Fort Myers",
+    "postcode": "33906",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 280,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "8 Bellgrove Lane",
+    "suburb": "dui vel",
+    "city": "Pensacola",
+    "postcode": "32575",
+    "state": "Florida",
+    "country": "United States",
+    "schoolId": 281,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "83089 Schiller Point",
+    "suburb": "metus",
+    "city": "Pittsburgh",
+    "postcode": "15225",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 282,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "6151 Clove Avenue",
+    "suburb": "maecenas rhoncus",
+    "city": "Chicago",
+    "postcode": "60697",
+    "state": "Illinois",
+    "country": "United States",
+    "schoolId": 283,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "725 Toban Point",
+    "suburb": "cubilia",
+    "city": "Rochester",
+    "postcode": "14619",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 284,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "266 Mayer Avenue",
+    "suburb": "elementum",
+    "city": "Houston",
+    "postcode": "77201",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 285,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "8 Schurz Court",
+    "suburb": "a feugiat",
+    "city": "Aurora",
+    "postcode": "60505",
+    "state": "Illinois",
+    "country": "United States",
+    "schoolId": 286,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "5 Buhler Plaza",
+    "suburb": "in magna",
+    "city": "Columbus",
+    "postcode": "43226",
+    "state": "Ohio",
+    "country": "United States",
+    "schoolId": 287,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "8 Granby Alley",
+    "suburb": "vivamus",
+    "city": "Bloomington",
+    "postcode": "61709",
+    "state": "Illinois",
+    "country": "United States",
+    "schoolId": 288,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "930 Spaight Street",
+    "suburb": "vulputate justo",
+    "city": "Scottsdale",
+    "postcode": "85255",
+    "state": "Arizona",
+    "country": "United States",
+    "schoolId": 289,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "974 Cody Point",
+    "suburb": "eget congue",
+    "city": "Lakewood",
+    "postcode": "98498",
+    "state": "Washington",
+    "country": "United States",
+    "schoolId": 290,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "54549 Summer Ridge Hill",
+    "suburb": "ante",
+    "city": "San Bernardino",
+    "postcode": "92410",
+    "state": "California",
+    "country": "United States",
+    "schoolId": 291,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "15885 Village Green Road",
+    "suburb": "blandit",
+    "city": "Raleigh",
+    "postcode": "27635",
+    "state": "North Carolina",
+    "country": "United States",
+    "schoolId": 292,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "3 Paget Place",
+    "suburb": "praesent blandit",
+    "city": "Detroit",
+    "postcode": "48258",
+    "state": "Michigan",
+    "country": "United States",
+    "schoolId": 293,
+    "latLng": "6.4510884,-1.4347783"
+}, {
+    "street": "452 Oriole Alley",
+    "suburb": "in",
+    "city": "Colorado Springs",
+    "postcode": "80910",
+    "state": "Colorado",
+    "country": "United States",
+    "schoolId": 294,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "7 Pine View Junction",
+    "suburb": "penatibus et",
+    "city": "Temple",
+    "postcode": "76505",
+    "state": "Texas",
+    "country": "United States",
+    "schoolId": 295,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "54 Hoffman Pass",
+    "suburb": "eu magna",
+    "city": "Philadelphia",
+    "postcode": "19120",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 296,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "0321 Sutherland Junction",
+    "suburb": "rhoncus mauris",
+    "city": "Syracuse",
+    "postcode": "13217",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 297,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "67402 Nelson Park",
+    "suburb": "viverra",
+    "city": "Philadelphia",
+    "postcode": "19115",
+    "state": "Pennsylvania",
+    "country": "United States",
+    "schoolId": 298,
+    "latLng": "6.9856561,-1.4822218"
+}, {
+    "street": "97497 Mendota Junction",
+    "suburb": "curae",
+    "city": "Anchorage",
+    "postcode": "99517",
+    "state": "Alaska",
+    "country": "United States",
+    "schoolId": 299,
+    "latLng": "4.968249,-1.7531568"
+}, {
+    "street": "3486 Homewood Lane",
+    "suburb": "in lacus",
+    "city": "Albany",
+    "postcode": "12262",
+    "state": "New York",
+    "country": "United States",
+    "schoolId": 300,
+    "latLng": "6.4510884,-1.4347783"
+}]

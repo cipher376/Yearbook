@@ -13,8 +13,9 @@ export interface StorageInterface {
   remove(key: string);
   clear();
 
-
 }
+
+
 
 @Injectable({
   providedIn: 'root'

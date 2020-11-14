@@ -22,12 +22,13 @@ export class SchoolsPage implements OnInit, AfterViewInit, OnDestroy {
   userSchools: School[] = [];
   selectedSchools: School[] = [];
   userAlumni: Alumni[] = [];
+  schools;
 
 
   constructor(
     public filterPopover: PopoverController,
     private browserHistory: BrowserHistoryService,
-    private router: Router, 
+    private router: Router,
     private userService: UserService,
     private alumniService: AlumniService,
     private store: MyStorage
@@ -77,6 +78,10 @@ export class SchoolsPage implements OnInit, AfterViewInit, OnDestroy {
 
   isAuthenticated(){
     return this.userService.isAuthenticated();
+  }
+
+  join(school: School){
+    
   }
 
 }

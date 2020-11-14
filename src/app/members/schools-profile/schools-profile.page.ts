@@ -1,3 +1,5 @@
+import { IdentityPhoto } from './../../models/media';
+import { SchoolService } from './../../shared/services/model-service/school.service';
 import { MySignals } from './../../shared/services/my-signals';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { School } from 'src/app/models/school';
@@ -13,20 +15,27 @@ import { BrowserHistoryService } from 'src/app/shared/services/providers/navigat
 export class SchoolsProfilePage implements OnInit, OnDestroy {
   currentSegment = 'about';
   school: School;
-
-  school$;
+  identityPhoto: IdentityPhoto; // includes cover, profile and flag
 
   previousPage = '';
-  history$;
+  sub$ = [];
 
   constructor(
     private signal: MySignals,
     private router: Router,
-    private browserHistory: BrowserHistoryService
+    private browserHistory: BrowserHistoryService,
+    private schoolService: SchoolService
   ) {
-    this.school$ = this.signal.selectedSchoolSource$.subscribe(school => {
+    this.sub$.push(this.signal.selectedSchoolSource$.subscribe(school => {
       this.school = school;
-      console.log(this.school);
+      // console.log(this.school);
+      this.identityPhoto = UtilityService.getSchoolIdentityPhoto(school);
+    }));
+    this.schoolService.getSchoolLocal().then(school => {
+      this.school = school;
+      // console.log(this.school);
+      this.identityPhoto = UtilityService.getSchoolIdentityPhoto(school);
+      console.log(this.identityPhoto);
     });
   }
 
@@ -34,7 +43,7 @@ export class SchoolsProfilePage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    UtilityService.destroySubscription(this.school);
+    UtilityService.destroySubscription(this.sub$);
   }
 
   goBack() {

@@ -101,7 +101,7 @@ export class School {
   posts: any;
 
 
-  constructor(private data?: SchoolInterface, private details?: SchoolDetailsInterface) {
+  constructor(private data?: SchoolInterface, public details?: SchoolDetailsInterface) {
     if (data) {
       this.id = data.id;
       this.name = data.name;
@@ -118,7 +118,7 @@ export class School {
       this.detailsId = details.id;
       this.about = details.about;
       this.alias = details.alias;
-      this.totalStudents = this.details.totalStudents;
+      this.totalStudents = details.totalStudents;
       this.accommodationTypes = details.accommodationTypes;
       this.helpLines = details.helpLines;
       this.motto = details.motto;
@@ -131,7 +131,7 @@ export class School {
       this.website = details.website;
       this.emblem = details.emblem;
       this.email = details.email;
-      this.alumniCount = this.detail.alumniCount;
+      this.alumniCount = details.alumniCount;
     }
   }
 
@@ -210,4 +210,44 @@ export class School {
   public get address() {
     return this._address;
   }
+
+        /**
+ * school search sequence
+ * propery search-score
+ * name      6
+ * alias     5.8
+ * helpLines 5.7
+ * email     5.6
+ * latLng    6.0
+ *
+ * dateStarted 4.1
+ * studentAlias 4.2
+ * anthem   4
+ * address.street 4.3
+ * address.suburb 4.3
+ * address.city 4.3
+ *
+ *
+ * address.state 3.9
+ * address.country 3.9
+ * address.postcode 3.5
+ *
+ * type     3.2
+ * gender    3.1
+ * motto     3.0
+ * mission   3.0
+ * vision    3.0
+ *
+ * about     2.5
+ * website   2.0
+ *
+ *
+ *
+ * departments        1.5
+ * accommodationTypes 1.5
+ * totalStudents 1.2
+ * alumniCount 1.0
+ *
+ *
+ *  */
 }
