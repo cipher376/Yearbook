@@ -16,15 +16,16 @@
 
     <ion-col size="12" class="ion-no-padding ion-padding-end ion-padding-start">
         <ion-card class=" ion-align-items-center">
-            <!-- <ion-img src="../../../assets/images/me.jpg"></ion-img> -->
             <ion-slides pager="true" [options]="slideOpts" *ngIf="images.length > 1 else singleImg">
                 <ion-slide *ngFor="let x of images">
-                    <ion-img [src]="images"></ion-img>
+                    <ion-img src="../../../assets/images/me.jpg"></ion-img>
+                    <!-- <ion-img [src]="images"></ion-img> -->
                 </ion-slide>
             </ion-slides>
 
             <ng-template #singleImg>
-                <ion-img [src]="images"></ion-img>
+                    <ion-img src="../../../assets/images/me.jpg"></ion-img>
+                    <!-- <ion-img [src]="images"></ion-img> -->
             </ng-template>
 
             <ion-row class="ion-no-padding" style="margin-top: -50px;">

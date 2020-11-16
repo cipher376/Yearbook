@@ -11,7 +11,7 @@ export class PostWidget1Component implements OnInit {
 
   images = [
     'https://i2.wp.com/quidtree.com/wp-content/uploads/2020/01/placeholder.png?fit=750%2C500&ssl=1',
-    'https://i2.wp.com/quidtree.com/wp-content/uploads/2020/01/placeholder.png?fit=750%2C500&ssl=1'
+    // 'https://i2.wp.com/quidtree.com/wp-content/uploads/2020/01/placeholder.png?fit=750%2C500&ssl=1'
   ];
   tags = ["irepmyschool", "back2school2020"];  
   slideOpts = {
