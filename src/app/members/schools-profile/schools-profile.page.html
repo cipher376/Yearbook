@@ -10,22 +10,23 @@
     <ion-card class="w-100 ion-padding-top"
       style="margin-top:-30px;border-top-right-radius: 20px;border-top-left-radius: 20px;">
       <ion-row class="ion-padding-start ion-padding-end ion-padding-bottom">
-        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding">
+        <ion-col size="3" class="ion-align-items-center ion-text-center ion-no-padding">
           <ion-note color="dark" class="poppins-bold fs-16">Alumni</ion-note><br>
           <ion-note class="poppins-regular fs-12">+1000</ion-note>
         </ion-col>
 
-        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
-          <ion-note color="dark" class="poppins-bold fs-16">Rating</ion-note><br>
+        <ion-col size="6" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
+          <ion-note color="dark" class="poppins-bold fs-16">Location</ion-note><br>
+          <ion-note class="poppins-regular fs-12"> Accra - GA WEST </ion-note>
+          <!-- <ion-icon name="star-outline"></ion-icon>
           <ion-icon name="star-outline"></ion-icon>
           <ion-icon name="star-outline"></ion-icon>
           <ion-icon name="star-outline"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
+          <ion-icon name="star-outline"></ion-icon> -->
 
         </ion-col>
 
-        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
+        <ion-col size="3" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
           <ion-note color="dark" class="poppins-bold fs-16">Likes</ion-note><br>
           <ion-note class="poppins-regular fs-12">+1000</ion-note>
 
@@ -42,10 +43,10 @@
         <ion-segment-button value="photos">
           <ion-label> Photos </ion-label>
         </ion-segment-button>
-        <ion-segment-button value="more">
-          <!-- <ion-label>M<span class="ion-text-lowercase">ore</span></ion-label> -->
+        <!-- <ion-segment-button value="more">
+          <ion-label>M<span class="ion-text-lowercase">ore</span></ion-label>
           <ion-icon name="layers-outline"></ion-icon>
-        </ion-segment-button>
+        </ion-segment-button> -->
       </ion-segment>
 
       <ion-row [ngSwitch]="currentSegment" class="ion-no-padding">
@@ -78,22 +79,22 @@
 
         <ion-row class="ion-padding" *ngSwitchCase="'location'">
           <ion-note class="poppins-regular fs-14 ">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <ion-card>
+              <!-- temporary -->
+              <ion-img [src]="'https://www.nycphotoprints.com/wood-panels/images/img_map_empty.jpg'"></ion-img>
+            </ion-card>
+            <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua.
           </ion-note>
         </ion-row>
 
         <ion-row class="ion-padding school-image-tiles w-100" *ngSwitchCase="'photos'">
-          <!-- <app-image-gallery class="w-100"></app-image-gallery> -->
+          <app-image-gallery class="w-100"></app-image-gallery>
         </ion-row>
 
-        <ion-row class="ion-padding school-image-tiles w-100" *ngSwitchCase="'more'">
+        <!-- <ion-row class="ion-padding school-image-tiles w-100" *ngSwitchCase="'more'">
           <ion-note color="dark" class="poppins-semi-bold fs-12">School has no videos and images</ion-note>
-        </ion-row>
+        </ion-row> -->
 
       </ion-row>
     </ion-card>

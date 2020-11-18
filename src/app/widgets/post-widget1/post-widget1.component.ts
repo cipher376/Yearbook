@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-widget1',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostWidget1Component implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   images = [
     'https://i2.wp.com/quidtree.com/wp-content/uploads/2020/01/placeholder.png?fit=750%2C500&ssl=1',
@@ -20,5 +23,9 @@ export class PostWidget1Component implements OnInit {
   };
 
   ngOnInit() {}
+
+  openProfile(profile?) {
+    this.router.navigate(['/links/profile'])
+  }
 
 }
