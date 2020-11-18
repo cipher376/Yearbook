@@ -1,3 +1,4 @@
+import { AudioRecorderComponent } from './../audio-recorder/audio-recorder.component';
 import { SERVER_DOWNLOAD_PATH } from './../../shared/config';
 import { FileUploadResult } from '@ionic-native/file-transfer/ngx';
 import { MediaType, Photo } from 'src/app/models/my-media';
@@ -6,7 +7,7 @@ import { Capacitor } from '@capacitor/core';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { PhotoLocal } from 'src/app/models/LocalMediaInterfaces';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
@@ -36,6 +37,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
 
   isAccessDenied = false;
 
+
   constructor(
     private localMediaService: LocalMediaService,
     private mediaService: MediaService,
@@ -45,7 +47,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     private plt: Platform,
     private signals: MySignals,
     private toaster: ToasterService,
-    private cdr: ChangeDetectorRef, ) {
+    private cdr: ChangeDetectorRef ) {
 
     // verify device permissions
     this.photoLibrary.requestAuthorization().then(_ => _).catch(error => {
@@ -113,11 +115,8 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
             creationDate: libraryItem.creationDate
           };
           this.devicePhotos.push(temp);
-
           if (temp.id === library[library.length - 1]?.id) { // if last item
-            this.resolvePaths().then(_ => _
-              // this.signals.log('Resolved paths')
-            );
+            this.resolvePaths().then(_ => _);
           }
         });
       },
@@ -183,6 +182,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
       return ph.id != photo.id;
     });
   }
+  
   selectFromCloudPhotos(ph$: Photo) {
     if (this.selectedCloudPhotos.includes(ph$)) {
       // remove
@@ -200,8 +200,11 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     // move photos to permanent storage folder
     const photos: Photo[] = [];
     this.devicePhotos.forEach(photo => {
+      // make a copy of the image to permanent storage
+      this.localMediaService.writeVideoToMediaDirectory(photo?.nativeURL).then(ph => {
+
       // upload photo and instruct to create thumbnail on server
-      this.localMediaService.upload(photo?.nativeURL, photo?.fileName, true).then(result => {
+      this.localMediaService.upload(ph?.nativeURL, ph?.fileName, true).then(result => {
         // {"bytesSent":169025,
         // "responseCode":200,
         // "response":"{
@@ -216,11 +219,11 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
         if (result) {
           const uploadedPhoto = {
             description: '',
-            fileName: photo.fileName,
-            fileUrl: SERVER_DOWNLOAD_PATH + photo.fileName,
+            fileName: ph.fileName,
+            fileUrl: SERVER_DOWNLOAD_PATH + ph.fileName,
             dateCreated: new Date(),
             type: MediaType.PHOTO,
-            thumbnailUrl: SERVER_DOWNLOAD_PATH + 'thumb_' + photo.fileName
+            thumbnailUrl: SERVER_DOWNLOAD_PATH + 'thumb_' + ph.fileName
           } as any;
 
           photos.push(uploadedPhoto);
@@ -238,8 +241,13 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
         }
       });
     }, error => {
+      console.log(JSON.stringify(error));
       this.toaster.toast('Uploading some files failed, Please check your network');
     });
+  }, error => {
+    console.log(JSON.stringify(error));
+    this.toaster.toast('Uploading some files failed, Please check your network');
+  });
   }
 
   loadCloudPhotos() {
@@ -257,6 +265,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   isSelected(ph: Photo | PhotoLocal) {
     return this.selectedCloudPhotos.includes(ph as Photo);
   }
+
 
 
 }

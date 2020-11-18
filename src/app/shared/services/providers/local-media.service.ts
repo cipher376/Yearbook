@@ -28,6 +28,8 @@ import * as PluginsLibrary from 'capacitor-video-player'; // ios
 import { PermissionsService } from './permission.service';
 import { FileTransfer, FileTransferObject, FileUploadOptions, FileUploadResult } from '@ionic-native/file-transfer/ngx';
 import { UPLOAD_URL } from '../../config';
+import { User } from 'src/app/models/user';
+import { Media } from '@ionic-native/media/ngx';
 const { CapacitorVideoPlayer, Device } = Plugins; // android
 
 // without types
@@ -44,6 +46,7 @@ export class LocalMediaService {
   mediaPath = '';
   mediaFullPath = '';
 
+  user: User;
   constructor(
     private userService: UserService,
     private file: File,
@@ -58,7 +61,8 @@ export class LocalMediaService {
     private videoEditor: VideoEditor,
     private photoLibrary: PhotoLibrary,
     private permissionService: PermissionsService,
-    private fileTransfer: FileTransfer
+    private fileTransfer: FileTransfer,
+    private media: Media
 
   ) {
     this.mediaPath = this.file.dataDirectory;
@@ -71,6 +75,10 @@ export class LocalMediaService {
 
     this.getPermissions().then(_ => _).catch(error => {
       console.log(error);
+    });
+
+    this.userService.getUserLocal().then(user => {
+      this.user = user;
     });
   }
 
@@ -161,7 +169,7 @@ export class LocalMediaService {
   createFileName(oldFileName: string) {
     const ext = oldFileName.split('.').pop();
     const d = Date.now();
-    return `${d}.${ext}`;
+    return `${this.user?.id}_${d}.${ext}`;
   }
 
   async createMediaDirectory() {
@@ -356,7 +364,6 @@ export class LocalMediaService {
       console.log(thumbUrl);
       vid.posterNativeURL = thumbUrl;
       vid.posterResolvedURL = Capacitor.convertFileSrc(thumbUrl);
-
       return vid;
 
     } catch (e) {
@@ -407,6 +414,7 @@ export class LocalMediaService {
     await this.writeToMediaDirectory(fileResult.data, fileName); // Write to media folder for permanent storage
     const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
     const resolvedUri = Capacitor.convertFileSrc(uri);
+    const mediaObject = this.media.create(uri);
     console.log('working');
     // create a local video object and return
     const vid = {
@@ -416,7 +424,8 @@ export class LocalMediaService {
       resolvedURL: resolvedUri,
       posterResolvedURL: resolvedUri,
       fileName,
-      creationDate: new Date(Date.now())
+      creationDate: new Date(Date.now()),
+      length: mediaObject.getDuration()
     } as VideoLocal;
     const thumbUrl: string = await this.generateVideoThumbnail(vid, true);
     console.log(thumbUrl);
@@ -439,33 +448,38 @@ export class LocalMediaService {
   }
 
 
+  // async recordAudio() {
+  //   try {
+  //     return this.mediaCapture.captureAudio().then(data => {
+  //       data = data as MediaFile[];
+  //       console.log(JSON.stringify(data));
 
-  async recordAudio() {
-    try {
-      const data: MediaFile[] = (await this.mediaCapture.captureAudio().catch(e => console.log(e))) as any;
-      console.log(data);
-      if (data?.length > 0) {
-        console.log(data[0].fullPath);
-        const uri = data[0].fullPath;
-        const fileName = uri.substr(uri.lastIndexOf('/') + 1);
-        const resolvedUri = Capacitor.convertFileSrc(uri);
-        console.log('working');
-        // create a local video object and return
-        const aud = {
-          id: '0;' + uri,
-          nativeURL: uri,
-          posterNativeURL: '',
-          resolvedURL: resolvedUri,
-          posterResolvedURL: '',
-          fileName,
-          creationDate: new Date(Date.now())
-        } as AudioLocal;
-        return aud;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //       if (data?.length > 0) {
+  //         console.log(data[0].fullPath);
+  //         const uri = data[0].fullPath;
+  //         const fileName = uri.substr(uri.lastIndexOf('/') + 1);
+  //         const resolvedUri = Capacitor.convertFileSrc(uri);
+  //         console.log('working');
+  //         // create a local video object and return
+  //         const aud = {
+  //           id: '0;' + uri,
+  //           nativeURL: uri,
+  //           posterNativeURL: '',
+  //           resolvedURL: resolvedUri,
+  //           posterResolvedURL: '',
+  //           fileName,
+  //           creationDate: new Date(Date.now())
+  //         } as AudioLocal;
+  //         return aud;
+  //       }
+  //     }, (error) => {
+  //       console.log(JSON.stringify(error));
+  //     });
+  //   } catch (error) {
+  //     console.log(JSON.stringify(error));
+
+  //   }
+  // }
 
   async selectAudioFromDevice() {
     try {
@@ -492,37 +506,63 @@ export class LocalMediaService {
     }
   }
 
+  async writeAudioToMediaDirectory(fullPath: string) {
+    try {
+      const fileName = this.createFileName(fullPath); // create new unique file name; dummy file name as arg to generate new
+      const fileResult = await Filesystem.readFile({ path: fullPath }); // Read file from cache
+      await this.writeToMediaDirectory(fileResult.data, fileName); // Write to media folder for permanent storage
+      const uri = (await this.getMediaUri(fileName)).uri; // get full path of the file in the media folder
+      const resolvedUri = Capacitor.convertFileSrc(uri);
+      const mediaObject = this.media.create(uri);
+      // create a local photo object and return
+      return {
+        id: '0;' + uri,
+        nativeURL: uri,
+        resolvedURL: resolvedUri,
+        fileName,
+        creationDate: new Date(Date.now()),
+        length: mediaObject.getDuration()
+      } as AudioLocal;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   isPhoto(uri: string) {
-    if (uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.png') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.jpg') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.jpeg') > -1 || uri?.toLocaleLowerCase()?.search('.bmp') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.gif') > -1) {
+    if (
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.png') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.jpg') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.jpeg') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.bmp') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.gif') > -1) {
       return true;
     }
   }
 
-  isVideo(uri: string) {
-    if (uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.avi') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mov') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mp4') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.3gp') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.webm') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.ogg') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mkv') > -1) {
+  private isVideo(uri: string) {
+    if (
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.avi') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.mov') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.mp4') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.3gp') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.webm') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.ogg') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.mkv') > -1) {
       return true;
     }
   }
 
   isAudio(uri: string) {
-    if (uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.au') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.m3u') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.midi') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mod') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mp2') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.mp3') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.wav') > -1 ||
-      uri?.toLocaleLowerCase()?.split('/')?.pop()?.search('.voc') > -1) {
+    if (
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.au') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.m3u') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.midi') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.mod') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.mp2') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.mp3') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.wav') > -1 ||
+      ((uri?.toLocaleLowerCase()?.split('/')?.pop()) ?? '').search('.voc') > -1) {
       return true;
     }
   }

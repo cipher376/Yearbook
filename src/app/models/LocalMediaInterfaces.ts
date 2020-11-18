@@ -24,13 +24,14 @@ export interface VideoLocal {
     data?: string;
     dataBuffer?: ArrayBuffer;
     description?: string;
+    length?: number; // in seconds
 
 }
 
 export interface AudioLocal {
     id: string;
     nativeURL: string;
-    posterNativeURL: string;
+    posterNativeURL?: string;
     resolvedURL?: string;
     posterResolvedURL?: string;
     fileName: string;
@@ -39,4 +40,5 @@ export interface AudioLocal {
     data?: string;
     dataBuffer?: ArrayBuffer;
     description?: string;
+    length?: number; // in seconds
 }

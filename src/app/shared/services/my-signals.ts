@@ -1,3 +1,4 @@
+import { AudioLocal } from './../../models/LocalMediaInterfaces';
 import { Alumni } from './../../models/alumni';
 import { MyStorage } from './providers/storage/my-storage.service';
 import { School } from './../../models/school';
@@ -14,10 +15,11 @@ export class MySignals {
 
   constructor(private store: MyStorage) { }
 
+
   private loggerSource = new Subject<any>();
   loggerSource$ = this.loggerSource.asObservable();
 
-  private closeModalSource = new Subject<any>();
+  private closeModalSource = new Subject<string>();
   closeModalSource$ = this.closeModalSource.asObservable();
 
   private uploadCompleteSource = new Subject<any>();
@@ -89,11 +91,21 @@ export class MySignals {
   // private newRoleSource = new Subject<Policy>();
   // newRoleSource$ = this.newRoleSource.asObservable();
 
+
+  private audioRecordingCompleteSource = new Subject<AudioLocal>();
+  audioRecordingCompleteSource$ = this.audioRecordingCompleteSource.asObservable();
+
+
+  announceAudioRecordingComplete(audioFile: AudioLocal) {
+    this.audioRecordingCompleteSource.next(audioFile);
+  }
+
+
   log(data: any) {
     this.loggerSource.next(data);
   }
-  announceCloseModal(data?: any) {
-    this.closeModalSource.next(data);
+  announceCloseModal(modalName?: string) {
+    this.closeModalSource.next(modalName);
   }
 
   announceSelectedUsers(users: User[]) {

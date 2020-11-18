@@ -1,0 +1,30 @@
+<!-- Video -->
+<ion-row  class="ion-no-padding ion-no-margin image-container " #videoThumbnail 
+ [style.background-color]="'ffffff5c'" [ngClass]="{'thumbnail-selected': selected}"
+  (click)="select()">
+  <ion-img [src]="getThumbnailUrl()" style="height: 91%;
+  background: #495057;
+  position: absolute;
+  width: 91%;"  > 
+  </ion-img>
+  <!-- <ion-button fill="outline" shape="round" color="light" size="small"
+   class="thumbnailPlay"  >
+    <ion-icon name="play-outline"></ion-icon>
+  </ion-button> -->
+  <ion-button fill="outline" shape="round" color="danger" size="small" 
+  (click)="onDelete()" class="thumbnailClose">
+    <ion-icon name="close" (click)="onDelete()"></ion-icon>
+  </ion-button>
+  <ion-row class="ion-text-center ion-align-items-center ion-no-padding" style="width: 100%;">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8" class="ion-no-padding">
+      <ion-item lines="none" class="ion-no-padding">
+        <ion-fab-button color="light" class="play-button"(click)="preview()">
+          <ion-icon class="white fs-25" style="margin-right: -4px;" color="dark" 
+            name="caret-forward-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-item>
+    </ion-col>
+    <ion-col size="2"></ion-col>
+  </ion-row>
+</ion-row>

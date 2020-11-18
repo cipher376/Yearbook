@@ -9,36 +9,20 @@
   </ion-segment-button>
 </ion-segment>
 <div [ngSwitch]="galleryType">
-  <ion-grid *ngSwitchCase="'cloud'" id="cloud">
-    <ion-row>
-      <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+  <div *ngSwitchCase="'cloud'" id="cloud">
+    <ion-row class=" ion-no-padding ion-no-margin">
+      <ion-col class="col-6 col-sm-4 col-md-4 col-xl-3   px-1 " *ngFor="let aud of cloudAudios">
         <!-- <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'">
           <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromCloudPhotos(image)" size="small"
             style="--border-width: 0px;float: right;background:#ffffff5c;">
             <ion-icon name="close"></ion-icon>
           </ion-button>
         </div> -->
-        <ion-row class="ion-no-padding ion-no-margin image-container " [style.background-color]="'ffffff5c'">
-          <!-- <ion-img [src]="'https://via.placeholder.com/200'" style="height: 100%;
-          background: #495057; position:absolute;width: 96%;">
-          </ion-img> -->
-          <ion-item lines="none">
-            <ion-label class="fs-12" style="padding-right: 27px;
-            margin-top: 0px;
-            color: var(--ion-color-medium-shade);">title asdfasd asd f dfalkdjf lsdf asdfld flkajdf
-              lasdflasdf dsafjdl f</ion-label>
-          </ion-item>
-          <ion-button fill="outline" shape="round" color="light" size="small" class="thumbnailPlay" (click)="playAudio()">
-            <ion-icon name="headset-outline"></ion-icon>
-          </ion-button>
-          <ion-button fill="outline" shape="round" color="danger" size="small" class="thumbnailClose" (click)="deleteFromCloudAudios()">
-            <ion-icon name="close"></ion-icon>
-          </ion-button>
-          <ion-note class="time-label">5:02</ion-note>
-        </ion-row>
+        <app-audio-thumbnail [thumb]='aud' (delete)="deleteFromCloudAudios(aud)" 
+        (isSelected)="selectFromCloudAudios($event)" [location]="'cloud'"> </app-audio-thumbnail>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </div>
 
   <ion-grid *ngSwitchCase="'local'" id="device">
     <ion-row class="col-12 add-btn-row">
@@ -54,25 +38,9 @@
       </ion-col>
     </ion-row>
     <ion-row class="image-container-row">
-      <ion-col class="col-6 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let vid of deviceAudios">
-        <ion-row class="ion-no-padding ion-no-margin image-container " [style.background-color]="'ffffff5c'">
-          <!-- <ion-img [src]="'https://via.placeholder.com/200'" style="height: 100%;
-          background: #495057; position:absolute;width: 96%;">
-          </ion-img> -->
-          <ion-item lines="none">
-            <ion-label class="fs-12" style="padding-right: 27px;
-            margin-top: 0px;
-            color: var(--ion-color-medium-shade);">title asdfasd asd f dfalkdjf lsdf asdfld flkajdf
-              lasdflasdf dsafjdl f</ion-label>
-          </ion-item>
-          <ion-button fill="outline" shape="round" color="light" size="small" class="thumbnailPlay" (click)="playAudio()">
-            <ion-icon name="headset-outline"></ion-icon>
-          </ion-button>
-          <ion-button fill="outline" shape="round" color="danger" size="small" class="thumbnailClose" (click)="deleteFromDeviceAudios()">
-            <ion-icon name="close"></ion-icon>
-          </ion-button>
-          <ion-note class="time-label">5:02</ion-note>
-        </ion-row>
+      <ion-col class="col-6 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let aud of deviceAudios">
+        <app-audio-thumbnail [thumb]='aud' (delete)="deleteFromCloudAudios(aud)" 
+       [location]="'local'"> </app-audio-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>

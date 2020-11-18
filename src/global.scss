@@ -321,7 +321,7 @@ ion-segment {
     // position: absolute;
     // float: right;
     // margin-left: calc(34vw - 20px);
-    right: 0%;
+    right: 3vw;
     position: absolute;
 }
 
@@ -329,10 +329,15 @@ ion-segment {
     --border-width: 0px;
     position: absolute;
     margin-top: 47%;
-    right: 8vh;
+    right: 16vw;
     font-size: large;
     font-weight: bold;
     // background: #00000017;
     background: var(--ion-color-tertiary-tint);
     border-radius: 1000px;
+}
+
+.thumbnail-selected {
+    border: 4px solid;
+    border-color: var(--ion-color-primary-tint);
 }

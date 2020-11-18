@@ -2,7 +2,7 @@ import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { WidgetsModule } from './widgets/widgets.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -31,9 +31,16 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx'; // Android only
 import { IOSFilePicker } from '@ionic-native/file-picker/ngx'; // IOS only
 import { VideoEditor } from '@ionic-native/video-editor/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+import { DoubleTapDirective } from './directives/double-tap.directive';
+import { IonicGestureConfig } from './shared/services/providers/customHammerConfig';
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DoubleTapDirective],
   entryComponents: [],
   imports: [
     CommonModule,
@@ -55,7 +62,6 @@ import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,
     UserService,
     BrowserHistoryService,
@@ -73,7 +79,13 @@ import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
     FileChooser,
     IOSFilePicker,
     VideoEditor,
-    PreviewAnyFile
+    PreviewAnyFile,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig},
   ],
   exports: [
     CommonModule,

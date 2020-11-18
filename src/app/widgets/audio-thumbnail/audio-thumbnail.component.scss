@@ -1,0 +1,45 @@
+.image-container {
+    height: 150px;
+    /* background-size: cover; */
+    background-color: #495057;
+}
+
+.thumbnailPlay {
+    --border-width: 0px;
+    position: absolute;
+    margin-top: 9%;
+    right: 33%;
+    font-size: large;
+    font-weight: bold;
+    background: var(--ion-color-tertiary-tint);
+    border-radius: 1000px;
+}
+.time-label{
+    float: right;
+    position: absolute;
+    right: 10%;
+    margin-top: 23px;
+    color: var(--ion-color-light);
+}
+
+.thumbnailClose{
+    --border-width: 0px;
+    right: 2%;
+    position: absolute;
+    top: 4%;
+}
+
+.play-button {
+    height: 45px;
+    width: 45px;
+    box-shadow: none;
+    margin-left: 33%;
+    --border-style: solid;
+    --border-width: 0px;
+    --background-hover-opacity: 50%;
+    --background-hover: red;
+    --background: #ffffffa6;
+    --box-shadow: none;
+    --color: light;
+    color: white !important;
+}

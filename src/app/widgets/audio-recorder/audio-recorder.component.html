@@ -1,0 +1,20 @@
+<ion-content style="
+height: 50vh;
+">
+  <ion-button fill="outline" shape="round" color="danger" (click)="closeModals()" size="small"
+    style="--border-width: 0px;float: right;">
+    <ion-icon name="close"></ion-icon>
+  </ion-button>
+  
+  <ion-label>
+    <ion-text>
+      <h1>{{status}}</h1>
+    </ion-text>
+  </ion-label>
+  <ion-button (click)="start()">Start recording
+
+  </ion-button>
+  <ion-button (click)="stop()">Stop recording</ion-button>
+  <ion-button (click)="play()">Play</ion-button>
+  <ion-button (click)="stopPlay()">stop playing</ion-button>
+</ion-content>

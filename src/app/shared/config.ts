@@ -6,7 +6,7 @@
 // export const API_ROOT_URL = `http://localhost:${API_PORT || 80}`;
 
 export const API_PORT = 3000;
-export const API_ROOT_URL = `http://192.168.0.103:${API_PORT || 80}`;
+export const API_ROOT_URL = `http://192.168.0.107:${API_PORT || 80}`;
 
 /***
  * Default images for users and schools without profile photo

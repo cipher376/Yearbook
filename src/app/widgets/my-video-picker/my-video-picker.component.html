@@ -11,18 +11,9 @@
 <div [ngSwitch]="galleryType">
   <ion-grid *ngSwitchCase="'cloud'" id="cloud">
     <ion-row>
-      <ion-col class="col-6 col-md-4 col-xl-3 px-1 mb-1" *ngFor="let image of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
-        <ion-row class="ion-no-padding ion-no-margin image-container " [style.background-color]="'ffffff5c'">
-          <ion-img [src]="'https://via.placeholder.com/200'" style="height: 100%;
-          background: #495057; position:absolute;width: 96%;">
-          </ion-img>
-          <ion-button fill="outline" shape="round" color="light" size="small" class="thumbnailPlay">
-            <ion-icon name="play-outline"></ion-icon>
-          </ion-button>
-          <ion-button fill="outline" shape="round" color="danger" size="small" class="thumbnailClose">
-            <ion-icon name="close"></ion-icon>
-          </ion-button>
-        </ion-row>
+      <ion-col class="col-6 col-md-4 col-xl-3 px-1 mb-1" *ngFor="let vid of cloudVideos">
+        <app-video-thumbnail [thumb]='vid' (delete)="deleteFromCloudVideos(vid)" 
+        (isSelected)="selectFromCloudVideos($event)" [location]="'cloud'"> </app-video-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -42,19 +33,8 @@
     </ion-row>
     <ion-row class="image-container-row" *ngIf="deviceVideos?.length>0">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let vid of deviceVideos">
-        <ion-row class="ion-no-padding ion-no-margin image-container " [style.background-color]="'ffffff5c'">
-          <ion-img [src]="vid?.posterResolvedURL" style="height: 100%;
-          background: #495057; position:absolute;width: 96%;">
-          </ion-img>
-          <ion-button fill="outline" shape="round" color="light" size="small" 
-          (click)="previewVideo(vid)" class="thumbnailPlay">
-            <ion-icon name="play-outline"></ion-icon>
-          </ion-button>
-          <ion-button fill="outline" shape="round" color="danger" size="small" 
-          (click)="deleteFromDeviceVideos(vid)" class="thumbnailClose">
-            <ion-icon name="close"></ion-icon>
-          </ion-button>
-        </ion-row>
+        <app-video-thumbnail [thumb]='vid' (delete)="deleteFromCloudVideos(vid)" 
+        [location]="'local'"> </app-video-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>

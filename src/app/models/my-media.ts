@@ -85,6 +85,7 @@ export class Video extends Media {
      */
   posterUrl?: string;
   mimeType?: string;
+  length?: number;
 
   constructor(data?: MediaInterface) {
     super(data);
@@ -108,6 +109,9 @@ export class Audio extends Media {
   /**
      *
      */
+  length?: number;
+  mimeType?: string;
+
   constructor(data?: MediaInterface) {
     super(data);
 
@@ -138,8 +142,23 @@ export interface IdentityPhoto {
   flag: Photo;
 }
 
-export class PostPhotoLink{
+export class PostPhotoLink {
   id?: number;
   postId: number;
   photoId: number;
+}
+export class PostAudioLink {
+  id?: number;
+  postId: number;
+  audioId: number;
+}
+export class PostVideoLink {
+  id?: number;
+  postId: number;
+  videoId: number;
+}
+export class PostDocumentLink {
+  id?: number;
+  postId: number;
+  documentId: number;
 }

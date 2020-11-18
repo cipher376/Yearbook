@@ -14,6 +14,7 @@ export class PhotoThumbnailComponent implements OnInit, AfterContentInit {
   @Input() thumb: any; // Photo || PhotoLocal
   selected = false;
   @Input() count = 0;
+  @Input() location = 'local'; // cloud || local
 
   @ViewChild('photoThumbnail') photoThumbnail: ElementRef; // element to double click
   private lastOnStart = 0; // double click start count
@@ -38,11 +39,11 @@ export class PhotoThumbnailComponent implements OnInit, AfterContentInit {
       const gesture = this.gestureCtrl.create({
         el: this.photoThumbnail.nativeElement,
         threshold: 0,
-        gestureName: 'double-click',
+        gestureName: 'photo-double-click',
         onStart: () => { this.onDoubleClickImageThumbnail(); }
       });
       gesture.enable();
-    }, 2000);
+    }, 1000);
 
   }
 
@@ -64,13 +65,34 @@ export class PhotoThumbnailComponent implements OnInit, AfterContentInit {
 
   preview() {
     try {
-      this.photoViewer.show(this.downloadUrlRoot + this.thumb.fileName ?? this.thumb.resolvedURL, '', { share: true });
+      let path = '';
+      if (this.location == 'cloud') {
+        // console.log('cloud');
+        path = this.downloadUrlRoot + (this.thumb as Photo).fileName;
+      } else if (this.location == 'local') {
+        // console.log('local');
+        path = (this.thumb as PhotoLocal).nativeURL;
+      }
+      // console.log(path);
+      setTimeout(() => {
+        this.photoViewer.show(path, '', { share: true });
+      }, 100);
     } catch (e) {
-      console.log(e);
+      console.log(JSON.stringify(e));
     }
   }
-  getUrl() {
-    return this.downloadUrlRoot + this.thumb.fileName ?? this.thumb.thumbnailResolvedURL;
+
+  getThumbnailUrl() {
+    let path = '';
+    if (this.location == 'cloud') {
+      // console.log('cloud');
+      path = this.downloadUrlRoot + (this.thumb as Photo).fileName;
+    } else if (this.location == 'local') {
+      // console.log('local');
+      path = this.thumb.thumbnailResolvedURL;
+    }
+    // console.log(path);
+    return path;
   }
 
   onDelete() {
