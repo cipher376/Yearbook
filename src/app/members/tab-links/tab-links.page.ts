@@ -41,4 +41,8 @@ export class TabLinksPage implements OnInit {
     return await this.modal.present();
   }
 
+  userViewChange($event){
+    console.log($event);
+  }
+
 }

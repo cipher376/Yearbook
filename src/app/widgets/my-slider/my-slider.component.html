@@ -1,0 +1,47 @@
+<ion-row class="ion-no-padding ion-padding-bottom">
+  <ion-col size="12" class="ion-no-padding"  >
+    <!-- Video player -->
+    <div id="{{sliderId}}" *ngIf="playVideo" style="
+        height: auto;
+        width: 100%;
+        background: #6c757d1c;
+        z-index: 3;" >
+      <app-video-player [Items]="slideObjects" [mediaType]="mediaType"></app-video-player>
+    </div>
+    <!-- Video player ends -->
+
+    <ion-slides [pager]='slideObjects?.length>1' class="ion-no-padding" [options]="slideOptions" #slideWithNav
+      (ionSlideDidChange)="SlideDidChange(slider,slideWithNav)">
+      <ion-slide class="ion-no-padding" *ngFor="let obj of slideObjects">
+        <ion-row class="ion-no-margin ion-no-padding" *ngIf="!playVideo">
+          <ion-card class="card-header-bg"
+            [background-image]="getObjPhoto(obj)"
+            style="width: 100vw;">
+            <div style="position: absolute;
+        height: 50vh;
+        width: 100%;
+        background: #6c757d1c;
+        z-index: 1;" (click)="play(obj)"></div>
+            <ion-row *ngIf="mediaType===1 || mediaType===2"
+              class="ion-text-center ion-align-items-center ion-no-padding" style="width: 100%; z-index: 1">
+              <ion-col size="3"></ion-col>
+              <ion-col size="6" class="ion-no-padding">
+                <ion-item lines="none" class="ion-no-padding">
+                  <ion-fab-button color="light" class="play-button" (click)="play(obj)">
+                    <ion-icon class="white fs-25" style="margin-right: -4px;" color="dark" name="caret-forward-outline">
+                    </ion-icon>
+                    <!-- <ion-icon *ngIf="mediaType===2" class="white fs-25" style="margin-right: -1px;" color="dark" name="headset">
+                  </ion-icon> -->
+                  </ion-fab-button>
+                </ion-item>
+              </ion-col>
+              <ion-col size="3"></ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-row>
+
+
+      </ion-slide>
+    </ion-slides>
+  </ion-col>
+</ion-row>

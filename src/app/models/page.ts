@@ -1,9 +1,9 @@
 
 export interface PageInfo {
   offset: number;
-  pageSize: number;
+  pageSize?: number;
   limit: number;
-  count: number;
+  count?: number;
 }
 
 export class PagedData<T> {

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { DEFAULT_AUDIO_COVER, DEFAULT_AUDIO_ICON, DOWNLOAD_CONTAINER } from 'src/app/shared/config';
+import { CONTENT_ATTR } from '@angular/compiler';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Video, Audio, MediaType } from 'src/app/models/my-media';
 
 @Component({
   selector: 'app-video-player',
@@ -6,57 +9,89 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-player.component.scss'],
 })
 export class VideoPlayerComponent implements OnInit {
-  videoItems = [
-    {
-      name: 'Video one',
-      src: 'http://static.videogular.com/assets/videos/videogular.mp4',
-      type: 'video/mp4'
-    },
-    {
-      name: 'Video two',
-      src: 'http://static.videogular.com/assets/videos/big_buck_bunny_720p_h264.mov',
-      type: 'video/mp4'
-    },
-    {
-      name: 'Video three',
-      src: 'http://static.videogular.com/assets/videos/elephants-dream.mp4',
-      type: 'video/mp4'
-    }
-  ];
+  items = [];
+  itemPhotos = [];
+  @Input() mediaType: MediaType = 1;
 
   activeIndex = 0;
-  currentVideo = this.videoItems[this.activeIndex];
-  data;
+  currentVideo = this.items[this.activeIndex];
+  player;
 
-  constructor() { }
+  slideOpts = {
+    initialSlide: 1,
+    slidesPerView: 2.5,
+    speed: 400,
+
+  };
+
+  constructor(
+    private cdref: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void { }
 
-  videoPlayerInit(data) {
-    this.data = data;
+  @Input() set Items(items: Video[] | Audio[]) {
 
-    this.data.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
-    this.data.getDefaultMedia().subscriptions.ended.subscribe(this.nextVideo.bind(this));
+    // console.log(items);
+    items.forEach(obj => {
+      this.items.push({
+        name: obj?.description ?? obj.fileName,
+        src: DOWNLOAD_CONTAINER + obj.fileName,
+        type: 'video/mp4'
+      });
+      this.itemPhotos.push(this.getThumbnail(obj));
+    });
+  }
+
+  get Items() {
+    return this.items;
+  }
+
+  getThumbnail(obj) {
+    console.log(this.mediaType);
+    if (this.mediaType === MediaType.VIDEO) {
+      return DOWNLOAD_CONTAINER + (obj as Video).posterUrl;
+    } else if (this.mediaType === MediaType.AUDIO) {
+      return DEFAULT_AUDIO_ICON;
+    }
+    return '';
+  }
+
+  videoPlayerInit(player) {
+    this.player = player;
+    console.log(this.player);
+    this.initVdo();
+    // this.player.getDefaultMedia().subscriptions.loadedMetaplayer.subscribe(this.initVdo.bind(this));
+    // this.player.subscriptions.pause.subscribe(this.initVdo.bind(this));
+    this.player.subscriptions.ended.subscribe(this.nextVideo.bind(this));
   }
 
   nextVideo() {
     this.activeIndex++;
 
-    if (this.activeIndex === this.videoItems.length) {
+    if (this.activeIndex === this.items.length) {
       this.activeIndex = 0;
     }
-
-    this.currentVideo = this.videoItems[this.activeIndex];
+    this.currentVideo = this.items[this.activeIndex];
+    this.cdref.detectChanges();
   }
 
   initVdo() {
-    this.data.play();
+    if (this.Items?.length > 0) {
+      this.activeIndex = 0;
+      this.currentVideo = this.items[this.activeIndex];
+      this.cdref.detectChanges();
+    }
+    console.log(this.currentVideo);
+    this.player.play();
   }
 
-  startPlaylistVdo(item, index: number) {
+  startPlaylistVdo(index: number) {
     this.activeIndex = index;
-    this.currentVideo = item;
+    this.currentVideo = this.items[this.activeIndex];
+    this.cdref.detectChanges();
   }
+
 
 }
 

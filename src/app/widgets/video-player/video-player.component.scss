@@ -2,6 +2,7 @@
     max-width: 800px;
     text-align: center;
     margin: 0 auto;
+    max-height: 500px;
 }
 
 .player-list {
@@ -21,4 +22,10 @@
 
 li.selected {
     background: #03A9F4 !important;
+}
+
+ion-slide{
+    height: 21vh;
+    margin: 7px;
+    margin-right: 0px;
 }

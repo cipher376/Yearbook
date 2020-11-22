@@ -80,6 +80,7 @@ export class User implements UserInterface {
       this.photos = userData.photos || [];
       this.address = userData.address;
       this.alumni = userData.alumni || [];
+    
 
     }
     if (cred) {

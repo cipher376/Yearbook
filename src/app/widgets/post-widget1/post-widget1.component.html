@@ -4,118 +4,45 @@
             <ion-row slot="start" style="height:30px">
                 <ion-avatar class="ion-padding-end" style="width: 45px;
                 height: 30px;">
-                    <img src="../../../assets/images/me.jpg">
+                    <img [src]="userImage">
                 </ion-avatar>
                 <ion-note color="dark" class="poppins-semi-bold fs-14 " style=" margin-top: 5px">
-                    Jennifer
+                    {{user.firstName}}
                 </ion-note>
             </ion-row>
-            <!-- <img [src]="'../../../assets/images/me.jpg'"  style="width: 35px !important;
-            height: 35px !important;
-            padding: 5px;" class="round-avatar"> -->
-            <ion-label slot="end" class="fs-10 ion-text-right">2 seconds ago</ion-label>
+            <ion-label slot="end" class="fs-10 ion-text-right"> {{Post?.dateCreated | toEventTime}} </ion-label>
         </ion-item>
     </ion-col>
 
-    <ion-col size="12" class="ion-no-padding ion-padding-end ion-padding-start">
+    <ion-col size="12" class="ion-no-padding">
         <ion-card class=" ion-align-items-center">
-            <ion-img src="../../../assets/images/me.jpg"></ion-img>
-            <ion-card-header class="ion-no-padding info">
-                <ion-row class="ion-no-padding">
-                    <ion-item lines="none">
-                        <!-- <ion-note slot="start" color="white" class="poppins-bold fs-12"
-                            style="text-shadow: 0px 0px 3px black !important;color: white;">
-                            Opoku ware school
-                        </ion-note> -->
-                        <!-- <ion-row slot="end" class="avatar-group ion-align-items-end ion-text-right">
-                            <ion-avatar class="avatar-group-img" style="
-                             margin-right: -18px;"><img [src]="'../../../assets/images/me.jpg'"></ion-avatar>
-                            <ion-avatar class="avatar-group-img" style="
-                             margin-right: -18px;"><img [src]="'../../../assets/images/me.jpg'"></ion-avatar>
-                            <ion-avatar class="avatar-group-img avatar-count-icon" color="secondary">+2</ion-avatar>
-                        </ion-row> -->
-                        <ion-row>
-
-                        </ion-row>
-                    </ion-item>
-                </ion-row>
-            </ion-card-header>
-            <ion-row class="ion-no-padding" style="margin-top: -50px;">
+            <app-my-slider [slideObjects]="objects" [mediaType]="mediaType" ></app-my-slider>
+            <ion-row class="ion-no-padding" style="margin-top: -105px;">
                 <ion-item lines="none">
                     <ion-note slot="start" color="white" class="poppins-bold fs-12"
-                        style="text-shadow: 0px 0px 3px black !important;color: white;">
-                        @opukuwareshs
+                        style="text-shadow: 0px 0px 3px black !important;color: white;" 
+                        *ngIf="school">
+                        @{{school?.name}}
                     </ion-note>
-                    <ion-row slot="end" class="avatar-group ion-align-items-end ion-text-right">
-                        <ion-avatar class="avatar-group-img avatar-count-icon" color="secondary">+2</ion-avatar>
-                    </ion-row>
                 </ion-item>
             </ion-row>
-            <!-- <ion-row class="ion-no-padding" style="margin-top: -35px;"> -->
-            <!-- <ion-col size="12" class="ion-align-items-center ion-text-center">
-                    <ion-button color="secondary" shape="round" style="--box-shadow:none"
-                        class="ion-padding ion-align-items-center ion-text-center fs-14 poppins-bold">V<span
-                            class="ion-text-lowercase">iew</span>
-                    </ion-button>
-                </ion-col> -->
-            <!-- </ion-row> -->
-            <ion-card-content class="fs-12" style="z-index: 1000; padding-top: 22px; padding-bottom: 0;">
-                <ion-note class="fs-12">
-                    <ul class="tags">
-                        <li *ngFor="let tag of tags"> {{ "#" + tag }} </li>
-                    </ul>
-                </ion-note>
+            <ion-card-content class="fs-12" style="z-index: 1; padding-top: 54px; padding-bottom: 0;">
                 <ion-note class="fs-12" color="dark">
-                    Keep close to Nature's heart... and break clear away, once in awhile,
-                    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                    <p class="fs-12; mb-2" color="dark" >
+                        <b> 3452 likes </b> &nbsp; <b> 300 comments </b>
+                        <br>
+                    </p>
+                    <ion-text>
+                        {{Post?.message}}
+                    </ion-text>
                 </ion-note>
                 <ion-row>
-                    <ion-col size="6" class="ion-no-padding" style="padding-right: 1%;">
-                      <ion-card background-image="'../../../assets/images/me.jpg'" class="card-header-bg ion-color-light"
-                        style=" height:14vh; color:black;">
-                        <!-- <img [src]="'../../../assets/images/me.jpg'" class="curve-img"> style="position: absolute; margin-top: 4.5vh;
-                          margin-left: 18vw;"-->
-                        <ion-row class="ion-text-center ion-align-items-center ion-no-padding">
-                          <ion-col size="6"></ion-col>
-                          <ion-col size="3" class="ion-no-padding">
-                            <ion-item lines="none" class="ion-no-padding">
-                              <ion-fab-button color="white" style="height: 20px; width: 20px;box-shadow: none; margin-top:5vh">
-                                <ion-icon class=" ion-color-light" style="font-size: 8px !important; margin-right: -2px;"
-                                  [src]="'../../../assets/icon/right-arrow.svg'"></ion-icon>
-                              </ion-fab-button>
-                            </ion-item>
-                          </ion-col>
-                          <ion-col size="3"></ion-col>
-                        </ion-row>
-          
-                      </ion-card>
-                    </ion-col>
-                    <ion-col size="6" class="ion-no-padding" style="padding-left: 1%;">
-                      <ion-card class="card-header-bg"
-                        style="background-image: url('../../../assets/images/car.jpg'); height:14vh">
-                        <ion-row class="ion-text-center ion-align-items-center ion-no-padding">
-                          <ion-col size="6"></ion-col>
-                          <ion-col size="4" class="ion-no-padding">
-                            <ion-item lines="none" class="ion-no-padding">
-                              <ion-note style="background: #00000038;
-                              margin-top: 5vh;
-                              border-radius: 50%;
-                              padding: 3px;
-                              font-weight: bold;
-                              color: white;
-                              text-shadow: -1px 0px 2px black;
-                              font-size: 17px;">
-                                +5
-                              </ion-note>
-                            </ion-item>
-                          </ion-col>
-                          <ion-col size="2"></ion-col>
-                        </ion-row>
-                      </ion-card>
-                      <!-- <img [src]="'../../../assets/images/car.jpg'" class="curve-img"> -->
-          
-                    </ion-col>
-                  </ion-row>
+                    <ion-note class="fs-12 ion-no-padding ion-padding-top">
+                        <ul class="tags ion-no-margin ion-no-padding ">
+                            <li *ngFor="let tag of tags"> {{ "#" + tag }} </li>
+                        </ul>
+                    </ion-note>
+                </ion-row>
                 <ion-row>
                     <ion-col class="ion-no-padding" size="12">
                         <hr style="background: #e8e9ed;">

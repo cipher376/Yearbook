@@ -20,6 +20,11 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   public logs = [];
   public appPages = [
     {
+      title: 'Posts',
+      url: '/links/posts',
+      icon: 'paper-plane'
+    },
+    {
       title: 'Schools',
       url: '/links/my-schools',
       icon: 'school'
@@ -30,16 +35,17 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       icon: 'stopwatch'
     },
     {
-      title: 'Posts',
-      url: '/links/posts',
-      icon: 'paper-plane'
-    }
+      title: 'Find your way',
+      url: '/links/schools-location',
+      icon: 'trail-sign',
+      params: {}
+    },
   ];
   public publicPages = [
     {
-      title: 'Settings',
-      url: '/links/settings',
-      icon: 'cog',
+      title: 'Find your way',
+      url: '/links/schools-location',
+      icon: 'trail-sign',
       params: {}
     },
     {

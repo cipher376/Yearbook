@@ -1,4 +1,9 @@
-<ion-content >
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="refreshPosts($event)">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <!-- Page header -->
   <ion-row class="top-row-header ion-no-padding ">
     <ion-col size="12" class="ion-no-padding ">
@@ -31,14 +36,20 @@
     </ion-col>
   </ion-row> -->
 
-  
   <ion-row class="mt-1">
     <ion-col size="12" class="ion-no-padding">
       <app-create-post></app-create-post>
-      <!-- <app-post-widget2></app-post-widget2>
-      <app-post-widget3></app-post-widget3> -->
-      <app-post-widget1 *ngFor="let x of [0]"></app-post-widget1>
+      <ng-template ngFor let-post [ngForOf]="posts" >
+        <app-post-widget1 [Post]="post"></app-post-widget1>
+      </ng-template>
+
     </ion-col>
   </ion-row>
+
+  <!-- Main body content ends -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMorePosts($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading ...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

@@ -10,6 +10,7 @@ import { throwError, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Alumni } from '../../../models/alumni';
 import { MyStorage } from '../providers/storage/my-storage.service';
+import { DOWNLOAD_CONTAINER, SERVER_DOWNLOAD_PATH, USER_DEFAULT_PHOTO_URL } from '../../config';
 
 
 
@@ -67,6 +68,7 @@ export class PostService {
   }
 
   getPost(pageInfo?: PageInfo, filter: any = {
+    order: 'id DESC',
     include: [
       {
         relation: 'photos',
@@ -75,16 +77,33 @@ export class PostService {
         relation: 'videos'
       },
       {
-        relation: 'audio'
+        relation: 'audios'
       },
       {
         relation: 'postConfig'
-      }
+      },
+      {
+        relation: 'user',
+        scope: {
+          include: [
+            {
+              relation: 'photos',
+              scope: {
+                where: {
+                  profile: true
+                }
+              }
+            },
+            { relation: 'address' }
+          ]
+        }
+      },
     ]
   }): Observable<Post[]> {
     if (pageInfo) {
       filter = {
-        offset: pageInfo.offset * pageInfo.limit,
+        order: 'id DESC',
+        offset: pageInfo.offset,
         limit: pageInfo.limit,
         include: filter.include
       };
@@ -120,5 +139,12 @@ export class PostService {
   private handleError(e: any): any {
     // console.log(e);
     return throwError(UtilityService.myHttpErrorFormat(e, 'alumni'));
+  }
+
+  getPostOwnerImage(post: Post) {
+    if (post?.photos?.length > 0) {
+      return  DOWNLOAD_CONTAINER + post?.photos[0]?.fileName;
+    }
+    return USER_DEFAULT_PHOTO_URL;
   }
 }

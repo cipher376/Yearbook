@@ -1,3 +1,6 @@
+import { PipesModule } from './../shared/pipes/pipes.module';
+import { MySliderComponent } from './my-slider/my-slider.component';
+import { MapComponent } from './map/map.component';
 import { AudioThumbnailComponent } from './audio-thumbnail/audio-thumbnail.component';
 import { AudioRecorderComponent } from './audio-recorder/audio-recorder.component';
 import { PhotoThumbnailComponent } from './photo-thumbnail/photo-thumbnail.component';
@@ -20,7 +23,13 @@ import { PostWidget2Component } from './post-widget2/post-widget2.component';
 import { MyAudioPickerComponent } from './my-audio-picker/my-audio-picker.component';
 import { VideoThumbnailComponent } from './video-thumbnail/video-thumbnail.component';
 import { BackgroundImageDirective } from '../directives/image-background.directive';
-
+import { VideoPlayerComponent } from './video-player/video-player.component';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   imports: [
@@ -28,15 +37,26 @@ import { BackgroundImageDirective } from '../directives/image-background.directi
     FormsModule,
     RouterModule,
     IonicModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBfKFrI5-iEUhsZyxjc2B56RNmoQoAeBmk'
+    }),
+    GoogleMapsModule,
+    PipesModule
   ],
   declarations: [PostWidget1Component, PostWidget2Component, TrendingComponent, PopularSchoolsComponent,
     ImageGalleryComponent, PostWidget3Component, FeedFilterPopoverComponent, MyPhotoPickerComponent, MyAudioPickerComponent
     , MyVideoPickerComponent, CreatePostComponent, PhotoThumbnailComponent, VideoThumbnailComponent,
-    AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective],
+    AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
+    MapComponent, MySliderComponent],
   exports: [FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
     PopularSchoolsComponent, PostWidget3Component, ImageGalleryComponent, FeedFilterPopoverComponent,
     MyPhotoPickerComponent, MyAudioPickerComponent, MyVideoPickerComponent, CreatePostComponent,
     PhotoThumbnailComponent, VideoThumbnailComponent,
-    AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective]
+    AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective, VideoPlayerComponent,
+    MapComponent, MySliderComponent]
 })
 export class WidgetsModule { }

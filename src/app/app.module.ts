@@ -33,10 +33,12 @@ import { VideoEditor } from '@ionic-native/video-editor/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { DoubleTapDirective } from './directives/double-tap.directive';
 import { IonicGestureConfig } from './shared/services/providers/customHammerConfig';
-import {VgCoreModule} from '@videogular/ngx-videogular/core';
-import {VgControlsModule} from '@videogular/ngx-videogular/controls';
-import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
-import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { AgmCoreModule } from '@agm/core';
+import { InViewportModule } from '@thisissoon/angular-inviewport';
 
 
 @NgModule({
@@ -58,6 +60,7 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
     NgxIonicImageViewerModule,
     WidgetsModule,
     AppRoutingModule,
+    InViewportModule  
   ],
   providers: [
     StatusBar,
@@ -85,7 +88,7 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
     VgOverlayPlayModule,
     VgBufferingModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig},
+    { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
   ],
   exports: [
     CommonModule,

@@ -33,6 +33,10 @@ const routes: Routes = [
         loadChildren: () => import('../schools-search/schools-search.module').then(m => m.SchoolsSearchPageModule)
       },
       {
+        path: 'schools-location',
+        loadChildren: () => import('../schools-location/schools-location.module').then(m => m.SchoolsLocationPageModule)
+      },
+      {
         path: 'school-profile',
         loadChildren: () => import('../schools-profile/schools-profile.module').then(m => m.SchoolsProfilePageModule)
       },

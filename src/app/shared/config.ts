@@ -6,7 +6,7 @@
 // export const API_ROOT_URL = `http://localhost:${API_PORT || 80}`;
 
 export const API_PORT = 3000;
-export const API_ROOT_URL = `http://192.168.0.107:${API_PORT || 80}`;
+export const API_ROOT_URL = `http://192.168.0.101:${API_PORT || 80}`;
 
 /***
  * Default images for users and schools without profile photo
@@ -23,4 +23,8 @@ export const SERVER_DOWNLOAD_PATH = '/media/download/';
 export const UPLOAD_URL = API_ROOT_URL + SERVER_UPLOAD_PATH;
 export const DOWNLOAD_CONTAINER = API_ROOT_URL + SERVER_DOWNLOAD_PATH;
 
+export const DEFAULT_AUDIO_COVER = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'audio_cover.png';
+export const DEFAULT_AUDIO_ICON = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'audioIcon.jpg';
+
+export const DEFAULT_DOCUMENT_COVER = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'document_cover.png';
 

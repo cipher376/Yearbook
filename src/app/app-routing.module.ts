@@ -66,10 +66,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
   },
-  {
-    path: 'map',
-    loadChildren: () => import('./public/map/map.module').then(m => m.MapPageModule)
-  },
+  
 
 
   // {
