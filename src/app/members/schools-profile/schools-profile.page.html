@@ -1,14 +1,23 @@
 <ion-content >
   <ion-row>
     <ion-card class="h-25 w-100">
-      <ion-card-header style="background-image: url('{{identityPhoto?.cover?.fileUrl}}');"
-        class="card-header-bg ion-no-padding ion-padding-top ">
-      </ion-card-header>
+      <!-- <ion-card-header style="background-image: url('{{identityPhoto?.cover?.fileUrl}}');" class="card-header-bg ion-no-padding ion-padding-top "> -->
+        <ion-card-header style="background-image: url('https://www.adisadelcollege.net/conbelt/cantab_hall.jpg');" class="card-header-bg ion-no-padding ion-padding-top ">
+        </ion-card-header>
     </ion-card>
   </ion-row>
+
   <ion-row class="">
-    <ion-card class="w-100 ion-padding-top"
-      style="margin-top:-30px;border-top-right-radius: 20px;border-top-left-radius: 20px;">
+    <ion-card class="w-100 ion-padding-top" style="margin-top:-30px;border-top-right-radius: 20px;border-top-left-radius: 20px;">
+        <ion-button size="small" expand="block" class="mx-3 mb-4"> 
+          <ion-icon name="add"></ion-icon> Follow 
+        </ion-button>
+
+        <!-- unfollow -->
+        <!-- <ion-button size="small" expand="block" class="mx-3 mb-4" color="medium"> 
+          <ion-icon name="remove"></ion-icon> Unfollow 
+        </ion-button> -->
+
       <ion-row class="ion-padding-start ion-padding-end ion-padding-bottom">
         <ion-col size="3" class="ion-align-items-center ion-text-center ion-no-padding">
           <ion-note color="dark" class="poppins-bold fs-16">Alumni</ion-note><br>
@@ -29,7 +38,6 @@
         <ion-col size="3" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
           <ion-note color="dark" class="poppins-bold fs-16">Likes</ion-note><br>
           <ion-note class="poppins-regular fs-12">+1000</ion-note>
-
         </ion-col>
       </ion-row>
 

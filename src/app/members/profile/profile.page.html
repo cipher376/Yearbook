@@ -36,10 +36,30 @@
       </ion-row>
 
       <ion-row>
-        <ion-col class="ion-no-padding" size="12">
-          <hr style="background: #e8e9ed;" width="30%">
-        </ion-col>
-        <!-- <ion-text class="px-2 bio">
+        <ion-col size="8" class="mt-1">
+          <ion-button size="small" expand="block" class="mx-2 mb-1"> 
+            <ion-icon name="add"></ion-icon> Follow 
+          </ion-button>
+          
+          <!-------------------------------- 
+            unfollow
+            -------------------------------->
+            <!-- <ion-button size="small" expand="block" class="mx-3 mb-4" color="medium"> 
+              <ion-icon name="remove"></ion-icon> Unfollow 
+            </ion-button> -->
+          </ion-col>
+
+          <ion-col size="4" class="mt-1">
+            <ion-button size="small" expand="block" class="mx-2 mb-1" color="medium"> 
+              <ion-icon name="create-outline"></ion-icon> Edit
+            </ion-button>
+          </ion-col>
+          
+          <ion-col class="ion-no-padding" size="12">
+            <hr style="background: #e8e9ed;" width="30%">
+          </ion-col>
+
+          <!-- <ion-text class="px-2 bio">
           {{ profile_bio.length > 60 ? (profile_bio | slice:0:60) + '...' : profile_bio | slice:0:60 }} 
         </ion-text> -->
 
