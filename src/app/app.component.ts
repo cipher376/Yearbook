@@ -20,11 +20,6 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   public logs = [];
   public appPages = [
     {
-      title: 'Posts',
-      url: '/links/posts',
-      icon: 'paper-plane'
-    },
-    {
       title: 'Schools',
       url: '/links/my-schools',
       icon: 'school'
@@ -42,6 +37,12 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     },
   ];
   public publicPages = [
+    {
+      title: 'Home',
+      url: '/links/home',
+      icon: 'home',
+      params: {}
+    },
     {
       title: 'Find your way',
       url: '/links/schools-location',
@@ -133,6 +134,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
             icon: 'log-out',
             params: { clear: true }
           },
+          
         ];
         this.user = user ?? localUser;
       } else {

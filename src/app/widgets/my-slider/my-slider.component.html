@@ -1,4 +1,4 @@
-<ion-row class="ion-no-padding ion-padding-bottom">
+<ion-row class="ion-no-padding ion-padding-bottom h-100" >
   <ion-col size="12" class="ion-no-padding"  >
     <!-- Video player -->
     <div id="{{sliderId}}" *ngIf="playVideo" style="
@@ -10,15 +10,15 @@
     </div>
     <!-- Video player ends -->
 
-    <ion-slides [pager]='slideObjects?.length>1' class="ion-no-padding" [options]="slideOptions" #slideWithNav
+    <ion-slides [pager]='slideObjects?.length>1' class="ion-no-padding h-100" [options]="slideOptions" #slideWithNav
       (ionSlideDidChange)="SlideDidChange(slider,slideWithNav)">
-      <ion-slide class="ion-no-padding" *ngFor="let obj of slideObjects">
-        <ion-row class="ion-no-margin ion-no-padding" *ngIf="!playVideo">
+      <ion-slide class="ion-no-padding h-100" *ngFor="let obj of slideObjects" >
+        <ion-row class="ion-no-margin ion-no-padding h-100" *ngIf="!playVideo">
           <ion-card class="card-header-bg"
             [background-image]="getObjPhoto(obj)"
             style="width: 100vw;">
             <div style="position: absolute;
-        height: 50vh;
+        height: 100%;
         width: 100%;
         background: #6c757d1c;
         z-index: 1;" (click)="play(obj)"></div>

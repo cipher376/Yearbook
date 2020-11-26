@@ -1,15 +1,23 @@
-<ion-content >
+<ion-content>
   <ion-row>
     <ion-card class="h-25 w-100">
+      <div class="backdrop h-100 w-100"></div>
+      <ion-avatar>
+        <img src="https://gravatar.com/avatar">
+        <h5> {{ username }} </h5>
+        <small class="mx-auto w-50"> 
+          Computer Scientist
+          <!-- {{ profile_bio.length > 60 ? (profile_bio | slice:0:60) + '...' : profile_bio | slice:0:60 }}  -->
+        </small>
+      </ion-avatar>
       <ion-card-header style="background-image: url('../../../assets/images/ACOPROM1.jpg');"
         class="card-header-bg ion-no-padding ion-padding-top ">
       </ion-card-header>
     </ion-card>
   </ion-row>
   <ion-row class="">
-    <ion-card class="w-100 ion-padding-top"
-      style="margin-top:-30px;border-top-right-radius: 20px;border-top-left-radius: 20px;">
-      <ion-row class="ion-padding-start ion-padding-end ion-padding-bottom">
+    <ion-card class="w-100 ion-padding-top ion-padding-bottom main">
+      <ion-row class="ion-padding-start ion-padding-end mt-4">
         <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
           <ion-note color="dark" class="poppins-bold fs-16">Posts</ion-note><br>
           <ion-note class="poppins-regular fs-12">123</ion-note>
@@ -25,6 +33,19 @@
           <ion-note class="poppins-regular fs-12">1k</ion-note>
         </ion-col>
 
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-no-padding" size="12">
+          <hr style="background: #e8e9ed;" width="30%">
+        </ion-col>
+        <!-- <ion-text class="px-2 bio">
+          {{ profile_bio.length > 60 ? (profile_bio | slice:0:60) + '...' : profile_bio | slice:0:60 }} 
+        </ion-text> -->
+
+        <!-- <ion-col class="ion-no-padding mt-2" size="12">
+          <hr style="background: #e8e9ed;">
+        </ion-col> -->
       </ion-row>
 
       <!-- <ion-segment [(ngModel)]="currentSegment" color="primary">
@@ -91,15 +112,14 @@
         </ion-row>
 
       </ion-row> -->
-    
+
     </ion-card>
-
-    <ion-row class="mt-1">
-      <ion-col size="12" class="ion-no-padding">
-        <app-post-widget1 *ngFor="let x of [0,0,0,0,0,0]"></app-post-widget1>
-      </ion-col>
-    </ion-row>
   </ion-row>
-
+  
+  <ion-row class="mt-1">
+    <ion-col size="12" class="ion-no-padding">
+      <app-post-widget1 *ngFor="let x of [0,0,0,0,0,0]"></app-post-widget1>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

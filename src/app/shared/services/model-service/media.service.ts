@@ -1,5 +1,7 @@
-import { Photo, PostAudioLink, PostDocumentLink, PostPhotoLink, 
-  PostVideoLink, Video, Audio, Document } from '../../../models/my-media';
+import {
+  Photo, PostAudioLink, PostDocumentLink, PostPhotoLink,
+  PostVideoLink, Video, Audio, Document
+} from '../../../models/my-media';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MyStorage } from '../providers/storage/my-storage.service';
@@ -53,7 +55,7 @@ export class MediaService {
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'School photo')))
     );
   }
- 
+
   linkPostToPhoto(links: PostPhotoLink[]): Observable<PostPhotoLink[]> {
     return this.http.post<PostPhotoLink[]>(`/link-post-to-photo-many`, links).pipe(
       map(res => {
@@ -138,7 +140,10 @@ export class MediaService {
       return;
     }
     if (!filter) {
-      filter = {};
+      filter = {
+        order: 'id DESC',
+
+      };
     }
     const url = `/schools/${schoolId}/photos?filter=` + JSON.stringify(filter);
     return this.http.get<Photo[]>(url).pipe(
@@ -155,7 +160,10 @@ export class MediaService {
       return;
     }
     if (!filter) {
-      filter = {};
+      filter = {
+        order: 'id DESC',
+
+      };
     }
     const url = `/schools/${schoolId}/videos?filter=` + JSON.stringify(filter);
     return this.http.get<Video[]>(url).pipe(
@@ -186,7 +194,7 @@ export class MediaService {
       );
     }
   }
- createUserVideo(userId: any, video: Video) {
+  createUserVideo(userId: any, video: Video) {
     if (!video?.id) {
       return this.http.post<Video>(`/users/${userId}/videos`, video).pipe(
         map(res => {
@@ -213,7 +221,10 @@ export class MediaService {
       return;
     }
     if (!filter) {
-      filter = {};
+      filter = {
+        order: 'id DESC',
+
+      };
     }
     const url = `/users/${userId}/photos?filter=` + JSON.stringify(filter);
     return this.http.get<Photo[]>(url).pipe(
@@ -230,7 +241,10 @@ export class MediaService {
       return;
     }
     if (!filter) {
-      filter = {};
+      filter = {
+        order: 'id DESC',
+
+      };
     }
     const url = `/users/${userId}/videos?filter=` + JSON.stringify(filter);
     return this.http.get<Video[]>(url).pipe(
@@ -247,7 +261,10 @@ export class MediaService {
       return;
     }
     if (!filter) {
-      filter = {};
+      filter = {
+        order: 'id DESC',
+
+      };
     }
     const url = `/users/${userId}/audio?filter=` + JSON.stringify(filter);
     return this.http.get<Audio[]>(url).pipe(
@@ -264,7 +281,10 @@ export class MediaService {
       return;
     }
     if (!filter) {
-      filter = {};
+      filter = {
+        order: 'id DESC',
+
+      };
     }
     const url = `/users/${userId}/documents?filter=` + JSON.stringify(filter);
     return this.http.get<Document[]>(url).pipe(
@@ -275,7 +295,7 @@ export class MediaService {
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User audio')))
     );
   }
-  
+
   createUserAudio(userId: any, audio: Audio) {
     if (!audio?.id) {
       return this.http.post<Audio>(`/users/${userId}/audio`, audio).pipe(

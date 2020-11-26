@@ -3,11 +3,11 @@
         <ion-item lines="none" class="ion-align-items-center">
             <ion-row slot="start" style="height:30px">
                 <ion-avatar class="ion-padding-end" style="width: 45px;
-                height: 30px;">
-                    <img [src]="userImage">
+                height: 30px;" (click)=" gotoProfile()">
+                    <img [src]="postUserImage">
                 </ion-avatar>
                 <ion-note color="dark" class="poppins-semi-bold fs-14 " style=" margin-top: 5px">
-                    {{user.firstName}}
+                    {{postUser?.firstName}}
                 </ion-note>
             </ion-row>
             <ion-label slot="end" class="fs-10 ion-text-right"> {{Post?.dateCreated | toEventTime}} </ion-label>
@@ -16,22 +16,41 @@
 
     <ion-col size="12" class="ion-no-padding">
         <ion-card class=" ion-align-items-center">
-            <app-my-slider [slideObjects]="objects" [mediaType]="mediaType" ></app-my-slider>
+            <div style="height: 50vh;" *ngIf="objects?.length>0">
+                <app-my-slider [slideObjects]="objects" [mediaType]="mediaType"></app-my-slider>
+            </div>
             <ion-row class="ion-no-padding" style="margin-top: -105px;">
                 <ion-item lines="none">
                     <ion-note slot="start" color="white" class="poppins-bold fs-12"
-                        style="text-shadow: 0px 0px 3px black !important;color: white;" 
-                        *ngIf="school">
+                        style="text-shadow: 0px 0px 3px black !important;color: white;" *ngIf="school">
                         @{{school?.name}}
                     </ion-note>
                 </ion-item>
             </ion-row>
             <ion-card-content class="fs-12" style="z-index: 1; padding-top: 54px; padding-bottom: 0;">
+                <ion-row class="ion-no-padding ion-no-margin fs-10 mb-2">
+                    <ion-col size="6">
+                        <ion-note class="w-100 fs-11    "> {{likes?.length}} likes </ion-note>
+                    </ion-col>
+                    <ion-col size="6">
+                        <ion-note class="w-100 fs-11 text-right float-right"> {{totalComments}} comments </ion-note>
+                    </ion-col>
+                    <ion-item lines="none" class="ion-no-padding">
+                        <ion-col size="4" slot="start"
+                            class="ion-align-items-start ion-text-start fs-20 ion-no-padding">
+                            <app-like [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
+                                (reload)="getLikes()"></app-like>
+                        </ion-col>
+                        <ion-col size="4" class="fs-20 ion-no-padding ion-align-items-start text-center">
+                            <ion-icon name="chatbubbles-outline" (click)="comment()"></ion-icon>
+                        </ion-col>
+                        <ion-col size="4" slot="end" class="fs-20 ion-no-padding ion-align-items-start text-center">
+                            <ion-icon name="share-social-outline" style="float:right;" (click)="share()"></ion-icon>
+                        </ion-col>
+                    </ion-item>
+                </ion-row>
+
                 <ion-note class="fs-12" color="dark">
-                    <p class="fs-12; mb-2" color="dark" >
-                        <b> 3452 likes </b> &nbsp; <b> 300 comments </b>
-                        <br>
-                    </p>
                     <ion-text>
                         {{Post?.message}}
                     </ion-text>
@@ -45,20 +64,17 @@
                 </ion-row>
                 <ion-row>
                     <ion-col class="ion-no-padding" size="12">
-                        <hr style="background: #e8e9ed;">
+                        <hr style="background: #e8e9ed; margin-bottom:0;">
                     </ion-col>
                 </ion-row>
-                <ion-row class="ion-no-padding">
-                    <ion-item lines="none" class="ion-no-padding">
-                        <ion-row slot="start" class="ion-align-items-start ion-text-start fs-25 ion-no-padding">
-                            <ion-icon name="heart-outline"></ion-icon> &nbsp;&nbsp;
-                            <ion-icon name="share-social-outline"></ion-icon>
-                        </ion-row>
-                        <ion-row slot="end" class="fs-25 ion-no-padding">
-                            <ion-icon name="bookmark-outline" style="margin-right: -20px;"></ion-icon>
-                        </ion-row>
+                <app-comments [showHeader]="false" [Post]="post" (totalComments)="TotalComments = $event" ></app-comments>
+
+                <!-- <ion-row class="ion-no-padding">
+                    <ion-item lines="none">
+                        <ion-input placeholder="  Write a comment"></ion-input>
+                        <ion-icon name="send-outline" (click)="send()"></ion-icon>
                     </ion-item>
-                </ion-row>
+                </ion-row> -->
             </ion-card-content>
 
         </ion-card>

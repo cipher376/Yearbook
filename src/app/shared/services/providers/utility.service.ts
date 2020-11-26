@@ -998,7 +998,7 @@ export class UtilityService {
       const day = ('' + date.getDay()).length == 1 ? '0' + date.getDay() : date.getDay()
       return '' + date.getFullYear() + '-' + month + '-' + day;
     }
-    return;
+    return undefined;
   }
 
   static validatePhoneNumber(number: string): boolean {

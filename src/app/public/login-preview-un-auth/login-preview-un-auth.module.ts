@@ -4,16 +4,23 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPreviewUnAuthPageRoutingModule } from './login-preview-un-auth-routing.module';
 
 import { LoginPreviewUnAuthPage } from './login-preview-un-auth.page';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginPreviewUnAuthPage
+  }
+];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPreviewUnAuthPageRoutingModule
+    RouterModule.forChild(routes)
   ],
   declarations: [LoginPreviewUnAuthPage]
 })

@@ -1,5 +1,4 @@
 import { MySignals } from 'src/app/shared/services/my-signals';
-import { CreatePostPage1 } from './../create-post1/create-post1.page';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
@@ -25,21 +24,21 @@ export class TabLinksPage implements OnInit {
     return this.userService.isAuthenticated();
   }
 
-  async showLogs() {
-    if (this.modal) {
-      this.modal.hidden = false;
-      return;
-    }
+  // async showLogs() {
+  //   if (this.modal) {
+  //     this.modal.hidden = false;
+  //     return;
+  //   }
 
-    this.modal = await this.modalController.create({
-      component: CreatePostPage1,
-      cssClass: 'my-custom-class'
-    });
-    this.signals.closeModalSource$.subscribe(log => {
-      this.modal.hidden = true;
-    });
-    return await this.modal.present();
-  }
+  //   this.modal = await this.modalController.create({
+  //     component: CreatePostPage1,
+  //     cssClass: 'my-custom-class'
+  //   });
+  //   this.signals.closeModalSource$.subscribe(log => {
+  //     this.modal.hidden = true;
+  //   });
+  //   return await this.modal.present();
+  // }
 
   userViewChange($event){
     console.log($event);

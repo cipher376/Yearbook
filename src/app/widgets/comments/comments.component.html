@@ -1,0 +1,53 @@
+<ion-row class="content-container" id="content-container" class="w-100 h-100">
+  <ion-list *ngIf="showHeader">
+    <ion-item>
+      <ion-text class="fs-12" *ngIf="comments?.length>0">{{comments?.length}} Comments</ion-text>
+      <ion-text *ngIf="comments?.length<=0" class="fs-12">No Comments</ion-text>
+      <ion-icon name="close-circle-outline" slot="end" (click)="close()" style=" margin-top: -12px; color: #8e8e8e;">
+      </ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-col size="12" class="inner-container ion-no-padding" id="inner-container">
+    <ion-row class="ion-no-padding pb-1 fs-12" *ngFor="let comment of comments; let i=index;">
+      <!-- <ion-col size='2' class="ion-no-padding ">
+        <ion-avatar class="" style="width: 45px;
+        height: 30px;">
+            <img [src]="creatorPhotoUrls[i]">
+        </ion-avatar>
+      </ion-col>
+      <ion-col size='10' class="ion-no-padding ">
+        <ion-text class="poppins-semi-bold ">{{getCommentUser(comment)?.firstName}}</ion-text>
+        <p class="ion-no-margin">
+          <ion-text>{{comment?.message}}</ion-text>
+        </p>
+      </ion-col> -->
+
+      <ion-col size="12" class="ion-no-padding">
+        <ion-item lines="none" class="ion-align-items-center">
+          <ion-row slot="start" style="height:30px">
+            <ion-avatar class="ion-padding-end" style="width: 45px;
+                height: 30px;" (click)="gotoProfile(getCommentUser(comment))">
+              <img [src]="creatorPhotoUrls[i]">
+            </ion-avatar>
+            <ion-note>
+              <span  color="dark" class="poppins-semi-bold fs-12 ">{{getCommentUser(comment)?.firstName}}</span>
+              <p class="ion-no-margin fs-11">
+                <ion-text>{{comment?.message}}</ion-text>
+              </p>
+            </ion-note>
+          </ion-row>
+          <ion-label slot="end" class="fs-10 ion-text-right"> {{comment?.dateCreated | toEventTime}} </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-col>
+  <div class="send-btn">
+    <ion-item lines="none">
+      <ion-input placeholder="  Write a comment" [(ngModel)]="comment.message"></ion-input>
+      <ion-icon name="send-outline" class="fs-20" (click)="send()"></ion-icon>
+    </ion-item>
+  </div>
+</ion-row>

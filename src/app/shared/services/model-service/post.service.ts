@@ -1,3 +1,4 @@
+import { IdentityPhoto, Photo, PhotoType } from './../../../models/my-media';
 import { Post } from './../../../models/post';
 import { MySignals } from '../my-signals';
 import { AlumniInterface } from '../../../models/alumni';
@@ -11,6 +12,7 @@ import { Injectable } from '@angular/core';
 import { Alumni } from '../../../models/alumni';
 import { MyStorage } from '../providers/storage/my-storage.service';
 import { DOWNLOAD_CONTAINER, SERVER_DOWNLOAD_PATH, USER_DEFAULT_PHOTO_URL } from '../../config';
+import { User } from 'src/app/models/user';
 
 
 
@@ -120,6 +122,63 @@ export class PostService {
     );
   }
 
+  getSchoolPosts(schoolId: string | number, pageInfo?: PageInfo, filter: any = {
+    order: 'id DESC',
+    include: [
+      {
+        relation: 'photos',
+      },
+      {
+        relation: 'videos'
+      },
+      {
+        relation: 'audios'
+      },
+      {
+        relation: 'postConfig'
+      },
+      {
+        relation: 'user',
+        scope: {
+          include: [
+            {
+              relation: 'photos',
+              scope: {
+                where: {
+                  profile: true
+                }
+              }
+            },
+            { relation: 'address' }
+          ]
+        }
+      },
+    ]
+  }): Observable<Post[]> {
+    if (pageInfo) {
+      filter = {
+        order: 'id DESC',
+        offset: pageInfo.offset,
+        limit: pageInfo.limit,
+        include: filter.include
+      };
+    }
+    filter.where = {
+      schoolId
+    };
+    console.log(filter);
+    filter = filter ? 'filter=' + JSON.stringify(filter) : '';
+    const url = '/posts?' + filter;
+    // // console.log(url);
+    return this.http.get<Post[]>(url).pipe(
+      map(res => {
+        // console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
 
   /////////////////////////////////////////////////////////////////////////
   /*************Local Post access*****/
@@ -141,10 +200,24 @@ export class PostService {
     return throwError(UtilityService.myHttpErrorFormat(e, 'alumni'));
   }
 
-  getPostOwnerImage(post: Post) {
-    if (post?.photos?.length > 0) {
-      return  DOWNLOAD_CONTAINER + post?.photos[0]?.fileName;
-    }
-    return USER_DEFAULT_PHOTO_URL;
+
+ 
+  /////////////////////////////////////////////////////////////////////////
+  /*************Local user access*****/
+  ///////////////////////////////////////////////////////////////////////////
+
+
+  // Read post object from sesson storage
+  async getPostLocal(): Promise<Post> {
+    return await this.store.getObject('post');
   }
+
+  deleteUserLocal() {
+    this.store.remove('user');
+  }
+
+  async setPostLocal(post: Post): Promise<boolean> {
+    return await this.store.setObject('post', post);
+  }
+
 }

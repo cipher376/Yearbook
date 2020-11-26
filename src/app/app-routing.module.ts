@@ -56,6 +56,10 @@ const routes: Routes = [
     path: 'about',
     loadChildren: () => import('./public/about/about.module').then(m => m.AboutModule)
   },
+  {
+    path: 'home', 
+    loadChildren: './public/home/home.module#HomePageModule'
+  },
   // {
   //   canActivate: [AuthGuardService, ScreenLockGuardService],
   //   canActivateChild: [AuthGuardService],
@@ -85,6 +89,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
   },
+  {
+    path: 'school-posts',
+    loadChildren: () => import('./public/school-posts/school-posts.module').then( m => m.SchoolPostsPageModule)
+  },
+
 
   // {
   //   path: 'schools-search',

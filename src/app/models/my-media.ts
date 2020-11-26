@@ -10,6 +10,12 @@ export enum MediaType {
   WEBSITE = 4
 }
 
+export enum PhotoType {
+  profile = 0,
+  cover = 1,
+  flag = 2
+}
+
 export interface MediaInterface {
   id?: number;
   userId?: number;

@@ -31,15 +31,15 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx'; // Android only
 import { IOSFilePicker } from '@ionic-native/file-picker/ngx'; // IOS only
 import { VideoEditor } from '@ionic-native/video-editor/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
-import { DoubleTapDirective } from './directives/double-tap.directive';
-import { IonicGestureConfig } from './shared/services/providers/customHammerConfig';
 import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { AgmCoreModule } from '@agm/core';
 import { InViewportModule } from '@thisissoon/angular-inviewport';
-
+import { DoubleTapDirective } from './shared/directives/double-tap.directive';
+import { IonicGestureConfig } from './shared/services/providers/customHammerConfig';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
   declarations: [AppComponent, DoubleTapDirective],
@@ -87,6 +87,7 @@ import { InViewportModule } from '@thisissoon/angular-inviewport';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
   ],

@@ -21,10 +21,7 @@ export class Credentials implements CredentialsInterface {
   remember?: boolean;
 
   constructor(cred?: CredentialsInterface) {
-    this.id = cred.id;
-    this.email = cred.email;
-    this.phone = cred.phone;
-    this.password = cred.password;
+    Object.assign(this, cred);
   }
 }
 

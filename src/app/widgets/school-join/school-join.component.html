@@ -1,0 +1,104 @@
+<ion-content>
+  <ion-row class="top-row-header ion-no-padding " style="box-shadow: 0px 2px 4px -4px;">
+    <ion-col size="12" class="ion-no-padding">
+      <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+        <ion-row class="ion-row" (click)="closeModals()">
+          <ion-icon class="fs-25" [src]="'../../../assets/icon/round-arrow_back.svg'"></ion-icon>&nbsp;&nbsp;
+          <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note>
+        </ion-row>
+        <!-- <ion-button slot="end" fill="outline" shape="round" color="danger"  size="small"
+          style="--border-width: 0px;float: right;">
+          <ion-icon name="close"></ion-icon>
+        </ion-button> -->
+      </ion-item>
+    </ion-col>
+
+  </ion-row>
+  <!-- Top correction -->
+  <ion-row class="ion-content-top_correction">
+  </ion-row>
+  <!-- Top correction ends -->
+
+  <!-- Main body content -->
+  <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent">
+    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+    <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
+      padding-bottom: 7px;border-bottom: thin dotted lightgray;" [routerLink]="['/links/schools-search']"
+      routerLinkActive="router-link-active">
+      <ion-note class="poppins-bold fs-13 ion-padding-top ion-padding-bottom" color="dark">
+        Become alumni of {{school?.name}}<br>
+        <ion-label class="hind-regular fs-12">+100 alumni already</ion-label>
+      </ion-note>
+      <ion-avatar slot="end"><img src="{{school?.thumbnailUrl}}"></ion-avatar>
+    </ion-item>
+  </ion-row>
+
+  <form [formGroup]="aluForm">
+    <ion-row class="ion-no-padding ion-no-margin ion-text-left">
+      <!-- <ion-col size="12">
+        <ion-note class="poppins-bold fs-14" color="dark">Date of enrollment into {{school?.name}}?</ion-note>
+        <ion-datetime value="" formControlName="yearStarted" placeholder="09/12/2021"  displayFormat="YYYY MM">
+        </ion-datetime>
+      </ion-col> -->
+      <ion-item lines="none" class="ion-no-padding ion-no-margin poppins-bold fs-13">
+        <ion-datetime lot="start" value="" formControlName="yearStarted" placeholder="When did you start?*"
+          displayFormat="YYYY MM"></ion-datetime>
+        <ion-icon slot="end" size="small" name="calendar-outline"></ion-icon>
+      </ion-item>
+      <ion-item lines="none" class="ion-no-padding ion-no-margin poppins-bold fs-13">
+        <ion-datetime slot="start" value="" formControlName="yearCompleted" placeholder="When did/will you graduate?*"
+          displayFormat="YYYY MM"></ion-datetime>
+        <ion-icon slot="end" size="small" name="calendar-outline"></ion-icon>
+      </ion-item>
+
+      <ion-col size="12"></ion-col>
+      <ion-item-group class="ion-no-padding  ion-no-margin ion-margin-start poppins-bold fs-13"
+      style="width: 94% !important;">
+        <ion-item-divider>
+          <ion-label color="dark">Optional</ion-label>
+        </ion-item-divider>
+        <ion-item lines="none" class="ion-no-padding ion-no-margin poppins-bold fs-13">
+          <ion-input class="input-w-icon" formControlName="schoolIndexNumber"
+            placeholder="Your school ID or INDEX NUMBER">
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" class=" ion-no-padding ion-no-margin poppins-bold fs-13">
+          <ion-label class="input-w-icon">Certificate or degree (to be) earned</ion-label>
+          <ion-select class="input-w-icon" value="" okText="Ok" cancelText="Cancel" formControlName="degreeType">
+            <ion-select-option *ngFor="let degree of degreeTypes" value="{{degree}}">{{degree}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item lines="none" class="ion-no-padding  ion-no-margin poppins-bold fs-13">
+          <ion-input class="input-w-icon" formControlName="degreeName"
+            placeholder="Enter the certificate or degree name if apply">
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" class="ion-no-padding  ion-no-margin poppins-bold fs-13">
+          <ion-input class="input-w-icon" formControlName="degreeProgramme"
+            placeholder="Your course of study if apply">
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" class="ion-no-padding  ion-no-margin poppins-bold fs-13">
+          <ion-input class="input-w-icon" formControlName="degreeCgpa" placeholder="Your aggregate or CGPA if any">
+          </ion-input>
+        </ion-item>
+      </ion-item-group>
+    </ion-row>
+    <ion-row style="margin-top: 2vh;">
+      <ion-col size="2"></ion-col>
+      <ion-col size="5">
+        <ion-button shape="round" color="tertiary" class="fs-13 " (click)="save()">S<span
+            class="ion-text-lowercase">ave</span></ion-button>
+      </ion-col>
+      <ion-col size="5">
+        <ion-button shape="round" color="danger"  class="fs-16 " (click)="cancel()"><span
+            class="ion-text-lowercase">X</span></ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  <!-- 0596750590 -->
+
+  <!-- Main body content ends -->
+
+</ion-content>

@@ -74,6 +74,15 @@ export class CreatePostComponent implements OnInit, OnDestroy {
 
 
   async postWithPhotos() {
+    if (this.myPhotoPicker.selectedCloudPhotos?.length > 0 ||
+      this.myPhotoPicker.devicePhotos?.length > 0) {
+      this.userPost = await this.postMessage(true).catch(error => {
+        this.toaster.toast('No connection');
+      }) as any;
+      if (!this.userPost?.id) {
+        return;
+      }
+    }
     if (this.myPhotoPicker.galleryType === 'cloud') {
 
       // Create post with cloud photos
@@ -121,6 +130,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
         // reload cloud images
         this.myPhotoPicker.loadCloudPhotos();
         this.mediaPage = '';
+        this.signals.announcePostReload();
 
       }));
 
@@ -129,7 +139,16 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     }
   }
 
-  postWithAudios() {
+  async postWithAudios() {
+    if (this.myAudioPicker.selectedCloudAudios?.length > 0 ||
+      this.myAudioPicker.deviceAudios?.length > 0) {
+      this.userPost = await this.postMessage(true).catch(error => {
+        this.toaster.toast('No connection');
+      }) as any;
+      if (!this.userPost?.id) {
+        return;
+      }
+    }
     if (this.myAudioPicker.galleryType === 'cloud') {
       // Create post  with cloud Audio
       // These are existing Audio, so just create
@@ -175,6 +194,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
         // reload cloud images
         this.myAudioPicker.loadCloudAudios();
         this.mediaPage = '';
+        this.signals.announcePostReload();
+
       }));
 
       // Trigger upload event
@@ -184,6 +205,15 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   }
 
   async postWithVideos() {
+    if (this.myVideoPicker.selectedCloudVideos?.length > 0 ||
+      this.myVideoPicker.deviceVideos?.length > 0) {
+      this.userPost = await this.postMessage(true).catch(error => {
+        this.toaster.toast('No connection');
+      }) as any;
+      if (!this.userPost?.id) {
+        return;
+      }
+    }
     if (this.myVideoPicker.galleryType === 'cloud') {
       // Create post  with cloud videos
       // These are existing videos, so just create
@@ -231,6 +261,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
         // reload cloud images
         this.myVideoPicker.loadCloudVideos();
         this.mediaPage = '';
+        this.signals.announcePostReload();
+
 
       }));
 
@@ -242,12 +274,6 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   async post() {
     // cancel all upload subscription
     UtilityService.destroySubscription(this.uploadSub$);
-    this.userPost = await this.postMessage().catch(error => {
-      this.toaster.toast('No connection');
-    }) as any;
-    if (!this.userPost?.id) {
-      return;
-    }
 
     if (this.mediaPage === 'photos') {
       console.log('Posting with images');
@@ -295,9 +321,9 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     }
   }
 
-  async postMessage() {
+  async postMessage(allowEmpty = false) {
     this.userPost = {} as PostInterface;
-    if (!this.message) {
+    if (!this.message && !allowEmpty) {
       await this.toaster.toast('Please say something!');
       return;
     }
@@ -308,6 +334,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       if (post) {
         this.message = '';
         this.toaster.toast('Your post is sent.');
+        this.signals.announcePostReload();
       }
       return post;
     });

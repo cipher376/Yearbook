@@ -1,0 +1,55 @@
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="refreshPosts($event)">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Page header -->
+  <ion-row class="top-row-header ion-no-padding ">
+    <ion-col size="12" class="ion-no-padding ">
+      <ion-item class="ion-no-padding">
+        <ion-row class="ion-row">
+          <ion-label class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> Welcome, </ion-label>
+          <ion-text class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> {{ firstname }} </ion-text>
+
+          <ion-label class="fs-13 pl-2 poppins" *ngIf="!isAuthenticated()" (click)="gotoLogin()">Log In</ion-label>
+
+        </ion-row>
+        <!-- <ion-icon slot="end" name="reorder-three-outline" *ngIf="isAuthenticated()"></ion-icon> -->
+        <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right"> Home </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <!-- Page header ends -->
+
+
+  <!-- Top correction -->
+  <ion-row class="ion-content-top_correction">
+  </ion-row>
+  <!-- Top correction ends -->
+
+
+
+  <!-- <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <app-trending></app-trending>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-row class="mt-1">
+    <ion-col size="12" class="ion-no-padding">
+      <!-- <app-create-post></app-create-post> -->
+      <ng-template ngFor let-post [ngForOf]="posts" >
+        <app-post-widget1 [Post]="post"></app-post-widget1>
+      </ng-template>
+
+    </ion-col>
+  </ion-row>
+
+  <!-- Main body content ends -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMorePosts($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading ...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

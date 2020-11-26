@@ -189,4 +189,32 @@ export class MySignals {
   // announceNewRole(role: Policy) {
   //   this.newRoleSource.next(role);
   // }
+
+  /***************************************************
+   *  ****************Reload signals******************
+   *  ************************************************/
+  private reloadSchoolsSource = new Subject<null>();
+  reloadSchoolsSource$ = this.reloadSchoolsSource.asObservable();
+  announceSchoolsReload() {
+    this.reloadSchoolsSource.next();
+  }
+
+  private reloadUsersSource = new Subject<null>();
+  reloadUsersSource$ = this.reloadUsersSource.asObservable();
+  announceUsersReload() {
+    this.reloadUsersSource.next();
+  }
+
+  private reloadUserSchoolsSource = new Subject<null>();
+  reloadUserSchoolsSource$ = this.reloadUserSchoolsSource.asObservable();
+  announceUserSchoolsReload() {
+    this.reloadUserSchoolsSource.next();
+  }
+
+  private reloadPostsSource = new Subject<null>();
+  reloadPostsSource$ = this.reloadPostsSource.asObservable();
+  announcePostReload() {
+    this.reloadPostsSource.next();
+  }
+
 }

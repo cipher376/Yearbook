@@ -1,6 +1,6 @@
 import { PageInfo, getPagedData } from '../../../models/page';
 import { Router } from '@angular/router';
-import { API_ROOT_URL } from '../../config';
+import { API_ROOT_URL, DOWNLOAD_CONTAINER, USER_DEFAULT_PHOTO_URL } from '../../config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable, of, Subject } from 'rxjs';
@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { CredentialsInterface, User, UserInterface } from '../../../models/user';
 import { MyStorage } from '../providers/storage/my-storage.service';
 import { UtilityService } from '../providers/utility.service';
+import { PhotoType, IdentityPhoto } from 'src/app/models/my-media';
 
 export interface Token {
   token: '';
@@ -23,11 +24,12 @@ export class UserService {
   redirectUrl = '';
 
 
-
   private userAuthenticatedSource = new Subject<User>();
   userAuthenticatedSource$ = this.userAuthenticatedSource.asObservable();
 
-  constructor(private http: HttpClient, private store: MyStorage,
+  constructor(
+    private http: HttpClient,
+    private store: MyStorage,
     private router: Router) {
     this.getToken().then(token => {
       this.token = token;
@@ -184,6 +186,11 @@ export class UserService {
         },
       };
     }
+    filter.include = [
+      { relation: 'photos' },
+      { relation: 'address' },
+    ];
+
     filter = filter ? '?filter=' + JSON.stringify(filter) : '';
     const url = '/users' + filter;
     // console.log(url);
@@ -315,7 +322,48 @@ export class UserService {
     return await this.store.setObject('user', user);
   }
 
+  getOwnerImage(user: User, photoType?: PhotoType) {
+    const identityPhoto: IdentityPhoto = {
+      cover: null,
+      profile: null,
+      flag: null,
 
+    } as IdentityPhoto;
+    if (user?.photos?.length > 0) {
+      for (const photo of user.photos) {
+        if (photo.coverImage) {
+          identityPhoto.cover = photo;
+          if (photoType === PhotoType.cover) {
+            return (DOWNLOAD_CONTAINER + identityPhoto?.cover?.fileName);
+          }
+        }
+        if (photo.profile) {
+          identityPhoto.profile = photo;
+          if (photoType === PhotoType.profile) {
+            return (DOWNLOAD_CONTAINER + identityPhoto?.profile?.fileName);
+          }
+        }
+        if (photo.flag) {
+          identityPhoto.flag = photo;
+          if (photoType === PhotoType.flag) {
+            return (DOWNLOAD_CONTAINER + identityPhoto?.flag?.fileName);
+          }
+        }
+      }
+    }
+    return USER_DEFAULT_PHOTO_URL;
+  }
+  async getSelectedUserLocal(): Promise<User> {
+    return await this.store.getObject('selected-user');
+  }
+
+  deleteSelectedUserLocal() {
+    this.store.remove('selected-user');
+  }
+
+  async setSelectedUserLocal(user: User): Promise<boolean> {
+    return await this.store.setObject('selected-user', user);
+  }
 
   private handleError(e: any): any {
     // console.log(e);

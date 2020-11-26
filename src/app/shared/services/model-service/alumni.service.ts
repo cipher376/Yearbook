@@ -46,6 +46,7 @@ export class AlumniService {
 
   getAlumni(pageInfo?: PageInfo, userId?: number, schoolId?: number): Observable<Alumni[]> {
     const filter = {
+      order: 'id DESC',
       include: [
         { relation: 'user' },
         {
@@ -87,6 +88,7 @@ export class AlumniService {
 
   getUserAlumni(userId: any, schoolId?: any): Observable<Alumni[]> {
     const filter = {
+      order: 'id DESC',
       include: [
         { relation: 'degree' },
         {
@@ -124,6 +126,7 @@ export class AlumniService {
 
   getSchoolAlumni(schoolId: any): Observable<Alumni[]> {
     const filter = {
+    order: 'id DESC',
       where: {
         schoolId
       },
@@ -148,6 +151,7 @@ export class AlumniService {
     let filter;
     if (pageInfo) {
       filter = {
+    order: 'id DESC',
         offset: pageInfo.offset * pageInfo.limit,
         limit: pageInfo.limit,
         where: {

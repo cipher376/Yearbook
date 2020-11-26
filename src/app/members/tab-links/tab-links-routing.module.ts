@@ -1,6 +1,4 @@
-import { TimeLinePageModule } from './../time-line/time-line.module';
-import { SchoolsProfilePageModule } from './../schools-profile/schools-profile.module';
-import { SchoolsPageModule } from './../schools/schools.module';
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+        loadChildren: () => import('../../public/home/home.module').then(m => m.HomePageModule)
       },
       {
         canActivate: [AuthGuardService, ScreenLockGuardService],
@@ -30,15 +28,15 @@ const routes: Routes = [
       },
       {
         path: 'schools-search',
-        loadChildren: () => import('../schools-search/schools-search.module').then(m => m.SchoolsSearchPageModule)
+        loadChildren: () => import('../../public/schools-search/schools-search.module').then(m => m.SchoolsSearchPageModule)
       },
       {
         path: 'schools-location',
-        loadChildren: () => import('../schools-location/schools-location.module').then(m => m.SchoolsLocationPageModule)
+        loadChildren: () => import('../../public/schools-location/schools-location.module').then(m => m.SchoolsLocationPageModule)
       },
       {
         path: 'school-profile',
-        loadChildren: () => import('../schools-profile/schools-profile.module').then(m => m.SchoolsProfilePageModule)
+        loadChildren: () => import('../../public/schools-profile/schools-profile.module').then(m => m.SchoolsProfilePageModule)
       },
       {
         path: 'settings',
@@ -49,21 +47,13 @@ const routes: Routes = [
         loadChildren: () => import('../my-schools/my-schools.module').then(m => m.MySchoolsPageModule)
       },
       {
-        path: 'schools-join',
-        loadChildren: () => import('../schools-join/schools-join.module').then(m => m.SchoolsJoinPageModule)
-      },
-      {
-        path: 'create-post1',
-        loadChildren: () => import('../create-post1/create-post1.module').then(m => m.CreatePostPage1Module)
+        path: 'school-posts',
+        loadChildren: () => import('../../public/school-posts/school-posts.module').then(m => m.SchoolPostsPageModule)
       },
       {
         path: 'timeline',
         loadChildren: () => import('../time-line/time-line.module').then(m => m.TimeLinePageModule)
-      },
-      {
-        path: 'posts',
-        loadChildren: () => import('../post/post.module').then(m => m.PostPageModule)
-      },
+      }
     ]
   },
   {
