@@ -8,7 +8,7 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { PostService } from './../../shared/services/model-service/post.service';
 import { MyPhotoPickerComponent } from './../my-photo-picker/my-photo-picker.component';
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Input } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
 import { Photo, Video } from 'src/app/models/my-media';
@@ -22,7 +22,7 @@ import { MyAudioPickerComponent } from '../my-audio-picker/my-audio-picker.compo
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent implements OnInit, OnDestroy {
-  mediaPage = '';
+  @Input() mediaPage = '';
 
   message: string;
   user: User;
@@ -36,6 +36,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   @ViewChild('myAudioPicker') myAudioPicker: MyAudioPickerComponent;
   @ViewChild('myVideoPicker') myVideoPicker: MyVideoPickerComponent;
   // @ViewChild('myDocumentPicker') myDocumentPicker: MyDocumentPickerComponent;
+
+  @Input() showHeader = false;
 
   constructor(
     private postService: PostService,
@@ -338,6 +340,10 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       }
       return post;
     });
+  }
+
+  closeModal() {
+    this.signals.announceCloseModal('create-post');
   }
 
 }

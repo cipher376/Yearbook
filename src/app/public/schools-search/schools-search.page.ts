@@ -23,7 +23,7 @@ import { ToasterService } from 'src/app/shared/services/providers/widgets/toaste
 export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   previousPage = '';
   selectedSchools: School[] = [];
-  userSchools: School[] = [];
+  // userSchools: School[] = [];
   schools: School[] = [];
   schoolsIdentityPhoto: IdentityPhoto[] = [];
 
@@ -32,7 +32,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   sub$ = [];
 
   searchOffset = 0; // Begin search at zero index;
-  searchLimit = 20; // pull 20 schools at a time
+  searchLimit = 10; // pull 20 schools at a time
   searchKey = '';
 
   infiniteScrollTarget: any;
@@ -57,14 +57,14 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.getObject<Alumni[]>('user-alumni').then(alumni => {
-      if (alumni) {
-        this.userAlumni = alumni;
-        this.userAlumni.forEach(alu => {
-          this.userSchools.push(alu.school);
-        });
-      }
-    });
+    // this.store.getObject<Alumni[]>('user-alumni').then(alumni => {
+    //   if (alumni) {
+    //     this.userAlumni = alumni;
+    //     this.userAlumni.forEach(alu => {
+    //       this.userSchools.push(alu.school);
+    //     });
+    //   }
+    // });
   }
 
   ngAfterViewInit() {
@@ -100,13 +100,13 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     return this.userService.isAuthenticated();
   }
 
-  async join(school: School) {
-    if (await this.schoolService.setSchoolLocal(school)) {
-      // navigate to join school page
-      this.router.navigateByUrl('/links/schools-join');
-    }
-    // console.log(school.name);
-  }
+  // async join(school: School) {
+  //   if (await this.schoolService.setSchoolLocal(school)) {
+  //     // navigate to join school page
+  //     this.router.navigateByUrl('/links/schools-join');
+  //   }
+  //   // console.log(school.name);
+  // }
 
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -144,7 +144,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
       if (keyTrigger) {
         console.log(schools);
         this.schools = schools;
-        this.schoolsIdentityPhoto = UtilityService.getSchoolsIdentityPhotos(schools);
+        this.schoolsIdentityPhoto = UtilityService.getIdentityPhotos(schools);
       } else {
         this.schools = this.schools.concat(schools);
         this.searchOffset = this.schools.length;
@@ -166,7 +166,7 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getProfilePhotoUrl(identityPhoto: IdentityPhoto) {
-    return UtilityService.getSchoolProfilePhotoUrl(identityPhoto);
+    return SchoolService.getSchoolProfilePhotoUrl(identityPhoto);
   }
 
 }

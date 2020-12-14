@@ -1,0 +1,6 @@
+<ion-button size="small" expand="block" class="mx-2 mb-1" [color]="color" (click)="follow()" *ngIf="!isFollowing">
+  <ion-icon name="add"></ion-icon> Follow
+</ion-button>
+<ion-button size="small" expand="block" class="mx-2 mb-1" color="medium" (click)="follow()" *ngIf="isFollowing">
+  <ion-icon name="remove"></ion-icon> Unfollow
+</ion-button>

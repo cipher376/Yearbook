@@ -20,19 +20,13 @@ export interface DegreeInterface {
   cgpa?: number;
 }
 
-export class Degree {
+export class Degree implements DegreeInterface {
   id: number;
   name: string;
   type: DegreeType;
   programme: string;
   cgpa?: number;
   constructor(private data?: DegreeInterface) {
-    if (data) {
-      this.id = data.id;
-      this.name = data.name;
-      this.type = data.type;
-      this.programme = data.programme;
-      this.cgpa = data.cgpa;
-    }
+    Object.assign(this, data);
   }
 }

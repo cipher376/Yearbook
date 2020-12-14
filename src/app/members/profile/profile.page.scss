@@ -6,17 +6,19 @@
     max-width: 100vw;
     height: 35vh;
     min-height: 250px;
+
+    
 }
 
 ion-avatar {
-    width: 100%;
+    width: 80px;
     height: 80px;
-    position: absolute;
+    background: white;
     text-align: center;
-    z-index: 1;
+    z-index: 4;
     margin-top: 50px;
     color: white;
-
+    margin-left: calc(50% - 40px);
     img {
         width: 80px;
         height: 80px;
@@ -31,10 +33,11 @@ ion-avatar {
 }
 
 .main {
-    margin-top: -30px;
+    // margin-top: -30px;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     box-shadow: none;
+    z-index: 4;
 }
 
 .bio {
@@ -42,4 +45,30 @@ ion-avatar {
     width: 80%;
     max-width: 400px;
     margin: 0 auto;
+}
+
+.fixed-profile-menu-atop{
+    position: fixed;
+    z-index: 10001;
+    background: white;
+    width: 100%;
+    margin-top: -260px !important;
+    padding-top: 10px;
+    height: 46px !important;
+}
+
+.min-menu{
+    color: var(--ion-color-light);
+}
+
+.tag{
+    position: absolute !important;
+    width: 100% !important;
+    z-index: 10;
+    background: transparent;
+    padding: 0 !important;
+    margin: 0 !important;
+    padding-top: 8px !important;
+    padding-right: 5px !important;
+    color: white !important;
 }

@@ -1,0 +1,14 @@
+<div style="width: 100vw;     border-top: solid thin #0000001f; ">
+  <ion-item lines="none" style="margin-bottom: -14px;background: var(--ion-color-light)">
+    <span>{{char}}</span>
+    <ion-icon name="close-circle-outline" slot="end" (click)="close()"
+      style="    margin: 0px;
+      color: #8e8e8e;
+      margin-top: -16px;
+      margin-right: -13px;">
+    </ion-icon>
+  </ion-item>
+  <emoji-mart (emojiClick)="addEmoji($event)" skin="6" sheetSize="16" totalFrequentLines="5" 
+  perLine="4" emojiSize="20" enableSearch="false"
+    set="apple" isNative="true" showPreview="false" title="Yearbook" color="#ae65c5"></emoji-mart>
+</div>

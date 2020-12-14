@@ -1,3 +1,4 @@
+import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { DEFAULT_DOCUMENT_COVER } from './../../shared/config';
 import { Video } from 'src/app/models/my-media';
 import { DEFAULT_AUDIO_COVER, DOWNLOAD_CONTAINER } from 'src/app/shared/config';
@@ -19,8 +20,7 @@ export class MySliderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() mediaType: MediaType;
 
   playVideo = false;
-  observer: IntersectionObserver;
-  playerEl: any;
+  playerObserver: { observer: IntersectionObserver, element: any }
 
   @ViewChild(VideoPlayerComponent) player: VideoPlayerComponent;
 
@@ -153,8 +153,8 @@ export class MySliderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
   ngOnDestroy(): void {
-    if (this.observer) {
-      this.observer.unobserve(this.playerEl);
+    if (this.playerObserver) {
+      this.playerObserver?.observer?.unobserve(this.playerObserver?.element);
     }
   }
 
@@ -214,29 +214,11 @@ export class MySliderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   stream() {
     this.playVideo = true;
-
     setTimeout(() => {
-      this.playerEl = document.querySelector('#' + this.sliderId);
-      // console.log(el);
-      // console.log(this.sliderId);
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2,
-      };
-
-      this.observer = new IntersectionObserver((entries, observer) => {
-        // console.log(entries);
-        const entry = entries[0];
-        // if player is out of view
-        if (!entry.isIntersecting) {
-          this.player = null;
-          this.playVideo = false;
-        }
-        // console.log(entry.isIntersecting);
-
-      }, options);
-      this.observer.observe(this.playerEl);
+      this.playerObserver = UtilityService.monitorElementOutOfView(this.sliderId, () => {
+        this.player = null;
+        this.playVideo = false;
+      });
     }, 500);
   }
 

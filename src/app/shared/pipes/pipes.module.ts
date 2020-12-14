@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToEventTime } from './pipes.pipe';
+import { SafeHtmlPipe, ToEventTime } from './pipes.pipe';
 
 @NgModule({
-  declarations: [ToEventTime],
+  declarations: [ToEventTime, SafeHtmlPipe],
   imports: [
     CommonModule
   ],
-  exports: [ ToEventTime ]
+  exports: [ ToEventTime, SafeHtmlPipe ]
 })
 export class PipesModule { }

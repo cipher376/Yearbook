@@ -17,7 +17,7 @@ export interface AddressInterface {
 
 }
 
-export class Address {
+export class Address implements AddressInterface{
   id: number;
   userId?: number;
   schoolId?: number;
@@ -33,17 +33,7 @@ export class Address {
    *
    */
   constructor(private address?: AddressInterface) {
-    if (address) {
-      this.id = address.id;
-      this.userId = address.userId;
-      this.schoolId = address.schoolId;
-      this.city = address.city;
-      this.state = address.state;
-      this.country = address.country;
-      this.latLng = address.latLng;
-      this.postcode = address.postcode;
-      this.suburb = address.suburb;
-      this.street = address.street;
-    }
+    Object.assign(this, address);
+  
   }
 }

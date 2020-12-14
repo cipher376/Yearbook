@@ -1,6 +1,6 @@
 import { PageInfo, getPagedData } from '../../../models/page';
 import { Router } from '@angular/router';
-import { API_ROOT_URL, DOWNLOAD_CONTAINER, USER_DEFAULT_PHOTO_URL } from '../../config';
+import { API_ROOT_URL, DOWNLOAD_CONTAINER, USER_DEFAULT_COVER_URL, USER_DEFAULT_PHOTO_URL } from '../../config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable, of, Subject } from 'rxjs';
@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { CredentialsInterface, User, UserInterface } from '../../../models/user';
 import { MyStorage } from '../providers/storage/my-storage.service';
 import { UtilityService } from '../providers/utility.service';
-import { PhotoType, IdentityPhoto } from 'src/app/models/my-media';
+import { PhotoType, IdentityPhoto, Photo } from 'src/app/models/my-media';
 
 export interface Token {
   token: '';
@@ -35,6 +35,44 @@ export class UserService {
       this.token = token;
     });
 
+  }
+
+
+  static getUserIdentityPhoto(user: User) {
+    console.log(user?.photos);
+    const photo: IdentityPhoto = {} as any;
+    user?.photos?.forEach(ph => {
+      if (ph.profile) {
+        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileUrl ?? USER_DEFAULT_PHOTO_URL;
+        photo.profile = ph;
+      }
+
+      if (ph.coverImage) {
+        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileUrl ?? '';
+        ph.fileUrl = DOWNLOAD_CONTAINER + ph.thumbnailUrl ?? '';
+        photo.cover = ph;
+      }
+    });
+
+    if (!photo.profile && !photo?.cover) {
+      photo.profile = new Photo();
+      photo.profile.fileUrl = USER_DEFAULT_PHOTO_URL;
+      photo.profile.thumbnailUrl = USER_DEFAULT_PHOTO_URL;
+
+      photo.cover = new Photo();
+      photo.cover.fileUrl = '';
+      photo.cover.thumbnailUrl = '';
+    }
+
+    return photo;
+  }
+
+  static getUserProfilePhotoUrl(identityPhoto: IdentityPhoto) {
+    return identityPhoto?.profile?.thumbnailUrl || USER_DEFAULT_PHOTO_URL;
+  }
+
+  static getUserCoverPhotoUrl(identityPhoto: IdentityPhoto) {
+    return identityPhoto?.cover?.thumbnailUrl || USER_DEFAULT_COVER_URL;
   }
 
   announceUserAuthenticated(user: User) {
@@ -119,7 +157,7 @@ export class UserService {
     return this.http.patch<User>('/users/' + user.id, user).pipe(
       map(res => {
         console.log(res);
-        let user = new User(res, res as CredentialsInterface) as any;
+        const user = new User(res, res as CredentialsInterface) as any;
         this.store.setObject('user', user).then(_ => _);
         return user;
       }),
@@ -203,29 +241,31 @@ export class UserService {
     );
   }
 
-  getUserDetails(userId: any) {
-    const filter = {
-      include: [
-        { relation: 'photos' },
-        { relation: 'address' },
-        { relation: 'userConfig' },
-        { relation: 'post' },
-        {
-          relation: 'alumni',
-          scope: {
-            include: [
-              {
-                relation: 'school',
-                // scope: {
-                //   include: [
-                //     { relation: 'photos' }]
-                // }
-              }
-            ]
+  getUserDetails(userId: any, filter?: any) {
+    if (!filter) {
+      filter = {
+        include: [
+          { relation: 'photos' },
+          { relation: 'address' },
+          { relation: 'userConfig' },
+          { relation: 'post' },
+          {
+            relation: 'alumni',
+            scope: {
+              include: [
+                {
+                  relation: 'school',
+                  // scope: {
+                  //   include: [
+                  //     { relation: 'photos' }]
+                  // }
+                }
+              ]
+            }
           }
-        }
-      ]
-    };
+        ]
+      };
+    }
     const url = `/users/${userId}?filter=` + JSON.stringify(filter);
     return this.http.get<User[]>(url).pipe(
       map(res => {
@@ -273,6 +313,30 @@ export class UserService {
       catchError(e => this.handleError(e))
     );
   }
+
+  searchUser(searchKey = 'all', pageInfo?: PageInfo): Observable<User[]> {
+    let filter = {};
+    if (pageInfo) {
+      filter = {
+        offset: pageInfo.offset,
+        limit: pageInfo.limit,
+      };
+    }
+    if (!searchKey) {
+      searchKey = 'all';
+    }
+    const url = '/users-search/' + searchKey + '?filter=' + JSON.stringify(filter) ?? '';
+    console.log(url);
+    return this.http.get<User[]>(url).pipe(
+      map(res => {
+        console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
+
 
   /**************************************/
   /************Lock screen***************/
@@ -353,6 +417,9 @@ export class UserService {
     }
     return USER_DEFAULT_PHOTO_URL;
   }
+
+
+
   async getSelectedUserLocal(): Promise<User> {
     return await this.store.getObject('selected-user');
   }

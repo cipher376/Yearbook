@@ -152,6 +152,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
           // fetch user details
           this.userService.getMyProfile().subscribe(user => {
             this.user = user;
+            console.log(this.user);
             if (this.user?.phone) {
               this.router.navigateByUrl('/links/home');
             } else {

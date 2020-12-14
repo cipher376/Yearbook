@@ -20,15 +20,29 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   public logs = [];
   public appPages = [
     {
+        title: 'Profile',
+        url: '/links/profile',
+        icon: 'person',
+        params: {user: true}
+      },
+    {
       title: 'Schools',
       url: '/links/my-schools',
-      icon: 'school'
+      icon: 'school',
+      params: {}
     },
     {
       title: 'Timeline',
       url: '/links/timeline',
-      icon: 'stopwatch'
+      icon: 'stopwatch',
+      params: {}
     },
+    // {
+    //   title: 'Find class mate',
+    //   url: '/links/users-search',
+    //   icon: 'people',
+    //   params: {}
+    // },
     {
       title: 'Find your way',
       url: '/links/schools-location',
@@ -50,6 +64,12 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       params: {}
     },
     {
+      title: 'Find year mate',
+      url: '/links/users-search',
+      icon: 'people',
+      params: {}
+    },
+    {
       title: 'Login',
       url: '/login',
       icon: 'person-circle',
@@ -61,7 +81,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       icon: 'person-add',
       params: {}
     },
-  ]
+  ];
+
   public otherPages = [
     ...this.publicPages
   ];
@@ -106,7 +127,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     setTimeout(() => {
       this.setMenu();
       this.cdr.detectChanges();
-      console.log(this.otherPages);
+      // console.log(this.otherPages);
     }, 100);
   }
 

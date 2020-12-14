@@ -4,8 +4,10 @@ export interface FollowInterface {
     id?: any;
     leaderId?: any;
     followerId?: any;
-    dateCreated?: Date;
-    updatedAt?: Date;
+    dateFollowed?: Date;
+    lastModified?: Date;
+    isFollowing?: boolean;
+    leaderModelName: string;
     leader?: User;
     follower?: User;
 }
@@ -14,7 +16,10 @@ export class Follow implements FollowInterface {
     id: any;
     leaderId: any;
     followerId: any;
-    dateCreated: Date;
+    dateFollowed: Date;
+    lastModified?: Date;
+    isFollowing?: boolean;
+    leaderModelName: string;
     leader: User;
     follower: User;
     constructor(data?: FollowInterface) {

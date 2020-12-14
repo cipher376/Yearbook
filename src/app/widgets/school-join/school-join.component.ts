@@ -1,7 +1,7 @@
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 import { Degree, DEGREE_TYPES } from './../../models/degree';
-import { Component, OnInit, AfterViewInit, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Alumni, AlumniInterface } from 'src/app/models/alumni';
@@ -12,6 +12,7 @@ import { BrowserHistoryService } from 'src/app/shared/services/providers/navigat
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { AlumniService } from 'src/app/shared/services/model-service/alumni.service';
 import { User } from 'src/app/models/user';
+import { IdentityPhoto } from 'src/app/models/my-media';
 
 
 @Component({
@@ -24,9 +25,13 @@ export class SchoolJoinComponent implements OnInit, AfterViewInit, AfterContentI
   history$;
 
   school: School;
+  identityPhoto: IdentityPhoto;
+
   user: User;
   public aluForm: FormGroup;
   public alumnus: Alumni = new Alumni();
+
+  @Input() alumniCount = 0;
 
   sub$ = [];
 
@@ -66,6 +71,7 @@ export class SchoolJoinComponent implements OnInit, AfterViewInit, AfterContentI
     this.schoolService.getSchoolLocal().then(school => {
       this.school = school;
       console.log(school);
+      this.identityPhoto = SchoolService.getSchoolIdentityPhoto(this.school);
     });
   }
 
@@ -127,8 +133,12 @@ export class SchoolJoinComponent implements OnInit, AfterViewInit, AfterContentI
     this.router.navigateByUrl('/links/schools-search');
   }
 
+  getProfilePhotoUrl() {
+    return SchoolService.getSchoolProfilePhotoUrl(this.identityPhoto);
+  }
+
   closeModals() {
-    this.signals.announceCloseModal();
+    this.signals.announceCloseModal('join-school');
   }
 
   save() {
@@ -217,5 +227,6 @@ export class SchoolJoinComponent implements OnInit, AfterViewInit, AfterContentI
     this.alumnus = new Alumni();
     this.createAlumnusForm();
   }
+
 
 }

@@ -27,8 +27,12 @@
   <ion-tabs name="bottom">
     <ion-tab-bar slot="bottom">
 
-      <ion-tab-button tab="my-schools" *ngIf="isAuthenticated()">
+      <!-- <ion-tab-button tab="my-schools" *ngIf="isAuthenticated()">
         <ion-icon name="school-outline" size="small"></ion-icon>
+      </ion-tab-button> -->
+
+      <ion-tab-button tab="schools-location">
+        <ion-icon name="locate-outline" size="small"></ion-icon>
       </ion-tab-button>
 
 
@@ -41,9 +45,14 @@
         <!-- <ion-badge color="danger">6</ion-badge> -->
       </ion-tab-button>
 
-      <ion-tab-button tab="profile" *ngIf="isAuthenticated()">
+      <!-- <ion-tab-button tab="profile" *ngIf="isAuthenticated()">
         <ion-icon name="person-outline" size="small"></ion-icon>
+      </ion-tab-button> -->
+
+      <ion-tab-button tab="users-search">
+        <ion-icon name="people-outline" size="small"></ion-icon>
       </ion-tab-button>
+
       <ion-tab-button tab="settings">
         <ion-icon name="cog-outline" size="small"></ion-icon>
       </ion-tab-button>

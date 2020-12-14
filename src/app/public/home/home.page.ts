@@ -1,3 +1,4 @@
+import { CreatePostComponent } from './../../widgets/create-post/create-post.component';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { PageInfo } from './../../models/page';
 import { PostService } from './../../shared/services/model-service/post.service';
@@ -5,8 +6,10 @@ import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { Post } from 'src/app/models/post';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, ModalController } from '@ionic/angular';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
+import { SchoolJoinComponent } from 'src/app/widgets/school-join/school-join.component';
+import { User } from 'src/app/models/user';
 
 
 @Component({
@@ -20,22 +23,29 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
 
   postCount = 0; // Total post fetched
   pageNumber = 1;
-  limit = 20;
+  limit = 10;
 
   posts: Post[] = [];
 
   sub$ = [];
+  modal: HTMLIonModalElement;
 
   infiniteScrollTarget: any;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   refresherTarget: any;
 
+  showPost = false;
+
+  user: User;
+  
   constructor(
     private userService: UserService,
     private router: Router,
     private postService: PostService,
-    private signals: MySignals
+    private signals: MySignals,
+    public modalController: ModalController,
+
   ) { }
 
 
@@ -43,10 +53,12 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     UtilityService.destroySubscription(this.sub$);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.sub$.push(this.signals.reloadPostsSource$.subscribe(_ => {
       this.loadRecentPost(true);
     }));
+
+    this.user = await this.userService.getUserLocal();
   }
 
   ngAfterViewInit(): void {
@@ -54,11 +66,6 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getUsername() {
-    if (this.isAuthenticated()) {
-      this.userService.getUserLocal().then(
-        user => this.firstname = user?.firstName
-      );
-    }
   }
 
   isAuthenticated() {
@@ -102,6 +109,25 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
 
     this.refresherTarget = event.target;
     this.loadRecentPost(true);
+  }
+
+  async showPostModal() {
+    if (!this.userService.isAuthenticated()) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
+    this.modal = await this.modalController.create({
+      component: CreatePostComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        showHeader: true,
+        mediaPage: 'photos'
+      }
+    });
+    this.signals.closeModalSource$.subscribe(log => {
+      this.modal.dismiss();
+    });
+    return await this.modal.present();
   }
 
 }

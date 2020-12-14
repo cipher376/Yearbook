@@ -1,4 +1,9 @@
-import { NO_SCHOOL_COVER_PHOTO_URL, SCHOOL_DEFAULT_PHOTO_URL, CREST_DEFAULT_PHOTO_URL } from './../../config';
+import {
+  NO_SCHOOL_COVER_PHOTO_URL, SCHOOL_DEFAULT_PHOTO_URL,
+  CREST_DEFAULT_PHOTO_URL,
+  USER_DEFAULT_PHOTO_URL,
+  DOWNLOAD_CONTAINER
+} from './../../config';
 import { IdentityPhoto } from '../../../models/my-media';
 import { MyStorage } from './storage/my-storage.service';
 import { Injectable } from '@angular/core';
@@ -10,6 +15,8 @@ import { Photo } from 'src/app/models/my-media';
 import { GetLibraryOptions, LibraryItem } from '@ionic-native/photo-library/ngx';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
+import { Degree, DegreeType } from '../../../models/degree';
+import { User } from '../../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -1126,11 +1133,11 @@ export class UtilityService {
   // get all profile photo of each school and store
   // in the same index location as the school;
   // return array of photos
-  static getSchoolsIdentityPhotos(schools: School[]) {
+  static getIdentityPhotos(subjects: School[] | User[]) {
     const photos: IdentityPhoto[] = [];
-    schools.forEach(sch => {
+    subjects.forEach(sub => {
       const photo: IdentityPhoto = {} as any;
-      sch?.photos?.forEach(ph => {
+      sub?.photos?.forEach(ph => {
         if (ph.profile) {
           photo.profile = ph;
         }
@@ -1146,47 +1153,7 @@ export class UtilityService {
     return photos;
   }
 
-  static getSchoolIdentityPhoto(school: School) {
-    const photo: IdentityPhoto = {} as any;
-    school?.photos?.forEach(ph => {
-      if (ph.profile) {
-        ph.fileUrl = ph.fileUrl ?? SCHOOL_DEFAULT_PHOTO_URL;
-        photo.profile = ph;
-      }
 
-      if (ph.coverImage) {
-        ph.fileUrl = ph.fileUrl ?? NO_SCHOOL_COVER_PHOTO_URL;
-        ph.fileUrl = ph.thumbnailUrl ?? NO_SCHOOL_COVER_PHOTO_URL;
-        photo.cover = ph;
-      }
-
-      if (ph.flag) {
-        ph.fileUrl = ph.fileUrl ?? CREST_DEFAULT_PHOTO_URL;
-        photo.flag = ph;
-      }
-
-    });
-
-    if (!school?.photos) {
-      photo.profile = new Photo()
-      photo.profile.fileUrl = SCHOOL_DEFAULT_PHOTO_URL;
-      photo.profile.thumbnailUrl = SCHOOL_DEFAULT_PHOTO_URL;
-
-      photo.cover = new Photo()
-      photo.cover.fileUrl = NO_SCHOOL_COVER_PHOTO_URL;
-      photo.cover.thumbnailUrl = NO_SCHOOL_COVER_PHOTO_URL;
-
-      photo.flag = new Photo()
-      photo.flag.fileUrl = CREST_DEFAULT_PHOTO_URL;
-      photo.flag.thumbnailUrl = CREST_DEFAULT_PHOTO_URL;
-    }
-    return photo;
-  }
-
-  static getSchoolProfilePhotoUrl(identityPhoto: IdentityPhoto) {
-    return identityPhoto?.profile?.thumbnailUrl || identityPhoto?.cover?.thumbnailUrl ||
-      identityPhoto?.flag?.thumbnailUrl || SCHOOL_DEFAULT_PHOTO_URL;
-  }
 
 
 
@@ -1234,6 +1201,71 @@ export class UtilityService {
     console.log(`${func}: `);
     console.log(data);
     console.log('******************************')
+  }
+
+
+  static SortDegree(degrees: Degree[]): Degree[] {
+    return degrees?.sort((a, b) => {
+      if (a.type === DegreeType.PHD && b.type !== DegreeType.PHD) {
+        return 1;
+      } else if (a.type === DegreeType.PHD && b.type === DegreeType.PHD) {
+        return 0;
+      } else if (a.type !== DegreeType.PHD && b.type === DegreeType.PHD) {
+        return -1;
+      } else if (a.type === DegreeType.MSC && b.type !== DegreeType.MSC) {
+        return 1;
+      } else if (a.type === DegreeType.MSC && b.type === DegreeType.MSC) {
+        return 0;
+      } else if (a.type !== DegreeType.MSC && b.type === DegreeType.MSC) {
+        return -1;
+      } else if (a.type === DegreeType.BSC && b.type !== DegreeType.BSC) {
+        return 1;
+      } else if (a.type === DegreeType.BSC && b.type === DegreeType.BSC) {
+        return 0;
+      } else if (a.type !== DegreeType.BSC && b.type === DegreeType.BSC) {
+        return -1;
+      } else if (a.type === DegreeType.DEPLOMA && b.type !== DegreeType.DEPLOMA) {
+        return 1;
+      } else if (a.type === DegreeType.DEPLOMA && b.type === DegreeType.DEPLOMA) {
+        return 0;
+      } else if (a.type !== DegreeType.DEPLOMA && b.type === DegreeType.DEPLOMA) {
+        return -1;
+      }
+    });
+  }
+
+  // NB: Remember to destroy the observer
+  static monitorElementOutOfView(
+    elementId: any, outViewCB, inViewCB?,
+    threshold = 0.9): { observer: IntersectionObserver, element: any } {
+    const element = document.querySelector('#' + elementId);
+    const root = document.querySelector('#root');
+    // console.log(element);
+    // console.log(this.sliderId);
+    const options = {
+      root,
+      rootMargin: '0px',
+      threshold, // how far the element leaves the screen
+      trackVisibility: true,
+      delay: 100
+    };
+
+    const observer = new IntersectionObserver((entries, obsvr) => {
+      console.log(entries);
+      const entry = entries[0];
+      // if element is out of view
+      if (!entry.isIntersecting) {
+        outViewCB();
+      } else {
+        // setTimeout(() => {
+          inViewCB();
+        // }, 1000);
+      }
+      // console.log(obsvr);
+
+    }, options);
+    observer.observe(element);
+    return { observer, element };
   }
 
 }

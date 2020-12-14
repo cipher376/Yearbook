@@ -29,8 +29,6 @@ export class MySchoolsPage implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private browserHistory: BrowserHistoryService,
     private router: Router, private userService: UserService,
-    private alumniService: AlumniService,
-    private alert: AlertController,
     private schoolService: SchoolService,
     private signals: MySignals,
     ) {
@@ -62,7 +60,7 @@ export class MySchoolsPage implements OnInit, AfterViewInit, OnDestroy {
     if (this.user) {
       this.sub$.push(this.schoolService.getUserSchools(this.user?.id).subscribe(schools => {
         this.userSchools = schools;
-        this.schoolsIdentityPhoto = UtilityService.getSchoolsIdentityPhotos(schools);
+        this.schoolsIdentityPhoto = UtilityService.getIdentityPhotos(schools);
       }));
     }
   }
@@ -70,43 +68,14 @@ export class MySchoolsPage implements OnInit, AfterViewInit, OnDestroy {
   toggleEdit() {
     this.isEdit = !this.isEdit;
   }
+  
   goBack() {
     this.router.navigateByUrl(this.browserHistory.getPreviousUrl());
   }
   getProfilePhotoUrl(identityPhoto: IdentityPhoto) {
-    return UtilityService.getSchoolProfilePhotoUrl(identityPhoto);
+    return SchoolService.getSchoolProfilePhotoUrl(identityPhoto);
   }
-  async view(school: School) {
-    if (await this.schoolService.setSchoolLocal(school)) {
-      // navigate to join school page
-      this.router.navigateByUrl('/links/school-profile');
-    }
-  }
-  async leaveSchool(school: School) {
-    const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Are you sure to leave school?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            // console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            // delete alumni object from the database
-            this.sub$.push(this.alumniService.deleteAlumni(this.user?.id, school?.id).subscribe(_ => {
-              this.loadSchools();
-            }));
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+  
+  
 
 }

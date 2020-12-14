@@ -69,45 +69,58 @@ export class PostService {
     );
   }
 
-  getPost(pageInfo?: PageInfo, filter: any = {
-    order: 'id DESC',
-    include: [
-      {
-        relation: 'photos',
-      },
-      {
-        relation: 'videos'
-      },
-      {
-        relation: 'audios'
-      },
-      {
-        relation: 'postConfig'
-      },
-      {
-        relation: 'user',
-        scope: {
-          include: [
-            {
-              relation: 'photos',
-              scope: {
-                where: {
-                  profile: true
-                }
-              }
-            },
-            { relation: 'address' }
-          ]
-        }
-      },
-    ]
-  }): Observable<Post[]> {
+  getPost(pageInfo?: PageInfo, filter?: any, schoolId?: any, userId?: any): Observable<Post[]> {
+    if (!filter) {
+      filter = {
+        order: 'id DESC',
+        include: [
+          {
+            relation: 'photos',
+          },
+          {
+            relation: 'videos'
+          },
+          {
+            relation: 'audios'
+          },
+          {
+            relation: 'postConfig'
+          },
+          {
+            relation: 'user',
+            scope: {
+              include: [
+                {
+                  relation: 'photos',
+                  scope: {
+                    where: {
+                      profile: true
+                    }
+                  }
+                },
+                { relation: 'address' }
+              ]
+            }
+          },
+        ]
+      };
+    }
     if (pageInfo) {
       filter = {
         order: 'id DESC',
         offset: pageInfo.offset,
         limit: pageInfo.limit,
         include: filter.include
+      };
+    }
+    if (schoolId) {
+      filter.where = {
+        schoolId
+      };
+    }
+    if (userId) {
+      filter.where = {
+        userId
       };
     }
     filter = filter ? 'filter=' + JSON.stringify(filter) : '';
@@ -122,61 +135,42 @@ export class PostService {
     );
   }
 
-  getSchoolPosts(schoolId: string | number, pageInfo?: PageInfo, filter: any = {
-    order: 'id DESC',
-    include: [
-      {
-        relation: 'photos',
-      },
-      {
-        relation: 'videos'
-      },
-      {
-        relation: 'audios'
-      },
-      {
-        relation: 'postConfig'
-      },
-      {
-        relation: 'user',
-        scope: {
-          include: [
-            {
-              relation: 'photos',
-              scope: {
-                where: {
-                  profile: true
-                }
-              }
-            },
-            { relation: 'address' }
-          ]
-        }
-      },
-    ]
-  }): Observable<Post[]> {
-    if (pageInfo) {
-      filter = {
-        order: 'id DESC',
-        offset: pageInfo.offset,
-        limit: pageInfo.limit,
-        include: filter.include
-      };
+  getSchoolPosts(schoolId: string | number, pageInfo?: PageInfo, filter?: any) {
+    return this.getPost(pageInfo, null, schoolId);
+  }
+
+
+  getUserPosts(userId: string | number, pageInfo: PageInfo, filter?: any) {
+    return this.getPost(pageInfo, null, null, userId);
+  }
+
+  countPost(userId?: any, schoolId?: any) {
+    let filter = {} as any;
+
+    if (userId) {
+      filter.userId = userId;
     }
-    filter.where = {
-      schoolId
-    };
-    console.log(filter);
-    filter = filter ? 'filter=' + JSON.stringify(filter) : '';
-    const url = '/posts?' + filter;
-    // // console.log(url);
-    return this.http.get<Post[]>(url).pipe(
+    if (schoolId) {
+      filter.schoolId = {} as any;
+    }
+    filter = filter ? 'where=' + JSON.stringify(filter) : '';
+    const url = '/posts/count?' + filter;
+    // console.log(url);
+    return this.http.get<any>(url).pipe(
       map(res => {
         // console.log(res);
-        return res as any;
+        return res;
       }),
       catchError(e => this.handleError(e))
     );
+  }
+
+  countUserPost(userId: any) {
+    return this.countPost(userId);
+  }
+
+  countSchoolPost(schoolId: any) {
+    return this.countPost(null, schoolId);
   }
 
 
@@ -201,7 +195,7 @@ export class PostService {
   }
 
 
- 
+
   /////////////////////////////////////////////////////////////////////////
   /*************Local user access*****/
   ///////////////////////////////////////////////////////////////////////////

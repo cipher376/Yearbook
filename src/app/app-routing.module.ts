@@ -89,10 +89,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
   },
-  {
-    path: 'school-posts',
-    loadChildren: () => import('./public/school-posts/school-posts.module').then( m => m.SchoolPostsPageModule)
-  },
+  // {
+  //   path: 'school-posts',
+  //   loadChildren: () => import('./public/school-posts/school-posts.module').then( m => m.SchoolPostsPageModule)
+  // },
+
 
 
   // {

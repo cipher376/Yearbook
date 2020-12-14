@@ -1,3 +1,8 @@
+import { UserListItemComponent } from './user-list-item/user-list-item.component';
+import { SchoolListItemComponent } from './school-list-item/school-list-item.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { SchoolCardComponent } from './school-card/school-card.component';
+import { MyShareComponent } from './my-share/my-share.component';
 import { LikeComponent } from './like/like.component';
 import { CommentsComponent } from './comments/comments.component';
 import { SchoolJoinComponent } from './school-join/school-join.component';
@@ -35,6 +40,12 @@ import { PhotoThumbnailComponent } from './photo-thumbnail/photo-thumbnail.compo
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { VideoThumbnailComponent } from './video-thumbnail/video-thumbnail.component';
 import { BackgroundImageDirective } from '../shared/directives/image-background.directive';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { EmojiModalComponent } from './emoji-modal/emoji-modal.component';
+import {  WatchElementDirective } from '../shared/directives/watch-element.directive';
+import { FollowComponent } from './follow/follow.component';
+
 
 @NgModule({
   imports: [
@@ -51,24 +62,28 @@ import { BackgroundImageDirective } from '../shared/directives/image-background.
       apiKey: 'AIzaSyBfKFrI5-iEUhsZyxjc2B56RNmoQoAeBmk'
     }),
     GoogleMapsModule,
-    PipesModule
+    PipesModule,
+    PickerModule,
+    EmojiModule,
   ],
   declarations: [
     PostWidget1Component, PostWidget2Component, TrendingComponent, PopularSchoolsComponent,
     ImageGalleryComponent, PostWidget3Component, FeedFilterPopoverComponent, MyPhotoPickerComponent, MyAudioPickerComponent
     , MyVideoPickerComponent, CreatePostComponent, PhotoThumbnailComponent, VideoThumbnailComponent,
     AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
-    MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent
-
+    MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
+    EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent, SchoolListItemComponent, 
+    UserListItemComponent, FollowComponent
   ],
   exports: [
-
     FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
     PopularSchoolsComponent, PostWidget3Component, ImageGalleryComponent, FeedFilterPopoverComponent,
     MyPhotoPickerComponent, MyAudioPickerComponent, MyVideoPickerComponent, CreatePostComponent,
     PhotoThumbnailComponent, VideoThumbnailComponent,
     AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective, VideoPlayerComponent,
-    MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent
+    MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
+    EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent,
+     SchoolListItemComponent, UserListItemComponent, FollowComponent
   ]
 })
 export class WidgetsModule { }

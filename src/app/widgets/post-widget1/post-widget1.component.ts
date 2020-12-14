@@ -1,10 +1,10 @@
 import { MyShareComponent } from './../my-share/my-share.component';
 import { MySignals } from 'src/app/shared/services/my-signals';
-import { MediaType } from './../../models/my-media';
+import { MediaType, Photo, Video } from './../../models/my-media';
 import { PostService } from './../../shared/services/model-service/post.service';
 import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Post } from 'src/app/models/post';
-import { SERVER_DOWNLOAD_PATH } from 'src/app/shared/config';
+import { DEFAULT_AUDIO_COVER, DEFAULT_DOCUMENT_COVER, DOWNLOAD_CONTAINER, SERVER_DOWNLOAD_PATH } from 'src/app/shared/config';
 import { User } from 'src/app/models/user';
 import { School } from 'src/app/models/school';
 import { SocialService } from 'src/app/shared/services/model-service/social.service';
@@ -13,6 +13,7 @@ import { ModalController } from '@ionic/angular';
 import { CommentsComponent } from '../comments/comments.component';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { Router } from '@angular/router';
+import { Shareable } from 'src/app/models/shareable';
 
 @Component({
   selector: 'app-post-widget1',
@@ -122,7 +123,31 @@ export class PostWidget1Component implements OnInit, AfterViewInit {
   }
 
   share() {
+    let fileUrl = '';
+    let image = '';
 
+    if (this.objects?.length > 0) {
+      fileUrl = DOWNLOAD_CONTAINER + this.objects[0]?.fileName;
+      if (this.mediaType === MediaType.PHOTO) {
+        image = DOWNLOAD_CONTAINER + ( this.objects[0] as Photo).fileName;
+      } else if (this.mediaType === MediaType.VIDEO) {
+        image =  DOWNLOAD_CONTAINER + ( this.objects[0] as Video).posterUrl;
+      } else if (this.mediaType === MediaType.AUDIO) {
+        image =  DEFAULT_AUDIO_COVER;
+      } else if (this.mediaType === MediaType.DOCUMENT) {
+        image =  DEFAULT_DOCUMENT_COVER;
+      }
+    }
+
+    const shareable: Shareable = {
+      message: this.post?.message,
+      subject: 'Yearbook Post',
+      url: fileUrl,
+      image,
+      emailRecipients: []
+    };
+
+    this.myShareComponent.share(shareable);
   }
 
 }

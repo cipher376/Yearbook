@@ -1,3 +1,4 @@
+import { EmojiModalComponent } from './../emoji-modal/emoji-modal.component';
 import { Photo, IdentityPhoto } from './../../models/my-media';
 import { User } from 'src/app/models/user';
 import { Component, Input, OnInit, AfterViewInit, AfterContentInit, ChangeDetectorRef, EventEmitter, Output } from '@angular/core';
@@ -9,7 +10,8 @@ import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/shared/services/model-service/post.service';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 import { Router } from '@angular/router';
-
+import { ModalController, Platform } from '@ionic/angular';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-comments',
@@ -32,6 +34,10 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
 
   @Output() totalComments = new EventEmitter<number>();
 
+  emojiSheetToggle = false;
+
+  modal;
+  char$;
 
   constructor(
     private signals: MySignals,
@@ -41,6 +47,8 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
     private toaster: ToasterService,
     private cdr: ChangeDetectorRef,
     private router: Router,
+    private modalController: ModalController,
+    private platform: Platform
   ) { }
 
   ngAfterContentInit(): void {
@@ -67,7 +75,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
     // console.log(this.comment);
     // if (this.comment?.postId) {
     //   this.loadPostComments();
-    // }
+    // } 
   }
 
   close() {
@@ -93,6 +101,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
   }
 
   async send() {
+    console.log(this.comment?.message);
     this.comment.initiatorId = this.user?.id;
 
     if (!this.comment?.message || !this.comment?.postId) {
@@ -107,20 +116,21 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
         this.loadPostComments();
       }
     });
+    this.signals.announceCloseModal('emoji'); // close all existing ones
   }
 
   loadPostComments() {
     if (!this.post?.id) {
       return;
     }
-    const pageInfo = { offset: 0, limit: this.showHeader ? 100000 : 3 };
+    const pageInfo = { offset: 0, limit: this.showHeader ? 100000 : 5 };
     this.socialService.getPostComments(this.post?.id, pageInfo).subscribe(comments => {
       this.comments = [...comments];
       // console.log(this.comments);
       this.countComments(this.post?.id);
       this.cdr.detectChanges();
 
-      this.getCreators();
+      this.getCreators(); // delay loading users for performance
     }, error => {
       this.toaster.toast('Check your network');
     });
@@ -165,5 +175,39 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
       this.router.navigateByUrl('/links/profile');
     });
   }
+
+  toggleEmojiSheet() {
+    this.emojiSheetToggle = !this.emojiSheetToggle;
+    if (this.emojiSheetToggle) {
+      this.openEmojiModal();
+    } else {
+      this.modal.dismiss();
+    }
+  }
+
+  async openEmojiModal() {
+    this.signals.announceCloseModal('emoji'); // close all existing ones
+    this.modal = await this.modalController.create({
+      component: EmojiModalComponent,
+      cssClass: 'emoji-style',
+      backdropDismiss: true,
+      componentProps: {
+      }
+    });
+    this.signals.closeModalSource$.subscribe(name => {
+      if (name === 'emoji') {
+        this.char$?.unsubscribe(); // multiple subscription will produce mult chars
+        this.modal?.dismiss();
+      }
+    });
+    this.char$ = this.signals.emojiCharSource$.subscribe(char => {
+      this.comment.message = this.comment.message ?? '';
+      this.comment.message += char;
+      console.log(char);
+    });
+    return await this.modal?.present();
+  }
+
+
 
 }

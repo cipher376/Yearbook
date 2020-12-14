@@ -27,7 +27,6 @@ export class LikeComponent implements OnInit, AfterViewInit {
       // get like
       this.getLike();
     }
-
   }
 
   ngOnInit() {

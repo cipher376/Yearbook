@@ -27,7 +27,12 @@
                     </ion-note>
                 </ion-item>
             </ion-row>
-            <ion-card-content class="fs-12" style="z-index: 1; padding-top: 54px; padding-bottom: 0;">
+            <ion-card-content class="fs-12" style="
+            z-index: 1;
+            padding-top: 54px;
+            padding-bottom: 0;
+            padding-left: 1vw;
+            padding-right: 1vw;">
                 <ion-row class="ion-no-padding ion-no-margin fs-10 mb-2">
                     <ion-col size="6">
                         <ion-note class="w-100 fs-11    "> {{likes?.length}} likes </ion-note>
@@ -38,7 +43,7 @@
                     <ion-item lines="none" class="ion-no-padding">
                         <ion-col size="4" slot="start"
                             class="ion-align-items-start ion-text-start fs-20 ion-no-padding">
-                            <app-like [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
+                            <app-like style="margin-left: 4vw;"      [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
                                 (reload)="getLikes()"></app-like>
                         </ion-col>
                         <ion-col size="4" class="fs-20 ion-no-padding ion-align-items-start text-center">
@@ -67,7 +72,12 @@
                         <hr style="background: #e8e9ed; margin-bottom:0;">
                     </ion-col>
                 </ion-row>
-                <app-comments [showHeader]="false" [Post]="post" (totalComments)="TotalComments = $event" ></app-comments>
+                <ion-row style="height: 178px" [ngClass]="{'tempHeight': totalComments<1}">
+                    <app-comments [showHeader]="false" [Post]="post" (totalComments)="TotalComments = $event">
+                    </app-comments>
+                </ion-row>
+
+
 
                 <!-- <ion-row class="ion-no-padding">
                     <ion-item lines="none">
@@ -80,3 +90,5 @@
         </ion-card>
     </ion-col>
 </ion-row>
+
+<app-my-share></app-my-share>

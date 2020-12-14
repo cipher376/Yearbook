@@ -29,7 +29,7 @@ export interface MediaInterface {
   type: MediaType;
 }
 
-export class Media {
+export class Media implements MediaInterface {
   id: number;
   userId?: number;
   schoolId?: number;
@@ -46,14 +46,7 @@ export class Media {
    *
    */
   constructor(private data?: MediaInterface) {
-    this.id = data?.id;
-    this.description = data?.description;
-    this.fileName = data?.fileName;
-    this.fileUrl = data?.fileUrl;
-    this.thumbnailUrl = data?.thumbnailUrl;
-    // this.coverUrl = data.coverUrl;
-    this.dateCreated = data?.dateCreated;
-    this.type = data?.type;
+    Object.assign(this, data);
   }
 }
 

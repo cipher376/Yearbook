@@ -15,7 +15,7 @@ export const SCHOOL_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/school_d
 export const NO_SCHOOL_COVER_PHOTO_URL = `${API_ROOT_URL}/media/download/school_default_cover.jpg`;
 export const USER_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/user_default.png`;
 export const CREST_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/crest_default.png`;
-
+export const USER_DEFAULT_COVER_URL = '';
 
 
 export const SERVER_UPLOAD_PATH = '/media/upload/';

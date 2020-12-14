@@ -53,7 +53,12 @@ const routes: Routes = [
       {
         path: 'timeline',
         loadChildren: () => import('../time-line/time-line.module').then(m => m.TimeLinePageModule)
-      }
+      },
+      {
+        path: 'users-search',
+        loadChildren: () => import('../../public/users-search/users-search.module').then( m => m.UsersSearchPageModule)
+      },
+    
     ]
   },
   {

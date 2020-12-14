@@ -123,35 +123,70 @@ export class AlumniService {
 
   }
 
-
-  getSchoolAlumni(schoolId: any): Observable<Alumni[]> {
+  isUserAlumni(userId: any, schoolId: any): Observable<Alumni> {
     const filter = {
-    order: 'id DESC',
+      where: {
+        and: [{ userId }, { schoolId }]
+      }
+    } as any;
+    // console.log(filter);
+    const url = `/alumni?filter=` + JSON.stringify(filter);
+    return this.http.get<Alumni[]>(url).pipe(
+      map(res => {
+        console.log(res);
+        if (res?.length > 0) {
+          return res[0] as any;
+        } else {
+          return null;
+        }
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
+  getSchoolAlumni(schoolId: any, pageInfo?: PageInfo): Observable<Alumni[]> {
+    const filter = {
+      order: 'id DESC',
       where: {
         schoolId
       },
       include: [
         { relation: 'degree' },
-        // { relation: 'post' }
+        {
+          relation: 'user',
+          scope: {
+            include: [
+              { relation: 'photos' },
+              { relation: 'address' },
+            ]
+          }
+        }
       ]
     } as any;
 
-    // console.log(filter);/schools/{id}/alumni
+    if (pageInfo) {
+      filter.limit = pageInfo?.limit;
+      filter.offset = pageInfo?.offset;
+    }
+    // console.log(filter);
     const url = `/alumni?filter=` + JSON.stringify(filter);
+    // console.log(url);
     return this.http.get<Alumni[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => this.handleError(e))
     );
-
   }
+
+
+
   getAlumniByIds(ids: string[], pageInfo?: PageInfo): Observable<Alumni[]> {
     let filter;
     if (pageInfo) {
       filter = {
-    order: 'id DESC',
+        order: 'id DESC',
         offset: pageInfo.offset * pageInfo.limit,
         limit: pageInfo.limit,
         where: {
@@ -205,14 +240,14 @@ export class AlumniService {
 
 
   countAlumni(schoolId?: number): Observable<number> {
-    const filter = {} as any;
+    let filter = {} as any;
 
     if (schoolId) {
-      filter.where = {
+      filter = {
         schoolId
       };
     }
-    return this.http.get<Alumni[]>('/alumni/count?filter=' + JSON.stringify(filter)).pipe(
+    return this.http.get<any>('/alumni/count?where=' + JSON.stringify(filter)).pipe(
       map(res => {
         if (res) {
           this.signals.announceSelectedSchoolAlumniCount((res as any).count);
@@ -242,6 +277,8 @@ export class AlumniService {
       catchError(e => this.handleError(e))
     );
   }
+
+
   /////////////////////////////////////////////////////////////////////////
   /*************Local alumni access*****/
   ///////////////////////////////////////////////////////////////////////////

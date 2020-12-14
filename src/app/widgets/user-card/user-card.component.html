@@ -1,0 +1,48 @@
+<ion-row class="ion-no-padding ion-padding-bottom">
+    <ion-col size="12" class="ion-no-padding">
+        <ion-item lines="none" class="ion-align-items-center">
+            <ion-row slot="start" style="height:30px; margin: 0;" (click)="goToSchool()">
+                <ion-avatar class="ion-padding-end" style="width: 45px;
+              height: 30px;">
+                    <img src="{{getProfilePhotoUrl()}}">
+                </ion-avatar>
+                <ion-note color="dark" class="poppins-semi-bold fs-14 " style=" margin-top: 5px">
+                    {{ user?.firstName }} {{ user?.otherName}} {{ user?.lastName }}
+                </ion-note>
+            </ion-row>
+            <ion-label slot="end" class="fs-10 ion-text-right ion-no-padding ion-no-margin">
+                {{alumni?.yearStarted | date}}
+            </ion-label>
+        </ion-item>
+    </ion-col>
+
+    <ion-col size="12" class="ion-no-padding ion-padding-end ion-padding-start">
+        <ion-card class=" ion-align-items-center">
+            <!-- <ng-template #singleImg> -->
+            <ion-img src="{{getCoverPhotoUrl()||'../../../assets/images/me.jpg'}} "></ion-img>
+            <!-- </ng-template> -->
+
+            <ion-row class="ion-no-padding" style="margin-top: -50px;">
+                <ion-item lines="none">
+                    <ion-note slot="start" color="white" class="poppins-bold fs-12"
+                        style="text-shadow: 0px 0px 3px black !important;color: white;" *ngIf="alumni?.degree">
+                        @{{alumni?.degree?.type}} {{alumni?.degree?.programme}}
+                    </ion-note>
+                </ion-item>
+            </ion-row>
+            <ion-card-content class="fs-12" style="padding-top: 14px;
+          padding-bottom: 19px;">
+                <ion-note class="fs-12" color="dark">
+                    <!-- <p class="fs-12" color="dark">
+                      <b> Location </b> &nbsp; <b>  </b>
+                  </p> -->
+                    <ion-text>
+                        <span *ngIf="user?.address?.city">#{{user?.address?.city}}</span>
+                        <span *ngIf="user?.address?.state">#{{user?.address?.state}}</span>
+                        <span *ngIf="user?.address?.country">#{{user?.address?.country}}</span>
+                    </ion-text>
+                </ion-note>
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+</ion-row>

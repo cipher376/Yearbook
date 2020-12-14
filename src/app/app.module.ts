@@ -40,6 +40,10 @@ import { InViewportModule } from '@thisissoon/angular-inviewport';
 import { DoubleTapDirective } from './shared/directives/double-tap.directive';
 import { IonicGestureConfig } from './shared/services/providers/customHammerConfig';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+
 
 @NgModule({
   declarations: [AppComponent, DoubleTapDirective],
@@ -60,7 +64,9 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     NgxIonicImageViewerModule,
     WidgetsModule,
     AppRoutingModule,
-    InViewportModule  
+    InViewportModule,
+    PickerModule,
+    EmojiModule,
   ],
   providers: [
     StatusBar,
@@ -88,6 +94,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     VgOverlayPlayModule,
     VgBufferingModule,
     SocialSharing,
+    Keyboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
   ],

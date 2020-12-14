@@ -1,0 +1,33 @@
+
+.avatar-group {
+    .avatar-group-img {
+        border-radius: 50% !important;
+        width: 30px !important;
+        height: 30px !important;
+        border: solid white 2px;
+        box-shadow: 0px -18px 0px -44px;
+    }
+    .avatar-count-icon{
+        background: var(--ion-color-secondary);
+        font-size: .7em;
+        font-weight: bold;
+        font-family: "poppins-bold";
+        padding-right: 6px;
+        padding-top: 5px;
+    }
+}
+
+.tags {
+    padding: 0;
+    list-style: none;
+    
+    li {
+        display: inline;
+    }
+}
+
+
+.info {
+    margin-top: -40px;
+}
+

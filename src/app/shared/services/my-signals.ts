@@ -1,4 +1,3 @@
-import { AudioLocal } from './../../models/LocalMediaInterfaces';
 import { Alumni } from './../../models/alumni';
 import { MyStorage } from './providers/storage/my-storage.service';
 import { School } from './../../models/school';
@@ -7,6 +6,7 @@ import { Subject } from 'rxjs';
 import { User } from '../../models/user';
 import { Photo, Video } from 'src/app/models/my-media';
 import { LatLng } from 'src/app/models/latLng';
+import { AudioLocal } from 'src/app/models/LocalMediaInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -211,10 +211,30 @@ export class MySignals {
     this.reloadUserSchoolsSource.next();
   }
 
+  private selectedUserSource = new Subject<null>();
+  selectedUserSource$ = this.selectedUserSource.asObservable();
+  announceSelectedUserChange() {
+    this.selectedUserSource.next();
+  }
   private reloadPostsSource = new Subject<null>();
   reloadPostsSource$ = this.reloadPostsSource.asObservable();
   announcePostReload() {
     this.reloadPostsSource.next();
+  }
+
+
+  private emojiCharSource = new Subject<any>();
+  emojiCharSource$ = this.emojiCharSource.asObservable();
+  announceEmojiChar(char: any) {
+    this.emojiCharSource.next(char);
+  }
+
+
+  /****************FOLLOWING AND UNFOLLOWING USERS*********** */
+  private followSource = new Subject<boolean>();
+  followSource$ = this.followSource.asObservable();
+  announceFollowed(isFollowed: boolean) {
+    this.followSource.next(isFollowed);
   }
 
 }

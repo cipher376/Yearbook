@@ -1,104 +1,158 @@
-<ion-content >
-  <ion-row>
-    <ion-card class="h-25 w-100">
-      <ion-card-header style="background-image: url('{{identityPhoto?.cover?.fileUrl}}');"
+<ion-content>
+  <ion-row class="ion-padding" class="tag">
+    <ion-col size="6" (click)="goBack()">
+      <ion-icon name="chevron-back-outline" class="fs-20" color="medium"></ion-icon>
+      <!-- <ion-icon name="git-network-outline" class="fs-20" style="color: white !important;" color="medium"></ion-icon>
+      &nbsp;
+      <ion-label style="margin-top: 1px; position: absolute; font-size:12px; color: white !important;">Follow
+      </ion-label> -->
+    </ion-col>
+    <ion-col size="6" class="ion-float-right">
+      <!-- <ion-label class="ion-float-right fs-12" (click)="connect()" style="color: white !important;">Join old students
+      </ion-label> -->
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="height: 250px;" appWatchElement [elementId]="'school-menu'" id="school-menu" (isOut)="schoolFixedMenu=$event">
+    <ion-card class=" w-100" style="height: 250px;">
+      <div class="backdrop h-100 w-100"></div>
+      <ion-card-header [background-image]="getCoverPhotoUrl() || '../../../assets/images/ACOPROM1.jpg'"
         class="card-header-bg ion-no-padding ion-padding-top ">
-        <ion-button (click)="join()">join</ion-button>
+        <ion-row style="z-index:4;">
+          <ion-col class="ion-no-padding ion-no-margin" size="5"></ion-col>
+          <ion-col class="ion-no-padding ion-no-margin" size="2" style="z-index: 4;">
+            <ion-avatar>
+              <img [src]="getProfilePhotoUrl()">
+            </ion-avatar>
+          </ion-col>
+          <ion-col class="ion-no-padding ion-no-margin" size="5"></ion-col>
+          <ion-col size="12" class="text-center" color="white" style="z-index: 4; color: white">
+            <h5> {{ school?.name }} </h5>
+            <small class="mx-auto w-50" *ngIf="school?.address">
+              <span *ngIf="school?.address?.city">#{{school?.address?.city}}</span>
+              <span *ngIf="school?.address?.state"> #{{school?.address?.state}}</span>
+              <span *ngIf="school?.address?.country"> #{{school?.address?.country}}</span>
+            </small>
+          </ion-col>
+        </ion-row>
       </ion-card-header>
     </ion-card>
   </ion-row>
   <ion-row class="">
-    <ion-card class="w-100 ion-padding-top"
-      style="margin-top:-30px;border-top-right-radius: 20px;border-top-left-radius: 20px;">
-      <ion-row class="ion-padding-start ion-padding-end ion-padding-bottom">
-        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding">
-          <ion-note color="dark" class="poppins-bold fs-16">Alumni</ion-note><br>
-          <ion-note class="poppins-regular fs-12">+1000</ion-note>
+    <ion-card class="w-100 ion-padding-top ion-padding-bottom main">
+      <ion-row class="ion-no-padding" style="height: 90px;" [ngClass]="{'fixed-profile-menu-atop': fixedMenu}">
+        <ion-col size="12" class="ion-no-padding ion-no-margin menu-col" style="padding-bottom: 8px;" >
+          <ion-row> 
+            <ion-col size="3" class="text-center">
+              <ion-note class="poppins-regular fs-13 min-menu" (click)="showPost=false; showAbout = true;">About
+              </ion-note>
+            </ion-col>
+            <ion-col size="3" class="text-center">
+              <ion-note class="poppins-regular fs-13 min-menu" (click)="showPost=false; showLocation = true;">Location
+              </ion-note>
+            </ion-col>
+            <ion-col size="3" class="text-center">
+              <ion-note class="poppins-regular fs-13 min-menu" (click)="showPost=false; showMedia = true;">Media
+              </ion-note>
+            </ion-col>
+            <ion-col size="3" class="text-center">
+              <ion-note class="poppins-regular fs-13 min-menu" (click)="showPost=false; showDocument = true;">Timeline
+              </ion-note>
+            </ion-col>
+          </ion-row>
         </ion-col>
 
-        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
-          <ion-note color="dark" class="poppins-bold fs-16">Rating</ion-note><br>
-          <ion-icon name="star-outline"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
+        <ion-row class="ion-no-padding ion-no-margin w-100" *ngIf="!fixedMenu">
+          <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
+            <ion-note color="dark" class="poppins-bold fs-16" (click)="currentSegment='posts'">Posts</ion-note><br>
+            <ion-note class="poppins-regular fs-12" (click)="currentSegment='posts'">{{totalPost}}</ion-note>
 
+            <ion-col class="ion-no-padding" size="12">
+              <hr style="background: #e8e9ed; margin-top: 5px;" width="70%" *ngIf="currentSegment=='posts'">
+            </ion-col>
+          </ion-col>
+
+          <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding">
+            <ion-note color="dark" class="poppins-bold fs-16" (click)="currentSegment='alumni'">Alumni</ion-note><br>
+            <ion-note class="poppins-regular fs-12" (click)="currentSegment='alumni'">{{totalAlumni}}
+            </ion-note>
+
+            <ion-col class="ion-no-padding" size="12" *ngIf="currentSegment=='alumni'">
+              <hr style="background: #e8e9ed; margin-top: 5px;" width="70%">
+            </ion-col>
+          </ion-col>
+
+          <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
+            <ion-note color="dark" class="poppins-bold fs-16" (click)="currentSegment='followers'">Followers</ion-note>
+            <br>
+            <ion-note class="poppins-regular fs-12" (click)="currentSegment='followers'">
+              {{totalFollowers}}</ion-note>
+
+            <ion-col class="ion-no-padding" size="12" *ngIf="currentSegment=='followers'">
+              <hr style="background: #e8e9ed; margin-top: 5px;" width="70%">
+            </ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="8">
+          <ion-button size="small" expand="block" class="mx-2 mb-1" (click)="join()" *ngIf="!isAlumni">
+            <ion-icon name="git-network-outline"></ion-icon> Join old students
+          </ion-button>
+
+          <!-------------------------------- 
+              unfollow
+              -------------------------------->
+
+          <ion-button size="small" expand="block" class="mx-2 mb-1" (click)="leave()" *ngIf="isAlumni">
+            <ion-icon name="remove"></ion-icon> &nbsp;&nbsp; Leave school
+          </ion-button>
         </ion-col>
 
-        <ion-col size="4" class="ion-align-items-center ion-text-center ion-no-padding separator-vertical">
-          <ion-note color="dark" class="poppins-bold fs-16">Likes</ion-note><br>
-          <ion-note class="poppins-regular fs-12">+1000</ion-note>
-
+        <ion-col size="4">
+          <app-follow [LeaderId]="school?.id" [FollowerId]="user?.id" [modelName]="'School'"
+            (reload)="getFollowers(true)"></app-follow>
         </ion-col>
       </ion-row>
 
-      <ion-segment [(ngModel)]="currentSegment" color="primary">
-        <ion-segment-button value="about">
-          <ion-label> About </ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="location">
-          <ion-label> Location </ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="photos">
-          <ion-label> Photos </ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="more">
-          <!-- <ion-label>M<span class="ion-text-lowercase">ore</span></ion-label> -->
-          <ion-icon name="layers-outline"></ion-icon>
-        </ion-segment-button>
-      </ion-segment>
+      <ion-row class="ion-no-padding ion-no-margin" *ngIf="currentSegment=='posts'">
+        <ion-col size="12" class="ion-no-padding">
+          <ng-template ngFor let-post [ngForOf]="schoolPosts">
+            <app-post-widget1 [Post]="post"></app-post-widget1>
+          </ng-template>
 
-      <ion-row [ngSwitch]="currentSegment" class="ion-no-padding">
-        <ion-row class="ion-padding" *ngSwitchCase="'about'">
-          <ion-note color="dark" class="poppins-semi-bold fs-12">Description</ion-note>
-          <ion-note class="poppins-regular fs-13">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </ion-note>
-          <ion-note color="dark" class="poppins-semi-bold fs-12">History</ion-note>
-          <ion-note class="poppins-regular fs-13 ">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </ion-note>
-        </ion-row>
-
-
-        <ion-row class="ion-padding" *ngSwitchCase="'location'">
-          <ion-note class="poppins-regular fs-14 ">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </ion-note>
-        </ion-row>
-
-        <ion-row class="ion-padding school-image-tiles w-100" *ngSwitchCase="'photos'">
-          <!-- <app-image-gallery class="w-100"></app-image-gallery> -->
-        </ion-row>
-
-        <ion-row class="ion-padding school-image-tiles w-100" *ngSwitchCase="'more'">
-          <ion-note color="dark" class="poppins-semi-bold fs-12">School has no videos and images</ion-note>
-        </ion-row>
-
+          <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMorePosts($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading ...">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </ion-col>
       </ion-row>
+
+      <ion-row class="ion-no-padding" *ngIf="currentSegment=='alumni'">
+        <ng-template ngFor let-alu [ngForOf]="alumni">
+          <app-user-card [User]="alu?.user" [Alumni]="alu"></app-user-card>
+        </ng-template>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreAlumni($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="searching ...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-row>
+
+      <ion-row class="ion-padding school-image-tiles w-100" *ngIf="currentSegment=='followers'">
+        <ion-col size="12" class="ion-no-padding">
+          <ng-template ngFor let-follower [ngForOf]="followers">
+            <!-- <app-user-card [User]="follower"></app-user-card> -->
+          </ng-template>
+        </ion-col>
+      </ion-row>
+
+
+
     </ion-card>
   </ion-row>
 
-
 </ion-content>
+
+<!-- <app-image-gallery class="w-100"></app-image-gallery> -->

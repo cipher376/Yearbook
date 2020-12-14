@@ -27,9 +27,9 @@
       routerLinkActive="router-link-active">
       <ion-note class="poppins-bold fs-13 ion-padding-top ion-padding-bottom" color="dark">
         Become alumni of {{school?.name}}<br>
-        <ion-label class="hind-regular fs-12">+100 alumni already</ion-label>
+        <ion-label class="hind-regular fs-12">{{alumniCount}}+ alumni already</ion-label>
       </ion-note>
-      <ion-avatar slot="end"><img src="{{school?.thumbnailUrl}}"></ion-avatar>
+      <ion-avatar slot="end"><img src="{{getProfilePhotoUrl()}}"></ion-avatar>
     </ion-item>
   </ion-row>
 
@@ -91,7 +91,7 @@
             class="ion-text-lowercase">ave</span></ion-button>
       </ion-col>
       <ion-col size="5">
-        <ion-button shape="round" color="danger"  class="fs-16 " (click)="cancel()"><span
+        <ion-button shape="round" color="medium"  class="fs-16 " (click)="cancel()"><span
             class="ion-text-lowercase">X</span></ion-button>
       </ion-col>
     </ion-row>
