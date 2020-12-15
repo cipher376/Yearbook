@@ -29,11 +29,9 @@ export class PhoneNumberPage implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    this.store.getObject<User>('user').then(user => {
-      this.user = user;
-      console.log(this.user);
-    });
+  async ngAfterViewInit() {
+    this.user = await this.userService.getUserLocal();
+    console.log(this.user);
   }
 
   goBack() {
@@ -56,6 +54,7 @@ export class PhoneNumberPage implements OnInit, AfterViewInit {
       console.log('Phone number is good');
       if (this.user) {
         this.user.phone = this.phone;
+        this.user.dateOfBirth = this.user.dateOfBirth ?? undefined;
         this.user = new User(this.user as UserInterface, this.user as Credentials);
         console.log(this.user);
 
