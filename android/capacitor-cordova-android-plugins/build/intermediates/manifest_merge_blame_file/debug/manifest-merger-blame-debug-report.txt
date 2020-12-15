@@ -1,0 +1,125 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+3    xmlns:android="http://schemas.android.com/apk/res/android"
+4    package="capacitor.android.plugins"
+5    android:versionCode="1"
+6    android:versionName="1.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="21"
+9-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+10        android:targetSdkVersion="29" />
+10-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+11
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:22:1-62
+12-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:22:18-60
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:23:1-76
+13-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:23:18-74
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:24:1-75
+14-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:24:18-73
+15    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+15-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:25:1-66
+15-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:25:18-64
+16    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+16-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:26:1-75
+16-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:26:18-73
+17    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+17-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:27:1-70
+17-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:27:18-68
+18    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+18-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:28:1-66
+18-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:28:18-64
+19    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+19-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:29:1-70
+19-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:29:18-68
+20
+21    <application android:requestLegacyExternalStorage="true" >
+21-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:1-21:15
+21-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:14-57
+22        <activity
+22-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:1-134
+23            android:name="com.sarriaroman.PhotoViewer.PhotoActivity"
+23-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:11-67
+24            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+24-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:68-132
+25
+26        <provider
+26-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:1-9:12
+27            android:name="org.apache.cordova.camera.FileProvider"
+27-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:11-64
+28            android:authorities="${applicationId}.cordova.plugin.camera.provider"
+28-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:65-134
+29            android:exported="false"
+29-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:135-159
+30            android:grantUriPermissions="true" >
+30-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:160-194
+31            <meta-data
+31-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:3-112
+32                android:name="android.support.FILE_PROVIDER_PATHS"
+32-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:14-64
+33                android:resource="@xml/camera_provider_paths" />
+33-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:65-110
+34        </provider>
+35
+36        <activity
+36-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:1-172
+37            android:name="com.hutchind.cordova.plugins.streamingmedia.SimpleAudioStream"
+37-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:58-134
+38            android:configChanges="orientation|screenSize"
+38-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:11-57
+39            android:label="Simple Audio Stream" />
+39-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:10:135-170
+40        <activity
+40-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:1-172
+41            android:name="com.hutchind.cordova.plugins.streamingmedia.SimpleVideoStream"
+41-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:58-134
+42            android:configChanges="orientation|screenSize"
+42-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:11-57
+43            android:label="Simple Video Stream" />
+43-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:135-170
+44        <activity
+44-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:12:1-151
+45            android:name="com.synconset.MultiImageChooserActivity"
+45-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:12:50-104
+46            android:label="@string/multi_app_name"
+46-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:12:11-49
+47            android:theme="@style/Theme.AppCompat.Light" />
+47-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:12:105-149
+48
+49        <receiver
+49-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:13:1-17:12
+50            android:name="nl.xservices.plugins.ShareChooserPendingIntent"
+50-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:13:11-72
+51            android:enabled="true" >
+51-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:13:73-95
+52            <intent-filter>
+52-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:14:3-16:19
+53                <action android:name="android.intent.action.SEND" />
+53-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:15:5-56
+53-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:15:13-54
+54            </intent-filter>
+55        </receiver>
+56
+57        <provider
+57-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:18:1-20:12
+58            android:name="nl.xservices.plugins.FileProvider"
+58-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:18:127-175
+59            android:authorities="${applicationId}.sharing.provider"
+59-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:18:11-66
+60            android:exported="false"
+60-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:18:67-91
+61            android:grantUriPermissions="true" >
+61-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:18:92-126
+62            <meta-data
+62-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:3-112
+63                android:name="android.support.FILE_PROVIDER_PATHS"
+63-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:14-64
+64                android:resource="@xml/sharing_paths" />
+64-->C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:65-110
+65        </provider>
+66    </application>
+67
+68</manifest>

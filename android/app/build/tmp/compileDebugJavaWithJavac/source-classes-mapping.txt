@@ -1,0 +1,5 @@
+io/yearbook/MainActivity.java
+ io.yearbook.MainActivity
+ io.yearbook.MainActivity$1
+io/yearbook/BuildConfig.java
+ io.yearbook.BuildConfig

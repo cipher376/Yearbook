@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ergovia-mobile:android-transcoder:v0.1.10R_ergovia@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/21f59f5ea5794b0c4abd9b22542b05f2/jetified-android-transcoder-v0.1.10R_ergovia/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cf0a20ad3c3bd195cd0305afdf6dc58d/jetified-android-transcoder-v0.1.10R_ergovia/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cf0a20ad3c3bd195cd0305afdf6dc58d/jetified-android-transcoder-v0.1.10R_ergovia/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cf0a20ad3c3bd195cd0305afdf6dc58d/jetified-android-transcoder-v0.1.10R_ergovia/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ergovia-mobile/android-transcoder/v0.1.10R_ergovia/8df69416e181af05da2612861ef58afe14c96ec2/android-transcoder-v0.1.10R_ergovia-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ergovia-mobile/android-transcoder/v0.1.10R_ergovia/46ebd1f812c7d364d9d99f761d2c80048a92a372/android-transcoder-v0.1.10R_ergovia-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

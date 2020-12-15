@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="capacitor.android.plugins"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="29" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+
+    <application android:requestLegacyExternalStorage="true" >
+        <activity
+            android:name="com.sarriaroman.PhotoViewer.PhotoActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+
+        <provider
+            android:name="org.apache.cordova.camera.FileProvider"
+            android:authorities="dollar_openBracket_applicationId_closeBracket.cordova.plugin.camera.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/camera_provider_paths" />
+        </provider>
+
+        <activity
+            android:name="com.hutchind.cordova.plugins.streamingmedia.SimpleAudioStream"
+            android:configChanges="orientation|screenSize"
+            android:label="Simple Audio Stream" />
+        <activity
+            android:name="com.hutchind.cordova.plugins.streamingmedia.SimpleVideoStream"
+            android:configChanges="orientation|screenSize"
+            android:label="Simple Video Stream" />
+        <activity
+            android:name="com.synconset.MultiImageChooserActivity"
+            android:label="@string/multi_app_name"
+            android:theme="@style/Theme.AppCompat.Light" />
+
+        <receiver
+            android:name="nl.xservices.plugins.ShareChooserPendingIntent"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="nl.xservices.plugins.FileProvider"
+            android:authorities="dollar_openBracket_applicationId_closeBracket.sharing.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/sharing_paths" />
+        </provider>
+    </application>
+
+</manifest>

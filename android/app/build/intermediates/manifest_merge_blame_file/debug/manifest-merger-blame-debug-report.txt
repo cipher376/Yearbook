@@ -1,0 +1,428 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.yearbook"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml
+10
+11    <!-- Permissions -->
+12
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:47:5-67
+13-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:47:22-64
+14    <!-- Camera, Photos, input file -->
+15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+15-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:49:5-79
+15-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:49:22-77
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:50:5-81
+16-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:50:22-78
+17    <!-- Geolocation API -->
+18    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+18-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:52:5-81
+18-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:52:22-78
+19    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+19-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:53:5-79
+19-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:53:22-76
+20
+21    <uses-feature android:name="android.hardware.location.gps" />
+21-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:54:5-66
+21-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:54:19-63
+22    <!-- Network API -->
+23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+23-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:56:5-79
+23-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:56:22-76
+24    <!-- Navigator.getUserMedia -->
+25    <!-- Video -->
+26    <uses-permission android:name="android.permission.CAMERA" />
+26-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:59:5-65
+26-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:59:22-62
+27    <!-- Audio -->
+28    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+28-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:61:5-71
+28-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:61:22-68
+29    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+29-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:62:5-79
+29-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:62:22-77
+30    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+30-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-75
+30-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:22-72
+31    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+31-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-71
+31-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:22-68
+32    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+32-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:5-75
+32-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:22-72
+33
+34    <uses-feature
+34-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-13:36
+35        android:name="android.hardware.camera"
+35-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-47
+36        android:required="false" />
+36-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:9-33
+37
+38    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+38-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-81
+38-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:22-78
+39    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+39-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:5-68
+39-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:22-65
+40    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+40-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:26:5-82
+40-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:26:22-79
+41
+42    <application
+42-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:5:5-43:19
+43        android:allowBackup="true"
+43-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:6:9-35
+44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+44-->[androidx.core:core:1.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\217116ffec5ca7a8e531d78d5a554dfe\core-1.2.0\AndroidManifest.xml:24:18-86
+45        android:debuggable="true"
+46        android:icon="@mipmap/ic_launcher"
+46-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:7:9-43
+47        android:label="@string/app_name"
+47-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:8:9-41
+48        android:requestLegacyExternalStorage="true"
+48-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:18-61
+49        android:roundIcon="@mipmap/ic_launcher_round"
+49-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:9:9-54
+50        android:supportsRtl="true"
+50-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:10:9-35
+51        android:testOnly="true"
+52        android:theme="@style/AppTheme" >
+52-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:11:9-40
+53        <activity
+53-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:13:9-32:20
+54            android:name="io.yearbook.MainActivity"
+54-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:15:13-52
+55            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+55-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:14:13-129
+56            android:label="@string/title_activity_main"
+56-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:16:13-56
+57            android:launchMode="singleTask"
+57-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:18:13-44
+58            android:theme="@style/AppTheme.NoActionBarLaunch" >
+58-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:17:13-62
+59            <intent-filter>
+59-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:20:13-23:29
+60                <action android:name="android.intent.action.MAIN" />
+60-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:21:17-69
+60-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:21:25-66
+61
+62                <category android:name="android.intent.category.LAUNCHER" />
+62-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:22:17-77
+62-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:22:27-74
+63            </intent-filter>
+64            <intent-filter>
+64-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:25:13-30:29
+65                <action android:name="android.intent.action.VIEW" />
+65-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:26:17-69
+65-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:26:25-66
+66
+67                <category android:name="android.intent.category.DEFAULT" />
+67-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:27:17-76
+67-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:27:27-73
+68                <category android:name="android.intent.category.BROWSABLE" />
+68-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:28:17-78
+68-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:28:27-75
+69
+70                <data android:scheme="@string/custom_url_scheme" />
+70-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:29:17-68
+70-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:29:23-65
+71            </intent-filter>
+72        </activity>
+73
+74        <provider
+75            android:name="androidx.core.content.FileProvider"
+75-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:35:13-62
+76            android:authorities="io.yearbook.fileprovider"
+76-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:36:13-64
+77            android:exported="false"
+77-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:37:13-37
+78            android:grantUriPermissions="true" >
+78-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:38:13-47
+79            <meta-data
+79-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:39:13-41:64
+80                android:name="android.support.FILE_PROVIDER_PATHS"
+80-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:40:17-67
+81                android:resource="@xml/file_paths" />
+81-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:41:17-51
+82        </provider>
+83
+84        <activity
+84-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:9-24:80
+85            android:name="com.sarriaroman.PhotoViewer.PhotoActivity"
+85-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-69
+86            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+86-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-77
+87
+88        <provider
+88-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:9-34:20
+89            android:name="org.apache.cordova.camera.FileProvider"
+89-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:13-66
+90            android:authorities="io.yearbook.cordova.plugin.camera.provider"
+90-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-82
+91            android:exported="false"
+91-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-37
+92            android:grantUriPermissions="true" >
+92-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-47
+93            <meta-data
+93-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:39:13-41:64
+94                android:name="android.support.FILE_PROVIDER_PATHS"
+94-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:40:17-67
+95                android:resource="@xml/camera_provider_paths" />
+95-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:41:17-51
+96        </provider>
+97
+98        <activity
+98-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:9-39:51
+99            android:name="com.hutchind.cordova.plugins.streamingmedia.SimpleAudioStream"
+99-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:37:13-89
+100            android:configChanges="orientation|screenSize"
+100-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:38:13-59
+101            android:label="Simple Audio Stream" />
+101-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-48
+102        <activity
+102-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:40:9-43:51
+103            android:name="com.hutchind.cordova.plugins.streamingmedia.SimpleVideoStream"
+103-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-89
+104            android:configChanges="orientation|screenSize"
+104-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:13-59
+105            android:label="Simple Video Stream" />
+105-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:43:13-48
+106        <activity
+106-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:44:9-47:60
+107            android:name="com.synconset.MultiImageChooserActivity"
+107-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:45:13-67
+108            android:label="@string/multi_app_name"
+108-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:46:13-51
+109            android:theme="@style/Theme.AppCompat.Light" />
+109-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:47:13-57
+110
+111        <receiver
+111-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:49:9-55:20
+112            android:name="nl.xservices.plugins.ShareChooserPendingIntent"
+112-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:50:13-74
+113            android:enabled="true" >
+113-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:51:13-35
+114            <intent-filter>
+114-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:52:13-54:29
+115                <action android:name="android.intent.action.SEND" />
+115-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:53:17-69
+115-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:53:25-66
+116            </intent-filter>
+117        </receiver>
+118
+119        <provider
+119-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:57:9-65:20
+120            android:name="nl.xservices.plugins.FileProvider"
+120-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:58:13-61
+121            android:authorities="io.yearbook.sharing.provider"
+121-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:59:13-68
+122            android:exported="false"
+122-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:60:13-37
+123            android:grantUriPermissions="true" >
+123-->[:capacitor-cordova-android-plugins] C:\Users\kold_fyre\Desktop\Yearbook\android\capacitor-cordova-android-plugins\build\intermediates\library_manifest\debug\AndroidManifest.xml:61:13-47
+124            <meta-data
+124-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:39:13-41:64
+125                android:name="android.support.FILE_PROVIDER_PATHS"
+125-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:40:17-67
+126                android:resource="@xml/sharing_paths" />
+126-->C:\Users\kold_fyre\Desktop\Yearbook\android\app\src\main\AndroidManifest.xml:41:17-51
+127        </provider>
+128        <provider
+128-->[com.squareup.picasso:picasso:2.71828] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\2013bb5fb19574aa9b76cf8fe3c789a7\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+129            android:name="com.squareup.picasso.PicassoProvider"
+129-->[com.squareup.picasso:picasso:2.71828] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\2013bb5fb19574aa9b76cf8fe3c789a7\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+130            android:authorities="io.yearbook.com.squareup.picasso"
+130-->[com.squareup.picasso:picasso:2.71828] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\2013bb5fb19574aa9b76cf8fe3c789a7\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+131            android:exported="false" />
+131-->[com.squareup.picasso:picasso:2.71828] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\2013bb5fb19574aa9b76cf8fe3c789a7\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+132
+133        <service
+133-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-21:40
+134            android:name="com.getcapacitor.plugin.background.BackgroundTaskService"
+134-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-84
+135            android:exported="false" />
+135-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-37
+136
+137        <receiver android:name="com.getcapacitor.plugin.notification.TimedNotificationPublisher" />
+137-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:9-100
+137-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:19-97
+138        <receiver android:name="com.getcapacitor.plugin.notification.NotificationDismissReceiver" />
+138-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:9-101
+138-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:19-98
+139
+140        <meta-data
+140-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:9-28:37
+141            android:name="firebase_messaging_auto_init_enabled"
+141-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:13-64
+142            android:value="false" />
+142-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-34
+143
+144        <service
+144-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:9-36:19
+145            android:name="com.getcapacitor.CapacitorFirebaseMessagingService"
+145-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-78
+146            android:stopWithTask="false" >
+146-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:32:13-41
+147            <intent-filter>
+147-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-35:29
+148                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+148-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:17-78
+148-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:25-75
+149            </intent-filter>
+150        </service>
+151
+152        <receiver
+152-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:38:9-47:20
+153            android:name="com.getcapacitor.plugin.notification.LocalNotificationRestoreReceiver"
+153-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-97
+154            android:directBootAware="true"
+154-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:40:13-43
+155            android:exported="false" >
+155-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-37
+156            <intent-filter>
+156-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:13-46:29
+157                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+157-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:43:17-86
+157-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:43:25-83
+158                <action android:name="android.intent.action.BOOT_COMPLETED" />
+158-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:44:17-79
+158-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:44:25-76
+159                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+159-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:45:17-82
+159-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:45:25-79
+160            </intent-filter>
+161        </receiver>
+162        <!--
+163             FirebaseMessagingService performs security checks at runtime,
+164             but set to not exported to explicitly avoid allowing another app to call it.
+165        -->
+166        <service
+166-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:28:9-34:19
+167            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+167-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:29:13-82
+168            android:exported="false" >
+168-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:30:13-37
+169            <intent-filter android:priority="-500" >
+169-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-35:29
+170                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+170-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:17-78
+170-->[:capacitor-android] C:\Users\kold_fyre\Desktop\Yearbook\node_modules\@capacitor\android\capacitor\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:25-75
+171            </intent-filter>
+172        </service>
+173        <service
+173-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:35:9-41:19
+174            android:name="com.google.firebase.components.ComponentDiscoveryService"
+174-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:36:13-84
+175            android:directBootAware="true"
+175-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\1d98478fcfc711d7b868742d30b12593\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+176            android:exported="false" >
+176-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:37:13-37
+177            <meta-data
+177-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:38:13-40:85
+178                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+178-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:39:17-119
+179                android:value="com.google.firebase.components.ComponentRegistrar" />
+179-->[com.google.firebase:firebase-messaging:20.1.2] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\69c7969cb086336467283578025ec82f\jetified-firebase-messaging-20.1.2\AndroidManifest.xml:40:17-82
+180            <meta-data
+180-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\0fc1f964e9726a69fed6e5a6b58a6e4f\jetified-firebase-datatransport-17.0.3\AndroidManifest.xml:28:13-30:85
+181                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+181-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\0fc1f964e9726a69fed6e5a6b58a6e4f\jetified-firebase-datatransport-17.0.3\AndroidManifest.xml:29:17-115
+182                android:value="com.google.firebase.components.ComponentRegistrar" />
+182-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\0fc1f964e9726a69fed6e5a6b58a6e4f\jetified-firebase-datatransport-17.0.3\AndroidManifest.xml:30:17-82
+183            <meta-data
+183-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:32:13-34:85
+184                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+184-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:33:17-96
+185                android:value="com.google.firebase.components.ComponentRegistrar" />
+185-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:34:17-82
+186            <meta-data
+186-->[com.google.firebase:firebase-installations:16.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a264b37f3120069ac422d057e48c14fe\jetified-firebase-installations-16.0.0\AndroidManifest.xml:17:13-19:85
+187                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+187-->[com.google.firebase:firebase-installations:16.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a264b37f3120069ac422d057e48c14fe\jetified-firebase-installations-16.0.0\AndroidManifest.xml:18:17-127
+188                android:value="com.google.firebase.components.ComponentRegistrar" />
+188-->[com.google.firebase:firebase-installations:16.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a264b37f3120069ac422d057e48c14fe\jetified-firebase-installations-16.0.0\AndroidManifest.xml:19:17-82
+189        </service>
+190
+191        <receiver
+191-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:37:9-44:20
+192            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+192-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:38:13-78
+193            android:exported="true"
+193-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:39:13-36
+194            android:permission="com.google.android.c2dm.permission.SEND" >
+194-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:40:13-73
+195            <intent-filter>
+195-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:41:13-43:29
+196                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+196-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:42:17-81
+196-->[com.google.firebase:firebase-iid:20.1.1] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\9e776637e9c57ea02cd0ffdbf600ccae\jetified-firebase-iid-20.1.1\AndroidManifest.xml:42:25-78
+197            </intent-filter>
+198        </receiver>
+199
+200        <provider
+200-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\1d98478fcfc711d7b868742d30b12593\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+201            android:name="com.google.firebase.provider.FirebaseInitProvider"
+201-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\1d98478fcfc711d7b868742d30b12593\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+202            android:authorities="io.yearbook.firebaseinitprovider"
+202-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\1d98478fcfc711d7b868742d30b12593\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+203            android:exported="false"
+203-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\1d98478fcfc711d7b868742d30b12593\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+204            android:initOrder="100" />
+204-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\1d98478fcfc711d7b868742d30b12593\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+205
+206        <activity
+206-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\8aabfb69e3b07eb60d850c0e89b1d2e1\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+207            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+207-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\8aabfb69e3b07eb60d850c0e89b1d2e1\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+208            android:exported="false"
+208-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\8aabfb69e3b07eb60d850c0e89b1d2e1\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+209            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+209-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\8aabfb69e3b07eb60d850c0e89b1d2e1\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+210
+211        <meta-data
+211-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\3dd31304fa3897abec167b59287e7e00\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+212            android:name="com.google.android.gms.version"
+212-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\3dd31304fa3897abec167b59287e7e00\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+213            android:value="@integer/google_play_services_version" />
+213-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\3dd31304fa3897abec167b59287e7e00\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+214
+215        <service
+215-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\c4d0f4c44fec3ec90e0a8a4a78ea127f\jetified-transport-backend-cct-2.2.0\AndroidManifest.xml:29:9-35:19
+216            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+216-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\c4d0f4c44fec3ec90e0a8a4a78ea127f\jetified-transport-backend-cct-2.2.0\AndroidManifest.xml:30:13-103
+217            android:exported="false" >
+217-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\c4d0f4c44fec3ec90e0a8a4a78ea127f\jetified-transport-backend-cct-2.2.0\AndroidManifest.xml:31:13-37
+218            <meta-data
+218-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\c4d0f4c44fec3ec90e0a8a4a78ea127f\jetified-transport-backend-cct-2.2.0\AndroidManifest.xml:32:13-34:39
+219                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+219-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\c4d0f4c44fec3ec90e0a8a4a78ea127f\jetified-transport-backend-cct-2.2.0\AndroidManifest.xml:33:17-94
+220                android:value="cct" />
+220-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\c4d0f4c44fec3ec90e0a8a4a78ea127f\jetified-transport-backend-cct-2.2.0\AndroidManifest.xml:34:17-36
+221        </service>
+222        <service
+222-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a0f10ff1bd2a398d8cc0127611ec6594\jetified-transport-runtime-2.2.0\AndroidManifest.xml:26:9-30:19
+223            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+223-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a0f10ff1bd2a398d8cc0127611ec6594\jetified-transport-runtime-2.2.0\AndroidManifest.xml:27:13-117
+224            android:exported="false"
+224-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a0f10ff1bd2a398d8cc0127611ec6594\jetified-transport-runtime-2.2.0\AndroidManifest.xml:28:13-37
+225            android:permission="android.permission.BIND_JOB_SERVICE" >
+225-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a0f10ff1bd2a398d8cc0127611ec6594\jetified-transport-runtime-2.2.0\AndroidManifest.xml:29:13-69
+226        </service>
+227
+228        <receiver
+228-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a0f10ff1bd2a398d8cc0127611ec6594\jetified-transport-runtime-2.2.0\AndroidManifest.xml:32:9-34:40
+229            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+229-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a0f10ff1bd2a398d8cc0127611ec6594\jetified-transport-runtime-2.2.0\AndroidManifest.xml:33:13-132
+230            android:exported="false" />
+230-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\kold_fyre\.gradle\caches\transforms-2\files-2.1\a0f10ff1bd2a398d8cc0127611ec6594\jetified-transport-runtime-2.2.0\AndroidManifest.xml:34:13-37
+231    </application>
+232
+233</manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/android.iml" filepath="$PROJECT_DIR$/.idea/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/180787881/android.capacitor-android.iml" filepath="$PROJECT_DIR$/.idea/modules/180787881/android.capacitor-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capacitor-cordova-android-plugins/android.capacitor-cordova-android-plugins.iml" filepath="$PROJECT_DIR$/.idea/modules/capacitor-cordova-android-plugins/android.capacitor-cordova-android-plugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1598147282/android.capacitor-video-player.iml" filepath="$PROJECT_DIR$/.idea/modules/1598147282/android.capacitor-video-player.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1215882136/android.capacitor-voice-recorder.iml" filepath="$PROJECT_DIR$/.idea/modules/1215882136/android.capacitor-voice-recorder.iml" />
+    </modules>
+  </component>
+</project>
