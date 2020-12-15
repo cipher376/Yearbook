@@ -19,16 +19,24 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   public selectedIndex = 0;
   public logs = [];
   public appPages = [
-    {
-        title: 'Profile',
-        url: '/links/profile',
-        icon: 'person',
-        params: {user: true}
-      },
+    // {
+    //     title: 'Profile',
+    //     url: '/links/profile',
+    //     icon: 'person',
+    //     params: {user: true}
+    //   },
     {
       title: 'Schools',
       url: '/links/my-schools',
-      icon: 'school',
+      icon: '../../../assets/svg-icons/school_n.svg',
+      svg: true,
+      params: {}
+    },
+    {
+      title: 'Schools',
+      url: '/links/my-schools',
+      icon: 'olymp-computer-icon',
+      svg: false,
       params: {}
     },
     {
@@ -54,7 +62,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     {
       title: 'Home',
       url: '/links/home',
-      icon: 'home',
+      icon: '../../../assets/svg-icons/school.svg',
+      svg: true,
       params: {}
     },
     {

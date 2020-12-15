@@ -27,13 +27,15 @@
   <ion-grid *ngSwitchCase="'local'" id="device">
     <ion-row class="col-12 add-btn-row">
       <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
-        <div class="" (click)="selectAudio()">
-          <ion-icon name="folder-open-outline" size="small" class="add-btn"></ion-icon>
+        <div class="center-icons" (click)="selectAudio()">
+          <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+          <!-- <ion-icon name="folder-open-outline" size="small" class="add-btn"></ion-icon> -->
         </div>
       </ion-col>
       <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
-        <div class="" (click)="recordAudio()">
-          <ion-icon name="mic-outline" size="small" class="add-btn"></ion-icon>
+        <div class="center-icons" (click)="recordAudio()">
+          <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-save-playlist-icon"></use></svg>
+          <!-- <ion-icon name="mic-outline" size="small" class="add-btn"></ion-icon> -->
         </div>
       </ion-col>
     </ion-row>

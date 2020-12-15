@@ -32,16 +32,25 @@
       </ion-tab-button> -->
 
       <ion-tab-button tab="schools-location">
-        <ion-icon name="locate-outline" size="small"></ion-icon>
+        <!-- <ion-icon name="locate-outline" size="small"></ion-icon> -->
+        <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
+        
+
       </ion-tab-button>
 
 
       <ion-tab-button tab="schools-search">
-        <ion-icon name="search-outline" size="small"></ion-icon>
+        <!-- <ion-icon name="search-outline" size="small"></ion-icon> -->
+        <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
       </ion-tab-button>
 
       <ion-tab-button tab="home">
-        <ion-icon name="home" size="large"></ion-icon>
+        <ion-fab horizontal="center" vertical="center" class="home_tab" >
+          <ion-fab-button color="danger">
+            <svg class="custom-icons active"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-home-icon"></use></svg>
+          </ion-fab-button>
+        </ion-fab>
+        <!-- <ion-icon src="home" size="large"></ion-icon> -->
         <!-- <ion-badge color="danger">6</ion-badge> -->
       </ion-tab-button>
 
@@ -50,11 +59,14 @@
       </ion-tab-button> -->
 
       <ion-tab-button tab="users-search">
-        <ion-icon name="people-outline" size="small"></ion-icon>
+        <!-- <ion-icon name="people-outline" size="small"></ion-icon> -->
+        <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+
       </ion-tab-button>
 
-      <ion-tab-button tab="settings">
-        <ion-icon name="cog-outline" size="small"></ion-icon>
+      <ion-tab-button tab="profile">
+        <!-- <ion-icon name="cog-outline" size="small"></ion-icon> -->
+        <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
       </ion-tab-button>
       <!-- <ion-tab-button (click)="showLogs()">
         <ion-icon name="list-outline" size="small"></ion-icon>

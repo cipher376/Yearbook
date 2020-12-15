@@ -61,7 +61,8 @@
           <ion-item lines="none" class="ion-activatable ripple-parent" *ngIf="isAuthenticated()" (click)="logout()" >
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
             <ion-label slot="start" class="fs-13">Log Out</ion-label>
-            <ion-icon slot="end" name="log-out-outline"></ion-icon>
+            <svg class="custom-icons logout" slot="end"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
+            <!-- <ion-icon slot="end" name="log-out-outline"></ion-icon> -->
           </ion-item>
         </ion-item-group>
       </ion-card>
