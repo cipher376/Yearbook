@@ -59,11 +59,9 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     this.history$ = this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
     });
-
-    this.store.getObject<User>('user').then(user => {
+    this.userService.getUserLocal().then(user => {
       this.user = user;
-      console.log(this.user);
-    });
+    })
 
   }
   ngAfterViewInit(): void {
