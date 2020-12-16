@@ -1,3 +1,4 @@
-<ion-col  class="ion-align-items-start ion-text-start fs-20 ion-no-padding ion-no-margin" (click)="like()">
-  <ion-icon name="thumbs-up-outline"  [ngClass]="{'liked': affection?.rate}"></ion-icon>
+<ion-col  class="fs-20 ion-no-padding ion-no-margin" (click)="like()">
+  <ion-icon name="heart-outline" size="medium"  [ngClass]="{'liked': affection?.rate}"></ion-icon>
+  <!-- <ion-badge id="heart-outline" class="fs-11" color="primary">11</ion-badge> -->
 </ion-col>

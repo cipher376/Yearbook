@@ -41,17 +41,17 @@
                         <ion-note class="w-100 fs-11 text-right float-right"> {{totalComments}} comments </ion-note>
                     </ion-col> -->
                     <ion-item lines="none" class="ion-no-padding">
-                        <ion-col size="4" slot="start"
-                            class="ion-align-items-start ion-text-start fs-20 ion-no-padding">
-                            <app-like style="margin-left: 4vw;"      [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
+                        <ion-col size="4" slot="" class="fs-20 ion-no-padding ion-no-margin">
+                            <app-like style="margin-left: 4vw;" [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
                                 (reload)="getLikes()"></app-like>
                         </ion-col>
-                        <ion-col size="4" class=" ion-no-padding ion-align-items-start text-center"><ion-avatar>
-                            <svg class="custom-icons" (click)="comment()"><use xlink:href="../../assets/svg-icons/sprites/icons.svg#olymp-chat-messages-icon"></use></svg>
-                            <!-- <ion-icon name="chatbubbles-outline" (click)="comment()"></ion-icon> --></ion-avatar>
+                        <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin ion-text-center">
+                            <ion-icon name="chatbubbles-outline" size="medium" (click)="comment()"></ion-icon>
+                            <!-- <ion-badge id="chatbubbles-outline" class="fs-11" color="primary">11</ion-badge> -->
                         </ion-col>
-                        <ion-col size="4" slot="end" class="fs-20 ion-no-padding ion-align-items-start text-center">
-                            <ion-icon name="share-social-outline" style="float:right;" (click)="share()"></ion-icon>
+                        <ion-col size="4" slot="" class="fs-20 ion-no-padding ion-no-margin ">
+                            <ion-icon name="share-outline" size="medium" style="float:right;" (click)="share()"> </ion-icon>
+                            <!-- <ion-badge id="share-outline" class="fs-11" color="primary">11</ion-badge> -->
                         </ion-col>
                     </ion-item>
                 </ion-row>
