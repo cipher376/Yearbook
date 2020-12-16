@@ -140,7 +140,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
     this._loading = await this.loadCtrl.create({
-      message: 'Welcome to YEARBOOK'
+      message: 'Welcome to alma mater'
     });
     UtilityService.stopLoading(this._loading);
     await this._loading.present();
