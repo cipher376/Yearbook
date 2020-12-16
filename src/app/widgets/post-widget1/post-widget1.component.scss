@@ -36,22 +36,29 @@
     height: 57px !important;
 }
 
-#share-outline{
-    position: relative;
- }
- 
- #share-outline{
+ .share-outline{
     position: absolute;
-    top: -6px;
-    right: -10px;
+    top: -1vw;
+    font-size: 0.6em;
+    --padding-start: 5px;
+    --padding-end: 5px;
+    float: left;
+    margin-left: -8px;
  }
+.chatbubbles-outline {
+    position: absolute;
+    top: -1vw;
+    font-size: 0.6em;
+    --padding-start: 5px;
+    --padding-end: 5px;
+    float: left;
+    margin-left: -8px;
+  }
 
- #chatbubbles-outline{
-    position: relative;
- }
- 
-#chatbubbles-outline {
-    position: absolute;
-    top: -6px;
-    right: -10px;
- }
+//  ion-icon.comt.ios.icon-medium.hydrated {
+//     margin-right: -15px;
+// }
+
+.item-native {
+    padding-left: 0px !important;
+}
