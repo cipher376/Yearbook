@@ -92,7 +92,7 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   async recordAudio() {
     const modal = await this.modalController.create({
       component: AudioRecorderComponent,
-      cssClass: 'my-custom-class'
+      cssClass: 'record-modal-class'
     });
     this.sub$.push(this.signals.closeModalSource$.subscribe(modalName => {
       if (modalName === 'audio-recorder') { // check if its the recorded modal
