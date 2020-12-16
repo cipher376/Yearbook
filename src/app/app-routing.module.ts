@@ -88,7 +88,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
+  },  {
+    path: 'user-profile',
+    loadChildren: () => import('./members/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
+
   // {
   //   path: 'school-posts',
   //   loadChildren: () => import('./public/school-posts/school-posts.module').then( m => m.SchoolPostsPageModule)
