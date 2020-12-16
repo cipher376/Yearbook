@@ -47,13 +47,18 @@ const routes: Routes = [
     path: 'privacy',
     loadChildren: () => import('./public/privacy/privacy.module').then( m => m.PrivacyModule)
   },
-  {   canActivate: [ScreenLockGuardService],
+  {   
+    canActivate: [ScreenLockGuardService],
     path: 'terms-of-service',
     loadChildren: () => import('./public/terms-of-service/terms-of-service.module').then( m => m.TermsOfServiceModule)
   },
   {
     path: 'about',
     loadChildren: () => import('./public/about/about.module').then( m => m.AboutModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./members/user-profile/user-profile.module').then(m => m.UserProfilePageModule)
   },
   // {
   //   canActivate: [AuthGuardService, ScreenLockGuardService],
@@ -65,6 +70,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./members/tab-links/tab-links.module').then( m => m.TabLinksPageModule)
   },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./members/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },
+
 
 
  

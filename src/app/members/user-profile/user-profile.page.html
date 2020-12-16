@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    
+    <ion-row slot="end" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+      <ion-note class="fs-112 poppins-bold" color="dark"> User Profile </ion-note>&nbsp;&nbsp;
+      <!-- <ion-icon color="dark" class="fs-14" name="cog-outline"></ion-icon>  -->
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-avatar class="mx-auto mt-5" style="width:80px; height:80px;" (click)="editProfilePic()">
+    <img src="https://gravatar.com/avatar">
+  </ion-avatar>
+  <ion-item lines="none" class="mb-2"> 
+    <ion-label class="text-center"> 
+      <ion-icon name="create-outline" (click)="editProfilePic()"></ion-icon> Edit </ion-label>
+  </ion-item>
+
+  <ion-list lines="full">
+    <ion-item> Display Name <ion-label slot="end" class="faded fs-14 text-right"> {{ 'John E. Doe' }} </ion-label></ion-item>
+    <ion-item> Email Address <ion-label slot="end" class="faded fs-14 text-right"> {{ 'johndoe@mail.com' }} </ion-label></ion-item>
+    <ion-item> Phone Number <ion-label slot="end" class="faded fs-14 text-right"> {{ '+233 33 223 3345' }} </ion-label></ion-item>
+    <ion-item> Gender <ion-label slot="end" class="faded fs-14 text-right"> {{ 'Non Binary' }} </ion-label></ion-item>
+    <ion-item> Date of Birth <ion-label slot="end" class="faded fs-14 text-right"> {{ '01 January 1990' }} </ion-label></ion-item>
+  </ion-list>
+</ion-content>
