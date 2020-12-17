@@ -1,3 +1,5 @@
+import { MySignals } from 'src/app/shared/services/my-signals';
+import { EntityType } from './../../../models/shareable';
 import { Injectable } from '@angular/core';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Platform } from '@ionic/angular';
@@ -16,7 +18,8 @@ export class SocialSharingService {
     constructor(
         private platform: Platform,
         private socialSharing: SocialSharing,
-        private toaster: ToasterService
+        private toaster: ToasterService,
+        private signal: MySignals
     ) {
 
     }
@@ -41,11 +44,15 @@ export class SocialSharingService {
                     )
                     .then(() => {
                         this.socialSharing
-                            .shareViaFacebook(message, image, url)
+                            .shareViaFacebook(message, image, url).then(success => {
+                                // increase share count for entity
+                                this.signal.announceShared(true); // 
+                            })
                             .catch(err => {
                                 this.showSuccesToast(
                                     'There was a problem please try later'
                                 );
+                                this.signal.announceShared(false); // 
                             });
                     })
                     .catch(err => {
@@ -62,11 +69,14 @@ export class SocialSharingService {
                     )
                     .then(() => {
                         this.socialSharing
-                            .shareViaWhatsApp(message, image, url)
+                            .shareViaWhatsApp(message, image, url).then(_ => {
+                                this.signal.announceShared(true); // 
+                            })
                             .catch(err => {
                                 this.showSuccesToast(
                                     'There was a problem please try later'
                                 );
+                                this.signal.announceShared(false); // 
                             });
                     })
                     .catch(err => {
@@ -83,11 +93,14 @@ export class SocialSharingService {
                     )
                     .then(() => {
                         this.socialSharing
-                            .shareViaInstagram(message, image)
+                            .shareViaInstagram(message, image).then(_ => {
+                                this.signal.announceShared(true); // 
+                            })
                             .catch(err => {
                                 this.showSuccesToast(
                                     'There was a problem please try later'
                                 );
+                                this.signal.announceShared(false); // 
                             });
                     })
                     .catch(err => {
@@ -104,11 +117,16 @@ export class SocialSharingService {
                     )
                     .then(() => {
                         this.socialSharing
-                            .shareViaTwitter(message, image, url)
+                            .shareViaTwitter(message, image, url).then(_ => {
+                                this.signal.announceShared(true); // 
+
+                            })
                             .catch(err => {
                                 this.showSuccesToast(
                                     'There was a problem please try later'
                                 );
+                                this.signal.announceShared(false); // 
+
                             });
                     })
                     .catch(err => {
@@ -116,9 +134,14 @@ export class SocialSharingService {
                     });
             } else {
                 this.socialSharing
-                    .share(message, subject, image, url)
+                    .share(message, subject, image, url).then(_ => {
+                        this.signal.announceShared(true); // 
+
+                    })
                     .catch(err => {
                         this.showSuccesToast('There was a problem please try later');
+                        this.signal.announceShared(false); // 
+
                     });
             }
         });

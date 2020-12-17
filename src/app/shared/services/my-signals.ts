@@ -1,3 +1,4 @@
+import { PushMessage } from './../../models/push-message';
 import { Alumni } from './../../models/alumni';
 import { MyStorage } from './providers/storage/my-storage.service';
 import { School } from './../../models/school';
@@ -235,6 +236,27 @@ export class MySignals {
   followSource$ = this.followSource.asObservable();
   announceFollowed(isFollowed: boolean) {
     this.followSource.next(isFollowed);
+  }
+
+  /***
+   *  SHARING NOTIFICATION
+   */
+
+  private shareSuccessSource = new Subject<boolean>();
+  shareSuccessSource$ = this.shareSuccessSource.asObservable();
+  announceShared(shared: boolean) {
+    this.shareSuccessSource.next(shared);
+  }
+
+
+  /***
+   *  SOCKET PUSH NOTIFICATION
+   */
+
+  private socketPushMessageSource = new Subject<PushMessage>();
+  socketPushMessageSource$ = this.socketPushMessageSource.asObservable();
+  announceNewSocketPushMessage(msg: PushMessage) {
+    this.socketPushMessageSource.next(msg);
   }
 
 }

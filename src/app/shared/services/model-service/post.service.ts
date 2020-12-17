@@ -165,6 +165,18 @@ export class PostService {
     );
   }
 
+  updateShareCount(postId: any) {
+    const url = '/posts/update-share-count/' + postId;
+    // console.log(url);
+    return this.http.get<any>(url).pipe(
+      map(res => {
+        // console.log(res);
+        return res;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
   countUserPost(userId: any) {
     return this.countPost(userId);
   }

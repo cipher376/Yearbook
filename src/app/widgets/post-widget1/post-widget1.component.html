@@ -32,33 +32,34 @@
             padding-top: 12vw;
             padding-bottom: 0;">
                 <!-- <ion-row class="ion-no-padding ion-no-margin fs-10 mb-2"> -->
-                    <!-- <ion-col size="6">
+                <!-- <ion-col size="6">
                         <ion-note class="w-100 fs-11    "> {{likes?.length}} likes </ion-note>
                     </ion-col>
                     <ion-col size="6">
                         <ion-note class="w-100 fs-11 text-right float-right"> {{totalComments}} comments </ion-note>
                     </ion-col> -->
-                    <!-- <ion-grid>
+                <!-- <ion-grid>
                         
                     </ion-grid> -->
-                    <ion-item lines="none" class="mt-2">
-                        <ion-col size="4"  class="fs-20 ion-no-padding ion-no-margin">
-                            <app-like  [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
-                                (reload)="getLikes()"></app-like>
-                        </ion-col>
-                        <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin ion-text-center">
-                            <div (click)="comment()">
-                                <ion-icon class="comt" name="chatbubbles-outline" size="medium"></ion-icon>
-                                <ion-badge class="fs-8 chatbubbles-outline" color="primary">1</ion-badge>
-                            </div>
-                        </ion-col>
-                        <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin" style="padding-right: 4vw;">
-                            <div style="float:right;" (click)="share()">
-                                <ion-icon name="share-outline" size="medium" > </ion-icon>
-                                <ion-badge class="fs-8 share-outline" color="primary">1</ion-badge>
-                            </div>
-                        </ion-col>
-                    </ion-item>
+                <ion-item lines="none" class="mt-2">
+                    <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin">
+                        <app-like [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
+                            (reload)="getLikes()" [likeCount]="likes?.length"></app-like>
+                    </ion-col>
+                    <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin ion-text-center">
+                        <div (click)="comment()">
+                            <ion-icon class="comt" name="chatbubbles-outline" size="medium"></ion-icon>
+                            <ion-badge *ngIf="totalComments>0" class="fs-8 chatbubbles-outline" color="primary">
+                                {{totalComments}}</ion-badge>
+                        </div>
+                    </ion-col>
+                    <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin" style="padding-right: 4vw;">
+                        <div style="float:right;" (click)="share()">
+                            <ion-icon name="share-outline" size="medium"> </ion-icon>
+                            <ion-badge *ngIf="post?.shareCount" class="fs-8 share-outline" color="primary">{{post?.shareCount}}</ion-badge>
+                        </div>
+                    </ion-col>
+                </ion-item>
                 <!-- </ion-row> -->
 
                 <ion-note class="fs-12" color="dark">
