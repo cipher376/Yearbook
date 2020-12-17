@@ -1,3 +1,4 @@
+import { PushMessage } from './../../models/push-message';
 import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +8,31 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor() { }
+  message: PushMessage;
+  // el: any;
 
-  ngOnInit() {}
+  private el: HTMLElement;
 
-  dismiss(noti: any) {
-    noti.style.display = 'none';
-    // console.dir(noti)
+  constructor(el: ElementRef) {
+    this.el = el.nativeElement;
+  }
+
+  ngOnInit() { }
+
+  dismiss() {
+    this.el.style.display = 'none';
+    this.message = new PushMessage();
+  }
+
+  set Message(msg: PushMessage) {
+    this.message = msg;
+  }
+
+  show(msg: PushMessage) {
+    this.message = msg;
+    setTimeout(() => {
+      this.dismiss();
+    }, 10000);
   }
 
 }

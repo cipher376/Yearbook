@@ -9,7 +9,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@
 })
 export class LikeComponent implements OnInit, AfterViewInit {
   protected affection: Like;
-
+  @Input() likeCount = 0;
   // event
   @Output() reload = new EventEmitter<boolean>();
 

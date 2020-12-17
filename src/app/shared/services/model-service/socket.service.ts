@@ -1,3 +1,4 @@
+import { MySignals } from 'src/app/shared/services/my-signals';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 
 
@@ -42,7 +43,7 @@ export class PushSocketService {
     pushSource$ = this.pushSource.asObservable();
 
     user: User;
-    channelIds = ['1', '2', '3'];
+    channels = [];
 
     currentSocketId = '';
     retry: any;
@@ -52,7 +53,8 @@ export class PushSocketService {
      */
     constructor(
         private socket: PushSocket,
-        private userService: UserService) {
+        private userService: UserService,
+        private signals: MySignals) {
 
         this.userService.getUserLocal().then(user => {
             this.user = user;
@@ -88,26 +90,43 @@ export class PushSocketService {
          * CONNECTION SUCCESSFUL
          */
         this.socket.on('connect', () => {
+            this.socket.removeListener(`verification${this.currentSocketId}`); // prevent duplication
+            this.socket.removeListener(`channels${this.currentSocketId}`); // prevent duplication
+
             this.currentSocketId = this.socket.ioSocket.id;
-            clearInterval(this.retry);
-            this.pushSubscription(); // subscribe to channels
-            this.socket.on(`verification${this.socket.ioSocket.id}`, (remoteId) => {
+            // Wait for verification | authentication
+            this.socket.on(`verification${this.currentSocketId}`, (remoteId) => {
                 console.log('Verification remote:', remoteId);
                 console.log('Verification local:', this.currentSocketId);
                 setTimeout(() => {
                     if (this.currentSocketId === remoteId) {
-                        // alert('verification request received');
+                        alert('Testing');
                         // send user token
-                        this.socket.emit(`verification${this.socket.ioSocket.id}`, {token: this.userService.token});
+                        this.socket.emit(`verification${this.currentSocketId}`, { token: this.userService?.token?.token });
                     } else {
                         this.currentSocketId = '';
                         this.socket.disconnect();
-
-                        console.log('hello');
                     }
                 }, 2000);
             });
+
+            this.socket.on(`channels${this.currentSocketId}`, (channels) => {
+                // console.log(channels);
+                this.channels = channels;
+                if (this.channels.length > 0) {
+                    if (this.channels !== channels) { // new incoming channels
+                        // remove all previous channels subscriptions
+                        this.clearChannelsSubscription();
+                    }
+                    this.subscribeToChannels(); // subscribing to the new channels;
+                }
+            });
+
+            clearInterval(this.retry);
         });
+
+
+
 
 
 
@@ -118,7 +137,7 @@ export class PushSocketService {
             console.log('Retrying');
             // console.log(erro);
             setTimeout(() => {
-                this.socket.connect();
+                this.socket.connect(); // wait for 1 second and retry
             }, 1000);
         });
 
@@ -135,26 +154,30 @@ export class PushSocketService {
             }, 5000); // retry after every 5seconds
         });
 
-
-
         this.socket.connect(); // Triggers first connection
     }
 
 
 
-    pushSubscription() {
+    subscribeToChannels() {
         const retry = setInterval(() => {
             console.log('Retrying to establish connection');
             if (this.socket.ioSocket.readyState !== 'open') {
-                this.channelIds.forEach(ch => {
-                    this.socket.ioSocket.on(ch, () => {
+                this.channels.forEach(ch => {
+                    this.socket.ioSocket.on(ch, (message) => {
                         console.log('Listening on channel: ', ch);
-                        this.socket.emit('1', ['adsfldf dfjlajf lkdsf']);
+                        this.signals.announceNewSocketPushMessage(message);
                     });
                 });
                 clearInterval(retry); // stop connecting
             }
         }, 5000); // retry after every 5seconds
+    }
+
+    clearChannelsSubscription(){
+        this.channels.forEach(ch => {
+            this.socket.ioSocket.removeListener(ch);
+        });
     }
 
 

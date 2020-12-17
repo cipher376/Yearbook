@@ -1,6 +1,7 @@
-<div class="continer noti-main" #noti>
-  <div class="noti-dismiss" (click)="dismiss(noti)">
-    <ion-icon name="close" size="medium" color="danger"></ion-icon>
+<div class="continer noti-main" >
+  <div class="noti-dismiss" (click)="dismiss()">
+    <ion-icon  *ngIf="!message?.file" name="close" size="medium" color="danger"></ion-icon>
+    <ion-img *ngIf="message?.file" [src]="message?.file"></ion-img>
   </div>
   <div class="row">
     <div class="col-2" style="height:auto;">
@@ -9,7 +10,8 @@
     </div>
     <div class="col-10">
       <p class="noti-content text-bold mb-0"> 
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis id laudantium blanditiis asperiores fuga necessitatibus sit assumenda voluptatibus totam. Nulla inventore id cupiditate nisi pariatur rem maiores repudiandae impedit ullam.
+        <b>{{message?.subject}}</b><br>
+        {{message?.body}}
       </p>
     </div>
   </div>

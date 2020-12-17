@@ -1,8 +1,9 @@
+import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { MyShareComponent } from './../my-share/my-share.component';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { MediaType, Photo, Video } from './../../models/my-media';
 import { PostService } from './../../shared/services/model-service/post.service';
-import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { DEFAULT_AUDIO_COVER, DEFAULT_DOCUMENT_COVER, DOWNLOAD_CONTAINER, SERVER_DOWNLOAD_PATH } from 'src/app/shared/config';
 import { User } from 'src/app/models/user';
@@ -13,14 +14,14 @@ import { ModalController } from '@ionic/angular';
 import { CommentsComponent } from '../comments/comments.component';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { Router } from '@angular/router';
-import { Shareable } from 'src/app/models/shareable';
+import { EntityType, Shareable } from 'src/app/models/shareable';
 
 @Component({
   selector: 'app-post-widget1',
   templateUrl: './post-widget1.component.html',
   styleUrls: ['./post-widget1.component.scss'],
 })
-export class PostWidget1Component implements OnInit, AfterViewInit {
+export class PostWidget1Component implements OnInit, AfterViewInit, OnDestroy {
 
   private tags = ['irepmyschool', 'back2school2020'];
 
@@ -42,6 +43,8 @@ export class PostWidget1Component implements OnInit, AfterViewInit {
   @ViewChild(MyShareComponent) myShareComponent: MyShareComponent;
 
 
+  sub$ = [];
+
   constructor(
     private postService: PostService,
     private socialService: SocialService,
@@ -50,6 +53,10 @@ export class PostWidget1Component implements OnInit, AfterViewInit {
     private userService: UserService,
     private router: Router,
   ) { }
+
+  ngOnDestroy(): void {
+    UtilityService.destroySubscription(this.sub$);
+  }
 
   ngOnInit() { }
 
@@ -77,6 +84,10 @@ export class PostWidget1Component implements OnInit, AfterViewInit {
       this.objects = post?.documents;
       this.mediaType = MediaType.DOCUMENT;
     }
+
+    this.socialService.countPostComments(this.post?.id).subscribe(count => {
+      this.totalComments = count;
+    });
   }
 
 
@@ -129,13 +140,13 @@ export class PostWidget1Component implements OnInit, AfterViewInit {
     if (this.objects?.length > 0) {
       fileUrl = DOWNLOAD_CONTAINER + this.objects[0]?.fileName;
       if (this.mediaType === MediaType.PHOTO) {
-        image = DOWNLOAD_CONTAINER + ( this.objects[0] as Photo).fileName;
+        image = DOWNLOAD_CONTAINER + (this.objects[0] as Photo).fileName;
       } else if (this.mediaType === MediaType.VIDEO) {
-        image =  DOWNLOAD_CONTAINER + ( this.objects[0] as Video).posterUrl;
+        image = DOWNLOAD_CONTAINER + (this.objects[0] as Video).posterUrl;
       } else if (this.mediaType === MediaType.AUDIO) {
-        image =  DEFAULT_AUDIO_COVER;
+        image = DEFAULT_AUDIO_COVER;
       } else if (this.mediaType === MediaType.DOCUMENT) {
-        image =  DEFAULT_DOCUMENT_COVER;
+        image = DEFAULT_DOCUMENT_COVER;
       }
     }
 
@@ -144,9 +155,18 @@ export class PostWidget1Component implements OnInit, AfterViewInit {
       subject: 'Yearbook Post',
       url: fileUrl,
       image,
-      emailRecipients: []
+      emailRecipients: [],
+      entityType: EntityType.Post
     };
-
+    const share$ = this.signals.shareSuccessSource$.subscribe(shared => {
+      if (shared) {
+        // update share count for post;
+        this.sub$.push(this.postService.updateShareCount(this.post?.id).subscribe(_ => {
+          this.post.shareCount += 1;
+        }))
+        share$.unsubscribe();
+      }
+    });
     this.myShareComponent.share(shareable);
   }
 

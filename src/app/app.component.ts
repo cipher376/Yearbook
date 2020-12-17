@@ -1,8 +1,9 @@
+import { NotificationsComponent } from './widgets/notifications/notifications.component';
 import { PushSocketService } from './shared/services/model-service/socket.service';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { BrowserHistoryService } from './shared/services/providers/navigation/browser-history.service';
-import { Component, OnInit, AfterViewInit, AfterContentInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -92,6 +93,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   user: User;
   identityPhoto: IdentityPhoto;
 
+  @ViewChild(NotificationsComponent) notificationComponent: NotificationsComponent;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -115,6 +118,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       this.splashScreen.hide();
 
       this.permissions.initPermissions().then(_ => _);
+
+      this.manageNotifications();
     });
   }
 
@@ -172,6 +177,14 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
         ];
       }
 
+    });
+  }
+
+  manageNotifications()
+  {
+    this.notificationComponent.dismiss();
+    this.signals.socketPushMessageSource$.subscribe(msg => {
+      this.notificationComponent.show(msg);
     });
   }
 

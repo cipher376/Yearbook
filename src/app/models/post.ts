@@ -18,6 +18,8 @@ export interface PostInterface {
     schoolId?: number;
     user?: User;
     school?: School;
+    shareCount?: number;
+
 
 }
 
@@ -29,6 +31,8 @@ export class Post {
     dateCreated?: Date;
     userId: number;
     schoolId?: number;
+    shareCount?: number;
+
 
     photos?: Photo[] = [];
     audios?: Audio[] = [];
