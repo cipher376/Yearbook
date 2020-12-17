@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-notifications',
@@ -10,5 +10,10 @@ export class NotificationsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
+
+  dismiss(noti: any) {
+    noti.style.display = 'none';
+    // console.dir(noti)
+  }
 
 }
