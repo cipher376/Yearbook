@@ -8,10 +8,11 @@
     </ion-thumbnail>
     <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark" (click)="view()">
       {{ user?.firstName }} {{ user?.otherName}} {{ user?.lastName }}<br>
-      <ion-label class="hind-regular fs-11">
+      <p *ngIf="!user?.address">{{user?.email}}</p>
+      <ion-label class="hind-regular fs-11" *ngIf="user?.address">
           <span *ngIf="user?.address?.city">#{{user?.address?.city}}</span>
           <span *ngIf="user?.address?.state">#{{user?.address?.state}}</span>
-          <span *ngIf="user?.address?.country">#{{user?.address?.country}}</span>
+          <!-- <span *ngIf="user?.address?.country">#{{user?.address?.country}}</span> -->
       </ion-label>
     </ion-note>
     <!-- <ion-button slot="end" shape="round" fill="outline" color='danger' class="poppins-bold fs-13" style="--border-width: 2px;">R<span
