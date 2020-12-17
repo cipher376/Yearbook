@@ -1,15 +1,15 @@
 <ion-row class="ion-no-padding ion-no-margin ion-activatable ripple-parent" width="100%">
   <ion-ripple-effect type="unbounded"></ion-ripple-effect>
   <ion-item lines="none" class="ion-no-padding" style="padding-top: 7px;
-      padding-bottom: 7px;border-bottom: thin dotted lightgray;">
+      padding-bottom: 7px;border-bottom: thin dotted lightgray; padding-left: 5vh; padding-right: 5vh;">
     <ion-thumbnail class="ion-no-padding br-10" slot="start" [routerLink]="['/links/school-profile']"
       routerLinkActive="router-link-active">
       <img src="{{profilePhotoUrl}}">
     </ion-thumbnail>
     <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark" (click)="view()">
       {{ user?.firstName }} {{ user?.otherName}} {{ user?.lastName }}<br>
-      <p *ngIf="!user?.address">{{user?.email}}</p>
-      <ion-label class="hind-regular fs-11" *ngIf="user?.address">
+      <ion-label class="hind-regular fs-12" *ngIf="!user?.address">{{user?.email}}</ion-label>
+      <ion-label class="hind-regular fs-12" *ngIf="user?.address">
           <span *ngIf="user?.address?.city">#{{user?.address?.city}}</span>
           <span *ngIf="user?.address?.state">#{{user?.address?.state}}</span>
           <!-- <span *ngIf="user?.address?.country">#{{user?.address?.country}}</span> -->
