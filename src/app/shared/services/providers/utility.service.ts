@@ -1251,7 +1251,7 @@ export class UtilityService {
     };
 
     const observer = new IntersectionObserver((entries, obsvr) => {
-      console.log(entries);
+      // console.log(entries);
       const entry = entries[0];
       // if element is out of view
       if (!entry.isIntersecting) {
