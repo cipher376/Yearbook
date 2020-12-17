@@ -72,15 +72,15 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       params: {}
     },
     {
-      title: 'Login',
-      url: '/login',
-      icon: 'person',
-      params: {}
-    },
-    {
       title: 'Sign up',
       url: '/register',
       icon: 'person-add',
+      params: {}
+    },
+    {
+      title: 'Login',
+      url: '/login',
+      icon: 'log-in',
       params: {}
     },
   ];
@@ -155,7 +155,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
           {
             title: 'Settings',
             url: '/links/settings',
-            icon: 'cog',
+            icon: 'settings',
             params: {}
           },
           {
