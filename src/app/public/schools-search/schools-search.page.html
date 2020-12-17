@@ -29,7 +29,7 @@
   <!-- Top correction -->
   <ion-row class="ion-content-top_correction"></ion-row>
   <!-- Top correction ends -->
-
+  
   <!-- Main body content -->
   <ion-row class="ion-padding-start ion-padding-end ion-activatable ripple-parent mt-5">
     <!-- <ion-ripple-effect type="unbounded"></ion-ripple-effect>
@@ -55,7 +55,7 @@
           padding-bottom: 7px;border-bottom: thin dotted lightgray;" (click)="gotoSchoolProfile(school)"> 
           <ion-thumbnail class="ion-no-padding br-10" slot="start" 
             routerLinkActive="router-link-active">
-            <img src="{{getProfilePhotoUrl(schoolsIdentityPhoto[i])}}">
+            <img src="{{ getProfilePhotoUrl(schoolsIdentityPhoto[i]) }}">
           </ion-thumbnail>
           <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark"
            >{{school?.name}} <br>

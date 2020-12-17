@@ -483,7 +483,9 @@ svg.active {
 
 
 .center-icons {
-    padding-left: 35% !important;
+    // padding-left: 35% !important;
+    margin: auto;
+    background: white;
 }
 
 .center-icons svg.custom-icons {
