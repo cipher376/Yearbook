@@ -12,4 +12,8 @@ export class UserProfilePage implements OnInit {
   ngOnInit() {
   }
 
+  editProfilePic() {
+    
+  }
+
 }
