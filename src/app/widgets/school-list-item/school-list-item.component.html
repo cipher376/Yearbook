@@ -13,7 +13,8 @@
     <!-- <ion-button slot="end" shape="round" fill="outline" color='danger' class="poppins-bold fs-13" style="--border-width: 2px;">R<span
           class="ion-text-lowercase">emove</span></ion-button> -->
     <ion-icon slot="end" name='trash-outline' color="danger" *ngIf="isEdit"
-      class="animate__animated animate__fadeInRight" (click)="leaveSchool(school)"></ion-icon>
+      class="animate__animated animate__fadeInRight" (click)="leaveSchool(school)">
+    </ion-icon>
     <ion-icon slot="end" name='chevron-forward-outline' *ngIf="!isEdit" class="animate__animated animate__fadeInRight">
     </ion-icon>
   </ion-item>

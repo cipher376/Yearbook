@@ -17,7 +17,7 @@ export class BackgroundImageDirective implements AfterViewInit {
 
     ngAfterViewInit() {
         this.el.style.backgroundImage = 'url(' + this.backgroundImage + ')';
-        this.el.style.backgroundPosition = 'inherit';
+        this.el.style.backgroundPosition = 'center';
         this.el.style.backgroundSize = 'cover';
         this.el.style.backgroundRepeat = 'no-repeat';
     }
