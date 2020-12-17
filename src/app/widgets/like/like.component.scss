@@ -1,3 +1,22 @@
 .liked {
     color: var(--ion-color-primary);
 }
+
+// #heart-outline{
+//     position: relative;
+//  }
+ 
+//  #heart-outline {
+//     position: absolute;
+//     top: -6px;
+//     right: -16px;
+//  }
+
+ .heart-outline{
+    position: absolute;
+    top: -1vw;
+    right: 20vw;
+    font-size: 0.6em;
+    --padding-start: 5px;
+    --padding-end: 5px;
+ }

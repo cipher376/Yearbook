@@ -21,9 +21,9 @@
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url, p.params]" lines="none"
               detail="false" [class.selected]="selectedIndex == i">
-              <!-- <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon> -->
-              <ion-icon size="large" *ngIf="p.svg" src="{{p.icon}}"></ion-icon>
-              <svg *ngIf="!p.svg" class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#{{p.icon}}"></use></svg>
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <!-- <ion-icon size="large" *ngIf="p.svg" src="{{p.icon}}"></ion-icon>
+              <svg *ngIf="!p.svg" class="custom-icons right_slid_ico"><use [attr.xlink:href]="p.icon"></use></svg> -->
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -38,7 +38,9 @@
             <ion-item (click)="selectedIndex = i+3" routerDirection="root" [routerLink]="[p.url, p.params]" lines="none"
               detail="false" [class.selected]="selectedIndex == i+3">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+              <!-- <ion-icon size="large" *ngIf="p.svg" src="{{p.icon}}" class="right_slid_ico"></ion-icon>
+              <svg *ngIf="!p.svg" class="custom-icons right_slid_ico"><use [attr.xlink:href]="p.icon"></use></svg> -->
+              <ion-label class="ion-no-margin">{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
 

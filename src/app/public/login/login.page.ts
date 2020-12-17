@@ -78,7 +78,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     // this._fameIdentity = <FameIdentity>{};
     this.loginForm = this.fb.group({
       email: [
-        'fslinn0@xinhuanet.com',
+        'clilled@xrea.com',
         [
           Validators.required,
           Validators.email,
@@ -87,7 +87,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
         ]
       ],
       password: [
-        'T775Vp15P',
+        'pJm5pDF',
         [Validators.required, Validators.minLength(5), Validators.maxLength(20)]
       ],
       remember: [false]
@@ -140,7 +140,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
     this._loading = await this.loadCtrl.create({
-      message: 'Welcome to YEARBOOK'
+      message: 'Welcome to alma mater'
     });
     UtilityService.stopLoading(this._loading);
     await this._loading.present();

@@ -29,32 +29,37 @@
             </ion-row>
             <ion-card-content class="fs-12" style="
             z-index: 1;
-            padding-top: 54px;
-            padding-bottom: 0;
-            padding-left: 1vw;
-            padding-right: 1vw;">
-                <ion-row class="ion-no-padding ion-no-margin fs-10 mb-2">
+            padding-top: 12vw;
+            padding-bottom: 0;">
+                <!-- <ion-row class="ion-no-padding ion-no-margin fs-10 mb-2"> -->
                     <!-- <ion-col size="6">
                         <ion-note class="w-100 fs-11    "> {{likes?.length}} likes </ion-note>
                     </ion-col>
                     <ion-col size="6">
                         <ion-note class="w-100 fs-11 text-right float-right"> {{totalComments}} comments </ion-note>
                     </ion-col> -->
-                    <ion-item lines="none" class="ion-no-padding">
-                        <ion-col size="4" slot="start"
-                            class="ion-align-items-start ion-text-start fs-20 ion-no-padding">
-                            <app-like style="margin-left: 4vw;"      [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
+                    <!-- <ion-grid>
+                        
+                    </ion-grid> -->
+                    <ion-item lines="none" class="mt-2">
+                        <ion-col size="4"  class="fs-20 ion-no-padding ion-no-margin">
+                            <app-like  [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
                                 (reload)="getLikes()"></app-like>
                         </ion-col>
-                        <ion-col size="4" class=" ion-no-padding ion-align-items-start text-center"><ion-avatar>
-                            <svg class="custom-icons" (click)="comment()"><use xlink:href="../../assets/svg-icons/sprites/icons.svg#olymp-chat-messages-icon"></use></svg>
-                            <!-- <ion-icon name="chatbubbles-outline" (click)="comment()"></ion-icon> --></ion-avatar>
+                        <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin ion-text-center">
+                            <div (click)="comment()">
+                                <ion-icon class="comt" name="chatbubbles-outline" size="medium"></ion-icon>
+                                <ion-badge class="fs-8 chatbubbles-outline" color="primary">1</ion-badge>
+                            </div>
                         </ion-col>
-                        <ion-col size="4" slot="end" class="fs-20 ion-no-padding ion-align-items-start text-center">
-                            <ion-icon name="share-social-outline" style="float:right;" (click)="share()"></ion-icon>
+                        <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin" style="padding-right: 4vw;">
+                            <div style="float:right;" (click)="share()">
+                                <ion-icon name="share-outline" size="medium" > </ion-icon>
+                                <ion-badge class="fs-8 share-outline" color="primary">1</ion-badge>
+                            </div>
                         </ion-col>
                     </ion-item>
-                </ion-row>
+                <!-- </ion-row> -->
 
                 <ion-note class="fs-12" color="dark">
                     <ion-text>
@@ -73,10 +78,10 @@
                         <hr style="background: #e8e9ed; margin-bottom:0;">
                     </ion-col>
                 </ion-row>
-                <ion-row style="height: 178px" [ngClass]="{'tempHeight': totalComments<1}">
+                <!-- <ion-row style="height: 178px" [ngClass]="{'tempHeight': totalComments<1}">
                     <app-comments [showHeader]="false" [Post]="post" (totalComments)="TotalComments = $event">
                     </app-comments>
-                </ion-row>
+                </ion-row> -->
 
 
 

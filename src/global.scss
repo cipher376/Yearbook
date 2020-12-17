@@ -118,6 +118,17 @@ ion-label {
 }
 
 
+
+.fs-4 {
+    font-size: 4px !important;
+}
+.fs-6 {
+    font-size: 6px !important;
+}
+.fs-8 {
+    font-size: 8px !important;
+}
+
 .fs-10 {
     font-size: 10px !important;
 }
@@ -499,4 +510,13 @@ svg.active {
     ion-label ,p{
         color:var(--ion-color-light) !important;
     }
+}
+
+
+ion-icon.ios.icon-medium.hydrated{
+    font-size: 23px !important;
+}
+.record-modal-class{
+    --height: 40vh;
+    --width: 90%;
 }

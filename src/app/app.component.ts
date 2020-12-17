@@ -30,21 +30,13 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     {
       title: 'Schools',
       url: '/links/my-schools',
-      icon: '../../../assets/svg-icons/school_n.svg',
-      svg: true,
-      params: {}
-    },
-    {
-      title: 'Schools',
-      url: '/links/my-schools',
-      icon: 'olymp-computer-icon',
-      svg: false,
+      icon: 'school',
       params: {}
     },
     {
       title: 'Timeline',
       url: '/links/timeline',
-      icon: 'stopwatch',
+      icon: 'receipt',
       params: {}
     },
     // {
@@ -64,8 +56,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     {
       title: 'Home',
       url: '/links/home',
-      icon: '../../../assets/svg-icons/school.svg',
-      svg: true,
+      icon: 'home',
       params: {}
     },
     {
@@ -83,7 +74,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     {
       title: 'Login',
       url: '/login',
-      icon: 'person-circle',
+      icon: 'person',
       params: {}
     },
     {

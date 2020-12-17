@@ -1,6 +1,4 @@
-<ion-content style="
-height: 50vh;
-">
+<ion-content>
   <ion-button fill="outline" shape="round" color="danger" (click)="closeModals()" size="small"
     style="--border-width: 0px;float: right;">
     <ion-icon name="close"></ion-icon>
@@ -8,13 +6,21 @@ height: 50vh;
   
   <ion-label>
     <ion-text>
-      <h1>{{status}}</h1>
+      <h1 class="pt-5 mx-auto text-center">{{ status }} </h1>
     </ion-text>
   </ion-label>
-  <ion-button (click)="start()">Start recording
 
-  </ion-button>
-  <ion-button (click)="stop()">Stop recording</ion-button>
+  <div class="container">"
+    <input type="checkbox" id="btn" (click)="status === 'Recording...' ? stop() : start()">
+    <label for="btn"></label>
+    <div class="time">
+      <div class="h_m"></div>
+      <div class="s_ms"></div>
+    </div>
+  </div>
+  
+  <!-- <ion-button (click)="start()">Start recording</ion-button> -->
+  <!-- <ion-button (click)="stop()">Stop recording</ion-button>
   <ion-button (click)="play()">Play</ion-button>
-  <ion-button (click)="stopPlay()">stop playing</ion-button>
+  <ion-button (click)="stopPlay()">stop playing</ion-button> -->
 </ion-content>
