@@ -43,6 +43,10 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { SocketIoModule } from 'ngx-socket-io';
+import { PushSocket, PushSocketService } from './shared/services/model-service/socket.service';
+
+// const config: SocketIoConfig = { url: SOCKET_ROOT_URL, options: {} };
 
 
 @NgModule({
@@ -67,6 +71,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     InViewportModule,
     PickerModule,
     EmojiModule,
+    SocketIoModule,
+
   ],
   providers: [
     StatusBar,
@@ -95,6 +101,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     VgBufferingModule,
     SocialSharing,
     Keyboard,
+    PushSocket,
+    PushSocketService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
   ],

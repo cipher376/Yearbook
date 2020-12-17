@@ -1,3 +1,4 @@
+import { PushSocketService } from './shared/services/model-service/socket.service';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 import { BrowserHistoryService } from './shared/services/providers/navigation/browser-history.service';
@@ -9,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './shared/services/model-service/user.service';
 import { User } from './models/user';
 import { PermissionsService } from './shared/services/providers/permission.service';
+import { IdentityPhoto } from './models/my-media';
 
 @Component({
   selector: 'app-root',
@@ -97,6 +99,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   ];
 
   user: User;
+  identityPhoto: IdentityPhoto;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -106,7 +110,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     private store: MyStorage,
     private permissions: PermissionsService,
     private signals: MySignals,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private pushService: PushSocketService
   ) {
     this.initializeApp();
   }
@@ -128,11 +133,15 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
     this.userService.userAuthenticatedSource$.subscribe(user => {
+      this.identityPhoto = UserService.getUserIdentityPhoto(user);
       this.setMenu();
     });
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+    this.user =  await this.userService.getUserLocal();
+    this.identityPhoto = UserService.getUserIdentityPhoto(this.user);
+
     setTimeout(() => {
       this.setMenu();
       this.cdr.detectChanges();
@@ -164,7 +173,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
             icon: 'log-out',
             params: { clear: true }
           },
-          
+
         ];
         this.user = user ?? localUser;
       } else {
