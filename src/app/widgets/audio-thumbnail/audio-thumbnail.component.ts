@@ -35,6 +35,10 @@ export class AudioThumbnailComponent implements OnInit {
     this.preview();
   }
 
+  togglePlay(a: any, b: any) {
+    a.el.name === 'play' ? a.el.name = 'pause' : a.el.name = 'play';
+  }
+
   preview() {
     let path = '';
     console.log(this.location);

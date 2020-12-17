@@ -8,10 +8,11 @@
     <ion-row class="fs-10">D<span class="ion-text-lowercase">evice gallery</span></ion-row>
   </ion-segment-button>
 </ion-segment>
+
 <div [ngSwitch]="galleryType">
   <div *ngSwitchCase="'cloud'" id="cloud">
     <ion-row class=" ion-no-padding ion-no-margin">
-      <ion-col class="col-6 col-sm-4 col-md-4 col-xl-3   px-1 " *ngFor="let aud of cloudAudios">
+      <ion-col class="col-6 col-sm-4 col-md-4 col-xl-3 px-1 " *ngFor="let aud of cloudAudios">
         <!-- <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'">
           <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromCloudPhotos(image)" size="small"
             style="--border-width: 0px;float: right;background:#ffffff5c;">
@@ -25,7 +26,7 @@
   </div>
 
   <ion-grid *ngSwitchCase="'local'" id="device">
-    <ion-row class="col-12 add-btn-row">
+    <ion-row class="col-12 add-btn-row pb-3">
       <ion-col class="col-6 col-md-4 col-xl-3 ion-no-padding">
         <div class="center-icons" (click)="selectAudio()">
           <ion-icon name="document-attach-outline" size="small" class="add-btn mt-5"></ion-icon>
@@ -38,9 +39,10 @@
       </ion-col>
     </ion-row>
     <ion-row class="image-container-row">
-      <ion-col class="col-6 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let aud of deviceAudios">
-        <app-audio-thumbnail [thumb]='aud' (delete)="deleteFromCloudAudios(aud)" 
-       [location]="'local'"> </app-audio-thumbnail>
+      <ion-col class="col-12 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let aud of deviceAudios">
+        <ion-list>
+          <app-audio-thumbnail [thumb]='aud' (delete)="deleteFromCloudAudios(aud)" [location]="'local'"></app-audio-thumbnail>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
