@@ -32,8 +32,8 @@ const routes: Routes = [
     loadChildren: () => import('./public/login-preview-un-auth/login-preview-un-auth.module').then(m => m.LoginPreviewUnAuthPageModule)
   },
   {
-    canActivate: [AuthGuardService, ScreenLockGuardService],
-    canActivateChild: [AuthGuardService],
+    // canActivate: [AuthGuardService, ScreenLockGuardService],
+    // canActivateChild: [AuthGuardService],
     path: 'login-auth',
     loadChildren: () => import('./public/login-preview-auth/login-preview-auth.module').then(m => m.LoginPreviewAuthPageModule)
   },
