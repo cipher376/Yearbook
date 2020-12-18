@@ -61,7 +61,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     });
     this.userService.getUserLocal().then(user => {
       this.user = user;
-    })
+    });
 
   }
   ngAfterViewInit(): void {
@@ -92,6 +92,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
       ],
       remember: [false]
     });
+
 
     // this._fstore.set('is_login', false).then(_ => { });
     // try {

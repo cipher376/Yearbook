@@ -9,6 +9,7 @@ import { CredentialsInterface, User, UserInterface } from '../../../models/user'
 import { MyStorage } from '../providers/storage/my-storage.service';
 import { UtilityService } from '../providers/utility.service';
 import { PhotoType, IdentityPhoto, Photo } from 'src/app/models/my-media';
+import { MyDevice } from 'src/app/models/my-device';
 
 export interface Token {
   token: '';
@@ -246,6 +247,16 @@ export class UserService {
       filter = {
         include: [
           { relation: 'photos' },
+          {
+            relation: 'device',
+            scope: {
+              include: [
+                {
+                  relation: 'topics'
+                }
+              ]
+            }
+          },
           { relation: 'address' },
           { relation: 'userConfig' },
           { relation: 'post' },
@@ -267,7 +278,7 @@ export class UserService {
       };
     }
     const url = `/users/${userId}?filter=` + JSON.stringify(filter);
-    return this.http.get<User[]>(url).pipe(
+    return this.http.get<User>(url).pipe(
       map(res => {
         // console.log(res);
         return res as any;
@@ -336,6 +347,47 @@ export class UserService {
     );
   }
 
+
+  /**
+   * CREATE DEVICE
+   */
+  getUserDevice(userId: any) {
+    const filter = {
+      include: [
+        { relation: 'topics' }
+      ],
+      where: {
+        playerId: userId
+      }
+    };
+    return this.http.get<MyDevice>(`/devices?filter=${JSON.stringify(filter)}`).pipe(
+      map(res => {
+        console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
+  createOrUpdateDevice(device: MyDevice) {
+    if (device.id) { // perform update
+      return this.http.patch<MyDevice>(`/devices/${device.id}`, device).pipe(
+        map(res => {
+          // console.log(res);
+          return device as any;
+        }),
+        catchError(e => this.handleError(e))
+      );
+    } else {
+      return this.http.post<MyDevice>(`/devices/`, device).pipe(
+        map(res => {
+          // console.log(res);
+          return res as any;
+        }),
+        catchError(e => this.handleError(e))
+      );
+    }
+  }
 
 
   /**************************************/

@@ -1,5 +1,6 @@
 import { Address } from './address';
 import { Alumni } from './alumni';
+import { MyDevice } from './my-device';
 import { Photo } from './my-media';
 
 
@@ -7,7 +8,7 @@ export interface CredentialsInterface {
   id?: number;
   email: string;
   phone?: string;
-  password: string;
+  password?: string;
   realm?: string;
   remember?: boolean;
 }
@@ -16,7 +17,7 @@ export class Credentials implements CredentialsInterface {
   id?: number;
   email: string;
   phone?: string;
-  password: string;
+  password?: string;
   realm?: string;
   remember?: boolean;
 
@@ -38,7 +39,9 @@ export interface UserInterface {
 
   photos?: Photo[];
   address?: Address;
-  alumni: Alumni[];
+  alumni?: Alumni[];
+  devices?: MyDevice[];
+
 }
 
 
@@ -62,7 +65,8 @@ export class User implements UserInterface {
   /************Relations**********/
   photos?: Photo[];
   address?: Address;
-  alumni: Alumni[];
+  alumni?: Alumni[];
+  devices?: MyDevice[];
 
   constructor(userData?: UserInterface, cred?: Credentials) {
     if (userData) {
@@ -77,6 +81,7 @@ export class User implements UserInterface {
       this.photos = userData.photos || [];
       this.address = userData.address;
       this.alumni = userData.alumni || [];
+      this.devices = userData.devices;
     
 
     }
@@ -97,7 +102,7 @@ export class User implements UserInterface {
     this.fullName += this.lastName || '';
     this.fullName += ' ';
     this.fullName += this.otherName || '';
-    console.log(this.fullName);
+    // console.log(this.fullName);
     if (this.fullName == ' ') { this.fullName = null; }
     return this.fullName;
   }
@@ -125,6 +130,18 @@ export class User implements UserInterface {
       email: this.email,
       password: this.password,
       phone: this.phone,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      otherName: this.otherName,
+      dateOfBirth: this.dateOfBirth,
+      gender: this.gender
+    };
+  }
+
+  get UpdateInfo(): UserInterface | CredentialsInterface {
+    return {
+      id: this.id,
+      email: this.email,
       firstName: this.firstName,
       lastName: this.lastName,
       otherName: this.otherName,

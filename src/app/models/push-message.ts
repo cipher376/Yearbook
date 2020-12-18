@@ -8,8 +8,9 @@ export interface PushMessageInterface {
     file: string;
     fileUrls: string[];
     topicId?: any;
-}
+    channel?: string;
 
+}
 
 
 export class PushMessage implements PushMessageInterface {
@@ -22,6 +23,7 @@ export class PushMessage implements PushMessageInterface {
     file: string;
     fileUrls: string[];
     topicId: any;
+    channel?: string;
     constructor(data?: PushMessageInterface) {
         Object.assign(this, data);
     }

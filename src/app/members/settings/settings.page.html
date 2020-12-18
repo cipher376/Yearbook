@@ -7,7 +7,7 @@
           <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note>
         </ion-row> -->
         <ion-row slot="end">
-          <ion-note class="fs-112 poppins-bold" color="dark"> Settings</ion-note>&nbsp;&nbsp;
+          <ion-note class="poppins-bold" color="dark"> Settings</ion-note>&nbsp;&nbsp;
           <!-- <ion-icon color="dark" class="fs-14" name="cog-outline"></ion-icon>  -->
         </ion-row>
       </ion-item>
@@ -18,7 +18,7 @@
   </ion-row>
   <!-- Top correction ends -->
 
-  <ion-row class="feed-filter-container fs-13">
+  <!-- <ion-row class="feed-filter-container fs-13">
     <ion-col size="12">
       <ion-card>
         <ion-item-group>
@@ -46,33 +46,28 @@
           <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/user-profile']">
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
             <ion-label slot="start" class="fs-13">User Profile</ion-label>
-            <!-- <ion-icon slot="end" name="chevron-forward-outline"></ion-icon> -->
           </ion-item>
           <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/terms-of-service']" routerLinkActive="router-link-active" >
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
             <ion-label slot="start" class="fs-13">Terms of service</ion-label>
-            <!-- <ion-icon slot="end" name="chevron-forward-outline"></ion-icon> -->
           </ion-item>
           <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/privacy']" routerLinkActive="router-link-active">
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
             <ion-label slot="start" class="fs-13">Privacy policy</ion-label>
-            <!-- <ion-icon slot="end" name="chevron-forward-outline"></ion-icon> -->
           </ion-item>
           <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/about']" routerLinkActive="router-link-active">
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
             <ion-label slot="start" class="fs-13">About</ion-label>
-            <!-- <ion-icon slot="end" name="chevron-forward-outline"></ion-icon> -->
           </ion-item>
           <ion-item lines="none" class="ion-activatable ripple-parent" *ngIf="isAuthenticated()" (click)="logout()" >
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
             <ion-label slot="start" class="fs-13">Log Out</ion-label>
-            <svg class="custom-icons logout" slot="end"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
-            <!-- <ion-icon slot="end" name="log-out-outline"></ion-icon> -->
+            <ion-icon slot="end" name="log-out-outline"></ion-icon>
           </ion-item>
         </ion-item-group>
       </ion-card>
 
-      <!-- <ion-col size="12"></ion-col>
+      <ion-col size="12"></ion-col>
       <ion-card>
         <ion-item-group>
           <ion-item lines="none" class="ion-activatable ripple-parent">
@@ -81,8 +76,30 @@
             <ion-icon slot="end" name="close" color="danger"></ion-icon>          
           </ion-item>
         </ion-item-group>
-      </ion-card> -->
+      </ion-card>
 
     </ion-col>
+  </ion-row> -->
+
+  <ion-row class="feed-filter-container fs-13">
+    <ion-col size="12">
+      <ion-card>
+        <ion-list lines="none" class="mt-4">
+          <ion-item routerLink="/links/account-settings">
+            <ion-label> <ion-icon class="mr-3" name="person-circle-outline"></ion-icon> Account </ion-label>
+          </ion-item>
+          <ion-item routerLink="/links/privacy-settings">
+            <ion-label> <ion-icon class="mr-3" name="key-outline"></ion-icon> Privacy </ion-label>
+          </ion-item>
+          <ion-item routerLink="/links/activity-settings">
+            <ion-label> <ion-icon class="mr-3" name="bar-chart-outline"></ion-icon> Activity </ion-label>
+          </ion-item>
+          <ion-item routerLink="/links/about-settings">
+            <ion-label> <ion-icon class="mr-3" name="alert-circle-outline"></ion-icon> About </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </ion-col>
   </ion-row>
+
 </ion-content>
