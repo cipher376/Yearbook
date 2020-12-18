@@ -1,5 +1,4 @@
 <div class="video-player-wrapper" *ngIf="items?.length>0">
-
   <vg-player (onPlayerReady)="videoPlayerInit($event)" style="max-height: 50vh !important">
     <vg-overlay-play></vg-overlay-play>
     <vg-buffering></vg-buffering>
@@ -29,10 +28,17 @@
   </vg-player>
   <ion-slides pager="false" [options]="slideOpts" style="z-index: 2;background: #000000bf;" *ngIf="items?.length>1">
     <ion-slide *ngFor="let item of items; let i = index;">
-      <div class="ion-no-padding ion-no-margin image-container " style="height: 100%; width: 100%"
-        [background-image]="itemPhotos[i]" [style.background-color]="'ffffff5c'"
-         (click)="startPlaylistVdo(i)">
-      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="ion-no-padding ion-no-margin image-container " style="height: 100%; width: 100%"
+            [background-image]="itemPhotos[i]" [style.background-color]="'ffffff5c'"
+             (click)="startPlaylistVdo(i)">
+          </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+     
     </ion-slide>
   </ion-slides>
 
