@@ -22,7 +22,6 @@ export class UserProfilePage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.populateUserDetails();
-    setTimeout(() => console.log(this.user), 2000);
   }
 
   ngOnDestroy() {
