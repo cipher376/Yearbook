@@ -1,3 +1,4 @@
+import { UserConfig } from './../../../models/user';
 import { PageInfo, getPagedData } from '../../../models/page';
 import { Router } from '@angular/router';
 import { API_ROOT_URL, DOWNLOAD_CONTAINER, USER_DEFAULT_COVER_URL, USER_DEFAULT_PHOTO_URL } from '../../config';
@@ -348,9 +349,56 @@ export class UserService {
   }
 
 
-  /**
+  /***************************************************
+   *  USER CONFIGURATION
+   ****************************************************/
+  createOrUpdateConfig(userId: any, cfg: UserConfig) {
+    if (cfg.id) { // perform update
+      return this.http.patch<UserConfig>(`/users/${userId}/user-config`, cfg).pipe(
+        map(res => {
+          // console.log(res);
+          return cfg as any;
+        }),
+        catchError(e => this.handleError(e))
+      );
+    } else {
+      return this.http.post<UserConfig>(`/users/${userId}/user-config`, cfg).pipe(
+        map(res => {
+          // console.log(res);
+          return res as any;
+        }),
+        catchError(e => this.handleError(e))
+      );
+    }
+  }
+
+  getConfig(userId: any) {
+    return this.http.get<UserConfig>(`/users/${userId}/user-config`).pipe(
+      map(res => {
+        console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
+  deleteConfig(userId, cfg: UserConfig) {
+    const where = {
+        id: cfg.id
+    };
+    return this.http.delete<UserConfig>(`/users/${userId}/user-config?where=${where}`).pipe(
+      map(res => {
+        console.log(res);
+        return res as any;
+      }),
+      catchError(e => this.handleError(e))
+    );
+  }
+
+
+  /*****************************************************************
    * CREATE DEVICE
-   */
+   *****************************************************************/
   getUserDevice(userId: any) {
     const filter = {
       include: [

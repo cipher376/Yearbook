@@ -1,5 +1,6 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { MySignals } from 'src/app/shared/services/my-signals';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 
@@ -8,14 +9,28 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
   templateUrl: './tab-links.page.html',
   styleUrls: ['./tab-links.page.scss'],
 })
-export class TabLinksPage implements OnInit {
+export class TabLinksPage implements OnInit, AfterContentInit {
   modal;
+  highlightButton = false;
   constructor(
     private userService: UserService,
     public modalController: ModalController,
-    public signals: MySignals
+    public signals: MySignals,
+    public route: ActivatedRoute,
+    public router: Router
+  ) {
+    this.route.url.subscribe(u => {
+      if (window.location.pathname === '/links/profile') {
+        this.highlightButton = true;
+      } else {
+        this.highlightButton = false;
+      }
+    });
 
-  ) { }
+  }
+  ngAfterContentInit(): void {
+
+  }
 
   ngOnInit() {
   }

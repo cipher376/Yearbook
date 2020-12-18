@@ -4,6 +4,13 @@ import { MyDevice } from './my-device';
 import { Photo } from './my-media';
 
 
+export class UserConfig {
+  id?: number;
+  action: string;
+  response: string;
+  userId: number;
+}
+
 export interface CredentialsInterface {
   id?: number;
   email: string;
@@ -82,7 +89,7 @@ export class User implements UserInterface {
       this.address = userData.address;
       this.alumni = userData.alumni || [];
       this.devices = userData.devices;
-    
+
 
     }
     if (cred) {

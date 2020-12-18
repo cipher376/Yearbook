@@ -24,16 +24,18 @@ export class UserListItemComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 
-  async view(){
+  async view() {
     console.log(this.user);
     if (await this.userService.setSelectedUserLocal(this.user)) {
       // navigate to join school page
-      this.router.navigateByUrl('/links/profile');
+      this.router.navigateByUrl('/links/public-profile');
       this.signals.announceSelectedUserChange();
     }
   }
+
+ 
 
 }

@@ -141,7 +141,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
       this.loadFollowedSchools();
     }));
     this.loadSchools();
-    this.loadFollowedSchools();
+    this.loadFollowedSchools(true);
     this.getUserPost();
     this.countPost();
   }
@@ -201,6 +201,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   loadFollowedSchools(reset = false) {
     if (reset) {
       this.followedSchoolsOffset = 0;
+      this.selectedUserFollowedSchools = [];
     }
     const pageInfo: PageInfo = {
       limit: this.followedSchoolsLimit,
@@ -227,7 +228,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   }
 
   edit() {
-    this.router.navigateByUrl('/user-profile')
+    this.router.navigateByUrl('/user-profile');
   }
 
   follow() {

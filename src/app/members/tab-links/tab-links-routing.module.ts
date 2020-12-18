@@ -22,6 +22,12 @@ const routes: Routes = [
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
+        canActivate: [AuthGuardService, ScreenLockGuardService],
+        canActivateChild: [AuthGuardService],
+        path: 'public-profile',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
         canActivate: [ScreenLockGuardService],
         path: 'schools',
         loadChildren: () => import('../schools/schools.module').then(m => m.SchoolsPageModule)
