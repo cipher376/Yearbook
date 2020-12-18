@@ -208,6 +208,10 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
     return await this.modal?.present();
   }
 
+  getLikes(){
+    
+  }
+
 
 
 }
