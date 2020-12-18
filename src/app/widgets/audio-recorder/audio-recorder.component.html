@@ -6,11 +6,11 @@
   
   <ion-label>
     <ion-text>
-      <h1 class="pt-5 mx-auto text-center">{{ status }} </h1>
+      <h1 class="pt-5 mx-auto text-center"> {{ status }} </h1>
     </ion-text>
   </ion-label>
 
-  <div class="container">"
+  <div class="container">
     <input type="checkbox" id="btn" (click)="status === 'Recording...' ? stop() : start()">
     <label for="btn"></label>
     <div class="time">
