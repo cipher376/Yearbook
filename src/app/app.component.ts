@@ -12,6 +12,8 @@ import { UserService } from './shared/services/model-service/user.service';
 import { User } from './models/user';
 import { PermissionsService } from './shared/services/providers/permission.service';
 import { IdentityPhoto } from './models/my-media';
+import { Device } from '@ionic-native/device/ngx';
+import { MyDevice } from './models/my-device';
 
 @Component({
   selector: 'app-root',
@@ -91,6 +93,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   ];
 
   user: User;
+  myDevices: MyDevice[] = [];
   identityPhoto: IdentityPhoto;
 
   @ViewChild(NotificationsComponent) notificationComponent: NotificationsComponent;
@@ -105,7 +108,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     private permissions: PermissionsService,
     private signals: MySignals,
     private cdr: ChangeDetectorRef,
-    private pushService: PushSocketService
+    private pushService: PushSocketService,
+    private device: Device
   ) {
     this.initializeApp();
   }
@@ -118,8 +122,20 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       this.splashScreen.hide();
 
       this.permissions.initPermissions().then(_ => _);
-
+      this.userService.getUserLocal().then(user => {
+        this.user = user;
+        this.myDevices = this.user?.devices;
+        this.updateDevice();
+      });
       this.manageNotifications();
+
+      this.userService.userAuthenticatedSource$.subscribe(user => {
+        this.identityPhoto = UserService.getUserIdentityPhoto(user);
+        this.setMenu();
+        this.user = user;
+        this.myDevices = user?.devices;
+        this.updateDevice();
+      });
     });
   }
 
@@ -128,20 +144,16 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
-    this.userService.userAuthenticatedSource$.subscribe(user => {
-      this.identityPhoto = UserService.getUserIdentityPhoto(user);
-      this.setMenu();
-    });
+    
   }
 
   async ngAfterViewInit() {
-    this.user =  await this.userService.getUserLocal();
+    this.user = await this.userService.getUserLocal();
     this.identityPhoto = UserService.getUserIdentityPhoto(this.user);
 
     setTimeout(() => {
       this.setMenu();
       this.cdr.detectChanges();
-      // console.log(this.otherPages);
     }, 100);
   }
 
@@ -180,13 +192,38 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     });
   }
 
-  manageNotifications()
-  {
+  manageNotifications() {
     this.notificationComponent.dismiss();
     this.signals.socketPushMessageSource$.subscribe(msg => {
       this.notificationComponent.show(msg);
     });
   }
 
+  updateDevice() {
+    // create device
+    const device = new MyDevice();
+    device.platform = this.device?.platform;
+    device.playerId = this.user?.id;
+    device.uuid = this.device?.uuid;
+
+
+    const foundDevices = this.myDevices?.find((dv) => {
+      if (
+        dv.platform === device.platform &&
+        device.uuid === device.uuid
+      ) {
+        return dv;
+      }
+    });
+    if (!foundDevices) { // not found
+      // create device
+      this.userService.createOrUpdateDevice(device).subscribe(dev => {
+        this.myDevices.push(dev);
+      }, error => {
+        console.log(error);
+      });
+    }
+    console.log(this.device);
+  }
 
 }

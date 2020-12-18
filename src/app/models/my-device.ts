@@ -1,27 +1,25 @@
 import { PushTopic } from "./push-topic";
 import { User } from "./user";
 
-export interface PushDeviceInterface {
+export interface MyDeviceInterface {
     id?: any;
     token: string;
-    playerId?: string;
+    playerId?: any;
     platform: string;
     uuid: string;
-    userId?: any;
     user?: User;
     topics?: PushTopic[];
 }
 
-export class PushDevice implements PushDeviceInterface {
+export class MyDevice implements MyDeviceInterface {
     id: any;
     token: string;
-    playerId: string;
+    playerId: any;
     platform: string;
     uuid: string;
-    userId: any;
     user?: User;
     topics?: PushTopic[];
-    constructor(data?: PushDeviceInterface) {
+    constructor(data?: MyDeviceInterface) {
         Object.assign(this, data);
     }
 

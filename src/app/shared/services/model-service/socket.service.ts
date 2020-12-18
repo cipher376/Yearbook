@@ -43,7 +43,7 @@ export class PushSocketService {
     pushSource$ = this.pushSource.asObservable();
 
     user: User;
-    channels = [];
+    channels = ['announcement', 'update'];
 
     currentSocketId = '';
     retry: any;
@@ -110,15 +110,29 @@ export class PushSocketService {
                 }, 2000);
             });
 
-            this.socket.on(`channels${this.currentSocketId}`, (channels) => {
+            // this.socket.on(`channels${this.currentSocketId}`, (channels) => {
+            //     // console.log(channels);
+            //     this.channels = channels;
+            //     if (this.channels.length > 0) {
+            //         if (this.channels !== channels) { // new incoming channels
+            //             // remove all previous channels subscriptions
+            //             this.clearChannelsSubscription();
+            //         }
+            //         this.subscribeToChannels(); // subscribing to the new channels;
+            //     }
+            // });
+
+            this.socket.on(`channels-reload${this.currentSocketId}`, (chnls) => {
                 // console.log(channels);
-                this.channels = channels;
-                if (this.channels.length > 0) {
+                const channels = [...this.channels];
+                if (channels.length > 0) {
                     if (this.channels !== channels) { // new incoming channels
                         // remove all previous channels subscriptions
                         this.clearChannelsSubscription();
+                        this.subscribeToChannels(); // subscribing to the new channels;
+                    } else {
+                        this.subscribeToChannels();
                     }
-                    this.subscribeToChannels(); // subscribing to the new channels;
                 }
             });
 
@@ -174,7 +188,7 @@ export class PushSocketService {
         }, 5000); // retry after every 5seconds
     }
 
-    clearChannelsSubscription(){
+    clearChannelsSubscription() {
         this.channels.forEach(ch => {
             this.socket.ioSocket.removeListener(ch);
         });

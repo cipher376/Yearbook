@@ -1,5 +1,6 @@
 import { Address } from './address';
 import { Alumni } from './alumni';
+import { MyDevice } from './my-device';
 import { Photo } from './my-media';
 
 
@@ -38,7 +39,9 @@ export interface UserInterface {
 
   photos?: Photo[];
   address?: Address;
-  alumni: Alumni[];
+  alumni?: Alumni[];
+  devices?: MyDevice[];
+
 }
 
 
@@ -62,7 +65,8 @@ export class User implements UserInterface {
   /************Relations**********/
   photos?: Photo[];
   address?: Address;
-  alumni: Alumni[];
+  alumni?: Alumni[];
+  devices?: MyDevice[];
 
   constructor(userData?: UserInterface, cred?: Credentials) {
     if (userData) {
@@ -77,6 +81,7 @@ export class User implements UserInterface {
       this.photos = userData.photos || [];
       this.address = userData.address;
       this.alumni = userData.alumni || [];
+      this.devices = userData.devices;
     
 
     }

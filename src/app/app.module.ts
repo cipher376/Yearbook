@@ -45,7 +45,7 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { SocketIoModule } from 'ngx-socket-io';
 import { PushSocket, PushSocketService } from './shared/services/model-service/socket.service';
-
+import { Device } from '@ionic-native/device/ngx';
 // const config: SocketIoConfig = { url: SOCKET_ROOT_URL, options: {} };
 
 
@@ -103,6 +103,7 @@ import { PushSocket, PushSocketService } from './shared/services/model-service/s
     Keyboard,
     PushSocket,
     PushSocketService,
+    Device,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
   ],
