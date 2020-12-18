@@ -40,7 +40,7 @@ $dark:                            #444 !default;
       top: 0;
       bottom: 0;
       width: 5px;
-      background: #afdcf8;
+      background: #ff431a;
       left: 44px;
       margin-left: -10px;
       z-index: 1;
@@ -58,7 +58,7 @@ $dark:                            #444 !default;
       height: 50px;
       text-align: center;
       color: white;
-      border: 5px solid #CBD0D3;
+      border: 5px solid #ffc0b3;
   }
   
   .timeline .timeline-thumb.timeline-icon i {
@@ -85,6 +85,8 @@ $dark:                            #444 !default;
       padding: 5px 15px;
   }
   
+
+
   /* === Color Themes === */
   .text-muted {
       color: #6d6d72 !important;
@@ -127,11 +129,11 @@ $dark:                            #444 !default;
   }
   
   .color-blue {
-      color: #007aff !important;
+      color: #ff431a !important;
   }
   
   .bg-color-blue {
-      background-color: #007aff !important;
+      background-color: #ff431a !important;
   }
   
   .color-lightblue {
@@ -141,6 +143,10 @@ $dark:                            #444 !default;
   .bg-color-lightblue {
       background-color: #5ac8fa !important;
   }
+
+  .bg-color-gray {
+    background-color: #4b4f68 !important;
+}
   
   .color-bluegray {
       color: #607d8b !important;
