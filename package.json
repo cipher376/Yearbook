@@ -82,6 +82,7 @@
     "intersection-observer": "^0.11.0",
     "ngx-ionic-image-viewer": "^0.7.1",
     "ngx-socket-io": "^3.2.0",
+    "phonegap-plugin-multidex": "^1.0.0",
     "phonegap-plugin-push": "^2.3.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
