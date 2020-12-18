@@ -100,7 +100,7 @@ export class PushSocketService {
                 console.log('Verification local:', this.currentSocketId);
                 setTimeout(() => {
                     if (this.currentSocketId === remoteId) {
-                        alert('Testing');
+                        // alert('Testing');
                         // send user token
                         this.socket.emit(`verification${this.currentSocketId}`, { token: this.userService?.token?.token });
                     } else {

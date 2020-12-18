@@ -1,5 +1,7 @@
+import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 
@@ -14,8 +16,9 @@ export class UserProfilePage implements OnInit, OnDestroy {
     private userService: UserService
   ) { }
 
-  user: User = new User;
-  subs: Subscription;
+  user: User = new User();
+  userAddress: Address = new Address();
+  subs$: Subscription[] = [];
 
   ngOnInit() {
     this.populateUserDetails();
@@ -23,21 +26,28 @@ export class UserProfilePage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    UtilityService.destroySubscription(this.subs$);
   }
 
   editProfilePic() {
-    
-  }
-  
-  populateUserDetails() {
-    this.userService.getUserLocal()
-      .then(u => this.user = new User(u, u as any));
+
   }
 
-  updateInfo() {
-    this.subs = this.userService.updateUser(this.user.UpdateInfo)
-      .subscribe(subs => this.user = subs);
+  populateUserDetails() {
+    this.userService.getUserLocal()
+      .then(u => {
+        this.user = new User(u, u as any);
+        this.userAddress = this.user?.address;
+      });
+  }
+
+  updateUserInfo() {
+    this.subs$.push(this.userService.updateUser(this.user.UpdateInfo)
+      .subscribe(subs => this.user = subs));
+  }
+
+  updateUserAddress() {
+
   }
 
 }

@@ -40,8 +40,12 @@ export class TabLinksPage implements OnInit {
   //   return await this.modal.present();
   // }
 
-  userViewChange($event){
+  userViewChange($event) {
     console.log($event);
+  }
+
+  loadProfile() {
+    this.signals.announceSelectedUserChange();
   }
 
 }
