@@ -7,9 +7,9 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false">
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="true">
     <ion-slide>
-      <img src="assets/icon/logo.png" class="slide-image" />
+      <img src="../../../assets/images/Splash1.svg" class="slide-image" />
       <h2 class="slide-title">
         Welcome to
         <b>Fame</b>
@@ -21,22 +21,22 @@
     </ion-slide>
 
     <ion-slide>
-      <img src="assets/background/party/5.jpg" class="slide-image" />
+      <img src="../../../assets/images/Splash2.svg" class="slide-image" />
       <h2 class="slide-title">What is fame?</h2>
       <p>
-        Fame is an app intended to help you advertise your events to the world for free. Let your wedding, funeral and other  gatherings  known to million of users. Don't miss
-        out your friends birthday, use the reminder to keep track of your booked events.
+        Create, track, find and attend all events around you.
+        Publish your personal events and invite people to attend.
       </p>
     </ion-slide>
     <ion-slide>
-      <img src="assets/imgs/social_network.jpg" class="slide-image" />
+      <img src="../../../assets/images/Splash3.svg" class="slide-image" />
       <h2 class="slide-title">Social life</h2>
       <p>
-        Make new friends and connect with people who have booked for events you are interested in.
-        Chat with your new friends or join the event public room. Comment, like, dislike and share events with your
-        friends.
+        Create, track, find and attend all events around you.
+        Publish your personal events and invite people to attend.
       </p>
     </ion-slide>
+    <!-- 
     <ion-slide>
       <img src="assets/imgs/tickets/3.png" class="slide-image" />
       <h2 class="slide-title">The digital tickets!</h2>
@@ -69,12 +69,12 @@
         Its so easy, just register and start booking for events but don't forget to complete your profile if you want to stay connected with friends.
         That's it.
       </p>
-    </ion-slide>
+    </ion-slide> -->
 
-    <ion-slide>
-      <img src="assets/imgs/party.jpg" class="slide-image" />
-      <h2 class="slide-title">Now check it out!</h2>
-      <ion-button fill="clear" (click)="startApp()">
+    <ion-slide class="slide_lg">
+      <img src="../../../assets/images/almamater.svg" class="slide-image" />
+      <h2 class=" fs-12">Don't forget the good old days</h2>
+      <ion-button class="mt-5" fill="clear" (click)="startApp()">
         Continue
         <ion-icon slot="end" name="arrow-forward"></ion-icon>
       </ion-button>

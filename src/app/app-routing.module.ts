@@ -94,9 +94,12 @@ const routes: Routes = [
     loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
   },
   {
-    path: 'user-profile',
-    loadChildren: () => import('./members/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+    path: 'address-settings',
+    loadChildren: () => import('./members/address-settings/address-settings.module').then( m => m.AddressSettingsPageModule)
   },
+
+
+
 
   // {
   //   path: 'school-posts',

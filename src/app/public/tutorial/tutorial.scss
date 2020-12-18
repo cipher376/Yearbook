@@ -6,6 +6,7 @@ ion-toolbar {
 
 .swiper-slide {
   display: block;
+  padding-bottom: 10% !important;
 }
 
 .slide-title {
@@ -14,10 +15,11 @@ ion-toolbar {
 
 .slide-image {
   max-height: 50%;
-  max-width: 60%;
-  margin: 36px 0;
+  max-width: 90%;
+  margin-bottom: 0px;
+  // margin-top: 10vh;
+  margin-top: calc(10vh - 45px);
 }
-
 b {
   font-weight: 500;
 }
@@ -31,4 +33,8 @@ p {
   b {
     color: #000000;
   }
+}
+
+ion-slide.slide_lg{
+  margin: auto !important;
 }

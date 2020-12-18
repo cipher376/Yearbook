@@ -1,4 +1,8 @@
-<!-- <ion-col  class="fs-20 ion-no-padding ion-no-margin" (click)="like()"> -->
-  <ion-icon (click)="like()" class="fs-20" name="heart-outline" size="medium"  [ngClass]="{'liked': affection?.rate}"></ion-icon>
-  <ion-badge *ngIf="likeCount>0" class="fs-8 heart-outline" color="primary">{{likeCount}}</ion-badge>
-<!-- </ion-col> -->
+
+  <!-- <ion-icon (click)="like()" class="fs-20" name="heart-outline" size="medium"  [ngClass]="{'liked': affection?.rate}"></ion-icon>
+  <ion-badge *ngIf="likeCount>0" class="fs-8 heart-outline" color="primary">{{likeCount}}</ion-badge> -->
+
+
+  <ion-icon id="comment_ico" (click)="like()" name="heart" size="small"  [ngClass]="{'liked': affection?.rate}"></ion-icon>
+  <small class="com_like_count">500k</small>
+

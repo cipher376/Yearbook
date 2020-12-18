@@ -64,6 +64,26 @@ const routes: Routes = [
         path: 'users-search',
         loadChildren: () => import('../../public/users-search/users-search.module').then( m => m.UsersSearchPageModule)
       },
+      {
+        path: 'user-profile',
+        loadChildren: () => import('../../members/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+      },
+      {
+        path: 'account-settings',
+        loadChildren: () => import('../../members/account-settings/account-settings.module').then( m => m.AccountSettingsPageModule)
+      },
+      {
+        path: 'privacy-settings',
+        loadChildren: () => import('../../members/privacy-settings/privacy-settings.module').then( m => m.PrivacySettingsPageModule)
+      },
+      {
+        path: 'activity-settings',
+        loadChildren: () => import('../../members/activity-settings/activity-settings.module').then( m => m.ActivitySettingsPageModule)
+      },
+      {
+        path: 'about-settings',
+        loadChildren: () => import('../../members/about-settings/about-settings.module').then( m => m.AboutSettingsPageModule)
+      },
     
     ]
   },
