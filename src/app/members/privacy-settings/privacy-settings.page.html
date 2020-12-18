@@ -8,9 +8,45 @@
       <ion-note class="poppins-bold" color="dark"> Privacy </ion-note> &nbsp; &nbsp;
       <!-- <ion-icon color="dark" class="fs-14" name="cog-outline"></ion-icon>  -->
     </ion-row>
-  </ion-toolbar>  
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card>
+    <ion-item-group>
+      <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/terms-of-service']" routerLinkActive="router-link-active">
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        <ion-label slot="start" class="fs-13">Terms of service</ion-label>
+      </ion-item>
+      <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/privacy']" routerLinkActive="router-link-active">
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        <ion-label slot="start" class="fs-13">Privacy policy</ion-label>
+      </ion-item>
+      <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/about']" routerLinkActive="router-link-active">
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        <ion-label slot="start" class="fs-13">About</ion-label>
+      </ion-item>
+      <ion-item lines="none" class="ion-activatable ripple-parent" *ngIf="isAuthenticated()" (click)="logout()">
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        <ion-label slot="start" class="fs-13">Log Out</ion-label>
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
+
+
+
+  <ion-col size="12"></ion-col>
+  <ion-card>
+    <ion-item-group>
+      <ion-item lines="none" class="ion-activatable ripple-parent">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+        <ion-label slot="start" class="fs-13 poppins-bold ion-text-wrap" color="danger"> Deactivate my account
+        </ion-label>
+        <ion-icon slot="end" name="close" color="danger"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
 
 </ion-content>

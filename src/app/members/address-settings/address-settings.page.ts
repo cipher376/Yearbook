@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Address } from 'src/app/models/address';
+import { Country } from 'src/app/models/country';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
+import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 
 @Component({
   selector: 'app-address-settings',
@@ -12,23 +12,25 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 export class AddressSettingsPage implements OnInit {
 
   userAddress: Address = new Address();
-  subs$: Subscription[] = [];
-  countries: any = {};
+  selectedCountry: any[] = new Country().states;
 
   constructor(
     private userService: UserService,
-    private http: HttpClient
   ) { }
 
   ngOnInit() {
-    // this.subs$.push(
-    //   this.http.get('https://restcountries.eu/rest/v2/all').subscribe(
-    //     s => console.log(s)
-    //   ));
-
   }
 
   updateUserInfo() {
+  }
+
+  get countries(): Country[] {
+    return UtilityService.getAllCountries();
+  }
+
+
+  selectState(passed_country) {
+    this.selectedCountry = this.countries.find( c => c.name === passed_country).states;
   }
 
 }

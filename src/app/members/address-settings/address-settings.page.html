@@ -15,17 +15,15 @@
   <ion-list lines="">
     <ion-item>
       <ion-label>Country</ion-label>
-      <ion-select value="" interface="" [(ngModel)]="userAddress.country">
-        <ion-select-option value="male" *ngFor="let country of [1,1,1,1,1,1,1,1,1]">Male</ion-select-option>
-        <ion-select-option value="female"> {{ 'Country name' }} </ion-select-option>
+      <ion-select value="" interface="" [(ngModel)]="userAddress.country" #selCountry (ionChange)="selectState(selCountry.value)">
+        <ion-select-option value="{{ country.name }}" *ngFor="let country of countries"> {{ country.name }} </ion-select-option>
       </ion-select>
     </ion-item>
+    
     <ion-item>
       <ion-label>State</ion-label>
-      <ion-select value="" interface="popover" [(ngModel)]="userAddress.state">
-        <ion-select-option value="male">Male</ion-select-option>
-        <ion-select-option value="female">Female</ion-select-option>
-        <ion-select-option value="other">Other</ion-select-option>
+      <ion-select value="" interface="popover" [(ngModel)]="userAddress.state" [disabled]="!userAddress.country">
+        <ion-select-option value="{{ state }}" *ngFor="let state of selectedCountry"> {{ state }} </ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item> City <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="userAddress.city"></ion-input>
