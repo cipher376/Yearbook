@@ -20,11 +20,30 @@
       <ion-icon name="create-outline" (click)="editProfilePic()"></ion-icon> Edit </ion-label>
   </ion-item>
 
-  <ion-list lines="full">
-    <ion-item> Display Name <ion-label slot="end" class="faded fs-14 text-right"> {{ 'John E. Doe' }} </ion-label></ion-item>
-    <ion-item> Email Address <ion-label slot="end" class="faded fs-14 text-right"> {{ 'johndoe@mail.com' }} </ion-label></ion-item>
-    <ion-item> Phone Number <ion-label slot="end" class="faded fs-14 text-right"> {{ '+233 33 223 3345' }} </ion-label></ion-item>
-    <ion-item> Gender <ion-label slot="end" class="faded fs-14 text-right"> {{ 'Non Binary' }} </ion-label></ion-item>
-    <ion-item> Date of Birth <ion-label slot="end" class="faded fs-14 text-right"> {{ '01 January 1990' }} </ion-label></ion-item>
+  <ion-list lines="">
+    <ion-item> Display Name <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="user.FullName"></ion-input></ion-item>
+    <ion-item> Email Address <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="user.email"></ion-input></ion-item>
+    <ion-item> Phone Number <ion-input slot="end" type="tel" class="faded fs-14 text-right" [value]="user.phone" disabled></ion-input></ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select value="" interface="popover" [(ngModel)]="user.gender">
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="female">Female</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date of Birth</ion-label>
+      <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="user.dateOfBirth"></ion-datetime>
+    </ion-item>
+    <!-- <ion-item> Gender <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="user.gender"></ion-input></ion-item> -->
+    <!-- <ion-item> Date of Birth <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="user.dateOfBirth"></ion-input></ion-item> -->
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" type="submit" (click)="updateInfo()">
+    <ion-fab-button color="primary">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

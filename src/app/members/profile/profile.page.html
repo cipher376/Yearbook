@@ -27,7 +27,11 @@
             <h5> {{ selectedUser?.firstName }} {{ selectedUser?.otherName}} {{ selectedUser?.lastName }} </h5>
             <small class="mx-auto w-50" *ngIf="highestDegreeEnrolled?.degree">
               {{highestDegreeEnrolled?.degree?.type}} {{highestDegreeEnrolled?.degree?.programme}}<br>
-              @{{highestDegreeEnrolled?.school?.name}}
+              @{{highestDegreeEnrolled?.school?.name}} 
+            </small>
+            
+            <small class="mx-auto w-50 fs-13" (click)="edit()" *ngIf="user?.id === selectedUser?.id"> 
+              <ion-icon name="create-outline"></ion-icon> Edit  
             </small>
           </ion-col>
         </ion-row>
@@ -95,11 +99,11 @@
             (reload)="countFollowers(true)"></app-follow>
         </ion-col>
 
-        <ion-col *ngIf="user?.id === selectedUser?.id" size="{{user?.id === selectedUser?.id ? 12: 4}}">
-          <ion-button size="small" expand="block" class="mx-2 mb-1" color="medium" (click)="edit()">
-            <ion-icon name="create-outline"></ion-icon> Edit
+        <!-- <ion-col *ngIf="user?.id === selectedUser?.id" size="{{user?.id === selectedUser?.id ? 12: 4}}">
+          <ion-button size="small" expand="block" class="mx-3" (click)="edit()">
+            <ion-icon name="create-outline"></ion-icon>  Edit
           </ion-button>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
 
       <ion-row class="ion-no-padding ion-no-margin" *ngIf="currentSegment=='posts'">

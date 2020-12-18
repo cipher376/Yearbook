@@ -227,7 +227,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   }
 
   edit() {
-
+    this.router.navigateByUrl('/user-profile')
   }
 
   follow() {
