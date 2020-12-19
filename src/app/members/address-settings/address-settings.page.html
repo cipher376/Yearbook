@@ -15,7 +15,7 @@
   <ion-list lines="">
     <ion-item>
       <ion-label> Country </ion-label>
-      <ion-select [value]="currentUserAddress?.country" interface="" [(ngModel)]="userAddress.country" #selCountry (ionChange)="selectState(selCountry.value)">
+      <ion-select [value]="currentUserAddress?.country" interface="popover" [(ngModel)]="userAddress.country" #selCountry (ionChange)="selectState(selCountry.value)">
         <ion-select-option value="{{ country.name }}" *ngFor="let country of countries"> {{ country.name }} </ion-select-option>
       </ion-select>
     </ion-item>

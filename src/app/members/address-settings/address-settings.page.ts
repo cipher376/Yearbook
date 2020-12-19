@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Address } from 'src/app/models/address';
 import { Country } from 'src/app/models/country';
@@ -24,15 +25,33 @@ export class AddressSettingsPage implements OnInit {
 
   constructor(
     private userService: UserService,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
     this.populateUserDetails();
   }
 
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   updateUserInfo() {
-    // this.subs$.push(this.userService.updateUser()
-    //   .subscribe(subs => this.user = subs));
+    // get current user
+    this.userService.getUserLocal()
+      .then((u: User) => {
+        u.address = this.currentUserAddress;
+        console.log(u);
+        this.subs$.push(
+          this.userService.updateUser(u).subscribe(
+              (subs: User) => this.userAddress = subs.address, 
+              (err: Error) => this.presentToast(err.message)
+            ));
+      });
   }
 
   get countries(): Country[] {
