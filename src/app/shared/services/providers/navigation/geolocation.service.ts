@@ -91,6 +91,8 @@ export class GeolocationService {
             const location = {} as LatLng;
             location.lat = position.coords.latitude;
             location.lng = position.coords.longitude;
+            this.location = location;
+            this.setLocationLocal();
             observer.next(location);
           }
         },

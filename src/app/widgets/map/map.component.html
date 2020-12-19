@@ -1,4 +1,4 @@
-<google-map #googleMap
+<!-- <google-map
    height="100%"
    width="100%"
    [zoom]="zoom"
@@ -14,4 +14,30 @@
     [options]="marker.options"
   >
   </map-marker>
-</google-map>
+</google-map> -->
+
+
+<agm-map >
+  <agm-marker [latitude]="userMarker.lat" [longitude]="userMarker.lng" [iconUrl]="userMarker.iconUrl"
+    [visible]="userMarker.visible" [markerClickable]="true">
+    <agm-info-window>
+      You are currently at:
+      {{address}}
+    </agm-info-window>
+  </agm-marker>
+
+  <agm-marker [latitude]="schoolMarker.lat" [longitude]="schoolMarker.lng" [iconUrl]="schoolMarker.iconUrl"
+    [visible]="schoolMarker.visible" [markerClickable]="true">
+    <agm-info-window [title]="schoolMarker.title" >
+
+      My info window
+    </agm-info-window>
+  </agm-marker>
+
+  <agm-polyline [editable]="false" (lineMouseUp)="lineClicked($event)" [strokeOpacity]="0.5">
+    <agm-polyline-point [latitude]="userMarker.lat" [longitude]="userMarker.lng" ></agm-polyline-point>
+    <agm-polyline-point [latitude]="schoolMarker.lat" [longitude]="schoolMarker.lng"></agm-polyline-point>
+  </agm-polyline>
+
+
+</agm-map>

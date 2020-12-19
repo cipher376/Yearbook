@@ -17,7 +17,7 @@ export const SOCKET_ROOT_URL = `http://localhost:${SOCKET_PORT }`;
 export const SCHOOL_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/school_default.png`;
 export const NO_SCHOOL_COVER_PHOTO_URL = `${API_ROOT_URL}/media/download/school_cover.svg`;
 export const USER_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/user_default.svg`;
-export const CREST_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/crest_default.png`;
+export const CREST_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/school_crest.svg`;
 export const USER_DEFAULT_COVER_URL = '';
 
 
