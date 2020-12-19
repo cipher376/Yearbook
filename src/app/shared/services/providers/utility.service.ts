@@ -1258,7 +1258,7 @@ export class UtilityService {
         outViewCB();
       } else {
         // setTimeout(() => {
-          inViewCB();
+        inViewCB();
         // }, 1000);
       }
       // console.log(obsvr);
@@ -1266,6 +1266,12 @@ export class UtilityService {
     }, options);
     observer.observe(element);
     return { observer, element };
+  }
+
+
+  static parseLatLngStringToObj(latLng: string) {
+    const tem = latLng.split(',');
+    return { lat: tem[0] as any, lng: tem[1] as any };
   }
 
 }

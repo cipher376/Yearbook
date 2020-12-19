@@ -35,7 +35,7 @@ import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, MarkerManager, GoogleMapsAPIWrapper , PolylineManager} from '@agm/core';
 import { InViewportModule } from '@thisissoon/angular-inviewport';
 import { DoubleTapDirective } from './shared/directives/double-tap.directive';
 import { IonicGestureConfig } from './shared/services/providers/customHammerConfig';
@@ -47,7 +47,6 @@ import { SocketIoModule } from 'ngx-socket-io';
 import { PushSocket, PushSocketService } from './shared/services/model-service/socket.service';
 import { Device } from '@ionic-native/device/ngx';
 // const config: SocketIoConfig = { url: SOCKET_ROOT_URL, options: {} };
-
 
 @NgModule({
   declarations: [AppComponent, DoubleTapDirective],
@@ -72,7 +71,6 @@ import { Device } from '@ionic-native/device/ngx';
     PickerModule,
     EmojiModule,
     SocketIoModule,
-
   ],
   providers: [
     StatusBar,
@@ -104,6 +102,9 @@ import { Device } from '@ionic-native/device/ngx';
     PushSocket,
     PushSocketService,
     Device,
+    MarkerManager,
+    GoogleMapsAPIWrapper,
+    PolylineManager,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
   ],

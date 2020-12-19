@@ -1,3 +1,5 @@
+import { LocationComponent } from '../location/location.component';
+import { MapComponent } from './../../widgets/map/map.component';
 import { SocialService } from 'src/app/shared/services/model-service/social.service';
 import { AlumniService } from './../../shared/services/model-service/alumni.service';
 import { SchoolJoinComponent } from './../../widgets/school-join/school-join.component';
@@ -275,6 +277,28 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+
+  async viewSchoolLocation() {
+    if (!this.user && this.school) { return; }
+    await this.schoolService.setSchoolLocal(this.school);
+    this.modal = await this.modalController.create({
+      component: LocationComponent,
+      cssClass: '',
+      componentProps: {
+        User: this.user,
+        School: this.school
+      }
+    });
+
+    this.signals.closeModalSource$.subscribe(name => {
+      if (name === 'location') {
+        this.modal.dismiss();
+      }
+    });
+
+    await this.modal.present();
+
+  }
 
 
 }

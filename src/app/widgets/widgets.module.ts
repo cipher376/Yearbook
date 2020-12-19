@@ -1,3 +1,4 @@
+import { LocationComponent } from '../public/location/location.component';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
 import { SchoolListItemComponent } from './school-list-item/school-list-item.component';
 import { UserCardComponent } from './user-card/user-card.component';
@@ -74,7 +75,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent, SchoolListItemComponent, 
-    UserListItemComponent, FollowComponent, NotificationsComponent
+    UserListItemComponent, FollowComponent, NotificationsComponent, LocationComponent
   ],
   exports: [
     FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
@@ -84,7 +85,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent,
-     SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent
+     SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, LocationComponent
   ]
 })
 export class WidgetsModule { }
