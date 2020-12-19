@@ -1,12 +1,16 @@
 <ion-content>
-  <ion-row class="ion-padding" class="tag">
-    <ion-col size="6" (click)="goBack()">
-      <ion-icon name="chevron-back-outline" class="fs-20" color="medium"></ion-icon>&nbsp;
-      <ion-label style="margin-top: 1px; position: absolute; font-size:12px"></ion-label>
-    </ion-col>
-    <ion-col size="6" class="ion-float-right">
-      <!-- <ion-label class="ion-float-right fs-12" (click)="connect()" style="    color: white !important;">Connect
-      </ion-label> -->
+  <ion-row class="ion-padding tag">
+    <ion-col size="12" class="ion-no-padding">
+      <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+        <!-- <ion-row class="ion-row" (click)="goBack()" >
+          <ion-icon class="fs-25" name="chevron-back-outline"></ion-icon>&nbsp;&nbsp;
+        </ion-row> -->
+        <ion-row slot="end">
+          <span class="fs-14" (click)="edit()" *ngIf="user?.id === selectedUser?.id"> 
+            <ion-icon name="create-outline"></ion-icon> Edit  
+          </span>
+        </ion-row>
+      </ion-item>
     </ion-col>
   </ion-row>
 
@@ -30,9 +34,7 @@
               @{{highestDegreeEnrolled?.school?.name}} 
             </small>
             
-            <small class="mx-auto w-50 fs-13" (click)="edit()" *ngIf="user?.id === selectedUser?.id"> 
-              <ion-icon name="create-outline"></ion-icon> Edit  
-            </small>
+           
           </ion-col>
         </ion-row>
       </ion-card-header>

@@ -31,47 +31,35 @@
         <ion-icon name="school-outline" size="small"></ion-icon>
       </ion-tab-button> -->
 
-      <ion-tab-button tab="schools-location">
-        <ion-icon name="location-outline" size="medium"></ion-icon>
-        <!-- <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg> -->
-        
+     
 
+     
+      <ion-tab-button tab="profile;user=true" (click)="loadProfile()" [ngClass]="{'highlight-button ': highlightButton}">
+        <ion-icon name="person-outline" size="medium"></ion-icon>
       </ion-tab-button>
 
-
-      <ion-tab-button tab="schools-search">
-        <ion-icon name="search-outline" size="medium"></ion-icon>
-        <!-- <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg> -->
+      <ion-tab-button tab="users-search">
+        <ion-icon name="people-outline" size="medium"></ion-icon>
       </ion-tab-button>
 
       <ion-tab-button tab="home" style="margin-top: -35px; height:15vh; background: transparent;">
         <ion-fab horizontal="center" vertical="center" class="home_tab" >
           <ion-fab-button color="primary">
             <ion-icon name="home-outline"></ion-icon>
-            <!-- <svg class="custom-icons active"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-home-icon"></use></svg> -->
           </ion-fab-button>
         </ion-fab>
-        <!-- <ion-icon src="home" size="large"></ion-icon> -->
-        <!-- <ion-badge color="danger">6</ion-badge> -->
       </ion-tab-button>
 
-      <!-- <ion-tab-button tab="profile" *ngIf="isAuthenticated()">
-        <ion-icon name="person-outline" size="small"></ion-icon>
-      </ion-tab-button> -->
 
-      <ion-tab-button tab="users-search">
-        <ion-icon name="people-outline" size="medium"></ion-icon>
-        <!-- <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg> -->
-
+      <ion-tab-button tab="schools-search">
+        <ion-icon name="search-outline" size="medium"></ion-icon>
       </ion-tab-button>
 
-      <ion-tab-button tab="profile;user=true" (click)="loadProfile()" [ngClass]="{'highlight-button ': highlightButton}">
-        <ion-icon name="person-outline" size="medium"></ion-icon>
-        <!-- <svg class="custom-icons"><use xlink:href="../../../assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg> -->
+
+      <ion-tab-button tab="settings">
+        <ion-icon name="settings-outline" size="medium"></ion-icon>
       </ion-tab-button>
-      <!-- <ion-tab-button (click)="showLogs()">
-        <ion-icon name="list-outline" size="small"></ion-icon>
-      </ion-tab-button> -->
+      
     </ion-tab-bar>
   </ion-tabs>
 </ion-content>
