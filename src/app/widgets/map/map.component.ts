@@ -1,3 +1,4 @@
+import { SCHOOL_LOCATION_POINTER, USER_LOCATION_POINTER } from './../../shared/config';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 
 import { AgmMap, AgmMarker, AgmPolyline, GoogleMapsAPIWrapper, MapsAPILoader, MarkerManager, PolylineManager } from '@agm/core';
@@ -50,8 +51,8 @@ export class MapComponent implements OnInit, OnDestroy, AfterContentInit {
     lng: -1.6861461,
     title: '',
     label: '',
-    iconUrl: '',
-    showInfo: '',
+    iconUrl: SCHOOL_LOCATION_POINTER,
+    showInfo: false,
     visible: false,
     clickable: ''
   };
@@ -61,8 +62,8 @@ export class MapComponent implements OnInit, OnDestroy, AfterContentInit {
     lng: '',
     title: '',
     label: '',
-    iconUrl: '',
-    showInfo: '',
+    iconUrl: USER_LOCATION_POINTER,
+    showInfo: false,
     visible: false,
     clickable: ''
   };
@@ -118,6 +119,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterContentInit {
   }
 
   initMap() {
+    if (this.map) { return; }
     this.map.latitude = this.center.lat;
     this.map.longitude = this.center.lng;
     this.map.gestureHandling = 'greedy',
@@ -147,6 +149,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterContentInit {
   }
 
   @Input() set School(school: School) {
+    console.log(school);
     this.school = school;
     if (school?.address?.latLng) {
       this.center = UtilityService.parseLatLngStringToObj(school.address.latLng);
@@ -209,6 +212,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterContentInit {
       }
     });
   }
+
 
 }
 

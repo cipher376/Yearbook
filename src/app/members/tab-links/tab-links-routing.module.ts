@@ -1,3 +1,4 @@
+import { MediaModule } from './../../public/media/media.module';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -59,6 +60,10 @@ const routes: Routes = [
       {
         path: 'timeline',
         loadChildren: () => import('../time-line/time-line.module').then(m => m.TimeLinePageModule)
+      },
+      {
+        path: 'media',
+        loadChildren: () => import('../../public/media/media.module').then(m => m.MediaModule)
       },
       {
         path: 'users-search',

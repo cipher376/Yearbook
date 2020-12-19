@@ -1,0 +1,23 @@
+<ion-content>
+  <ion-row class="top-row-header ion-no-padding " style="box-shadow: 0px 2px 4px -4px;">
+    <ion-col size="12" class="ion-no-padding">
+      <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+        <ion-row class="ion-row" (click)="closeModals()">
+          <ion-icon class="fs-25" [src]="'../../../assets/icon/round-arrow_back.svg'"></ion-icon>&nbsp;&nbsp;
+          <ion-note *ngIf="school" class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{school?.name}}
+          </ion-note>
+        </ion-row>
+        <!-- <ion-button slot="end" fill="outline" shape="round" color="danger"  size="small"
+        style="--border-width: 0px;float: right;">
+        <ion-icon name="close"></ion-icon>
+      </ion-button> -->
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <!-- Top correction -->
+  <ion-row class="ion-content-top_correction">
+  </ion-row>
+  <!-- Top correction ends -->
+  <app-map  [User]="user" [School]="school"></app-map>
+
+</ion-content>
