@@ -52,10 +52,10 @@ const routes: Routes = [
     path: 'terms-of-service',
     loadChildren: () => import('./public/terms-of-service/terms-of-service.module').then(m => m.TermsOfServiceModule)
   },
-  {
-    path: 'about',
-    loadChildren: () => import('./public/about/about.module').then(m => m.AboutModule)
-  },
+  // {
+  //   path: 'about',
+  //   loadChildren: () => import('./public/about/about.module').then(m => m.AboutModule)
+  // },
   {
     path: 'home', 
     loadChildren: './public/home/home.module#HomePageModule'
@@ -89,15 +89,18 @@ const routes: Routes = [
   //   path: 'profile',
   //   loadChildren: () => import('./members/profile/profile.module').then( m => m.ProfilePageModule)
   // },
-  {
-    path: '',
-    loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./members/tab-links/tab-links.module').then(m => m.TabLinksPageModule)
+  // },
   {
     path: 'address-settings',
     loadChildren: () => import('./members/address-settings/address-settings.module').then( m => m.AddressSettingsPageModule)
   },
-
+  {
+    path: 'about-settings',
+    loadChildren: () => import('./public/about/about.module').then( m => m.AboutModule)
+  },
 
 
 

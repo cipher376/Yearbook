@@ -85,10 +85,7 @@ const routes: Routes = [
         path: 'activity-settings',
         loadChildren: () => import('../../members/activity-settings/activity-settings.module').then( m => m.ActivitySettingsPageModule)
       },
-      {
-        path: 'about-settings',
-        loadChildren: () => import('../../members/about-settings/about-settings.module').then( m => m.AboutSettingsPageModule)
-      },
+
     
     ]
   },

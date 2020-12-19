@@ -33,3 +33,5 @@ export const DEFAULT_AUDIO_ICON = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'audioIc
 
 export const DEFAULT_DOCUMENT_COVER = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'document_cover.png';
 
+export const APP_VERSION = '0.0.1 ALPHA';
+

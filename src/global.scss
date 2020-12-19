@@ -526,3 +526,15 @@ ion-icon.ios.icon-medium.hydrated{
 .faded {
     opacity: .5;
 }
+
+// .videogular-container {
+// 	width: 100% !important;
+// 	height: 20px !important;
+// 	margin: auto !important;
+// 	overflow: hidden !important;
+// }
+
+vg-player video {
+    width: 100% !important;
+    height: 500px !important;
+}

@@ -1,3 +1,23 @@
-<p>
-  about works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-row slot="end">
+      <ion-note color="dark" class="poppins-bold"> About </ion-note> &nbsp; &nbsp;
+    </ion-row>
+
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding mt-5">
+  <ion-img class="mx-auto mt-5 w-50" src="../../../assets/images/almamater.svg"></ion-img>
+  <hr width="100">
+  <ion-text class="text-center text-muted">
+    <p class="mx-4"> This app was built for everyone with lots of 🧡💛💚 </p>
+    <p> v. {{ appVersion }} </p>
+    <br>
+    <p> Copyright © 2020 </p>
+    <p> All Rights Reserved. </p>
+  </ion-text>
+</ion-content>

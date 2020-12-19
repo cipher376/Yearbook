@@ -1,9 +1,8 @@
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { MenuController, IonSlides } from '@ionic/angular';
-
-import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
+// import { Router } from '@angular/router';
+// import { MenuController, IonSlides } from '@ionic/angular';
+import { APP_VERSION } from 'src/app/shared/config';
+// import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.service';
 
 @Component({
   selector: 'page-about',
@@ -12,6 +11,7 @@ import { MyStorage } from 'src/app/shared/services/providers/storage/my-storage.
 })
 export class AboutPage {
 
+  appVersion = APP_VERSION;
 
   constructor(
   ) { }
