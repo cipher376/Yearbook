@@ -284,5 +284,9 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
     this.signals.announceMapReset();
   }
 
+  viewMedia(){
+    this.router.navigateByUrl('/links/media')
+  }
+
 
 }
