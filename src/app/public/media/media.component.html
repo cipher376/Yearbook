@@ -1,3 +1,55 @@
-<p>
-  media works!
-</p>
+<ion-content>
+  <ion-row class="top-row-header ion-no-padding " style="box-shadow: 0px 2px 4px -4px;">
+    <ion-col size="12" class="ion-no-padding">
+      <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+        <ion-row class="ion-row" (click)="goBack()">
+          <ion-icon class="fs-25" [src]="'../../../assets/icon/round-arrow_back.svg'"></ion-icon>&nbsp;&nbsp;
+          <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note>
+        </ion-row>
+        <ion-row slot="end">
+        </ion-row>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <!-- Top correction -->
+  <ion-row class="ion-content-top_correction">
+  </ion-row>
+  <!-- Top correction ends -->
+
+
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedTab">
+      <ion-segment-button value="photos">Photos</ion-segment-button>
+      <ion-segment-button value="videos">Videos</ion-segment-button>
+      <ion-segment-button value="other" disabled>Other</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+
+  <div class="ion-padding" *ngIf="selectedTab === 'photos'">
+    <app-image-gallery></app-image-gallery>
+  </div>
+
+  <div class="ion-padding text-center" *ngIf="selectedTab === 'videos'">
+    <ion-content fullscreen>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let video of videos"  size="6">
+            <div>
+              <app-video-thumbnail></app-video-thumbnail>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </div>
+
+  <div class="ion-padding" *ngIf="selectedTab === 'other'">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt magnam expedita iure commodi nobis assumenda
+    aperiam ratione voluptates officia animi quam necessitatibus, vel optio sequi distinctio at accusantium numquam!
+    Ipsam?
+  </div>
+
+
+</ion-content>

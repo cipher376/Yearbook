@@ -300,5 +300,9 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
+  viewMedia(){
+    this.router.navigateByUrl('/links/media')
+  }
+
 
 }
