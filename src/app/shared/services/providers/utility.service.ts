@@ -1,3 +1,4 @@
+import { LatLng } from 'src/app/models/latLng';
 import {
   NO_SCHOOL_COVER_PHOTO_URL, SCHOOL_DEFAULT_PHOTO_URL,
   CREST_DEFAULT_PHOTO_URL,
@@ -1269,9 +1270,9 @@ export class UtilityService {
   }
 
 
-  static parseLatLngStringToObj(latLng: string) {
+  static parseLatLngStringToObj(latLng: string): LatLng {
     const tem = latLng.split(',');
-    return { lat: tem[0] as any, lng: tem[1] as any };
+    return { lat: parseFloat(tem[0]), lng: parseFloat(tem[1]) };
   }
 
 }

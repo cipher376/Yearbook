@@ -1,3 +1,4 @@
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { LocationComponent } from '../public/location/location.component';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
 import { SchoolListItemComponent } from './school-list-item/school-list-item.component';
@@ -60,9 +61,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBfKFrI5-iEUhsZyxjc2B56RNmoQoAeBmk'
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyBfKFrI5-iEUhsZyxjc2B56RNmoQoAeBmk'
+    // }),
     GoogleMapsModule,
     PipesModule,
     PickerModule,
@@ -75,7 +76,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent, SchoolListItemComponent, 
-    UserListItemComponent, FollowComponent, NotificationsComponent, LocationComponent
+    UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent
   ],
   exports: [
     FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
@@ -85,7 +86,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent,
-     SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, LocationComponent
+     SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent
   ]
 })
 export class WidgetsModule { }

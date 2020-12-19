@@ -19,6 +19,7 @@ export class MySliderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() slideObjects: any[] = []; // Photo | PhotoLocal | Video | VideoLocal | Audio | AudioLocal
   @Input() mediaType: MediaType;
 
+  playAudio = false;
   playVideo = false;
   playerObserver: { observer: IntersectionObserver, element: any }
 
@@ -201,23 +202,33 @@ export class MySliderComponent implements OnInit, AfterViewInit, OnDestroy {
         this.photoViewer.show(DOWNLOAD_CONTAINER + obj.fileName, '', { share: true });
         break;
       case MediaType.VIDEO:
-        this.stream();
+        this.streamVideo();
         break;
       case MediaType.DOCUMENT:
         break;
       case MediaType.AUDIO:
-        this.stream();
+        this.streamAudio();
         break;
       default:
         console.log('Invalid media object');
     }
   }
-  stream() {
+  streamVideo() {
     this.playVideo = true;
     setTimeout(() => {
       this.playerObserver = UtilityService.monitorElementOutOfView(this.sliderId, () => {
         this.player = null;
         this.playVideo = false;
+      });
+    }, 500);
+  }
+
+  streamAudio() {
+    this.playAudio = true;
+    setTimeout(() => {
+      this.playerObserver = UtilityService.monitorElementOutOfView(this.sliderId, () => {
+        this.player = null;
+        this.playAudio = false;
       });
     }, 500);
   }

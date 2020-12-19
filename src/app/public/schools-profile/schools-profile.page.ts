@@ -279,25 +279,9 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
 
 
   async viewSchoolLocation() {
-    if (!this.user && this.school) { return; }
     await this.schoolService.setSchoolLocal(this.school);
-    this.modal = await this.modalController.create({
-      component: LocationComponent,
-      cssClass: '',
-      componentProps: {
-        User: this.user,
-        School: this.school
-      }
-    });
-
-    this.signals.closeModalSource$.subscribe(name => {
-      if (name === 'location') {
-        this.modal.dismiss();
-      }
-    });
-
-    await this.modal.present();
-
+    this.router.navigateByUrl('/links/location');
+    this.signals.announceMapReset();
   }
 
 

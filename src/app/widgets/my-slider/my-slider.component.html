@@ -1,22 +1,29 @@
-<ion-row class="ion-no-padding ion-padding-bottom h-100" >
-  <ion-col size="12" class="ion-no-padding"  >
+<ion-row class="ion-no-padding  h-100">
+  <ion-col size="12" class="ion-no-padding">
     <!-- Video player -->
     <div id="{{sliderId}}" *ngIf="playVideo" style="
         height: auto;
         width: 100%;
         background: #6c757d1c;
-        z-index: 3;" >
+        z-index: 3;">
       <app-video-player [Items]="slideObjects" [mediaType]="mediaType"></app-video-player>
     </div>
     <!-- Video player ends -->
 
+    <!-- Audio player -->
+    <div id="{{sliderId}}" *ngIf="playAudio" style="
+     height: auto;
+     width: 100%;
+     background: #6c757d1c;
+     z-index: 3;">
+      <app-audio-player [Items]="slideObjects" [mediaType]="mediaType"></app-audio-player>
+    </div>
+    <!-- Audio player ends -->
     <ion-slides [pager]='slideObjects?.length>1' class="ion-no-padding h-100" [options]="slideOptions" #slideWithNav
-      (ionSlideDidChange)="SlideDidChange(slider,slideWithNav)">
-      <ion-slide class="ion-no-padding h-100" *ngFor="let obj of slideObjects" >
-        <ion-row class="ion-no-margin ion-no-padding h-100" *ngIf="!playVideo">
-          <ion-card class="card-header-bg"
-            [background-image]="getObjPhoto(obj)"
-            style="width: 100vw;">
+      (ionSlideDidChange)="SlideDidChange(slider,slideWithNav)" *ngIf="!playAudio">
+      <ion-slide class="ion-no-padding h-100" *ngFor="let obj of slideObjects">
+        <ion-row class="ion-no-margin ion-no-padding h-100" *ngIf="!playVideo &&!playAudio">
+          <ion-card class="card-header-bg" [background-image]="getObjPhoto(obj)" style="width: 100vw;">
             <div style="position: absolute;
         height: 100%;
         width: 100%;
@@ -26,9 +33,9 @@
               class="ion-text-center ion-align-items-center ion-no-padding" style="width: 100%; z-index: 1">
               <ion-col size="3"></ion-col>
               <ion-col size="6" class="ion-no-padding">
-                <ion-item lines="none" class="ion-no-padding">
+                <ion-item lines="none" class="ion-no-padding" [ngClass]="{'audio_margin': mediaType==2, 'other_margin':mediaType==1}">
                   <ion-fab-button color="light" class="play-button" (click)="play(obj)">
-                    <ion-icon class="white fs-25" style="margin-right: -4px;" color="dark" name="caret-forward-outline">
+                    <ion-icon class="white fs-25" style="margin-right: -4px; z-index: 20;" color="dark" name="caret-forward-outline">
                     </ion-icon>
                     <!-- <ion-icon *ngIf="mediaType===2" class="white fs-25" style="margin-right: -1px;" color="dark" name="headset">
                   </ion-icon> -->
