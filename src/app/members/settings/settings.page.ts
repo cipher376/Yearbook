@@ -16,7 +16,8 @@ export class SettingsPage implements OnInit, AfterViewInit, OnDestroy {
   flagAnnouncements;
   countryOnly;
 
-  constructor(private browserHistory: BrowserHistoryService,
+  constructor(
+    private browserHistory: BrowserHistoryService,
     private router: Router,
     private userService: UserService  
   ) {

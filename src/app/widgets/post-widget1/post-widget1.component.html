@@ -16,21 +16,21 @@
 
     <ion-col size="12" class="ion-no-padding">
         <ion-card class=" ion-align-items-center">
-            <div style="height: 50vh;" *ngIf="objects?.length>0">
+            <div [ngClass]="{'audio_container': mediaType==2, 'other_container':mediaType!=2}" 
+                *ngIf="objects?.length>0">
                 <app-my-slider [slideObjects]="objects" [mediaType]="mediaType"></app-my-slider>
             </div>
-            <ion-row class="ion-no-padding" style="margin-top: -105px;">
+            <ion-row class="ion-no-padding"  *ngIf="school">
                 <ion-item lines="none">
-                    <ion-note slot="start" color="white" class="poppins-bold fs-12"
-                        style="text-shadow: 0px 0px 3px black !important;color: white;" *ngIf="school">
+                    <ion-note  color="white" class="poppins-bold fs-12"
+                        style="text-shadow: 0px 0px 3px black !important;color: white;">
                         @{{school?.name}}
                     </ion-note>
                 </ion-item>
             </ion-row>
             <ion-card-content class="fs-12" style="
-            z-index: 1;
-            padding-top: 12vw;
-            padding-bottom: 0;">
+            padding-bottom: 0;    margin-top: 0;
+            padding-top: 0;">
                 <!-- <ion-row class="ion-no-padding ion-no-margin fs-10 mb-2"> -->
                 <!-- <ion-col size="6">
                         <ion-note class="w-100 fs-11    "> {{likes?.length}} likes </ion-note>
@@ -56,7 +56,8 @@
                     <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin" style="padding-right: 4vw;">
                         <div style="float:right;" (click)="share()">
                             <ion-icon name="share-outline" size="medium"> </ion-icon>
-                            <ion-badge *ngIf="post?.shareCount" class="fs-8 share-outline" color="primary">{{post?.shareCount}}</ion-badge>
+                            <ion-badge *ngIf="post?.shareCount" class="fs-8 share-outline" color="primary">
+                                {{post?.shareCount}}</ion-badge>
                         </div>
                     </ion-col>
                 </ion-item>

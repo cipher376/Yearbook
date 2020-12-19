@@ -66,6 +66,10 @@ const routes: Routes = [
         loadChildren: () => import('../../public/media/media.module').then(m => m.MediaModule)
       },
       {
+        path: 'location',
+        loadChildren: () => import('../../public/location/location.module').then(m => m.LocationModule)
+      },
+      {
         path: 'users-search',
         loadChildren: () => import('../../public/users-search/users-search.module').then( m => m.UsersSearchPageModule)
       },

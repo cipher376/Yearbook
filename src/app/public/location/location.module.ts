@@ -1,3 +1,4 @@
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +24,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    WidgetsModule
   ],
-  declarations: [MediaComponent]
+  declarations: [LocationComponent]
 })
 export class LocationModule {}

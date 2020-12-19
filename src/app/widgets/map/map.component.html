@@ -1,23 +1,7 @@
-<!-- <google-map
-   height="100%"
-   width="100%"
-   [zoom]="zoom"
-   [center]="center"
-   [options]="options"
-   (centerChanged)="centerChanged(_$)">
 
-   <map-marker
-    *ngFor="let marker of markers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
-  >
-  </map-marker>
-</google-map> -->
+<google-map *ngIf="mapsLoaded" apiKey="apiKey" [height]="'100vh'"></google-map>
 
-
-<agm-map [latitude]="center.lat" [longitude]="center.lng" >
+<!-- <agm-map [latitude]="center.lat" [longitude]="center.lng" >
   <agm-marker  *ngIf="user" [latitude]="userMarker.lat" [longitude]="userMarker.lng" [iconUrl]="userMarker.iconUrl"
     [visible]="userMarker.visible" [markerClickable]="true" [animation]="'DROP'">
     <agm-info-window>
@@ -30,26 +14,7 @@
     [visible]="schoolMarker.visible" [markerClickable]="true" [animation]="'BOUNCE'">
     <agm-info-window [title]="schoolMarker.title" >
 
-      <div style="width: 48vw;
-      height: 24vh;">
-        <div style="background-color: #fff;
-        color: #000;
-        box-shadow: 0 0 0.25em rgb(255 67 26 / 77%);
-        font-size: 0.875em;
-        border:0.75em solid transparent;
-        border-bottom: 0.35em;
-        height: auto;
-        left: 20%;
-        top: 100%;">
-          <header style="background-color: #ff431a; padding-bottom: 0.5vh; padding: 0.8vh;">
-            <img src="https://via.placeholder.com/200x100" width="100%"> 
-            <h6 style="margin: 1.5vw 0vh 0vh 0vh;">All Nations University College</h6>
-          </header>
-          <main>
-            <p>WWOOFing at a pretty major CSA farm in South Dakota. Stayed for just over two weeks.</p>
-          </main>
-        </div>
-      </div>
+      
     </agm-info-window>
   </agm-marker>
 
@@ -59,4 +24,4 @@
   </agm-polyline>
 
 
-</agm-map>
+</agm-map> -->

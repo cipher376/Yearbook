@@ -259,4 +259,14 @@ export class MySignals {
     this.socketPushMessageSource.next(msg);
   }
 
+
+  /******
+   * REFRESH MAP
+   */
+  private resetMapSource = new Subject<boolean>();
+  resetMapSource$ = this.resetMapSource.asObservable();
+  announceMapReset() {
+    this.resetMapSource.next(true);
+  }
+
 }

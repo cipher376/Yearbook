@@ -16,8 +16,10 @@
 
         </ion-row>
         <!-- <ion-icon slot="end" name="reorder-three-outline" *ngIf="isAuthenticated()"></ion-icon> -->
-        <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right" *ngIf="isAuthenticated()&&!showPost"> Home </ion-label>
-        <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right" *ngIf="isAuthenticated()&&showPost" (click)="showPostModal()">
+        <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right"
+          *ngIf="isAuthenticated()&&!showPost"> Home </ion-label>
+        <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right"
+          *ngIf="isAuthenticated()&&showPost" (click)="showPostModal()">
           <ion-icon name="create-outline" size="medium"></ion-icon>
         </ion-label>
       </ion-item>
@@ -32,22 +34,18 @@
   <!-- Top correction ends -->
 
 
-
-  <!-- <ion-row>
-    <ion-col size="12" class="ion-no-padding">
-      <app-trending></app-trending>
-    </ion-col>
-  </ion-row> -->
-
   <ion-row class="mt-1">
     <ion-col size="12" class="ion-no-padding">
-      <app-create-post appWatchElement [elementId]="'create-post'" id="create-post" (isOut)="showPost=$event"></app-create-post>
-      <ng-template ngFor let-post [ngForOf]="posts" >
+      <app-create-post appWatchElement [elementId]="'create-post'" id="create-post" (isOut)="showPost=$event">
+      </app-create-post>
+      <ng-template ngFor let-post [ngForOf]="posts">
         <app-post-widget1 [Post]="post"></app-post-widget1>
       </ng-template>
-
     </ion-col>
   </ion-row>
+
+  
+  <!-- <app-audio-player></app-audio-player> -->
 
   <!-- Main body content ends -->
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMorePosts($event)">

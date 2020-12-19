@@ -1,24 +1,25 @@
 ion-slides {
-    // height: 25%;
-  }
+  // height: 25%;
+}
 
-  .swiper-slide {
-    display: block;
-  }
+.swiper-slide {
+  display: block;
+}
 
-ion-slide{
-    // width: 60vw !important;
-    ion-card{
-        height: 100%;
-        box-shadow: 0px 0px 6px -5px black;
-        margin-left:  0;
-        margin-right: 0;
-        padding:0;
+ion-slide {
 
-        ion-item{
-                margin-top: 20vh;
-        }
+  // width: 60vw !important;
+  ion-card {
+    height: 100%;
+    box-shadow: 0px 0px 6px -5px black;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+
+    ion-item {
+      z-index: 20;
     }
+  }
 }
 
 .play-button {
@@ -35,4 +36,11 @@ ion-slide{
   --color: light;
   color: white !important;
   z-index: 20;
+}
+
+.audio_margin{
+  margin-top: calc(45% - 22px);
+}
+.other_margin{
+  margin-top: 20vh
 }
