@@ -15,7 +15,7 @@
  .heart-outline{
     position: absolute;
     top: -1vw;
-    right: 21vw;
+    right: 19vw;
     font-size: 0.6em;
     --padding-start: 5px;
     --padding-end: 5px;
@@ -28,4 +28,8 @@
 }
 small.com_like_count {
     font-size: 9px;
+}
+
+ion-badge.fs-8.heart-outline.ion-color.ion-color-primary.ios.hydrated {
+    border: solid 1px #ffffff !important;
 }

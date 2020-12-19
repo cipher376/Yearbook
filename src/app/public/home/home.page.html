@@ -9,8 +9,9 @@
     <ion-col size="12" class="ion-no-padding ">
       <ion-item class="ion-no-padding">
         <ion-row class="ion-row">
-          <ion-label class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> Welcome, </ion-label>
-          <ion-text class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> {{ user?.firstName }} </ion-text>
+          <!-- <ion-label class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> Welcome, </ion-label>
+          <ion-text class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> {{ user?.firstName }} </ion-text> -->
+          <ion-icon class="fs-13" name="menu-outline"  size="large"></ion-icon>
 
           <ion-label class="fs-13 pl-2 poppins" *ngIf="!isAuthenticated()" (click)="gotoLogin()">Log In</ion-label>
 
@@ -18,9 +19,9 @@
         <!-- <ion-icon slot="end" name="reorder-three-outline" *ngIf="isAuthenticated()"></ion-icon> -->
         <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right"
           *ngIf="isAuthenticated()&&!showPost"> Home </ion-label>
-        <ion-label slot="end" class="ion-float-right fs-13 poppins-bold ion-text-right"
+        <ion-label slot="end" class="ion-float-right poppins-bold ion-text-right create_post_ico_holder"
           *ngIf="isAuthenticated()&&showPost" (click)="showPostModal()">
-          <ion-icon name="create-outline" size="medium"></ion-icon>
+          <ion-icon class="create_post_ico" name="create-outline" size="medium"></ion-icon>
         </ion-label>
       </ion-item>
     </ion-col>

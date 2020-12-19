@@ -12,7 +12,7 @@
 <div [ngSwitch]="galleryType">
   <div *ngSwitchCase="'cloud'" id="cloud">
     <ion-row class=" ion-no-padding ion-no-margin">
-      <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 " *ngFor="let aud of cloudAudios">
+      <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg" *ngFor="let aud of cloudAudios">
         <!-- <div class="image-container" [style.background-image]="'url(https://via.placeholder.com/200)'">
           <ion-button fill="outline" shape="round" color="danger" (click)="deleteFromCloudPhotos(image)" size="small"
             style="--border-width: 0px;float: right;background:#ffffff5c;">

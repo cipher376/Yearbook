@@ -1,5 +1,5 @@
 <span *ngIf="entityToLike==1">
-  <ion-icon (click)="like()" class="fs-20" name="heart-outline" size="medium" [ngClass]="{'liked': affection?.rate}">
+  <ion-icon (click)="like()" class="fs-20" name="{{ affection?.rate ? 'heart' : 'heart-outline' }}" size="medium" [ngClass]="{'liked': affection?.rate}">
   </ion-icon>
   <ion-badge *ngIf="likeCount>0" class="fs-8 heart-outline" color="primary">{{likeCount}}</ion-badge>
 </span>
