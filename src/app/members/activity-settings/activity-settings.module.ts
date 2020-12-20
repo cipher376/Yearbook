@@ -13,7 +13,7 @@ import { ActivitySettingsPage } from './activity-settings.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ActivitySettingsPageRoutingModule
+    ActivitySettingsPageRoutingModule,
   ],
   declarations: [ActivitySettingsPage]
 })

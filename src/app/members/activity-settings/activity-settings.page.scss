@@ -1,0 +1,8 @@
+@import '~src/theme/timeline.scss';
+li.timeline_list {
+    margin-left: -5vw;
+    padding-right: 8vw;
+}
+ul.timeline.timeline_style {
+    list-style: none !important;
+}
