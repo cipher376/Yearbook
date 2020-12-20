@@ -11,7 +11,7 @@
         <ion-row class="ion-row">
           <!-- <ion-label class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> Welcome, </ion-label>
           <ion-text class="fs-13 pl-2 poppins" *ngIf="isAuthenticated()"> {{ user?.firstName }} </ion-text> -->
-          <ion-icon class="fs-13" name="menu-outline"  size="large"></ion-icon>
+          <ion-icon class="fs-13" name="menu-outline"  size="large" (click)="openMenu('side-menu')" ></ion-icon>
 
           <ion-label class="fs-13 pl-2 poppins" *ngIf="!isAuthenticated()" (click)="gotoLogin()">Log In</ion-label>
 
