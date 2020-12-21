@@ -11,6 +11,8 @@ import { MyStorage } from '../providers/storage/my-storage.service';
 import { UtilityService } from '../providers/utility.service';
 import { PhotoType, IdentityPhoto, Photo } from 'src/app/models/my-media';
 import { MyDevice } from 'src/app/models/my-device';
+import { SchoolInterface } from 'src/app/models/school';
+import { Address } from 'src/app/models/address';
 
 export interface Token {
   token: '';
@@ -172,7 +174,6 @@ export class UserService {
   getMe(): Observable<User> {
     return this.http.get<User>('/users/me').pipe(
       map(res => {
-        /** Save the authentication token **/
         this.store.setObject('user', res);
         return res as any;
       }),
@@ -249,7 +250,7 @@ export class UserService {
         include: [
           { relation: 'photos' },
           {
-            relation: 'device',
+            relation: 'devices',
             scope: {
               include: [
                 {
@@ -346,6 +347,30 @@ export class UserService {
       }),
       catchError(e => this.handleError(e))
     );
+  }
+
+  /****
+   * ADD OR UPDATE ADDRESS
+   */
+
+  createUpdateAddress(userId: number, address: Address): Observable<Address> {
+    if (address.id) { // perform update
+      return this.http.patch<Address>(`/users/${userId}/address`, address).pipe(
+        map(res => {
+          // console.log(res);
+          return address as any;
+        }),
+        catchError(e => this.handleError(e))
+      );
+    } else {
+      return this.http.post<Address>(`/users/${userId}/address`, address).pipe(
+        map(res => {
+          // console.log(res);
+          return res as any;
+        }),
+        catchError(e => this.handleError(e))
+      );
+    }
   }
 
 

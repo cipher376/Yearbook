@@ -19,7 +19,7 @@ export class SettingsPage implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private browserHistory: BrowserHistoryService,
     private router: Router,
-    private userService: UserService  
+    private userService: UserService
   ) {
     this.history$ = this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;

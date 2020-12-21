@@ -4,16 +4,24 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UserProfilePageRoutingModule } from './user-profile-routing.module';
-
 import { UserProfilePage } from './user-profile.page';
+import { RouterModule, Routes } from '@angular/router';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
+const routes: Routes = [
+  {
+    path: '',
+    component: UserProfilePage
+  }
+];
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserProfilePageRoutingModule
+    WidgetsModule,
+    RouterModule.forChild(routes)
+
   ],
   declarations: [UserProfilePage]
 })

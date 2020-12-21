@@ -74,7 +74,7 @@ const routes: Routes = [
         loadChildren: () => import('../../public/users-search/users-search.module').then( m => m.UsersSearchPageModule)
       },
       {
-        path: 'user-profile',
+        path: 'edit-profile',
         loadChildren: () => import('../../members/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
       },
       {

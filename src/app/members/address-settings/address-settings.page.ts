@@ -22,14 +22,16 @@ export class AddressSettingsPage implements OnInit {
   selectedCountry: any[] = new Country().states;
   subs$: Subscription[] = [];
 
+  user: User;
 
   constructor(
     private userService: UserService,
     private toastController: ToastController
   ) { }
 
-  ngOnInit() {
-    this.populateUserDetails();
+  async ngOnInit() {
+    this.user = await this.userService.getUserLocal();
+    this.userAddress = this.user.address;
   }
 
   async presentToast(message) {
@@ -41,27 +43,19 @@ export class AddressSettingsPage implements OnInit {
   }
 
   updateUserInfo() {
-    // get current user
-    this.userService.getUserLocal()
-      .then((u: User) => {
-        u.address = this.currentUserAddress;
-        console.log(u);
-        this.subs$.push(
-          this.userService.updateUser(u).subscribe(
-              (subs: User) => this.userAddress = subs.address, 
-              (err: Error) => this.presentToast(err.message)
-            ));
-      });
+    this.userAddress.userId = this.user.id;
+    this.userService.createUpdateAddress(this.user?.id, this.userAddress).subscribe(address => {
+      console.log(address);
+      this.user.address = address;
+      this.userService.setUserLocal(this.user).then(_ => _);
+    });
   }
 
   get countries(): Country[] {
     return UtilityService.getAllCountries();
   }
 
-  populateUserDetails() {
-    this.userService.getUserLocal()
-      .then((a: User) => this.currentUserAddress = new User(a, a as any).address);
-  }
+ 
 
   selectState(passed_country) {
     this.selectedCountry = this.countries.find( c => c.name === passed_country).states;

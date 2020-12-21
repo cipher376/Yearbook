@@ -78,19 +78,20 @@ export class User implements UserInterface {
   constructor(userData?: UserInterface, cred?: Credentials) {
     if (userData) {
       this.id = userData.id;
-      this.fullName = userData.firstName + ' ' + userData.lastName;
-      this.firstName = userData.firstName;
-      this.lastName = userData.lastName;
-      this.dateOfBirth = userData.dateOfBirth;
-      this.nickName = userData.nickName;
-      this.userName = userData.userName;
+      this.FullName = userData?.firstName + ' ' + userData?.otherName + ' ' + userData?.lastName;
+      this.fullName = userData?.firstName + ' ' + userData?.otherName + ' ' + userData?.lastName;
+      this.firstName = userData?.firstName;
+      this.lastName = userData?.lastName;
+      this.otherName = userData?.otherName;
+      this.dateOfBirth = userData?.dateOfBirth;
+      this.nickName = userData?.nickName;
+      this.userName = userData?.userName;
+      this.gender = userData?.gender;
 
       this.photos = userData.photos || [];
       this.address = userData.address;
       this.alumni = userData.alumni || [];
       this.devices = userData.devices;
-
-
     }
     if (cred) {
       this.password = cred.password;
@@ -103,29 +104,29 @@ export class User implements UserInterface {
 
   }
   get FullName() {
-    this.fullName = '';
-    this.fullName += this.firstName || '';
-    this.fullName += ' ';
-    this.fullName += this.lastName || '';
-    this.fullName += ' ';
-    this.fullName += this.otherName || '';
     // console.log(this.fullName);
-    if (this.fullName == ' ') { this.fullName = null; }
+    if (!this.fullName ) { this.fullName = null; }
     return this.fullName;
   }
   set FullName(name: string) {
-    this.fullName = name;
     try {
-      const nameArray = this.fullName.split(' ');
-      if (nameArray?.length > 0) {
-        this.firstName = nameArray[0];
-      }
-      if (nameArray?.length > 1) {
-        this.lastName = nameArray[1];
-      }
-      if (nameArray?.length > 2) {
-        this.otherName = nameArray[2];
-      }
+      let nameArray = name.split(' ');
+      nameArray = nameArray.filter(n => {
+        return n !== '';
+      });
+      this.fullName = '';
+      nameArray.forEach((n, i) => {
+        this.fullName += n;
+        if (i !== nameArray.length - 1 && n.length > 1) {
+          this.fullName += ' ';
+        }
+      });
+      const fname = this.fullName.slice(0, this.fullName.indexOf(' '));
+      const lname = this.fullName.slice(this.fullName.lastIndexOf(' ') + 1);
+      const oname = this.fullName.slice(this.fullName.indexOf(' '), this.fullName.lastIndexOf(' '));
+      this.firstName = fname;
+      this.lastName = lname;
+      this.otherName = oname;
     } catch (error) {
 
     }
