@@ -84,7 +84,7 @@ export class UserProfilePage implements OnInit, OnDestroy {
           text: 'Take photo',
           role: 'destructive',
           cssClass: 'camera',
-          icon: 'camera',
+          icon: 'camera-outline',
           handler: () => {
             
           }
@@ -93,7 +93,7 @@ export class UserProfilePage implements OnInit, OnDestroy {
           text: 'Select photo',
           role: 'destructive',
           cssClass: 'folder',
-          icon: 'folder-open',
+          icon: 'folder-open-outline',
           handler: () => {
             
           }
