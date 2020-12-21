@@ -1,3 +1,4 @@
+import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
 import { MyPhotoPickerComponent } from './../../widgets/my-photo-picker/my-photo-picker.component';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
@@ -19,10 +20,11 @@ export class UserProfilePage implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private router: Router, 
+    private router: Router,
     private signals: MySignals,
     public modalController: ModalController,
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private localMediaService: LocalMediaService
   ) { }
 
   user: User = new User();
@@ -53,7 +55,7 @@ export class UserProfilePage implements OnInit, OnDestroy {
     this.subs$.push(this.userService.updateUser(this.user.UpdateInfo)
       .subscribe(subs => {
         this.user = subs;
-        this.userService.getUserDetails(this.user?.id).subscribe(u =>  this.user = new User(u, u as any));
+        this.userService.getUserDetails(this.user?.id).subscribe(u => this.user = new User(u, u as any));
       }));
   }
 
@@ -62,11 +64,13 @@ export class UserProfilePage implements OnInit, OnDestroy {
   }
 
 
-  async upload() {
+  async upload(fromDevice = false) {
     this.modal = await this.modalController.create({
       component: MyPhotoPickerComponent,
       cssClass: '',
       componentProps: {
+        galleryType: fromDevice ? 'local' : 'cloud',
+        IsComponent: true
       }
     });
     this.signals.closeModalSource$.subscribe(name => {
@@ -86,21 +90,56 @@ export class UserProfilePage implements OnInit, OnDestroy {
           cssClass: 'camera',
           icon: 'camera',
           handler: () => {
-            
+            this.upload(true);
           }
         },
         {
-          text: 'Select photo',
+          text: 'Select from device',
           role: 'destructive',
           cssClass: 'folder',
           icon: 'folder-open',
           handler: () => {
-            
+            this.upload(true);
+          }
+        },
+        {
+          text: 'Select from cloud',
+          role: 'destructive',
+          cssClass: 'cloudy',
+          icon: 'cloudy',
+          handler: () => {
+            this.upload();
           }
         }
       ]
     });
     (await actionSheet).present();
   }
+
+  takePhoto() {
+    this.localMediaService.takePhoto().then(photo => {
+      if (photo?.id) {
+        // this.devicePhotos.push(photo);
+        console.log(photo);
+      }
+    });
+  }
+
+  selectFromCloud() {
+    // this.mediaService.getUserPhotos(this.user?.id).subscribe(photos => {
+    //   console.log(this.user?.id);
+    //   this.cloudPhotos = [...photos];
+    //   if (this.cloudPhotos?.length > 0) {
+    //     this.galleryType = 'cloud';
+    //   }
+    // }, error => {
+    //   console.log(error);
+    // });
+  }
+
+  selectFromDevice() {
+
+  }
+
 
 }

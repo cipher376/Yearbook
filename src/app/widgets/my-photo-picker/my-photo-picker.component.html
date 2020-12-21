@@ -1,3 +1,18 @@
+
+<ion-row class="ion-padding" class="tag" *ngIf="_isComponent">
+  <ion-col size="6" (click)="close()">
+    <ion-icon name="chevron-back-outline" class="fs-20" color="medium"></ion-icon>
+    <!-- <ion-icon name="git-network-outline" class="fs-20" style="color: white !important;" color="medium"></ion-icon>
+    &nbsp;
+    <ion-label style="margin-top: 1px; position: absolute; font-size:12px; color: white !important;">Follow
+    </ion-label> -->
+  </ion-col>
+  <ion-col size="6" class="ion-float-right">
+    <!-- <ion-label class="ion-float-right fs-12" (click)="connect()" style="color: white !important;">Join old students
+    </ion-label> -->
+  </ion-col>
+</ion-row>
+
 <ion-segment [(ngModel)]="galleryType" color="primary" class="pt-2">
   <ion-segment-button value="cloud">
     <ion-icon class="ion-no-margin" name="cloudy-outline" size="small"></ion-icon>
