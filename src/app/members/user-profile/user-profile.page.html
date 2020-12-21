@@ -46,6 +46,36 @@
     <!-- <ion-item> Date of Birth <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="user.dateOfBirth"></ion-input></ion-item> -->
   </ion-list>
 
+  <!-- <ion-list lines="">
+    <ion-item>
+      <ion-label>Country</ion-label>
+      <ion-select value="" interface="popover" [(ngModel)]="userAddress.country">
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="female">Female</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>State</ion-label>
+      <ion-select value="" interface="popover" [(ngModel)]="userAddress.state">
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="female">Female</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item> City <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="userAddress.city"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userAddress.city"> Suburb (Optional) <ion-input slot="end" class="faded fs-14 text-right"
+        [(ngModel)]="userAddress.suburb"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userAddress.suburb"> Street (Optional) <ion-input slot="end" class="faded fs-14 text-right"
+        [(ngModel)]="userAddress.street"></ion-input>
+    </ion-item>
+    <ion-item> Postal Code <ion-input slot="end" class="faded fs-14 text-right" [(ngModel)]="userAddress.postcode">
+      </ion-input>
+    </ion-item>
+  </ion-list> -->
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" type="submit" (click)="updateUserInfo()">
     <ion-fab-button color="primary">
       <ion-icon name="save"></ion-icon>

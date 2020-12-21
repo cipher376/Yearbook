@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { Post } from 'src/app/models/post';
-import { IonInfiniteScroll, ModalController } from '@ionic/angular';
+import { IonInfiniteScroll, MenuController, ModalController } from '@ionic/angular';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { SchoolJoinComponent } from 'src/app/widgets/school-join/school-join.component';
 import { User } from 'src/app/models/user';
@@ -45,7 +45,7 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     private postService: PostService,
     private signals: MySignals,
     public modalController: ModalController,
-
+    public menuController: MenuController
   ) { }
 
 
@@ -128,6 +128,10 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
       this.modal.dismiss();
     });
     return await this.modal.present();
+  }
+
+  openMenu(menuName: string) {
+    this.menuController.open(menuName);
   }
 
 }
