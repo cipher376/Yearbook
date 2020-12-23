@@ -26,6 +26,12 @@ export const SOCKET_ROOT_URL = `${API_HOST}${SOCKET_PORT }`;
 /***
  * Default images for users and schools without profile photo
  */
+export const NO_SCHOOL_PHOTO = `${API_ROOT_URL}/media/download/No_School.svg`;
+export const NO_COMMENT_PHOTO = `${API_ROOT_URL}/media/download/No_Comment.svg`;
+export const NO_IMAGE_PHOTO = `${API_ROOT_URL}/media/download/No_Images.svg`;
+export const NO_MUSIC_PHOTO = `${API_ROOT_URL}/media/download/No_Music.svg`;
+export const NO_VIDEO_PHOTO = `${API_ROOT_URL}/media/download/No_Video.svg`;
+
 export const SCHOOL_LOCATION_POINTER = `${API_ROOT_URL}/media/download/school_location_pointer.png`;
 export const SCHOOL_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/school_default.png`;
 export const NO_SCHOOL_COVER_PHOTO_URL = `${API_ROOT_URL}/media/download/school_cover.svg`;
