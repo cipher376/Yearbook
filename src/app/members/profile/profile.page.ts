@@ -126,7 +126,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
       include: [
         { relation: 'photos' },
         { relation: 'address' },
-        { relation: 'userConfig' },
+        { relation: 'userConfigs' },
         { relation: 'post' }
       ]
     };
