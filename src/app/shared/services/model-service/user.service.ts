@@ -1,3 +1,4 @@
+import { MySignals } from 'src/app/shared/services/my-signals';
 import { UserConfig } from './../../../models/user';
 import { PageInfo, getPagedData } from '../../../models/page';
 import { Router } from '@angular/router';
@@ -34,7 +35,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private store: MyStorage,
-    private router: Router) {
+    private router: Router,
+    private signals: MySignals) {
     this.getToken().then(token => {
       this.token = token;
     });
@@ -43,17 +45,17 @@ export class UserService {
 
 
   static getUserIdentityPhoto(user: User) {
-    console.log(user?.photos);
+    // console.log(user?.photos);
     const photo: IdentityPhoto = {} as any;
     user?.photos?.forEach(ph => {
       if (ph.profile) {
-        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileUrl ?? USER_DEFAULT_PHOTO_URL;
+        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileName ?? USER_DEFAULT_PHOTO_URL;
+        ph.thumbnailUrl = DOWNLOAD_CONTAINER + 'thumb_' + ph.fileName ?? USER_DEFAULT_PHOTO_URL;
         photo.profile = ph;
       }
 
       if (ph.coverImage) {
-        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileUrl ?? '';
-        ph.fileUrl = DOWNLOAD_CONTAINER + ph.thumbnailUrl ?? '';
+        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileName ?? USER_DEFAULT_COVER_URL;
         photo.cover = ph;
       }
     });
@@ -77,6 +79,18 @@ export class UserService {
 
   static getUserCoverPhotoUrl(identityPhoto: IdentityPhoto) {
     return identityPhoto?.cover?.thumbnailUrl || USER_DEFAULT_COVER_URL;
+  }
+
+  static checkOwnerShip(user1: User, user2: User) {
+    console.log(user1)
+    console.log(user2)
+    if (!user1?.id || !user2?.id || (user1?.id !== user2?.id)) {
+      console.log('not owner');
+      return false;
+    } else {
+      console.log('is owner');
+      return true;
+    }
   }
 
   announceUserAuthenticated(user: User) {
@@ -115,6 +129,7 @@ export class UserService {
     this.deleteToken(); // delete jwt auth token
     this.deleteUserLocal(); // clear user details
     this.announceUserAuthenticated(null); // send signal to log user out
+    this.signals.announceCurrentUser(null);
   }
 
   async getToken(): Promise<Token> {
@@ -186,7 +201,7 @@ export class UserService {
     return this.http.get<User>('/users/my-profile').pipe(
       map(res => {
         /** Save the authentication token **/
-        this.store.setObject('user', res);
+        this.setUserLocal(res);
         this.announceUserAuthenticated(res);
         return res as any;
       }),
@@ -243,8 +258,9 @@ export class UserService {
       catchError(e => this.handleError(e))
     );
   }
-
-  getUserDetails(userId: any, filter?: any) {
+  // arg: isCurrentUser is used to update the data on disk for 
+  // the currently logged in user
+  getUserDetails(userId: any, filter?: any, isCurrentUser = true) {
     if (!filter) {
       filter = {
         include: [
@@ -260,7 +276,7 @@ export class UserService {
             }
           },
           { relation: 'address' },
-          { relation: 'userConfig' },
+          { relation: 'userConfigs' },
           { relation: 'post' },
           {
             relation: 'alumni',
@@ -283,6 +299,13 @@ export class UserService {
     return this.http.get<User>(url).pipe(
       map(res => {
         // console.log(res);
+        if (isCurrentUser) {
+          this.setUserLocal(res).then(_ => _);
+          this.signals.announceCurrentUser(res);
+        } else {
+          this.setSelectedUserLocal(res);
+        }
+
         return res as any;
       }),
       catchError(e => this.handleError(e))
@@ -379,7 +402,7 @@ export class UserService {
    ****************************************************/
   createOrUpdateConfig(userId: any, cfg: UserConfig) {
     if (cfg.id) { // perform update
-      return this.http.patch<UserConfig>(`/users/${userId}/user-config`, cfg).pipe(
+      return this.http.patch<UserConfig>(`/users/${userId}/user-configs`, cfg).pipe(
         map(res => {
           // console.log(res);
           return cfg as any;
@@ -387,7 +410,7 @@ export class UserService {
         catchError(e => this.handleError(e))
       );
     } else {
-      return this.http.post<UserConfig>(`/users/${userId}/user-config`, cfg).pipe(
+      return this.http.post<UserConfig>(`/users/${userId}/user-configs`, cfg).pipe(
         map(res => {
           // console.log(res);
           return res as any;
@@ -398,7 +421,7 @@ export class UserService {
   }
 
   getConfig(userId: any) {
-    return this.http.get<UserConfig>(`/users/${userId}/user-config`).pipe(
+    return this.http.get<UserConfig>(`/users/${userId}/user-configs`).pipe(
       map(res => {
         console.log(res);
         return res as any;
@@ -409,9 +432,9 @@ export class UserService {
 
   deleteConfig(userId, cfg: UserConfig) {
     const where = {
-        id: cfg.id
+      id: cfg.id
     };
-    return this.http.delete<UserConfig>(`/users/${userId}/user-config?where=${where}`).pipe(
+    return this.http.delete<UserConfig>(`/users/${userId}/user-configs?where=${where}`).pipe(
       map(res => {
         console.log(res);
         return res as any;
@@ -512,6 +535,7 @@ export class UserService {
   }
 
   getOwnerImage(user: User, photoType?: PhotoType) {
+    // console.log(user);
     const identityPhoto: IdentityPhoto = {
       cover: null,
       profile: null,

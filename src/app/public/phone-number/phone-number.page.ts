@@ -55,6 +55,8 @@ export class PhoneNumberPage implements OnInit, AfterViewInit {
       if (this.user) {
         this.user.phone = this.phone;
         this.user.dateOfBirth = this.user.dateOfBirth ?? undefined;
+        this.user.otherName = this.user.otherName ?? undefined;
+        this.user.gender = this.user.gender ?? undefined;
         this.user = new User(this.user as UserInterface, this.user as Credentials);
         console.log(this.user);
 

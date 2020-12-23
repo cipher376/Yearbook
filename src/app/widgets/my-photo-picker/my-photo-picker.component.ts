@@ -232,14 +232,14 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
             } as any;
 
             photos.push(uploadedPhoto);
-            this.signals.announceUploadCompleteSource(uploadedPhoto);
+            this.signals.announceUploadComplete(uploadedPhoto);
 
             // delete from device photos
             this.deleteFromDevicePhotos(photo);
 
             if (this.devicePhotos?.length === 0) {
               // Fire all upload complete
-              this.signals.announceAllUploadCompleteSource(photos);
+              this.signals.announceAllUploadComplete(photos);
 
               // Reload cloud photos
             }
@@ -272,7 +272,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   close() {
-    
+
   }
 
 

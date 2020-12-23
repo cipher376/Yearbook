@@ -43,7 +43,7 @@
                     </ion-grid> -->
                 <ion-item lines="none" class="mt-2">
                     <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin">
-                        <app-like [InitiatorId]="postUser?.id" [ReceiverId]="Post?.id" [ReceiverName]="'post'"
+                        <app-like [ReceiverId]="Post?.id" [ReceiverName]="'post'"
                             (reload)="getLikes()" [likeCount]="likes?.length" [entityToLike]="1"></app-like>
                     </ion-col>
                     <ion-col size="4" class="fs-20 ion-no-padding ion-no-margin ion-text-center">

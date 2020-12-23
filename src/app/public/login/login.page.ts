@@ -148,6 +148,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     await this.userService.login(this.loginForm.value).subscribe(
       res => {
         if (res) {
+          console.log(res);
           // fetch user details
           this.userService.getMyProfile().subscribe(user => {
             this.user = user;

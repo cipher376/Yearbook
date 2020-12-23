@@ -1,3 +1,4 @@
+import { UserCloudPhotosComponent } from './user-cloud-photos/user-cloud-photos.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { LocationComponent } from '../public/location/location.component';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
@@ -75,8 +76,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     , MyVideoPickerComponent, CreatePostComponent, PhotoThumbnailComponent, VideoThumbnailComponent,
     AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
-    EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent, SchoolListItemComponent, 
-    UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent
+    EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent, SchoolListItemComponent,
+    UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent, UserCloudPhotosComponent
   ],
   exports: [
     FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
@@ -86,7 +87,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent,
-     SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent
+     SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, UserCloudPhotosComponent,
+     AudioPlayerComponent
   ]
 })
 export class WidgetsModule { }

@@ -153,14 +153,14 @@ export class MyVideoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
             } as any;
 
             videos.push(uploadedVideo);
-            this.signals.announceUploadCompleteSource(uploadedVideo);
+            this.signals.announceUploadComplete(uploadedVideo);
 
             // delete from device videos
             this.deleteFromDeviceVideos(video);
 
             if (this.deviceVideos?.length === 0) {
               // Fire all upload complete
-              this.signals.announceAllUploadCompleteSource(videos);
+              this.signals.announceAllUploadComplete(videos);
               // Reload cloud videos
             }
           }

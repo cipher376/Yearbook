@@ -1,5 +1,5 @@
 <!-- photo -->
-<div #photoThumbnail  class="image-container" [ngClass]="{'thumbnail-selected': selected}"
+<div #photoThumbnail  class="image-container" [ngClass]="{'thumbnail-selected': highlight}"
   [style.background-image]="'url(\''+getThumbnailUrl()+'\')'" (click)="select()">
   <ion-button fill="outline" shape="round" color="danger" size="small"
     style="--border-width: 0px;float: right;background:transparent" (click)="onDelete()">

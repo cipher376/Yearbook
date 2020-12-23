@@ -47,6 +47,29 @@ export class SocialService {
         }
     }
 
+    //     like(rate: Like): Observable<Like> {
+    //         return this.http.post<Like>('/likes/', rate).pipe(
+    //             map(res => {
+    //                 // console.log(res);
+    //                 return res as any;
+    //             }),
+    //             catchError(e => this.handleError(e))
+    //         );
+    // }
+
+    // dislike(rate: Like) {
+    //     if (rate.id && rate.rate) {
+    //         return;
+    //     }
+    //     return this.http.patch<Like>(`/likes/${rate.id}`, rate).pipe(
+    //         map(res => {
+    //             // console.log(res);
+    //             return res as any;
+    //         }),
+    //         catchError(e => this.handleError(e))
+    //     );
+    // }
+
     getLikeById(id: any) {
         return this.http.get<Like>(`/likes/${id}`).pipe(
             map(res => {
@@ -66,7 +89,7 @@ export class SocialService {
         };
         filter = 'filter=' + JSON.stringify(filter);
         const url = '/likes?' + filter;
-
+        // console.log(initiatorId);
         return this.http.get<Like>(url).pipe(
             map(res => {
                 // console.log(res);

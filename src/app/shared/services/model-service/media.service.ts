@@ -214,6 +214,17 @@ export class MediaService {
     }
   }
 
+  // turns off the photo profile field to false
+  clearAllUserProfilePhotos(userId: any){
+    return this.http.get(`/users/clear-profile-photos/${userId}`).pipe(
+      map(res => {
+        console.log(JSON.stringify(res));
+        return res as any;
+      }),
+      catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User video')))
+    );
+  }
+
 
   getUserPhotos(userId: any, filter: any = null) {
     if (!userId) {
@@ -225,6 +236,8 @@ export class MediaService {
         order: 'id DESC',
 
       };
+    } else {
+      filter.order = 'id DESC';
     }
     const url = `/users/${userId}/photos?filter=` + JSON.stringify(filter);
     return this.http.get<Photo[]>(url).pipe(

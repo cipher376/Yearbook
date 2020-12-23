@@ -1,3 +1,4 @@
+import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
@@ -67,7 +68,8 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
    *
    */
   constructor(
-    private router: Router
+    private router: Router, 
+    private toaster: ToasterService
   ) {
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -89,9 +91,20 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           console.log('Unauthenticated');
           myError = new HttpErrorResponse({ status: 401, statusText: 'Authentication failed' });
           this.router.navigateByUrl('/login-auth');
+          this.toaster.toast('Authentication error');
         } else if (err.status === 0) {
           console.log('No connection');
           myError = new HttpErrorResponse({ status: 0, statusText: 'No internet connection' });
+        } else if (err.status === 423) {
+          this.toaster.toast('Account deactivated');
+        } else if(err.status === 403) {
+          this.toaster.toast('Access denied');
+        }else if(err.status === 403) {
+          this.toaster.toast('Access denied');
+        } else if(err.status === 400){
+          this.toaster.toast('Something went wrong');
+        }else if(err.status === 500){
+          this.toaster.toast('Something went wrong');
         }
       }
       return of(myError); // forward error to service or component for proper handling

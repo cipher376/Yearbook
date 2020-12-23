@@ -1,15 +1,25 @@
 /****API Configurations */
-export const API_PORT = 8082;
-export const API_ROOT_URL = `http://devtek-limited.tech:${API_PORT || 80}`;
 
-// export const API_PORT = 3001;
-// export const API_ROOT_URL = `http://localhost:${API_PORT ?? 80}`;
+/*****
+ * REMOTE API SERVER
+ */
+// export const API_PORT = 8082;
+// export const API_ROOT_URL = `http://devtek-limited.tech:${API_PORT || 80}`;
+
+
+
+/****
+ * LOCAL API SERVER
+ */
+export const API_HOST = `http://192.168.0.103:`;
 
 export const SOCKET_PORT = 3000;
-export const SOCKET_ROOT_URL = `http://localhost:${SOCKET_PORT }`;
+export const SOCKET_ROOT_URL = `${API_HOST}${SOCKET_PORT }`;
 
-// export const API_PORT = 3000;
-// export const API_ROOT_URL = `http://192.168.0.103:${API_PORT || 80}`;
+export const API_PORT = 3001;
+export const API_ROOT_URL = `${API_HOST}${API_PORT || 80}`;
+
+
 
 /***
  * Default images for users and schools without profile photo

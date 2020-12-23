@@ -128,7 +128,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
         this.updateDevice();
       });
       this.manageNotifications();
-
+      this.signals.currentUserSource$.subscribe(user => {
+        this.user = user;
+      });
       this.userService.userAuthenticatedSource$.subscribe(user => {
         this.identityPhoto = UserService.getUserIdentityPhoto(user);
         this.setMenu();
@@ -144,7 +146,6 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
-    
   }
 
   async ngAfterViewInit() {
@@ -181,14 +182,11 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
             icon: 'log-out',
             params: { clear: true }
           },
-
         ];
         this.user = user ?? localUser;
       } else {
-        this.otherPages = [...this.publicPages
-        ];
+        this.otherPages = [...this.publicPages];
       }
-
     });
   }
 
@@ -205,7 +203,6 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     device.platform = this.device?.platform;
     device.playerId = this.user?.id;
     device.uuid = this.device?.uuid;
-
 
     const foundDevices = this.myDevices?.find((dv) => {
       if (

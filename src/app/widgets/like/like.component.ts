@@ -1,6 +1,8 @@
+import { UserService } from './../../shared/services/model-service/user.service';
 import { SocialService } from './../../shared/services/model-service/social.service';
 import { Like } from './../../models/like';
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 enum EntityToLike {
   post = 1,
@@ -18,54 +20,58 @@ export class LikeComponent implements OnInit, AfterViewInit {
   // event
   @Output() reload = new EventEmitter<boolean>();
 
+  user: User;
+  @Input() entityToLike: EntityToLike = EntityToLike.post;
 
-  @Input()entityToLike: EntityToLike = EntityToLike.post;
-
-    constructor(
-      private socialService: SocialService
-    ) {
-  this.affection = new Like();
-}
-
-
-ngAfterViewInit(): void {
-  // check if like exist
-  if(!this.affection?.id) {
-  // get like
-  this.getLike();
-}
+  constructor(
+    private socialService: SocialService,
+    private userService: UserService
+  ) {
+    this.affection = new Like();
   }
 
-ngOnInit() {
-}
 
-@Input() set InitiatorId(id: any) {
-  this.affection.initiatorId = id;
-}
-@Input() set ReceiverId(id: any) {
-  this.affection.receiverId = id;
-}
-@Input() set ReceiverName(name: string) {
-  this.affection.receiverName = name.toLowerCase();
-}
+  ngAfterViewInit(): void {
+      // get like
+  }
 
-like() {
-  this.affection.rate = !this.affection.rate; // toggle
-  this.socialService.likeOrDislike(this.affection).subscribe(affection => {
-    if (affection?.id) {
-      this.affection = affection;
-    }
-    this.reload.emit(true);
-  });
-}
+  async ngOnInit() {
+    this.user = await this.userService.getUserLocal();
+    this.getLike();
+
+    console.log(this.user.id);
+
+  }
+
+  // set InitiatorId(id: any) {
+  //   this.affection.initiatorId = id;
+  // }
+  @Input() set ReceiverId(id: any) {
+    this.affection.receiverId = id;
+  }
+  @Input() set ReceiverName(name: string) {
+    this.affection.receiverName = name.toLowerCase();
+  }
+
+  like() {
+    this.affection.rate = !this.affection.rate; // toggle
+    this.affection.initiatorId = this.user?.id;
+    this.socialService.likeOrDislike(this.affection).subscribe(affection => {
+      if (affection?.id) {
+        this.affection = affection;
+      }
+      this.reload.emit(true);
+    });
+  }
 
 
-getLike() {
-  this.socialService.getLike(this.affection?.initiatorId, this.affection.receiverId).subscribe(aff => {
-    if (aff?.id) {
-      this.affection = aff;
-    }
-  });
-}
+  getLike() {
+    this.socialService.getLike(this.user?.id, this.affection.receiverId).subscribe(aff => {
+      console.log(aff)
+      if (aff?.id) {
+        this.affection = aff;
+      }
+    });
+  }
 
 }

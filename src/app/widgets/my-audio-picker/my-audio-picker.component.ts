@@ -142,14 +142,14 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
             } as any;
 
             audios.push(uploadedAudio);
-            this.signals.announceUploadCompleteSource(uploadedAudio);
+            this.signals.announceUploadComplete(uploadedAudio);
 
             // delete from device audios
             this.deleteFromDeviceAudios(audio);
 
             if (this.deviceAudios?.length === 0) {
               // Fire all upload complete
-              this.signals.announceAllUploadCompleteSource(audios);
+              this.signals.announceAllUploadComplete(audios);
               // Reload cloud audios
             }
           }

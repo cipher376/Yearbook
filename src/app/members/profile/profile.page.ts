@@ -56,6 +56,8 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   sub$ = [];
   previousPage = '';
 
+  isOwner = false;
+
   constructor(
     private userService: UserService,
     private alumniService: AlumniService,
@@ -69,6 +71,11 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   ) {
     this.sub$.push(this.browserHistory.previousPageSource$.subscribe(previousPage => {
       this.previousPage = previousPage;
+      this.getUserPost(true);
+    }));
+
+    this.sub$.push(this.signals.currentUserSource$.subscribe(user => {
+      this.user = user;
     }));
   }
 
@@ -78,9 +85,15 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
 
   ngOnDestroy() {
     UtilityService.destroySubscription(this.sub$);
+    this.selectedUser = new User();
   }
 
   ngAfterContentInit() {
+    this.checkOwnerShip();
+  }
+
+  checkOwnerShip() {
+    this.isOwner = UserService.checkOwnerShip(this.user, this.selectedUser);
   }
 
   async ngAfterViewInit() {
@@ -95,14 +108,17 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
     this.selectedUserPosts = [];
 
     this.user = await this.userService.getUserLocal();
-    if (this.route?.snapshot?.params?.user) { // check if its current login user
+    console.log(this.route?.snapshot?.queryParams?.user);
+    if (this.route?.snapshot?.params?.user || this.route?.snapshot?.queryParams?.user) { // check if its current login user
       this.selectedUser = this.user;
+      console.log(this.route.snapshot.params.user);
       await this.userService.setSelectedUserLocal(this.user);
       window.location.href = '/links/profile';
     } else {
       this.selectedUser = await this.userService.getSelectedUserLocal();
     }
     console.log(this.selectedUser);
+    this.checkOwnerShip();
     // if (!this.selectedUser) {
     //   this.selectedUser = this.user;
     // }
@@ -114,12 +130,15 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
         { relation: 'post' }
       ]
     };
-    this.sub$.push(this.userService.getUserDetails(this.selectedUser?.id, filter).subscribe(u => {
+    this.sub$.push(this.userService.getUserDetails(this.selectedUser?.id, filter, false).subscribe(u => {
       if (u?.id) {
         this.selectedUser = u;
         console.log(u);
         this.identityPhoto = UserService.getUserIdentityPhoto(u);
-        console.log(this.identityPhoto);
+        this.userService.setSelectedUserLocal(this.selectedUser);
+        this.checkOwnerShip();
+
+        // console.log(this.identityPhoto);
       }
     }));
     this.sub$.push(this.alumniService.getUserAlumni(this.selectedUser?.id).subscribe(a => {
@@ -144,6 +163,8 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
     this.loadFollowedSchools(true);
     this.getUserPost();
     this.countPost();
+    this.checkOwnerShip();
+
   }
 
   set FixedMenu(value: boolean) {
@@ -158,7 +179,11 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
     }
   }
 
-  getUserPost() {
+  getUserPost(refresh = false) {
+    if (refresh) {
+      this.postOffset = 0;
+      this.selectedUserPosts = [];
+    }
     const pageInfo: PageInfo = {
       limit: this.postLimit,
       offset: this.postOffset

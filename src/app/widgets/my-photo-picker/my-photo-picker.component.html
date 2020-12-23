@@ -28,7 +28,7 @@
     <ion-row>
       <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let ph of cloudPhotos">
         <app-photo-thumbnail [thumb]='ph' (delete)="deleteFromCloudPhotos(ph)" 
-        (isSelected)="selectFromCloudPhotos($event)" [location]="'cloud'"> </app-photo-thumbnail>
+        (isSelected)="selectFromCloudPhotos($event)" [location]="'cloud'" [highlight]='selectedCloudPhotos.includes(ph)'> </app-photo-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>
