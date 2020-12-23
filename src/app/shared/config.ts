@@ -11,14 +11,16 @@
 /****
  * LOCAL API SERVER
  */
-export const API_HOST = `http://192.168.0.103:`;
+export const API_HOST = `http://192.168.0.102:`;
+
+
+
+export const API_PORT = 3001; // comment out to use remote
+export const API_ROOT_URL = `${API_HOST}${API_PORT || 80}`; // comment out to user remote
+
 
 export const SOCKET_PORT = 3000;
 export const SOCKET_ROOT_URL = `${API_HOST}${SOCKET_PORT }`;
-
-export const API_PORT = 3001;
-export const API_ROOT_URL = `${API_HOST}${API_PORT || 80}`;
-
 
 
 /***
