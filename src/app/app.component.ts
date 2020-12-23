@@ -14,6 +14,8 @@ import { PermissionsService } from './shared/services/providers/permission.servi
 import { IdentityPhoto } from './models/my-media';
 import { Device } from '@ionic-native/device/ngx';
 import { MyDevice } from './models/my-device';
+import { ConnectivityProvider } from './shared/services/providers/connectivity-provider';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -109,7 +111,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     private signals: MySignals,
     private cdr: ChangeDetectorRef,
     private pushService: PushSocketService,
-    private device: Device
+    private device: Device,
+    private connectivityProvider: ConnectivityProvider,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -139,6 +143,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
         this.updateDevice();
       });
     });
+
+    // check connectivity status
+    this.getOnlineStatus();
   }
 
   ngOnInit() {
@@ -146,6 +153,12 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  getOnlineStatus() {
+    this.connectivityProvider.appIsOnline$.subscribe(online => {
+      if (!online) this.router.navigateByUrl('/no-connection');
+    });
   }
 
   async ngAfterViewInit() {
