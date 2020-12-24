@@ -152,22 +152,24 @@ export class UserService {
     return false;
   }
   RequestResetLink(email: string) {
-    // return this.userIdentity.resetPassword({ email: email }).pipe(
-    //   map(res => {
-    //     return res;
-    //   }),
-    //   catchError(e => this.handleError(e))
-    // );
+    return this.http.post<User>('/users/reset-password', {email}).pipe(
+      map(res => {
+        console.log(res);
+        return res;
+      }),
+      catchError(e => this.handleError(e))
+    );
   }
 
 
   requestVerificationLink(email: string) {
-    // return this.userIdentity.verifyEmail(email).pipe(
-    //   map(res => {
-    //     return res;
-    //   }),
-    //   catchError(e => this.handleError(e))
-    // );
+    return this.http.post<User>('/email-verification', {email}).pipe(
+      map(res => {
+        // console.log(res);
+        return res;
+      }),
+      catchError(e => this.handleError(e))
+    );
   }
 
 

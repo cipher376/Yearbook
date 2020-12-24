@@ -141,13 +141,14 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
     this._loading = await this.loadCtrl.create({
-      message: 'Welcome to<br>alma mater'
+      message: 'Welcome to<br>alma mater',
+      duration: 5000
     });
-    UtilityService.stopLoading(this._loading);
     await this._loading.present();
     await this.userService.login(this.loginForm.value).subscribe(
       res => {
-        if (res) {
+        console.log(res);
+        if (res.token) {
           console.log(res);
           // fetch user details
           this.userService.getMyProfile().subscribe(user => {
@@ -160,12 +161,13 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
             }
           });
         }
-        this._loading.dismiss();
+        this._loading.dismiss().then(_ => _);
       },
       error => {
         console.log(error);
         this.toaster.toast(error.message, 4000);
-        this._loading.dismiss();
+        this._loading.dismiss().then(_ => _);
+
         // if (error.search('verified') > -1) {
         //   this.alertCtrl.create({
         //     header: `Email is not verified. A verification link is sent to the email provided but it may take up 10min to show up. check spam if not in your In-box Verify your email now?`,

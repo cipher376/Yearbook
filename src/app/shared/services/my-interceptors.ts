@@ -68,7 +68,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
    *
    */
   constructor(
-    private router: Router, 
+    private router: Router,
     private toaster: ToasterService
   ) {
   }
@@ -97,14 +97,16 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           myError = new HttpErrorResponse({ status: 0, statusText: 'No internet connection' });
         } else if (err.status === 423) {
           this.toaster.toast('Account deactivated');
-        } else if(err.status === 403) {
+        } else if (err.status === 403) {
           this.toaster.toast('Access denied');
-        }else if(err.status === 403) {
+        } else if (err.status === 403) {
           this.toaster.toast('Access denied');
-        } else if(err.status === 400){
+        } else if (err.status === 400) {
           this.toaster.toast('Something went wrong');
-        }else if(err.status === 500){
+        } else if (err.status === 500) {
           this.toaster.toast('Something went wrong');
+        } else if (err.status === 409) {
+          this.toaster.toast(err.error?.error?.message ?? 'Already in use');
         }
       }
       return of(myError); // forward error to service or component for proper handling

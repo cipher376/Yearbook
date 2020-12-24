@@ -16,7 +16,7 @@ import * as PluginsLibrary from 'capacitor-video-player';
 import { FileUploadResult } from '@ionic-native/file-transfer/ngx';
 import { Video, MediaType } from 'src/app/models/my-media';
 import { User } from 'src/app/models/user';
-import { SERVER_DOWNLOAD_PATH } from 'src/app/shared/config';
+import { NO_VIDEO_PHOTO, SERVER_DOWNLOAD_PATH } from 'src/app/shared/config';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 
@@ -27,6 +27,7 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 })
 export class MyVideoPickerComponent implements OnInit, OnDestroy, AfterViewInit {
   galleryType = 'cloud';  // local or cloud
+  noVideoPhoto =  NO_VIDEO_PHOTO;
   sub$ = [];
   deviceVideos: VideoLocal[] = [];
   cloudVideos: Video[] = [];

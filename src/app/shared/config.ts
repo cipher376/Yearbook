@@ -3,25 +3,25 @@
 /*****
  * REMOTE API SERVER
  */
-export const API_HOST = `http://yearbook-api.devtek-limited.tech:`;
+// export const API_HOST = `http://yearbook-api.devtek-limited.tech:`;
 
-export const API_PORT = 8085;
-export const API_ROOT_URL = `http://yearbook-api.devtek-limited.tech:${API_PORT}`;
+// export const API_PORT = 8085;
+// export const API_ROOT_URL = `http://yearbook-api.devtek-limited.tech:${API_PORT}`;
 
-export const SOCKET_PORT = 8085;
-export const SOCKET_ROOT_URL = `http://yearbook-socket.devtek-limited.tech:${SOCKET_PORT}`;
+// export const SOCKET_PORT = 8085;
+// export const SOCKET_ROOT_URL = `http://yearbook-socket.devtek-limited.tech:${SOCKET_PORT}`;
 
 
 /****
  * LOCAL API SERVER
  */
-// export const API_HOST = `http://192.168.0.102:`;
-// export const API_PORT = 3001; // comment out to use remote
-// export const API_ROOT_URL = `${API_HOST}${API_PORT || 80}`; // comment out to user remote
+export const API_HOST = `http://192.168.0.106:`;
+export const API_PORT = 3001; // comment out to use remote
+export const API_ROOT_URL = `${API_HOST}${API_PORT || 80}`; // comment out to user remote
 
 
-// export const SOCKET_PORT = 3000;
-// export const SOCKET_ROOT_URL = `${API_HOST}${SOCKET_PORT }`;
+export const SOCKET_PORT = 3000;
+export const SOCKET_ROOT_URL = `${API_HOST}${SOCKET_PORT }`;
 
 
 /***
@@ -38,7 +38,7 @@ export const SCHOOL_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/school_d
 export const NO_SCHOOL_COVER_PHOTO_URL = `${API_ROOT_URL}/media/download/school_cover.svg`;
 export const USER_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/user_default.svg`;
 export const CREST_DEFAULT_PHOTO_URL = `${API_ROOT_URL}/media/download/school_crest.svg`;
-export const USER_DEFAULT_COVER_URL = '';
+export const USER_DEFAULT_COVER_URL = `${API_ROOT_URL}/media/download/default_user_cover.svg`;
 export const USER_LOCATION_POINTER = `${API_ROOT_URL}/media/download/user_location_pointer.png`;
 
 
@@ -47,7 +47,7 @@ export const SERVER_DOWNLOAD_PATH = '/media/download/';
 export const UPLOAD_URL = API_ROOT_URL + SERVER_UPLOAD_PATH;
 export const DOWNLOAD_CONTAINER = API_ROOT_URL + SERVER_DOWNLOAD_PATH;
 
-export const DEFAULT_AUDIO_COVER = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'audio_cover.png';
+export const DEFAULT_AUDIO_COVER = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'audio_cover.jpg';
 export const DEFAULT_AUDIO_ICON = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'audioIcon.jpg';
 
 export const DEFAULT_DOCUMENT_COVER = API_ROOT_URL + SERVER_DOWNLOAD_PATH + 'document_cover.png';

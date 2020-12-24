@@ -1,3 +1,4 @@
+import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -23,7 +24,8 @@ export class AddressSettingsPage implements OnInit {
 
   constructor(
     private userService: UserService,
-    private toastController: ToastController
+    private toaster: ToasterService,
+
   ) { }
 
   async ngOnInit() {
@@ -37,14 +39,7 @@ export class AddressSettingsPage implements OnInit {
     console.log(this.user);
   }
 
-  async presentToast(message) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000
-    });
-    toast.present();
-  }
-
+ 
   updateUserInfo() {
     this.userAddress.userId = this.user.id;
     this.userService.createUpdateAddress(this.user?.id, this.userAddress).subscribe(address => {
@@ -52,6 +47,7 @@ export class AddressSettingsPage implements OnInit {
       this.user.address = address;
       this.userAddress = address;
       this.userService.setUserLocal(this.user).then(_ => _);
+      this.toaster.toast('Your address is saved')
     });
   }
 

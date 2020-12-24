@@ -86,8 +86,8 @@ export class User implements UserInterface {
   constructor(userData?: UserInterface, cred?: Credentials) {
     if (userData) {
       this.id = userData.id;
-      this.FullName = userData?.firstName + ' ' + userData?.otherName + ' ' + userData?.lastName;
-      this.fullName = userData?.firstName + ' ' + userData?.otherName + ' ' + userData?.lastName;
+      this.FullName = userData?.firstName + ' ' + (userData?.otherName ?? '') + ' ' + userData?.lastName;
+      this.fullName = userData?.firstName + ' ' + (userData?.otherName ?? '') + ' ' + userData?.lastName;
       this.firstName = userData?.firstName;
       this.lastName = userData?.lastName;
       this.otherName = userData?.otherName || undefined;
@@ -135,7 +135,7 @@ export class User implements UserInterface {
       const oname = this.fullName.slice(this.fullName.indexOf(' '), this.fullName.lastIndexOf(' '));
       this.firstName = fname;
       this.lastName = lname;
-      this.otherName = oname;
+      this.otherName = oname || '';
     } catch (error) {
 
     }

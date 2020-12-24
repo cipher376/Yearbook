@@ -1,5 +1,5 @@
 import { AudioRecorderComponent } from './../audio-recorder/audio-recorder.component';
-import { SERVER_DOWNLOAD_PATH } from './../../shared/config';
+import { NO_IMAGE_PHOTO, SERVER_DOWNLOAD_PATH } from './../../shared/config';
 import { FileUploadResult } from '@ionic-native/file-transfer/ngx';
 import { MediaType, Photo } from 'src/app/models/my-media';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
@@ -37,6 +37,8 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   user: User;
 
   isAccessDenied = false;
+
+  noPhotosImage = NO_IMAGE_PHOTO;
 
 
   constructor(

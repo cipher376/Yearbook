@@ -18,6 +18,7 @@ import { PhotoLocal } from 'src/app/models/LocalMediaInterfaces';
 import { PermissionsService } from 'src/app/shared/services/providers/permission.service';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { Capacitor } from '@capacitor/core';
+import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -39,7 +40,7 @@ export class UserProfilePage implements OnInit, OnDestroy {
     private mediaService: MediaService,
     private permissionService: PermissionsService,
     private photoLibrary: PhotoLibrary,
-
+    private toaster: ToasterService,
 
   ) {
     this.identityPhoto = UserService.getUserIdentityPhoto(this.user);
@@ -84,7 +85,10 @@ export class UserProfilePage implements OnInit, OnDestroy {
     this.subs$.push(this.userService.updateUser(this.user.UpdateInfo)
       .subscribe(subs => {
         this.user = subs;
-        this.userService.getUserDetails(this.user?.id).subscribe(u => this.user = new User(u, u as any));
+        this.userService.getUserDetails(this.user?.id).subscribe(u => {
+          this.user = new User(u, u as any);
+          this.toaster.toast('Information updated');
+        });
       }));
   }
 
