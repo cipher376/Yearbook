@@ -23,25 +23,25 @@
   <app-my-audio-picker #myAudioPicker *ngIf="mediaPage === 'audios'"></app-my-audio-picker>
   <!-- <app-audio-recorder *ngIf="mediaPage === 'audios'"> </app-audio-recorder> -->
   <ion-row size="12" class="text-center p-1 fint-line-under">
-    <ion-col size="{{ mediaPage !== '' ?  3 : 4 }}" class=" ion-no-padding ion-no-margin">
+    <ion-col size="{{ mediaPage !== ''&&!showHeader ?  3 : 4 }}" class=" ion-no-padding ion-no-margin">
       <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)"
         (click)="takePhoto()">
         <ion-icon name="images-outline" size="medium"></ion-icon>
       </ion-button>
     </ion-col>
-    <ion-col size="{{ mediaPage !== '' ?  3 : 4 }}" class=" ion-no-padding ion-no-margin">
+    <ion-col size="{{ mediaPage !== ''&&!showHeader ?  3 : 4 }}" class=" ion-no-padding ion-no-margin">
       <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)"
         (click)=" recordVideo()">
         <ion-icon name="videocam-outline" size="medium"></ion-icon>
       </ion-button>
     </ion-col>
-    <ion-col size="{{ mediaPage !== '' ?  3 : 4 }}" class=" ion-no-padding ion-no-margin">
+    <ion-col size="{{ mediaPage !== ''&&!showHeader ?  3 : 4 }}" class=" ion-no-padding ion-no-margin">
       <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)"
         (click)="recordAudio()">
         <ion-icon name="musical-notes-outline" size="medium"></ion-icon>
       </ion-button>
     </ion-col>
-    <ion-col size="3" class=" ion-no-padding ion-no-margin" *ngIf="mediaPage !== ''">
+    <ion-col size="3" class=" ion-no-padding ion-no-margin" *ngIf="mediaPage !== ''&&!showHeader">
       <ion-button size="small" fill="outline" style="--border-width:0px; --color:var(--ion-color-medium-shade)" 
         (click)="clear()">
         <ion-icon name="close" color="danger" size="medium"></ion-icon>

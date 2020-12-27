@@ -52,7 +52,6 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     private browserHistory: BrowserHistoryService
 
   ) {
-
     // this.fb.logout().then(_ => {
     //   console.log(_);
     // });
@@ -62,9 +61,10 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     this.userService.getUserLocal().then(user => {
       this.user = user;
     });
-
   }
-  ngAfterViewInit(): void {
+
+
+  ngAfterViewInit() {
     if (this.route?.snapshot?.params?.clear) {
       // clear data from store 
       this.userService.logout();
