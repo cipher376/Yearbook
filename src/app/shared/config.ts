@@ -15,7 +15,7 @@
 /****
  * LOCAL API SERVER
  */
-export const API_HOST = `http://192.168.0.106:`;
+export const API_HOST = `http://localhost:`;
 export const API_PORT = 3001; // comment out to use remote
 export const API_ROOT_URL = `${API_HOST}${API_PORT || 80}`; // comment out to user remote
 

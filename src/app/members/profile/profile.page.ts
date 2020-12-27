@@ -108,16 +108,16 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
     this.selectedUserPosts = [];
 
     this.user = await this.userService.getUserLocal();
-    console.log(this.route?.snapshot?.queryParams?.user);
+    // console.log(this.route?.snapshot?.queryParams?.user);
     if (this.route?.snapshot?.params?.user || this.route?.snapshot?.queryParams?.user) { // check if its current login user
       this.selectedUser = this.user;
-      console.log(this.route.snapshot.params.user);
+      // console.log(this.route.snapshot.params.user);
       await this.userService.setSelectedUserLocal(this.user);
       window.location.href = '/links/profile';
     } else {
       this.selectedUser = await this.userService.getSelectedUserLocal();
     }
-    console.log(this.selectedUser);
+    // console.log(this.selectedUser);
     this.checkOwnerShip();
     // if (!this.selectedUser) {
     //   this.selectedUser = this.user;
@@ -161,7 +161,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
     }));
     this.loadSchools();
     this.loadFollowedSchools(true);
-    this.getUserPost();
+    this.getUserPost(true);
     this.countPost();
     this.checkOwnerShip();
 
@@ -180,6 +180,11 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   }
 
   getUserPost(refresh = false) {
+    if (!this.selectedUser?.id) {
+      this.postOffset = 0;
+      this.selectedUserPosts = [];
+      return;
+    }
     if (refresh) {
       this.postOffset = 0;
       this.selectedUserPosts = [];
