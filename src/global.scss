@@ -538,3 +538,7 @@ vg-player video {
     width: 100% !important;
     height: 500px !important;
 }
+
+.header-md::after{
+    background-image: none !important;
+}

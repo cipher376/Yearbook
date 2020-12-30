@@ -83,3 +83,10 @@
   app-like.comment_like{
     padding-left: 4vw;
 }
+
+ion-img#no_com {
+  width: 85vh !important;
+  position: fixed;
+  margin-left:calc(-10vh - 4vw);
+  // margin-left: -23%;
+}
