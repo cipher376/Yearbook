@@ -4,7 +4,7 @@
       <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
         <ion-row class="ion-row" (click)="goBack()">
           <ion-icon class="fs-25" [src]="'../../../assets/icon/round-arrow_back.svg'"></ion-icon>&nbsp;&nbsp;
-          <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note>
+          <!-- <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note> -->
         </ion-row>
         <ion-row slot="end">
         </ion-row>
@@ -28,27 +28,30 @@
 
 
   <div class="ion-padding" *ngIf="selectedTab === 'photos'">
-    <app-image-gallery></app-image-gallery>
+    <app-image-gallery [User]="user" [School]="school"></app-image-gallery>
   </div>
 
   <div class="ion-padding text-center" *ngIf="selectedTab === 'videos'">
     <ion-content fullscreen>
       <ion-grid>
         <ion-row>
-          <ion-col *ngFor="let video of videos"  size="6">
-            <div>
-              <app-video-thumbnail></app-video-thumbnail>
-            </div>
+          <ion-col size="12" class="inner-container ion-no-padding" *ngIf="videos?.length<=0">
+            <ion-img id="no_com" [src]="noPhotoUrl"></ion-img>
           </ion-col>
+          <div *ngIf="videos?.length>0">
+            <ion-col *ngFor="let video of videos" size="6">
+              <app-video-thumbnail [thumb]="video" [count]="videos?.length"></app-video-thumbnail>
+            </ion-col>
+          </div>
         </ion-row>
       </ion-grid>
     </ion-content>
   </div>
 
   <div class="ion-padding" *ngIf="selectedTab === 'other'">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt magnam expedita iure commodi nobis assumenda
+    <!-- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt magnam expedita iure commodi nobis assumenda
     aperiam ratione voluptates officia animi quam necessitatibus, vel optio sequi distinctio at accusantium numquam!
-    Ipsam?
+    Ipsam? -->
   </div>
 
 

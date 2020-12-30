@@ -135,7 +135,7 @@ export class MediaService {
   }
 
 
-  getSchoolPhotos(schoolId: any, filter: any = null) {
+  getSchoolPhotos(schoolId: any, filter: any = null): Observable<Photo[]> {
     if (!schoolId) {
       return;
     }
@@ -155,7 +155,7 @@ export class MediaService {
     );
   }
 
-  getSchoolVideos(schoolId: any, filter: any = null) {
+  getSchoolVideos(schoolId: any, filter: any = null): Observable<Video[]> {
     if (!schoolId) {
       return;
     }
@@ -215,7 +215,7 @@ export class MediaService {
   }
 
   // turns off the photo profile field to false
-  clearAllUserProfilePhotos(userId: any){
+  clearAllUserProfilePhotos(userId: any) {
     return this.http.get(`/users/clear-profile-photos/${userId}`).pipe(
       map(res => {
         console.log(JSON.stringify(res));
@@ -226,7 +226,7 @@ export class MediaService {
   }
 
 
-  getUserPhotos(userId: any, filter: any = null) {
+  getUserPhotos(userId: any, filter: any = null): Observable<Photo[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;
@@ -248,7 +248,7 @@ export class MediaService {
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User photo')))
     );
   }
-  getUserVideos(userId: any, filter: any = null) {
+  getUserVideos(userId: any, filter: any = null): Observable<Video[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;
@@ -268,7 +268,7 @@ export class MediaService {
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User video')))
     );
   }
-  getUserAudios(userId: any, filter: any = null) {
+  getUserAudios(userId: any, filter: any = null): Observable<Audio[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;
@@ -288,7 +288,7 @@ export class MediaService {
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User audio')))
     );
   }
-  getUserDocuments(userId: any, filter: any = null) {
+  getUserDocuments(userId: any, filter: any = null): Observable<Document[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;

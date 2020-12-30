@@ -91,7 +91,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           console.log('Unauthenticated');
           myError = new HttpErrorResponse({ status: 401, statusText: 'Authentication failed' });
           this.router.navigateByUrl('/login-auth');
-          this.toaster.toast('Authentication error');
+          this.toaster.toast('Authentication error, please login!');
         } else if (err.status === 0) {
           console.log('No connection');
           myError = new HttpErrorResponse({ status: 0, statusText: 'No internet connection' });

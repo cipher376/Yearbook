@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { School } from './../../models/school';
+import { User } from './../../models/user';
+import { MediaService } from './../../shared/services/model-service/media.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { NO_IMAGE_PHOTO, SERVER_DOWNLOAD_PATH } from 'src/app/shared/config';
 
 @Component({
   selector: 'app-image-gallery',
@@ -11,23 +15,16 @@ export class ImageGalleryComponent implements OnInit {
   galleryType = 'regular';
   prefersDark = true;
 
-  images = [
-    '../../../assets/images/me.jpg',
-    '../../../assets/images/car.jpg',
-    '../../../assets/images/bg1.jpg',
-    '../../../assets/images/car.jpg',
-    '../../../assets/images/me.jpg',
-    '../../../assets/images/bg1.jpg',
-    '../../../assets/images/car.jpg',
-    '../../../assets/images/me.jpg',
-    '../../../assets/images/me.jpg',
-    '../../../assets/images/car.jpg',
-    '../../../assets/images/bg1.jpg',
-    '../../../assets/images/car.jpg',
-  ];
+  user: User;
+  school: School;
+
+  images = [];
+
+  noPhotosUrl = NO_IMAGE_PHOTO;
 
   constructor(
-    public modalController: ModalController
+    public modalController: ModalController,
+    public mediaService: MediaService
   ) { }
 
   ngOnInit() {
@@ -36,12 +33,39 @@ export class ImageGalleryComponent implements OnInit {
     }
   }
 
+  @Input() set User(user: User) {
+    this.user = user;
+    // load entity(user or school) photos
+    this.mediaService.getUserPhotos(user?.id)?.subscribe(photos => {
+      if (!this.school) {
+        this.images = [];
+        photos.forEach(ph => {
+          this.images.push(SERVER_DOWNLOAD_PATH + ph.fileName);
+        });
+      }
+    });
+  }
+
+  @Input() set School(school: School) {
+    this.school = school;
+    // load entity(user or school) photos
+    this.mediaService.getSchoolPhotos(school?.id)?.subscribe(photos => {
+      if (!this.user) {
+        this.images = [];
+        photos.forEach(ph => {
+          this.images.push(SERVER_DOWNLOAD_PATH + ph.fileName);
+        });
+      }
+    });
+  }
+
+
   toggleTheme() {
     this.prefersDark = !this.prefersDark;
     document.body.classList.toggle('dark', this.prefersDark);
   }
 
-  async openViewer(url, title='', description='') {
+  async openViewer(url, title = '', description = '') {
     const modal = await this.modalController.create({
       component: ViewerModalComponent,
       componentProps: {

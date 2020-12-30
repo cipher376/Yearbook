@@ -45,6 +45,9 @@ export class UsersSearchPage implements OnInit, OnDestroy, AfterViewInit {
       this.previousPage = previousPage;
     }));
 
+    if (!userService.isAuthenticated) {
+      router.navigateByUrl('/login');
+    }
   }
 
   ngOnInit() {

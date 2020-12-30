@@ -49,15 +49,18 @@
             <ion-col size="3" class="text-center" *ngIf="!isOwner">
               <ion-note class="poppins-regular fs-13 min-menu">Profile</ion-note>
             </ion-col>
+            <ion-col size="3" class="text-center">
+              <ion-note class="poppins-regular fs-13 min-menu" (click)="viewMedia();showPost=false; showMedia = true;">Media
+              </ion-note>
+            </ion-col>
             <!-- <ion-col size="3" class="text-center">
-              <ion-note class="poppins-regular fs-13 min-menu">Edit</ion-note>
-            </ion-col> -->
-            <ion-col size="3" class="text-center">
               <ion-note class="poppins-regular fs-13 min-menu">Photos</ion-note>
-            </ion-col>
-            <ion-col size="3" class="text-center">
+            </ion-col> -->
+            <!-- <ion-col size="3" class="text-center">
               <ion-note class="poppins-regular fs-13 min-menu">Videos</ion-note>
-            </ion-col>
+            </ion-col> -->
+
+            
           </ion-row>
         </ion-col>
         <ion-row class="ion-no-padding ion-no-margin w-100" *ngIf="!profileFixedMenu" >

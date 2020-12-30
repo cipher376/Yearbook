@@ -64,18 +64,18 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       icon: 'home',
       params: {}
     },
-    {
-      title: 'Find your way',
-      url: '/links/schools-location',
-      icon: 'trail-sign',
-      params: {}
-    },
-    {
-      title: 'Find year mate',
-      url: '/links/users-search',
-      icon: 'people',
-      params: {}
-    },
+    // {
+    //   title: 'Locate school',
+    //   url: '/links/schools-location',
+    //   icon: 'trail-sign',
+    //   params: {}
+    // },
+    // {
+    //   title: 'Find class mates',
+    //   url: '/links/users-search',
+    //   icon: 'people',
+    //   params: {}
+    // },
     {
       title: 'Sign up',
       url: '/register',
