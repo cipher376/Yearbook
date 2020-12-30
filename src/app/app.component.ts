@@ -38,12 +38,12 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       icon: 'school',
       params: {}
     },
-    {
-      title: 'Timeline',
-      url: '/links/timeline',
-      icon: 'receipt',
-      params: {}
-    },
+    // {
+    //   title: 'Timeline',
+    //   url: '/links/timeline',
+    //   icon: 'receipt',
+    //   params: {}
+    // },
     // {
     //   title: 'Find class mate',
     //   url: '/links/users-search',
