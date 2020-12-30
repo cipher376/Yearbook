@@ -39,7 +39,7 @@ export class LikeComponent implements OnInit, AfterViewInit {
     this.user = await this.userService.getUserLocal();
     this.getLike();
 
-    console.log(this.user.id);
+    console.log(this.user?.id);
 
   }
 

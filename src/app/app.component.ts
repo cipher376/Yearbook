@@ -125,6 +125,11 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
+      setTimeout(() => {
+        this.showTutorial();
+      }, 4000);
+
+
       this.permissions.initPermissions().then(_ => _);
       this.userService.getUserLocal().then(user => {
         this.user = user;
@@ -235,5 +240,15 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     }
     console.log(this.device);
   }
+
+  showTutorial() {
+    console.log(this.userService.showTutorial);
+    if (this.userService?.showTutorial) {
+      console.log('Redirecting ... ');
+      this.router.navigateByUrl('/tutorial');
+    }
+  }
+
+
 
 }

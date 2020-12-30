@@ -26,6 +26,7 @@ export interface Token {
 })
 export class UserService {
   token: Token = null;
+  showTutorial = false;
   redirectUrl = '';
 
 
@@ -37,9 +38,12 @@ export class UserService {
     private store: MyStorage,
     private router: Router,
     private signals: MySignals) {
+
     this.getToken().then(token => {
       this.token = token;
     });
+
+    this.isFirstTime().then(_ => _);
 
   }
 
@@ -152,7 +156,7 @@ export class UserService {
     return false;
   }
   RequestResetLink(email: string) {
-    return this.http.post<User>('/users/reset-password', {email}).pipe(
+    return this.http.post<User>('/users/reset-password', { email }).pipe(
       map(res => {
         console.log(res);
         return res;
@@ -163,7 +167,7 @@ export class UserService {
 
 
   requestVerificationLink(email: string) {
-    return this.http.post<User>('/email-verification', {email}).pipe(
+    return this.http.post<User>('/email-verification', { email }).pipe(
       map(res => {
         // console.log(res);
         return res;
@@ -569,7 +573,30 @@ export class UserService {
     return USER_DEFAULT_PHOTO_URL;
   }
 
-
+  async isFirstTime(email?: string) {
+    const user = await this.getUserLocal();
+    if (user) {
+      this.showTutorial = false;
+      // if (!u) { // user does not exit
+      //   // check server for previous config
+      //   this.getConfig(u?.id).subscribe(cfgs => {
+      //     console.log(cfgs);
+      //   });
+      // }
+    } else {
+      this.showTutorial = true;
+      this.store.get('isFirstTime').then(result => {
+        if (result) {
+          this.showTutorial = false;
+        } else {
+          this.showTutorial = true;
+          this.store.set('isFirstTime', true).then(_ => _);
+        }
+        console.log(this.showTutorial);
+      });
+    }
+    console.log(this.showTutorial);
+  }
 
   async getSelectedUserLocal(): Promise<User> {
     return await this.store.getObject('selected-user');

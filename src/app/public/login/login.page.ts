@@ -136,6 +136,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
   // Validators.pattern("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"),
 
   async onLogin() {
+    this.userService.token = null;
     if (!this.loginForm.valid) {
       this.toaster.toast('Provide valid credentials');
       return;
