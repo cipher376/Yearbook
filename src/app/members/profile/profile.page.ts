@@ -266,8 +266,8 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   }
 
   viewMedia() {
-    this.userService.setUserLocal(this.user).then(_ => {
-      this.router.navigateByUrl('/links/media');
+    this.userService.setSelectedUserLocal(this.user).then(_ => {
+      this.router.navigateByUrl('/links/media;isUser=true');
     });
   }
 }

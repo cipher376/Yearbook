@@ -286,7 +286,7 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
 
   viewMedia() {
     this.schoolService.setSchoolLocal(this.school).then(_ => {
-      this.router.navigateByUrl('/links/media');
+      this.router.navigateByUrl('/links/media;isSchool=true');
     });
   }
 

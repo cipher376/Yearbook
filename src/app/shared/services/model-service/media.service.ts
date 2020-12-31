@@ -148,7 +148,7 @@ export class MediaService {
     const url = `/schools/${schoolId}/photos?filter=` + JSON.stringify(filter);
     return this.http.get<Photo[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'School photo')))
@@ -168,7 +168,7 @@ export class MediaService {
     const url = `/schools/${schoolId}/videos?filter=` + JSON.stringify(filter);
     return this.http.get<Video[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'School video')))
@@ -242,7 +242,7 @@ export class MediaService {
     const url = `/users/${userId}/photos?filter=` + JSON.stringify(filter);
     return this.http.get<Photo[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User photo')))
@@ -262,7 +262,7 @@ export class MediaService {
     const url = `/users/${userId}/videos?filter=` + JSON.stringify(filter);
     return this.http.get<Video[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User video')))
