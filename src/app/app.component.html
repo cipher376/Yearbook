@@ -5,7 +5,7 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" menuId="side-menu" type="overlay">
       <ion-content>
-        <div class="side_pf">
+        <div class="side_pf" [routerLink]="['/links/profile', {user:true}]" >
           <ion-item lines="none">
             <ion-avatar slot="start">
               <img [src]="identityPhoto?.profile?.fileUrl">
@@ -16,7 +16,7 @@
             </ion-label>
           </ion-item>
         </div>
-      
+
         <ion-list id="inbox-list" *ngIf="checkAuthentication()">
           <!-- <ion-list-header>Inbox</ion-list-header>-->
           <!-- <ion-note>Welcome, {{user?.firstName||'user'}}! </ion-note> -->

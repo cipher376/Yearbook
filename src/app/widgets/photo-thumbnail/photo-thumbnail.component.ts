@@ -16,6 +16,8 @@ export class PhotoThumbnailComponent implements OnInit, AfterContentInit {
   @Input() count = 0;
   @Input() location = 'local'; // cloud || local
 
+  @Input() highlight = false;
+
   @ViewChild('photoThumbnail') photoThumbnail: ElementRef; // element to double click
   private lastOnStart = 0; // double click start count
   private DOUBLE_CLICK_THRESHOLD = 500;
@@ -48,7 +50,6 @@ export class PhotoThumbnailComponent implements OnInit, AfterContentInit {
   }
 
   select() {
-    this.selected = !this.selected;
     this.isSelected.emit(this.thumb);
   }
 

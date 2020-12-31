@@ -11,6 +11,7 @@ import { Alumni } from 'src/app/models/alumni';
 import { User } from 'src/app/models/user';
 import { School } from 'src/app/models/school';
 import { IdentityPhoto } from 'src/app/models/my-media';
+import { NO_SCHOOL_PHOTO } from 'src/app/shared/config';
 
 @Component({
   selector: 'app-my-schools',
@@ -24,6 +25,8 @@ export class MySchoolsPage implements OnInit, AfterViewInit, OnDestroy {
   userSchools: School[] = [];
   user: User;
   schoolsIdentityPhoto: IdentityPhoto[] = [];
+
+  noDefaultImage = NO_SCHOOL_PHOTO;
 
   sub$ = [];
   constructor(

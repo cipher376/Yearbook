@@ -56,6 +56,9 @@ export class MySignals {
   private imagesLoadedSource = new Subject<Photo[]>();
   imagesLoadedSource$ = this.imagesLoadedSource.asObservable();
 
+  private selectedPhotosSource = new Subject<Photo[]>();
+  selectedPhotosSource$ = this.selectedPhotosSource.asObservable();
+  
   private videosLoadedSource = new Subject<Video[]>();
   videosLoadedSource$ = this.videosLoadedSource.asObservable();
 
@@ -113,6 +116,13 @@ export class MySignals {
     this.selectedUsersSource.next(users);
   }
 
+  private currentUserSource = new Subject<User>();
+  currentUserSource$ = this.currentUserSource.asObservable();
+  announceCurrentUser(user: User) {
+    this.currentUserSource.next(user);
+  }
+
+
   announceSelectedSchools(schools: School[]) {
     this.selectedSchoolsSource.next(schools);
   }
@@ -138,6 +148,9 @@ export class MySignals {
   announceImagesLoaded(photos: Photo[]) {
     this.imagesLoadedSource.next(photos);
   }
+  announceSelectedPhotosChanged(photos: Photo[]) {
+    this.selectedPhotosSource.next(photos);
+  }
   announceVideosLoaded(videos: Video[]) {
     this.videosLoadedSource.next(videos);
   }
@@ -158,10 +171,10 @@ export class MySignals {
     this.locationChangeSource.next(latLng);
   }
 
-  announceAllUploadCompleteSource(files: any[]) {
+  announceAllUploadComplete(files: any[]) {
     this.allUploadCompleteSource.next(files);
   }
-  announceUploadCompleteSource(file: any) {
+  announceUploadComplete(file: any) {
     this.uploadCompleteSource.next(file);
   }
   // announceSelectedPolicies(policy: Policy[]) {
@@ -268,5 +281,8 @@ export class MySignals {
   announceMapReset() {
     this.resetMapSource.next(true);
   }
+
+
+
 
 }

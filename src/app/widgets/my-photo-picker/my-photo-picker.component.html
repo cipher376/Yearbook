@@ -1,3 +1,18 @@
+
+<ion-row class="ion-padding" class="tag" *ngIf="_isComponent">
+  <ion-col size="6" (click)="close()">
+    <ion-icon name="chevron-back-outline" class="fs-20" color="medium"></ion-icon>
+    <!-- <ion-icon name="git-network-outline" class="fs-20" style="color: white !important;" color="medium"></ion-icon>
+    &nbsp;
+    <ion-label style="margin-top: 1px; position: absolute; font-size:12px; color: white !important;">Follow
+    </ion-label> -->
+  </ion-col>
+  <ion-col size="6" class="ion-float-right">
+    <!-- <ion-label class="ion-float-right fs-12" (click)="connect()" style="color: white !important;">Join old students
+    </ion-label> -->
+  </ion-col>
+</ion-row>
+
 <ion-segment [(ngModel)]="galleryType" color="primary" class="pt-2">
   <ion-segment-button value="cloud">
     <ion-icon class="ion-no-margin" name="cloudy-outline" size="small"></ion-icon>
@@ -10,12 +25,16 @@
 </ion-segment>
 <div [ngSwitch]="galleryType">
   <ion-grid *ngSwitchCase="'cloud'" id="cloud">
-    <ion-row>
+    <ion-row *ngIf="cloudPhotos?.length>0">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let ph of cloudPhotos">
         <app-photo-thumbnail [thumb]='ph' (delete)="deleteFromCloudPhotos(ph)" 
-        (isSelected)="selectFromCloudPhotos($event)" [location]="'cloud'"> </app-photo-thumbnail>
+        (isSelected)="selectFromCloudPhotos($event)" [location]="'cloud'" [highlight]='selectedCloudPhotos.includes(ph)'> </app-photo-thumbnail>
       </ion-col>
     </ion-row>
+
+    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg" *ngIf="cloudPhotos?.length<=0">
+      <ion-img [src]="noPhotosImage"></ion-img>
+    </ion-col>
   </ion-grid>
 
   <ion-grid *ngSwitchCase="'local'" id="device">
@@ -33,11 +52,14 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row class="image-container-row">
+    <ion-row class="image-container-row" *ngIf="devicePhotos?.length>0">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1" *ngFor="let image of devicePhotos">
         <app-photo-thumbnail [thumb]='image' (delete)="deleteFromDevicePhotos(image)"  [location]="'local'"> </app-photo-thumbnail>
       </ion-col>
     </ion-row>
+    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1" *ngIf="devicePhotos?.length<=0">
+      <ion-img [src]="noPhotosImage"></ion-img>
+    </ion-col>
   </ion-grid>
   <!-- <ion-button expand="block" class="mt-4 mx-2">
   Post &nbsp; <ion-icon name="arrow-forward"></ion-icon>

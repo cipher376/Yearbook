@@ -1,3 +1,5 @@
+import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
+import { UserConfig, UserConfigAction } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -11,17 +13,21 @@ import { BrowserHistoryService } from 'src/app/shared/services/providers/navigat
   styleUrls: ['./account-settings.page.scss'],
 })
 export class AccountSettingsPage implements OnInit {
-  
 
+  deactivationReason: '';
+  user: User;
+  userConfigs: UserConfig[] = [];
   constructor(
     private router: Router,
     private browserHistory: BrowserHistoryService,
     private userService: UserService,
-    private alertController: AlertController
-    
+    private alertController: AlertController,
+    private toaster: ToasterService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.user = await this.userService.getUserLocal();
+    this.userConfigs = this.user.userConfigs;
   }
 
   goBack() {
@@ -37,11 +43,12 @@ export class AccountSettingsPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'text-confirmation',
       header: 'Delete Account!',
-      message: `Retype to <b> ${user.email} </b> to authorize the <b>deletion of your account</b>`,
+      message: `Your account will be blocked permanently. Please state
+      why do you want to deactivate?`,
       inputs: [
         {
           type: 'text',
-          placeholder: user.email,
+          placeholder: 'Reason',
         },
       ],
       buttons: [
@@ -49,20 +56,55 @@ export class AccountSettingsPage implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'text-dark',
-          handler: () => {
-            console.log('Cancel');
+          handler: (data) => {
+            // console.log(data);
           }
-        }, {
-          text: 'Delete',
+        },
+        {
+          text: 'Deactivate',
           cssClass: 'text-danger font-weight-bold',
-          handler: () => {
-            console.log('Delete');
+          handler: (data) => {
+            this.deactivationReason = data[0];
+            this.deactivateAccount();
           }
         }
       ]
     });
 
     await alert.present();
+  }
+
+
+  deactivateAccount() {
+    if (!this.deactivationReason) {
+      this.toaster.toast('Please state your reason')
+      return;
+    }
+    // check if user configuration exist
+    let found: UserConfig;
+    this.userConfigs.forEach(cfg => {
+      if (cfg.action === UserConfigAction.AccountDeactivation) {
+        found = cfg;
+      }
+    });
+
+    const config = found ?? new UserConfig();
+    config.action = UserConfigAction.AccountDeactivation;
+    config.response = 'true';
+    config.reason = this.deactivationReason;
+    config.userId = this.user?.id;
+    this.userService.createOrUpdateConfig(this.user?.id, config).subscribe(cfg => {
+      if (this.user.userConfigs?.length > 0) {
+        this.user.userConfigs.push(cfg);
+      } else {
+        this.user.userConfigs = [cfg];
+      }
+      this.userService.getUserDetails(this.user?.id).subscribe(_ => _);
+      setTimeout(() => {
+        this.userService.logout();
+        this.router.navigateByUrl('/login;clear=true');
+      }, 5000);
+    });
   }
 
 }

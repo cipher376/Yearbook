@@ -13,7 +13,7 @@ import { MySignals } from 'src/app/shared/services/my-signals';
 export class UserListItemComponent implements OnInit {
 
   @Input() isEdit = false;
-  @Input() user: User;
+  @Input() selectedUser: User;
   @Input() profilePhotoUrl: string;
   sub$ = [];
 
@@ -28,8 +28,8 @@ export class UserListItemComponent implements OnInit {
 
 
   async view() {
-    console.log(this.user);
-    if (await this.userService.setSelectedUserLocal(this.user)) {
+    console.log(this.selectedUser);
+    if (await this.userService.setSelectedUserLocal(this.selectedUser)) {
       // navigate to join school page
       this.router.navigateByUrl('/links/public-profile');
       this.signals.announceSelectedUserChange();

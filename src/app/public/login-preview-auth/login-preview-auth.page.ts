@@ -1,30 +1,35 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
-import { Gesture } from '@ionic/angular';
+import { IdentityPhoto } from 'src/app/models/my-media';
 
 @Component({
   selector: 'app-login-preview-auth',
   templateUrl: './login-preview-auth.page.html',
   styleUrls: ['./login-preview-auth.page.scss'],
 })
-export class LoginPreviewAuthPage implements OnInit {
-
+export class LoginPreviewAuthPage implements OnInit, AfterContentInit {
+  identityPhoto: IdentityPhoto;
+  firstname: string;
   constructor(
     public router: Router,
     private userService: UserService
   ) { }
 
-  firstname: string;
-  swipeGesture: Gesture;
+
+
 
   ngOnInit() {
     this.getFirstName();
   }
-
-  login(){
+  
+  ngAfterContentInit(): void {
+    this.userService.getUserLocal().then(user => {
+      this.identityPhoto = UserService.getUserIdentityPhoto(user);
+    });
+  }
+  login() {
     // call logout first;
-    // TODO: call logout;
     this.router.navigateByUrl('/login');
   }
 

@@ -46,6 +46,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { SocketIoModule } from 'ngx-socket-io';
 import { PushSocket, PushSocketService } from './shared/services/model-service/socket.service';
 import { Device } from '@ionic-native/device/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 // const config: SocketIoConfig = { url: SOCKET_ROOT_URL, options: {} };
 
 @NgModule({
@@ -102,6 +103,7 @@ import { Device } from '@ionic-native/device/ngx';
     PushSocket,
     PushSocketService,
     Device,
+    InAppBrowser,
     // MarkerManager,
     // GoogleMapsAPIWrapper,
     // PolylineManager,

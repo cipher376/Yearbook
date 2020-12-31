@@ -5,8 +5,8 @@
         <!-- <ion-row class="ion-row" (click)="goBack()" >
           <ion-icon class="fs-25" name="chevron-back-outline"></ion-icon>&nbsp;&nbsp;
         </ion-row> -->
-        <ion-row slot="end">
-          <span class="fs-14" (click)="edit()" *ngIf="user?.id === selectedUser?.id"> 
+        <ion-row slot="end" *ngIf="isOwner">
+          <span class="fs-14" (click)="edit()" > 
             <ion-icon name="create-outline"></ion-icon> Edit  
           </span>
         </ion-row>
@@ -17,7 +17,7 @@
   <ion-row appWatchElement [elementId]="'profileMenu'" id="profileMenu" (isOut)="profileFixedMenu=$event">
     <ion-card class=" w-100" style="height: 250px;">
       <div class="backdrop h-100 w-100"></div>
-      <ion-card-header id="userprofile-bg" [background-image]="identityPhoto?.cover?.fileUrl || '../../../assets/images/default_user_cover.svg'"
+      <ion-card-header id="userprofile-bg" [background-image]="identityPhoto?.cover?.fileUrl"
         class="card-header-bg ion-no-padding ion-padding-top">
         <ion-row style="z-index:4;">
           <ion-col class="ion-no-padding ion-no-margin" size="5"></ion-col>
@@ -33,8 +33,6 @@
               {{highestDegreeEnrolled?.degree?.type}} {{highestDegreeEnrolled?.degree?.programme}}<br>
               @{{highestDegreeEnrolled?.school?.name}} 
             </small>
-            
-           
           </ion-col>
         </ion-row>
       </ion-card-header>
@@ -48,18 +46,21 @@
           margin-bottom: 8px;
           padding-top: 6px;; background:var(--ion-color-medium-shade)">
           <ion-row>
-            <ion-col size="3" class="text-center">
+            <ion-col size="3" class="text-center" *ngIf="!isOwner">
               <ion-note class="poppins-regular fs-13 min-menu">Profile</ion-note>
             </ion-col>
             <ion-col size="3" class="text-center">
-              <ion-note class="poppins-regular fs-13 min-menu">Edit</ion-note>
+              <ion-note class="poppins-regular fs-13 min-menu" (click)="viewMedia();showPost=false; showMedia = true;">Media
+              </ion-note>
             </ion-col>
-            <ion-col size="3" class="text-center">
-              <ion-note class="poppins-regular fs-13 min-menu">Media</ion-note>
-            </ion-col>
-            <ion-col size="3" class="text-center">
-              <ion-note class="poppins-regular fs-13 min-menu">Timeline</ion-note>
-            </ion-col>
+            <!-- <ion-col size="3" class="text-center">
+              <ion-note class="poppins-regular fs-13 min-menu">Photos</ion-note>
+            </ion-col> -->
+            <!-- <ion-col size="3" class="text-center">
+              <ion-note class="poppins-regular fs-13 min-menu">Videos</ion-note>
+            </ion-col> -->
+
+            
           </ion-row>
         </ion-col>
         <ion-row class="ion-no-padding ion-no-margin w-100" *ngIf="!profileFixedMenu" >

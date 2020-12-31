@@ -13,6 +13,7 @@ import { LocalMediaService } from 'src/app/shared/services/providers/local-media
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
+import { NO_MUSIC_PHOTO } from 'src/app/shared/config';
 
 @Component({
   selector: 'app-my-audio-picker',
@@ -31,6 +32,7 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
 
   user: User;
 
+  noAudioPhoto = NO_MUSIC_PHOTO;
   constructor(
     private localMediaService: LocalMediaService,
     private plt: Platform,
@@ -142,14 +144,14 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
             } as any;
 
             audios.push(uploadedAudio);
-            this.signals.announceUploadCompleteSource(uploadedAudio);
+            this.signals.announceUploadComplete(uploadedAudio);
 
             // delete from device audios
             this.deleteFromDeviceAudios(audio);
 
             if (this.deviceAudios?.length === 0) {
               // Fire all upload complete
-              this.signals.announceAllUploadCompleteSource(audios);
+              this.signals.announceAllUploadComplete(audios);
               // Reload cloud audios
             }
           }

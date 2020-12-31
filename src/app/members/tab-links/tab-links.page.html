@@ -1,5 +1,4 @@
-<ion-content   snInViewport
-(inViewportChange)="userViewChange($event)">
+<ion-content snInViewport (inViewportChange)="userViewChange($event)">
   <!-- <ion-header>
     <ion-row class="ion-no-padding ">
       <ion-col size="12" class="ion-no-padding ion-padding-start ion-padding-end">
@@ -31,19 +30,22 @@
         <ion-icon name="school-outline" size="small"></ion-icon>
       </ion-tab-button> -->
 
-     
+      <ion-tab-button tab="/register" (click)="loadProfile()" [ngClass]="{'highlight-button ': highlightButton}" *ngIf="!isAuthenticated()">
+        <ion-icon name="person-add-outline" size="medium"></ion-icon>
+      </ion-tab-button>
 
-     
-      <ion-tab-button tab="profile;user=true" (click)="loadProfile()" [ngClass]="{'highlight-button ': highlightButton}">
+
+      <ion-tab-button tab="profile;user=true" (click)="loadProfile()" *ngIf="isAuthenticated()"
+        [ngClass]="{'highlight-button ': highlightButton}">
         <ion-icon name="person-outline" size="medium"></ion-icon>
       </ion-tab-button>
 
-      <ion-tab-button tab="users-search">
+      <ion-tab-button tab="users-search" *ngIf="isAuthenticated()">
         <ion-icon name="people-outline" size="medium"></ion-icon>
       </ion-tab-button>
 
       <ion-tab-button tab="home" style="margin-top: -35px; height:80px; background: transparent;">
-        <ion-fab horizontal="center" vertical="center" class="home_tab" >
+        <ion-fab horizontal="center" vertical="center" class="home_tab">
           <ion-fab-button color="primary">
             <ion-icon name="home-outline"></ion-icon>
           </ion-fab-button>
@@ -51,15 +53,20 @@
       </ion-tab-button>
 
 
-      <ion-tab-button tab="schools-search">
+      <ion-tab-button tab="schools-search" *ngIf="isAuthenticated()">
         <ion-icon name="search-outline" size="medium"></ion-icon>
       </ion-tab-button>
 
 
-      <ion-tab-button tab="settings">
+      <ion-tab-button tab="settings" *ngIf="isAuthenticated()">
         <ion-icon name="settings-outline" size="medium"></ion-icon>
       </ion-tab-button>
-      
+
+
+
+      <ion-tab-button tab="/login" (click)="loadProfile()" [ngClass]="{'highlight-button ': highlightButton}" *ngIf="!isAuthenticated()">
+        <ion-icon name="log-in-outline" size="medium"></ion-icon>
+      </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
 </ion-content>

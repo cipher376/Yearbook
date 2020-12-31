@@ -1,7 +1,7 @@
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { MyShareComponent } from './../my-share/my-share.component';
 import { MySignals } from 'src/app/shared/services/my-signals';
-import { MediaType, Photo, Video } from './../../models/my-media';
+import { MediaType, Photo, PhotoType, Video } from './../../models/my-media';
 import { PostService } from './../../shared/services/model-service/post.service';
 import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Post } from 'src/app/models/post';
@@ -67,7 +67,7 @@ export class PostWidget1Component implements OnInit, AfterViewInit, OnDestroy {
   @Input() set Post(post: Post) {
     this.post = post;
     // console.log(this.objects);
-    this.postUserImage = this.userService.getOwnerImage(post?.user);
+    this.postUserImage = this.userService.getOwnerImage(post?.user, PhotoType.profile);
     this.postUser = this.post?.user;
     this.school = this.post?.school;
 
@@ -103,7 +103,9 @@ export class PostWidget1Component implements OnInit, AfterViewInit, OnDestroy {
       this.likes = [];
       this.disLikes = [];
       affections?.forEach(affection => {
-        if (affection.rate) { this.likes.push(affection); } else {
+        if (affection.rate) { 
+          this.likes.push(affection);
+        } else {
           this.disLikes.push(affection);
         }
       });

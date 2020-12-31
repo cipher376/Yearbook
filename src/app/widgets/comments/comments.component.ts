@@ -1,3 +1,4 @@
+import { NO_COMMENT_PHOTO } from './../../shared/config';
 import { EmojiModalComponent } from './../emoji-modal/emoji-modal.component';
 import { Photo, IdentityPhoto } from './../../models/my-media';
 import { User } from 'src/app/models/user';
@@ -28,6 +29,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
   protected user: User;
   protected post: Post;
 
+  noCommentPhoto = NO_COMMENT_PHOTO;
   loading: HTMLIonLoadingElement;
 
   @Input() showHeader = true;

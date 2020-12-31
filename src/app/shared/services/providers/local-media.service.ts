@@ -182,7 +182,7 @@ export class LocalMediaService {
       return await Filesystem.mkdir(options);
       // }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 

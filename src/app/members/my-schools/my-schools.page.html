@@ -18,9 +18,15 @@
   </ion-row>
   <!-- Top correction ends -->
 
-  <ion-row class="ion-padding-start ion-padding-end "
-    *ngFor="let school of userSchools; let i = index" width="100%">
-    <app-school-list-item style="width: 100%"[isEdit]="isEdit" [school]="school" [user]="user" [profilePhotoUrl]="getProfilePhotoUrl(schoolsIdentityPhoto[i])"></app-school-list-item>
+  <div *ngIf="userSchools?.length>0">
+    <ion-row class="ion-padding-start ion-padding-end " *ngFor="let school of userSchools; let i = index" width="100%">
+      <app-school-list-item style="width: 100%" [isEdit]="isEdit" [school]="school" [user]="user"
+        [profilePhotoUrl]="getProfilePhotoUrl(schoolsIdentityPhoto[i])"></app-school-list-item>
+    </ion-row>
+  </div>
+
+  <ion-row *ngIf="userSchools?.length<=0" class="ion-padding-start ion-padding-end ">
+    <ion-img [src]="noDefaultImage"></ion-img>
   </ion-row>
 
 </ion-content>

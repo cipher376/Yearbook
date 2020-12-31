@@ -1,5 +1,5 @@
 import { AudioRecorderComponent } from './../audio-recorder/audio-recorder.component';
-import { SERVER_DOWNLOAD_PATH } from './../../shared/config';
+import { NO_IMAGE_PHOTO, SERVER_DOWNLOAD_PATH } from './../../shared/config';
 import { FileUploadResult } from '@ionic-native/file-transfer/ngx';
 import { MediaType, Photo } from 'src/app/models/my-media';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
@@ -28,6 +28,7 @@ import { Gesture, GestureController } from '@ionic/angular';
 })
 export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit {
   private _galleryType = 'local'; // local or
+  protected _isComponent = false;
   sub$ = [];
   devicePhotos: PhotoLocal[] = [];
   cloudPhotos: Photo[] = [];
@@ -36,6 +37,8 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   user: User;
 
   isAccessDenied = false;
+
+  noPhotosImage = NO_IMAGE_PHOTO;
 
 
   constructor(
@@ -47,7 +50,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     private plt: Platform,
     private signals: MySignals,
     private toaster: ToasterService,
-    private cdr: ChangeDetectorRef ) {
+    private cdr: ChangeDetectorRef) {
 
     // verify device permissions
     this.photoLibrary.requestAuthorization().then(_ => _).catch(error => {
@@ -88,6 +91,10 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   }
   get galleryType() {
     return this._galleryType;
+  }
+
+  set IsComponent(ans: boolean) {
+    this._isComponent = ans;
   }
 
   // Read photos from device and set it to the view
@@ -182,11 +189,11 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
       return ph.id != photo.id;
     });
   }
-  
+
   selectFromCloudPhotos(ph$: Photo) {
     if (this.selectedCloudPhotos.includes(ph$)) {
       // remove
-      this.selectedCloudPhotos =  this.selectedCloudPhotos.filter(ph => {
+      this.selectedCloudPhotos = this.selectedCloudPhotos.filter(ph => {
         return ph.id !== ph$?.id;
       });
     } else {
@@ -203,51 +210,51 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
       // make a copy of the image to permanent storage
       this.localMediaService.writeVideoToMediaDirectory(photo?.nativeURL).then(ph => {
 
-      // upload photo and instruct to create thumbnail on server
-      this.localMediaService.upload(ph?.nativeURL, ph?.fileName, true).then(result => {
-        // {"bytesSent":169025,
-        // "responseCode":200,
-        // "response":"{
-        //   \"files\":[{\"fieldname\":\"file\",\"originalname\":\"IMG_20201103_234610.jpg\",
-        //                \"encoding\":\"7bit\",\"mimetype\":\"image/jpeg\",\"size\":168907}],
-        //   \"fields\":{}}",
-        //    "objectId":""}
-        console.log(JSON.stringify(result));
-        result = result as FileUploadResult;
+        // upload photo and instruct to create thumbnail on server
+        this.localMediaService.upload(ph?.nativeURL, ph?.fileName, true).then(result => {
+          // {"bytesSent":169025,
+          // "responseCode":200,
+          // "response":"{
+          //   \"files\":[{\"fieldname\":\"file\",\"originalname\":\"IMG_20201103_234610.jpg\",
+          //                \"encoding\":\"7bit\",\"mimetype\":\"image/jpeg\",\"size\":168907}],
+          //   \"fields\":{}}",
+          //    "objectId":""}
+          console.log(JSON.stringify(result));
+          result = result as FileUploadResult;
 
 
-        if (result) {
-          const uploadedPhoto = {
-            description: '',
-            fileName: ph.fileName,
-            fileUrl: SERVER_DOWNLOAD_PATH + ph.fileName,
-            dateCreated: new Date(),
-            type: MediaType.PHOTO,
-            thumbnailUrl: SERVER_DOWNLOAD_PATH + 'thumb_' + ph.fileName
-          } as any;
+          if (result) {
+            const uploadedPhoto = {
+              description: '',
+              fileName: ph.fileName,
+              fileUrl: SERVER_DOWNLOAD_PATH + ph.fileName,
+              dateCreated: new Date(),
+              type: MediaType.PHOTO,
+              thumbnailUrl: SERVER_DOWNLOAD_PATH + 'thumb_' + ph.fileName
+            } as any;
 
-          photos.push(uploadedPhoto);
-          this.signals.announceUploadCompleteSource(uploadedPhoto);
+            photos.push(uploadedPhoto);
+            this.signals.announceUploadComplete(uploadedPhoto);
 
-          // delete from device photos
-          this.deleteFromDevicePhotos(photo);
+            // delete from device photos
+            this.deleteFromDevicePhotos(photo);
 
-          if (this.devicePhotos?.length === 0) {
-            // Fire all upload complete
-            this.signals.announceAllUploadCompleteSource(photos);
+            if (this.devicePhotos?.length === 0) {
+              // Fire all upload complete
+              this.signals.announceAllUploadComplete(photos);
 
-            // Reload cloud photos
+              // Reload cloud photos
+            }
           }
-        }
+        });
+      }, error => {
+        console.log(JSON.stringify(error));
+        this.toaster.toast('Uploading some files failed, Please check your network');
       });
     }, error => {
       console.log(JSON.stringify(error));
       this.toaster.toast('Uploading some files failed, Please check your network');
     });
-  }, error => {
-    console.log(JSON.stringify(error));
-    this.toaster.toast('Uploading some files failed, Please check your network');
-  });
   }
 
   loadCloudPhotos() {
@@ -264,6 +271,10 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
 
   isSelected(ph: Photo | PhotoLocal) {
     return this.selectedCloudPhotos.includes(ph as Photo);
+  }
+
+  close() {
+
   }
 
 

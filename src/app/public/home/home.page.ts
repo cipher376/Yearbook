@@ -38,7 +38,7 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
   showPost = false;
 
   user: User;
-  
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -46,10 +46,15 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     private signals: MySignals,
     public modalController: ModalController,
     public menuController: MenuController
-  ) { }
+  ) {
+    this.sub$.push(this.signals.currentUserSource$.subscribe(user => {
+      this.user = user;
+      this.loadRecentPost(true);
+    }));
+  }
 
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     UtilityService.destroySubscription(this.sub$);
   }
 
@@ -61,7 +66,7 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     this.user = await this.userService.getUserLocal();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.loadRecentPost();
   }
 

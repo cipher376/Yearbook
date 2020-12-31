@@ -52,7 +52,6 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     private browserHistory: BrowserHistoryService
 
   ) {
-
     // this.fb.logout().then(_ => {
     //   console.log(_);
     // });
@@ -62,9 +61,10 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
     this.userService.getUserLocal().then(user => {
       this.user = user;
     });
-
   }
-  ngAfterViewInit(): void {
+
+
+  ngAfterViewInit() {
     if (this.route?.snapshot?.params?.clear) {
       // clear data from store 
       this.userService.logout();
@@ -136,18 +136,21 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
   // Validators.pattern("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"),
 
   async onLogin() {
+    this.userService.token = null;
     if (!this.loginForm.valid) {
       this.toaster.toast('Provide valid credentials');
       return;
     }
     this._loading = await this.loadCtrl.create({
-      message: 'Welcome to<br>alma mater'
+      message: 'Welcome to<br>alma mater',
+      duration: 5000
     });
-    UtilityService.stopLoading(this._loading);
     await this._loading.present();
     await this.userService.login(this.loginForm.value).subscribe(
       res => {
-        if (res) {
+        console.log(res);
+        if (res.token) {
+          console.log(res);
           // fetch user details
           this.userService.getMyProfile().subscribe(user => {
             this.user = user;
@@ -159,12 +162,13 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
             }
           });
         }
-        this._loading.dismiss();
+        this._loading.dismiss().then(_ => _);
       },
       error => {
         console.log(error);
         this.toaster.toast(error.message, 4000);
-        this._loading.dismiss();
+        this._loading.dismiss().then(_ => _);
+
         // if (error.search('verified') > -1) {
         //   this.alertCtrl.create({
         //     header: `Email is not verified. A verification link is sent to the email provided but it may take up 10min to show up. check spam if not in your In-box Verify your email now?`,

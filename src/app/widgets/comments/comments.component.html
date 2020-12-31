@@ -10,7 +10,7 @@
   </ion-list>
   <ion-col size="12" class="inner-container ion-no-padding"
     [ngClass]="{'inner-container-mini': !showHeader, 'inner-collapse': (!showHeader&&comments?.length<1)}"
-    id="inner-container">
+    id="inner-container" *ngIf="comments?.length>0">
     <ion-row class="ion-no-padding pb-1 fs-12" *ngFor="let comment of comments; let i=index;">
       <!-- <ion-col size='2' class="ion-no-padding ">
         <ion-avatar class="" style="width: 45px;
@@ -39,8 +39,8 @@
             </ion-avatar>
             <ion-note>
               <span color="dark" class="poppins-semi-bold fs-12 ">{{getCommentUser(comment)?.firstName}}</span>
-              <app-like class="comment_like" [ReceiverId]="" [ReceiverName]="'comment'"
-              (reload)="getLikes()" [likeCount]="0" [entityToLike]="2"></app-like>
+              <app-like class="comment_like" [ReceiverId]="" [ReceiverName]="'comment'" (reload)="getLikes()"
+                [likeCount]="0" [entityToLike]="2"></app-like>
             </ion-note>
           </ion-row>
           <ion-label slot="end" class="fs-10 ion-text-right ion-no-margin ion-no-padding" style="padding-right: 2vw;">
@@ -52,6 +52,9 @@
         </ion-col>
       </ion-col>
     </ion-row>
+  </ion-col>
+  <ion-col  size="12" class="inner-container ion-no-padding" *ngIf="comments?.length<=0">
+    <ion-img id="no_com" [src]="noCommentPhoto"></ion-img>
   </ion-col>
   <div class="send-btn">
     <ion-item lines="none">
@@ -68,7 +71,7 @@
           <ion-ripple-effect type="unbounded"></ion-ripple-effect>
           <span>😀</span>
         </ion-avatar>
-        <ion-input placeholder="  Write a comment" [(ngModel)]="comment.message"></ion-input>
+        <ion-input placeholder="Write a comment" [(ngModel)]="comment.message"></ion-input>
       </ion-row>
       <ion-icon slot="end" name="send-outline" class="fs-20" (click)="send()"></ion-icon>
     </ion-item>

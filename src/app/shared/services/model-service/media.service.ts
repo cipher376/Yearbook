@@ -135,7 +135,7 @@ export class MediaService {
   }
 
 
-  getSchoolPhotos(schoolId: any, filter: any = null) {
+  getSchoolPhotos(schoolId: any, filter: any = null): Observable<Photo[]> {
     if (!schoolId) {
       return;
     }
@@ -148,14 +148,14 @@ export class MediaService {
     const url = `/schools/${schoolId}/photos?filter=` + JSON.stringify(filter);
     return this.http.get<Photo[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'School photo')))
     );
   }
 
-  getSchoolVideos(schoolId: any, filter: any = null) {
+  getSchoolVideos(schoolId: any, filter: any = null): Observable<Video[]> {
     if (!schoolId) {
       return;
     }
@@ -168,7 +168,7 @@ export class MediaService {
     const url = `/schools/${schoolId}/videos?filter=` + JSON.stringify(filter);
     return this.http.get<Video[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'School video')))
@@ -214,8 +214,19 @@ export class MediaService {
     }
   }
 
+  // turns off the photo profile field to false
+  clearAllUserProfilePhotos(userId: any) {
+    return this.http.get(`/users/clear-profile-photos/${userId}`).pipe(
+      map(res => {
+        console.log(JSON.stringify(res));
+        return res as any;
+      }),
+      catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User video')))
+    );
+  }
 
-  getUserPhotos(userId: any, filter: any = null) {
+
+  getUserPhotos(userId: any, filter: any = null): Observable<Photo[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;
@@ -225,17 +236,19 @@ export class MediaService {
         order: 'id DESC',
 
       };
+    } else {
+      filter.order = 'id DESC';
     }
     const url = `/users/${userId}/photos?filter=` + JSON.stringify(filter);
     return this.http.get<Photo[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User photo')))
     );
   }
-  getUserVideos(userId: any, filter: any = null) {
+  getUserVideos(userId: any, filter: any = null): Observable<Video[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;
@@ -249,13 +262,13 @@ export class MediaService {
     const url = `/users/${userId}/videos?filter=` + JSON.stringify(filter);
     return this.http.get<Video[]>(url).pipe(
       map(res => {
-        // console.log(res);
+        console.log(res);
         return res as any;
       }),
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User video')))
     );
   }
-  getUserAudios(userId: any, filter: any = null) {
+  getUserAudios(userId: any, filter: any = null): Observable<Audio[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;
@@ -275,7 +288,7 @@ export class MediaService {
       catchError(e => throwError(UtilityService.myHttpErrorFormat(e, 'User audio')))
     );
   }
-  getUserDocuments(userId: any, filter: any = null) {
+  getUserDocuments(userId: any, filter: any = null): Observable<Document[]> {
     if (!userId) {
       console.log('Invalid user id');
       return;

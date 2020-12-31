@@ -7,12 +7,12 @@
       <img src="{{profilePhotoUrl}}">
     </ion-thumbnail>
     <ion-note class="poppins-bold fs-12 ion-padding-top ion-padding-bottom" color="dark" >
-      {{ user?.firstName }} {{ user?.otherName}} {{ user?.lastName }}<br>
-      <ion-label class="hind-regular fs-12" *ngIf="!user?.address">{{user?.email}}</ion-label>
-      <ion-label class="hind-regular fs-12" *ngIf="user?.address">
-          <span *ngIf="user?.address?.city">#{{user?.address?.city}}</span>
-          <span *ngIf="user?.address?.state">#{{user?.address?.state}}</span>
-          <!-- <span *ngIf="user?.address?.country">#{{user?.address?.country}}</span> -->
+      {{ selectedUser?.firstName }} {{ selectedUser?.otherName}} {{ selectedUser?.lastName }}<br>
+      <ion-label class="hind-regular fs-12" *ngIf="!selectedUser?.address">{{selectedUser?.email}}</ion-label>
+      <ion-label class="hind-regular fs-12" *ngIf="selectedUser?.address">
+          <span *ngIf="selectedUser?.address?.city">#{{selectedUser?.address?.city}}</span>
+          <span *ngIf="selectedUser?.address?.state">#{{selectedUser?.address?.state}}</span>
+          <!-- <span *ngIf="selectedUser?.address?.country">#{{selectedUser?.address?.country}}</span> -->
       </ion-label>
     </ion-note>
     <!-- <ion-button slot="end" shape="round" fill="outline" color='danger' class="poppins-bold fs-13" style="--border-width: 2px;">R<span

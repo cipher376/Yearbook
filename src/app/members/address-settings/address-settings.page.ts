@@ -1,3 +1,4 @@
+import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -15,39 +16,38 @@ import { UtilityService } from 'src/app/shared/services/providers/utility.servic
 export class AddressSettingsPage implements OnInit {
 
   // current user address
-  currentUserAddress: Address;
-  // eof current user address
-  
   userAddress: Address = new Address();
-  selectedCountry: any[] = new Country().states;
+  selectedCountryStates: string[] = [];
   subs$: Subscription[] = [];
 
   user: User;
 
   constructor(
     private userService: UserService,
-    private toastController: ToastController
+    private toaster: ToasterService,
+
   ) { }
 
   async ngOnInit() {
     this.user = await this.userService.getUserLocal();
-    this.userAddress = this.user.address;
+    this.userAddress = this.user.address || new Address();
+    try {
+      this.loadStates();
+    } catch (error) {
+
+    }
+    console.log(this.user);
   }
 
-  async presentToast(message) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000
-    });
-    toast.present();
-  }
-
+ 
   updateUserInfo() {
     this.userAddress.userId = this.user.id;
     this.userService.createUpdateAddress(this.user?.id, this.userAddress).subscribe(address => {
       console.log(address);
       this.user.address = address;
+      this.userAddress = address;
       this.userService.setUserLocal(this.user).then(_ => _);
+      this.toaster.toast('Your address is saved')
     });
   }
 
@@ -55,10 +55,14 @@ export class AddressSettingsPage implements OnInit {
     return UtilityService.getAllCountries();
   }
 
- 
 
-  selectState(passed_country) {
-    this.selectedCountry = this.countries.find( c => c.name === passed_country).states;
+
+  loadStates() {
+    const foundCountries = this.countries?.find(c => c?.name === this.userAddress?.country);
+    this.selectedCountryStates = foundCountries?.states;
+    if (!this.selectedCountryStates.includes(this.userAddress.state)) {
+      this.userAddress.state = '';
+    }
   }
 
 }

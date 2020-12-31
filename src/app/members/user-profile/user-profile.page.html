@@ -12,8 +12,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-avatar class="mx-auto mt-4" style="width:80px; height:80px;" (click)="showChangeProfilePhoto()">
-    <img src="https://gravatar.com/avatar">
+  <ion-avatar class="mx-auto mt-5" style="width:80px; height:80px;" (click)="showChangeProfilePhoto()">
+    <img [src]="identityPhoto?.profile?.fileUrl">
   </ion-avatar>
   <ion-item lines="none" class="mb-2">
     <ion-label class="text-center">

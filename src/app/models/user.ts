@@ -3,11 +3,17 @@ import { Alumni } from './alumni';
 import { MyDevice } from './my-device';
 import { Photo } from './my-media';
 
+export enum UserConfigAction {
+  AccountDeactivation = 'AccountDeactivation',
+  PostFromStateOnly = 'PostFromStateOnly',
+  PostFromMySchoolsOnly = 'PostFromMySchoolsOnly'
+}
 
 export class UserConfig {
   id?: number;
-  action: string;
+  action: UserConfigAction;
   response: string;
+  reason?: string;
   userId: number;
 }
 
@@ -48,6 +54,7 @@ export interface UserInterface {
   address?: Address;
   alumni?: Alumni[];
   devices?: MyDevice[];
+  userConfigs?: UserConfig[];
 
 }
 
@@ -74,38 +81,40 @@ export class User implements UserInterface {
   address?: Address;
   alumni?: Alumni[];
   devices?: MyDevice[];
+  userConfigs?: UserConfig[];
 
   constructor(userData?: UserInterface, cred?: Credentials) {
     if (userData) {
       this.id = userData.id;
-      this.FullName = userData?.firstName + ' ' + userData?.otherName + ' ' + userData?.lastName;
-      this.fullName = userData?.firstName + ' ' + userData?.otherName + ' ' + userData?.lastName;
+      this.FullName = userData?.firstName + ' ' + (userData?.otherName ?? '') + ' ' + userData?.lastName;
+      this.fullName = userData?.firstName + ' ' + (userData?.otherName ?? '') + ' ' + userData?.lastName;
       this.firstName = userData?.firstName;
       this.lastName = userData?.lastName;
-      this.otherName = userData?.otherName;
-      this.dateOfBirth = userData?.dateOfBirth;
-      this.nickName = userData?.nickName;
-      this.userName = userData?.userName;
-      this.gender = userData?.gender;
+      this.otherName = userData?.otherName || undefined;
+      this.dateOfBirth = userData?.dateOfBirth || undefined;
+      this.nickName = userData?.nickName || undefined;
+      this.userName = userData?.userName || undefined;
+      this.gender = userData?.gender || undefined;
 
       this.photos = userData.photos || [];
       this.address = userData.address;
       this.alumni = userData.alumni || [];
       this.devices = userData.devices;
+      this.userConfigs = userData.userConfigs;
     }
     if (cred) {
       this.password = cred.password;
-      this.realm = cred.realm;
-      this.remember = cred.remember;
-      this.email = cred.email;
-      this.realm = cred.realm;
-      this.phone = cred.phone;
+      this.realm = cred.realm || undefined;
+      this.remember = cred.remember || undefined;
+      this.email = cred.email || undefined;
+      this.realm = cred.realm || undefined;
+      this.phone = cred.phone || undefined;
     }
 
   }
   get FullName() {
     // console.log(this.fullName);
-    if (!this.fullName ) { this.fullName = null; }
+    if (!this.fullName) { this.fullName = null; }
     return this.fullName;
   }
   set FullName(name: string) {
@@ -126,7 +135,7 @@ export class User implements UserInterface {
       const oname = this.fullName.slice(this.fullName.indexOf(' '), this.fullName.lastIndexOf(' '));
       this.firstName = fname;
       this.lastName = lname;
-      this.otherName = oname;
+      this.otherName = oname || '';
     } catch (error) {
 
     }

@@ -10,12 +10,15 @@
 </ion-segment>
 <div [ngSwitch]="galleryType">
   <ion-grid *ngSwitchCase="'cloud'" id="cloud">
-    <ion-row>
+    <ion-row  *ngIf="deviceVideos?.length>0">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1 mb-1" *ngFor="let vid of cloudVideos">
         <app-video-thumbnail [thumb]='vid' (delete)="deleteFromCloudVideos(vid)" 
         (isSelected)="selectFromCloudVideos($event)" [location]="'cloud'"> </app-video-thumbnail>
       </ion-col>
     </ion-row>
+    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg" *ngIf="deviceVideos?.length<=0">
+      <ion-img [src]="noVideoPhoto"></ion-img>
+    </ion-col>
   </ion-grid>
 
   <ion-grid *ngSwitchCase="'local'" id="device">
@@ -39,6 +42,9 @@
         [location]="'local'"> </app-video-thumbnail>
       </ion-col>
     </ion-row>
+    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg" *ngIf="deviceVideos?.length<=0">
+      <ion-img [src]="noVideoPhoto"></ion-img>
+    </ion-col>
   </ion-grid>
   <!-- <ion-button expand="block" class="mt-4 mx-2">
   Post &nbsp; <ion-icon name="arrow-forward"></ion-icon>
