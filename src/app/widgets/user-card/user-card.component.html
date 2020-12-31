@@ -19,7 +19,7 @@
     <ion-col size="12" class="ion-no-padding ion-padding-end ion-padding-start">
         <ion-card class=" ion-align-items-center">
             <!-- <ng-template #singleImg> -->
-            <ion-img src="{{getCoverPhotoUrl()||'../../../assets/images/me.jpg'}} "></ion-img>
+            <!-- <ion-img src="{{getCoverPhotoUrl()||'../../../assets/images/me.jpg'}} "></ion-img> -->
             <!-- </ng-template> -->
 
             <ion-row class="ion-no-padding" style="margin-top: -50px;">
@@ -30,19 +30,16 @@
                     </ion-note>
                 </ion-item>
             </ion-row>
-            <ion-card-content class="fs-12" style="padding-top: 14px;
+            <!-- <ion-card-content class="fs-12" style="padding-top: 14px;
           padding-bottom: 19px;">
                 <ion-note class="fs-12" color="dark">
-                    <!-- <p class="fs-12" color="dark">
-                      <b> Location </b> &nbsp; <b>  </b>
-                  </p> -->
                     <ion-text>
                         <span *ngIf="user?.address?.city">#{{user?.address?.city}}</span>
                         <span *ngIf="user?.address?.state">#{{user?.address?.state}}</span>
                         <span *ngIf="user?.address?.country">#{{user?.address?.country}}</span>
                     </ion-text>
                 </ion-note>
-            </ion-card-content>
+            </ion-card-content> -->
         </ion-card>
     </ion-col>
 </ion-row>
