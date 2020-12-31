@@ -13,32 +13,36 @@
 
 <ion-content>
   <!-- Top correction -->
-  <ion-row class="ion-content-top_correction"></ion-row>
+  <!-- <ion-row class="ion-content-top_correction"></ion-row> -->
   <!-- Top correction ends -->
 
-  <ion-card>
-    <ion-item-group>
-      <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/terms-of-service']"
-        routerLinkActive="router-link-active">
-        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        <ion-label slot="start">Terms of service</ion-label>
-      </ion-item>
-      <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/privacy']"
-        routerLinkActive="router-link-active">
-        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        <ion-label slot="start">Privacy policy</ion-label>
-      </ion-item>
-      <!-- <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/about']"
-        routerLinkActive="router-link-active">
-        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        <ion-label slot="start">About</ion-label>
-      </ion-item> -->
-      <!-- <ion-item lines="none" class="ion-activatable ripple-parent" *ngIf="isAuthenticated()" (click)="logout()">
-        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        <ion-label slot="start" class="fs-13">Log Out</ion-label>
-        <ion-icon slot="end" name="log-out-outline"></ion-icon>
-      </ion-item> -->
-    </ion-item-group>
-  </ion-card>
+  <ion-row class="mt-4">
+    <ion-col size="12">
+      <ion-card>
+        <ion-list>
+          <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/terms-of-service']"
+            routerLinkActive="router-link-active">
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            <ion-label slot="start">Terms of service</ion-label>
+          </ion-item>
+          <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/privacy']"
+            routerLinkActive="router-link-active">
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            <ion-label slot="start">Privacy policy</ion-label>
+          </ion-item>
+          <!-- <ion-item lines="none" class="ion-activatable ripple-parent" [routerLink]="['/about']"
+            routerLinkActive="router-link-active">
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            <ion-label slot="start">About</ion-label>
+          </ion-item> -->
+          <!-- <ion-item lines="none" class="ion-activatable ripple-parent" *ngIf="isAuthenticated()" (click)="logout()">
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            <ion-label slot="start" class="fs-13">Log Out</ion-label>
+            <ion-icon slot="end" name="log-out-outline"></ion-icon>
+          </ion-item> -->
+        </ion-list>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

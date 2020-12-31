@@ -1,21 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-col size="6" routerLink="/links/settings">
+      <ion-icon name="chevron-back-outline" class="fs-20" color="medium"></ion-icon>
+    </ion-col> -->
+
+    <ion-row slot="end">
+      <ion-note class="poppins-bold" color="dark"> Settings </ion-note> &nbsp; &nbsp;
+      <!-- <ion-icon color="dark" class="fs-14" name="cog-outline"></ion-icon>  -->
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <ion-row class="top-row-header ion-no-padding " style="box-shadow: 0px 2px 4px -4px;">
-    <ion-col size="12" class="ion-no-padding">
-      <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
-        <!-- <ion-row class="ion-row" (click)="goBack()" >
-          <ion-icon class="fs-25" [src]="'../../../assets/icon/round-arrow_back.svg'"></ion-icon>&nbsp;&nbsp;
-          <ion-note class="poppins-medium fs-12" color="black " style="margin-top: 4px;">{{previousPage}}</ion-note>
-        </ion-row> -->
-        <ion-row slot="end">
-          <ion-note class="poppins-bold" color="dark"> Settings</ion-note>&nbsp;&nbsp;
-          <!-- <ion-icon color="dark" class="fs-14" name="cog-outline"></ion-icon>  -->
-        </ion-row>
-      </ion-item>
-    </ion-col>
-  </ion-row>
   <!-- Top correction -->
-  <ion-row class="ion-content-top_correction">
-  </ion-row>
+  <!-- <ion-row class="ion-content-top_correction">
+  </ion-row> -->
   <!-- Top correction ends -->
 
   <!-- <ion-row class="feed-filter-container fs-13">
@@ -81,17 +80,17 @@
     </ion-col>
   </ion-row> -->
 
-  <ion-row class="feed-filter-container fs-13">
+  <ion-row class="feed-filter-container fs-13 mt-4">
     <ion-col size="12">
       <ion-card>
-        <ion-list lines="none" class="mt-4">
-          <ion-item routerLink="/links/account-settings">
+        <ion-list lines="none" class="">
+          <ion-item routerLink="/links/account-settings" *ngIf="isAuthenticated()">
             <ion-label> <ion-icon class="mr-3" name="person-circle-outline"></ion-icon> Account </ion-label>
           </ion-item>
           <ion-item routerLink="/links/privacy-settings">
             <ion-label> <ion-icon class="mr-3" name="key-outline"></ion-icon> Privacy </ion-label>
           </ion-item>
-          <ion-item routerLink="/links/activity-settings">
+          <ion-item routerLink="/links/activity-settings" *ngIf="isAuthenticated()">
             <ion-label> <ion-icon class="mr-3" name="bar-chart-outline"></ion-icon> Activity </ion-label>
           </ion-item>
           <ion-item routerLink="/about-settings">
