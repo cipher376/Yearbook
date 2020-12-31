@@ -12,7 +12,6 @@ export class ConnectivityProvider {
   }
 
   private initConnectivityMonitoring() {
-
     if (!window || !navigator || !('onLine' in navigator)) return;
 
     this.appIsOnline$ = merge(

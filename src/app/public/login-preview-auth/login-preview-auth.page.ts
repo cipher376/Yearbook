@@ -33,6 +33,10 @@ export class LoginPreviewAuthPage implements OnInit, AfterContentInit {
     this.router.navigateByUrl('/login');
   }
 
+  swipeEvent(event: any) {
+    // this.swipeGesture.enable()
+  }
+
   async getFirstName() {
     this.firstname = (await this.userService.getUserLocal()).firstName;
   }
