@@ -10,7 +10,7 @@
 <!-- More Pinterest floating gallery style -->
 <div class="images">
   <ion-col  size="12" class="inner-container ion-no-padding" *ngIf="images?.length<=0">
-    <ion-img id="no_com" [src]="noPhotosUrl"></ion-img>
+    <ion-img  [src]="noPhotosUrl"></ion-img>
   </ion-col>
   <ion-card class="one-image" *ngFor="let image of images">
     <img src="{{image}}" (click)="openViewer(image, '', '')">

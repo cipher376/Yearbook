@@ -1,3 +1,12 @@
 .image-container-row {
     margin-top: 100px;
 }
+ion-img.pic_adj {
+    // overflow: hidden;
+    // width: -webkit-fill-available;
+    // margin-top: calc(18vh - 11vh);
+    width: -webkit-fill-available;
+    margin-top: calc(18vh - 14vh);
+    max-height: 30vh;
+    overflow: inherit;
+}
