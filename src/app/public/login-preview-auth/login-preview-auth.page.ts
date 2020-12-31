@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
+import { Gesture } from '@ionic/angular';
 
 @Component({
   selector: 'app-login-preview-auth',
@@ -15,7 +16,8 @@ export class LoginPreviewAuthPage implements OnInit {
   ) { }
 
   firstname: string;
-  
+  swipeGesture: Gesture;
+
   ngOnInit() {
     this.getFirstName();
   }
@@ -24,6 +26,10 @@ export class LoginPreviewAuthPage implements OnInit {
     // call logout first;
     // TODO: call logout;
     this.router.navigateByUrl('/login');
+  }
+
+  swipeEvent(event: any) {
+    // this.swipeGesture.enable()
   }
 
   async getFirstName() {

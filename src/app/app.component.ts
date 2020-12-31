@@ -155,7 +155,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   }
 
   getOnlineStatus() {
-    this.connectivityProvider.appIsOnline$.subscribe(online => {
+    this.connectivityProvider.appIsOnline$
+    .subscribe(online => {
       if (!online) this.router.navigateByUrl('/no-connection');
     });
   }
