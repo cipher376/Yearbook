@@ -21,8 +21,9 @@
     </ion-item>
     
     <ion-item>
-      <ion-label>State</ion-label>
-      <ion-select [value]="userAddress?.state" interface="popover" [(ngModel)]="userAddress.state" >
+      <ion-label *ngIf="userAddress?.country"> State </ion-label>
+      <ion-label *ngIf="!userAddress?.country"> Select country first </ion-label>
+      <ion-select [value]="userAddress?.state" interface="popover" [(ngModel)]="userAddress.state" [disabled]="!userAddress?.country">
         <ion-select-option [value]="state" *ngFor="let state of selectedCountryStates"> {{ state }} </ion-select-option>
       </ion-select>
     </ion-item>
