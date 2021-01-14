@@ -71,26 +71,34 @@ const routes: Routes = [
       },
       {
         path: 'users-search',
-        loadChildren: () => import('../../public/users-search/users-search.module').then( m => m.UsersSearchPageModule)
+        loadChildren: () => import('../../public/users-search/users-search.module').then(m => m.UsersSearchPageModule)
       },
       {
         path: 'edit-profile',
-        loadChildren: () => import('../../members/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+        loadChildren: () => import('../../members/user-profile/user-profile.module').then(m => m.UserProfilePageModule)
       },
       {
         path: 'account-settings',
-        loadChildren: () => import('../../members/account-settings/account-settings.module').then( m => m.AccountSettingsPageModule)
+        loadChildren: () => import('../../members/account-settings/account-settings.module').then(m => m.AccountSettingsPageModule)
       },
       {
         path: 'privacy-settings',
-        loadChildren: () => import('../../members/privacy-settings/privacy-settings.module').then( m => m.PrivacySettingsPageModule)
+        loadChildren: () => import('../../members/privacy-settings/privacy-settings.module').then(m => m.PrivacySettingsPageModule)
       },
       {
         path: 'activity-settings',
-        loadChildren: () => import('../../members/activity-settings/activity-settings.module').then( m => m.ActivitySettingsPageModule)
+        loadChildren: () => import('../../members/activity-settings/activity-settings.module').then(m => m.ActivitySettingsPageModule)
+      },
+      {
+        path: 'report-bug',
+        loadChildren: () => import('../../public/report-bug/report-bug.module').then(m => m.ReportBugPageModule)
+      },
+      {
+        path: 'help-and-support',
+        loadChildren: () => import('../../public/help-and-support/help-and-support.module').then(m => m.HelpAndSupportPageModule)
       },
 
-    
+
     ]
   },
   {

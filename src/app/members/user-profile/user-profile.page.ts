@@ -114,8 +114,45 @@ export class UserProfilePage implements OnInit, OnDestroy {
     // return await this.modal.present();
   }
 
+  async showChangeCoverPhoto() {
+    const actionSheet = this.actionSheetCtrl.create({
+      header: 'Cover Photo',
+      buttons: [
+        {
+          text: 'Take photo',
+          role: 'destructive',
+          cssClass: 'camera',
+          icon: 'camera-outline',
+          handler: () => {
+            this.takePhoto();
+          }
+        },
+        {
+          text: 'Select from device',
+          role: 'destructive',
+          cssClass: 'folder',
+          icon: 'folder-open-outline',
+          handler: () => {
+            this.selectFromDevice();
+          }
+        },
+        {
+          text: 'Select from cloud',
+          role: 'destructive',
+          cssClass: 'cloudy',
+          icon: 'cloudy-outline',
+          handler: () => {
+            this.selectFromCloud();
+          }
+        }
+      ]
+    });
+    (await actionSheet).present();
+  }
+
   async showChangeProfilePhoto() {
     const actionSheet = this.actionSheetCtrl.create({
+      header: 'Profile Photo',
       buttons: [
         {
           text: 'Take photo',

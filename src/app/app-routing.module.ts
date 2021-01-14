@@ -105,6 +105,15 @@ const routes: Routes = [
     path: 'no-connection',
     loadChildren: () => import('./public/no-connection/no-connection.module').then( m => m.NoConnectionPageModule)
   },
+  // {
+  //   path: 'report-bug',
+  //   loadChildren: () => import('./public/report-bug/report-bug.module').then( m => m.ReportBugPageModule)
+  // },
+  // {
+  //   path: 'help-and-support',
+  //   loadChildren: () => import('./public/help-and-support/help-and-support.module').then( m => m.HelpAndSupportPageModule)
+  // },
+
 
 
 

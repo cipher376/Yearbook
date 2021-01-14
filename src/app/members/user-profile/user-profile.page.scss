@@ -1,0 +1,35 @@
+.cover-img {
+    height: 250px;
+    width: 411px;
+    background-size: contain;
+    background-position: center;
+}
+
+.profile-img {
+    width:80px; 
+    height:80px; 
+    position: absolute;
+    left: calc(50% - 40px);
+    margin-top: calc((250px / 2) - 40px);
+    z-index: 1;
+}
+
+.profile-edit-btn {
+    position: absolute;
+    left: calc(50% - 16px);
+    margin-top: calc(-40px - 16px);
+    color: white;
+    z-index: 2;
+}
+
+.profile-img::after {
+    content: ""; // ::before and ::after both require content
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    border-radius: 50%;
+    opacity: .125;
+}
