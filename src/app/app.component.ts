@@ -182,6 +182,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
+    this.identityPhoto = UserService.getUserIdentityPhoto(this.user);
 
   }
 

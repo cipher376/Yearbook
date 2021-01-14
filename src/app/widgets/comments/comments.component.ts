@@ -20,14 +20,14 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
   styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent implements OnInit, AfterViewInit, AfterContentInit {
-  protected comments: Comment[] = [];
-  protected creators: User[] = [];
-  protected creatorPhotoUrls: string[] = [];
+   comments: Comment[] = [];
+  creators: User[] = [];
+  creatorPhotoUrls: string[] = [];
 
-  protected comment: Comment = new Comment();
+  comment: Comment = new Comment();
 
-  protected user: User;
-  protected post: Post;
+  user: User;
+  post: Post;
 
   noCommentPhoto = NO_COMMENT_PHOTO;
   loading: HTMLIonLoadingElement;
@@ -158,7 +158,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
     });
   }
 
-  protected getCommentUser(comment: Comment) {
+   getCommentUser(comment: Comment) {
     for (const user of this.creators) {
       if (user?.id === comment.initiatorId) {
         return user;
@@ -166,7 +166,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
     }
   }
 
-  protected countComments(postId: any) {
+   countComments(postId: any) {
     this.socialService.countPostComments(postId).subscribe(count => {
       this.totalComments.emit(count);
     });
@@ -211,7 +211,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, AfterContentIni
   }
 
   getLikes(){
-    
+
   }
 
 

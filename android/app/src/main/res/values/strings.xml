@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">yearbook</string>
-    <string name="title_activity_main">yearbook</string>
-    <string name="package_name">io.yearbook</string>
-    <string name="custom_url_scheme">io.yearbook</string>
+    <string name="app_name">almamater</string>
+    <string name="title_activity_main">almamater</string>
+    <string name="package_name">io.almamater</string>
+    <string name="custom_url_scheme">io.almamater</string>
 </resources>

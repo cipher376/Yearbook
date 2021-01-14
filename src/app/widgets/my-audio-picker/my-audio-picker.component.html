@@ -1,9 +1,9 @@
 <ion-segment [(ngModel)]="galleryType" color="primary" class="pt-2">
-  <ion-segment-button value="cloud">
+  <ion-segment-button value="cloud" (click)="changeLocation()">
     <ion-icon class="ion-no-margin" name="cloudy-outline" size="small"></ion-icon>
     <ion-row class="fs-10">M<span class="ion-text-lowercase">y recordings</span></ion-row>
   </ion-segment-button>
-  <ion-segment-button value="local">
+  <ion-segment-button value="local" (click)="changeLocation()">
     <ion-icon class="ion-no-margin" name="phone-portrait-outline" size="small"></ion-icon>
     <ion-row class="fs-10">D<span class="ion-text-lowercase">evice gallery</span></ion-row>
   </ion-segment-button>
@@ -19,7 +19,7 @@
             <ion-icon name="close"></ion-icon>
           </ion-button>
         </div> -->
-        <app-audio-thumbnail [thumb]='aud' (delete)="deleteFromCloudAudios(aud)"
+        <app-audio-thumbnail [Thumb]='aud' (delete)="deleteFromCloudAudios(aud)"
           (isSelected)="selectFromCloudAudios($event)" [location]="'cloud'"> </app-audio-thumbnail>
       </ion-col>
     </ion-row>
@@ -42,10 +42,10 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row class="image-container-row" *ngIf="cloudAudios?.length>0">
+    <ion-row class="image-container-row" *ngIf="deviceAudios?.length>0">
       <ion-col class="col-12 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let aud of deviceAudios">
         <ion-list>
-          <app-audio-thumbnail [thumb]='aud' (delete)="deleteFromCloudAudios(aud)" [location]="'local'">
+          <app-audio-thumbnail [Thumb]='aud' (delete)="deleteFromDeviceAudios(aud)" [location]="'local'">
           </app-audio-thumbnail>
         </ion-list>
       </ion-col>

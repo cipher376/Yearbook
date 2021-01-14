@@ -28,7 +28,7 @@ import { Gesture, GestureController } from '@ionic/angular';
 })
 export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit {
   private _galleryType = 'local'; // local or
-  protected _isComponent = false;
+   _isComponent = false;
   sub$ = [];
   devicePhotos: PhotoLocal[] = [];
   cloudPhotos: Photo[] = [];
@@ -113,7 +113,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
         }
         // reset photos array
         this.devicePhotos = [];
-        library.forEach(libraryItem => {
+        library?.forEach(libraryItem => {
           const temp: PhotoLocal = {
             id: libraryItem.id,
             fileName: libraryItem.fileName,
@@ -176,6 +176,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
 
 
   deleteFromDevicePhotos(ph: PhotoLocal) {
+    console.log('Removing from device');
     this.devicePhotos = this.devicePhotos.filter(photo => {
       console.log(ph.id);
       console.log(photo.id);
@@ -222,7 +223,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
           console.log(JSON.stringify(result));
           result = result as FileUploadResult;
 
-
+          
           if (result) {
             const uploadedPhoto = {
               description: '',

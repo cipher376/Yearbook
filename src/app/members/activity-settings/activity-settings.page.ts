@@ -12,4 +12,8 @@ export class ActivitySettingsPage implements OnInit {
   ngOnInit() {
   }
 
+  doRefresh() {
+
+  }
+
 }

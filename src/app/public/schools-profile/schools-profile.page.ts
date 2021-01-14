@@ -45,7 +45,12 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
   isAlumni = false;
   userSchoolAlumni: Alumni;
 
-  protected fixedMenu = false;
+  fixedMenu = false;
+  showMedia = false;
+  showLocation = false;
+  showPost = false;
+  showAbout = false;
+  
 
   infiniteScrollTarget: any;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;

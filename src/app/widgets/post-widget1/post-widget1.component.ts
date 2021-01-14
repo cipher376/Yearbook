@@ -23,12 +23,12 @@ import { EntityType, Shareable } from 'src/app/models/shareable';
 })
 export class PostWidget1Component implements OnInit, AfterViewInit, OnDestroy {
 
-  private tags = ['irepmyschool', 'back2school2020'];
+  tags = ['irepmyschool', 'back2school2020'];
 
-  private objects = [];
+  objects = [];
   mediaType: MediaType;
 
-  protected post: Post;
+   post: Post;
   postUserImage = '';
   postUser: User;
   school: School;

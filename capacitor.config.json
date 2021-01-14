@@ -1,6 +1,6 @@
 {
-  "appId": "io.yearbook",
-  "appName": "yearbook",
+  "appId": "io.almamater",
+  "appName": "Almamater",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -14,10 +14,10 @@
       "ScrollEnabled": "false",
       "BackupWebStorage": "none",
       "SplashMaintainAspectRatio": "true",
-      "FadeSplashScreenDuration": "300",
+      "FadeSplashScreenDuration": "100",
       "SplashShowOnlyFirstTime": "false",
       "SplashScreen": "screen",
-      "SplashScreenDelay": "3000"
+      "SplashScreenDelay": "4000"
     }
   }
 }

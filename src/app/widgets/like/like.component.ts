@@ -15,7 +15,7 @@ enum EntityToLike {
   styleUrls: ['./like.component.scss'],
 })
 export class LikeComponent implements OnInit, AfterViewInit {
-  protected affection: Like;
+  affection: Like;
   @Input() likeCount = 0;
   // event
   @Output() reload = new EventEmitter<boolean>();

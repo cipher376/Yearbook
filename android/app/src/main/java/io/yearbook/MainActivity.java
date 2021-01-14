@@ -1,4 +1,4 @@
-package io.yearbook;
+package io.almamater;
 
 import android.os.Bundle;
 

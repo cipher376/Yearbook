@@ -1,4 +1,4 @@
-<ion-slides (ionSlideDidChange)="swipeEvent()">
+<ion-slides (ionSlideDidChange)="swipeEvent($event)">
   <ion-grid class="ion-align-items-center">
     <ion-row style="margin-top: 10vh;">
       <ion-col size="12" class="ion-text-center ion-align-items-center">
@@ -18,7 +18,7 @@
           <ion-img  class="ion-text-center" [src]="'../../../assets/images/me.jpg'"></ion-img>
         </ion-avatar> -->
         <br>
-        <img class="round-avatar" src='../../../assets/images/me.jpg'>
+        <img class="round-avatar" [src]="identityPhoto?.profile?.fileUrl">
       </ion-col>
     </ion-row>
     <ion-row class="ion-text-center ion-align-items-center">
