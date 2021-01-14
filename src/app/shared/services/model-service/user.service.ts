@@ -27,7 +27,7 @@ export interface Token {
 })
 export class UserService {
   token: Token = null;
-  showTutorial = false;
+  showTutorial = true;
   redirectUrl = '';
 
 
@@ -583,7 +583,7 @@ export class UserService {
 
   async isFirstTime(email?: string) {
     const user = await this.getUserLocal();
-    if (user) {
+    if (user?.id) {
       this.showTutorial = false;
       // if (!u) { // user does not exit
       //   // check server for previous config

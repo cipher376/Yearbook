@@ -24,20 +24,20 @@ export class MySqlStorage {
                 name: 'almamater.db',
                 location: 'default'
             })?.then((db: SQLiteObject) => {
-                    this.storage = db;
-                    this.createTables();
-                    this.isDbReady.next(true);
-                }).catch(e => { console.log(e); });
+                this.storage = db;
+                this.createTables();
+                this.isDbReady?.next(true);
+            }).catch(e => { console.log(e); });
         });
     }
 
     dbState() {
-        return this.isDbReady.asObservable();
+        return this.isDbReady?.asObservable();
     }
 
     createTables() {
         // create user tables
-        this.storage.executeSql(`CREATE TABLE IF NOT EXISTS config(
+        this.storage?.executeSql(`CREATE TABLE IF NOT EXISTS config(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     action TEXT NOT NULL UNIQUE,
                     response TEXT NOT NULL,
@@ -56,7 +56,7 @@ export class MySqlStorage {
                 this.updateConfig(cfg);
             } else {
                 // save new config
-                this.storage.executeSql('INSERT INTO config (action, response, reason, userId) VALUES (?, ?, ?, ?)',
+                this.storage?.executeSql('INSERT INTO config (action, response, reason, userId) VALUES (?, ?, ?, ?)',
                     [cfg]).then(res => {
                         console.log('Config object saved');
                     }).catch(e => { console.log(JSON.stringify(e)); });
@@ -65,7 +65,7 @@ export class MySqlStorage {
     }
 
     private updateConfig(cfg: UserConfig) {
-        return this.storage.executeSql(`UPDATE config SET action = ?, response = ?, reason = ?, userId = ?,
+        return this.storage?.executeSql(`UPDATE config SET action = ?, response = ?, reason = ?, userId = ?,
         WHERE action = ${cfg?.action}`, [cfg])
             .then(data => {
                 console.log('Sql updated data');
@@ -74,7 +74,7 @@ export class MySqlStorage {
     }
 
     async getConfig(action: string): Promise<UserConfig> {
-        return this.storage.executeSql('SELECT * FROM config WHERE key = ?', [action]).then(res => {
+        return this.storage?.executeSql('SELECT * FROM config WHERE key = ?', [action]).then(res => {
             return {
                 id: res.rows?.item(0)?.id,
                 action: res?.rows?.item(0)?.action,
@@ -86,7 +86,7 @@ export class MySqlStorage {
     }
 
     deleteConfig(action: string) {
-        return this.storage.executeSql('DELETE FROM config WHERE action = ?', [action])
+        return this.storage?.executeSql('DELETE FROM config WHERE action = ?', [action])
             .then(_ => {
                 console.log(action + ' is deleted from permanent storage');
             });
@@ -109,7 +109,11 @@ export class MySqlStorage {
         await this.platform.ready();
         return this.getConfig(UserConfigAction.SaveLoggedInUser).then(cfg => {
             return JSON.parse(cfg?.response);
+        }).catch(e => {
+            // console.log(e);
         });
+
+
     }
 
 
