@@ -49,6 +49,7 @@ import { EmojiModalComponent } from './emoji-modal/emoji-modal.component';
 import {  WatchElementDirective } from '../shared/directives/watch-element.directive';
 import { FollowComponent } from './follow/follow.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     PipesModule,
     PickerModule,
     EmojiModule,
+    LoaderComponent
   ],
   declarations: [
     PostWidget1Component, PostWidget2Component, TrendingComponent, PopularSchoolsComponent,
@@ -77,7 +79,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent, SchoolListItemComponent,
-    UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent, UserCloudPhotosComponent
+    UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent, UserCloudPhotosComponent,LoaderComponent
   ],
   exports: [
     FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
@@ -88,7 +90,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent,
      SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, UserCloudPhotosComponent,
-     AudioPlayerComponent
+     AudioPlayerComponent,LoaderComponent
   ]
 })
 export class WidgetsModule { }
