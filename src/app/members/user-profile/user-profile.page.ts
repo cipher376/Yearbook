@@ -1,6 +1,6 @@
 import { UserCloudPhotosComponent } from './../../widgets/user-cloud-photos/user-cloud-photos.component';
 import { MediaService } from 'src/app/shared/services/model-service/media.service';
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { MyPhotoPickerComponent } from './../../widgets/my-photo-picker/my-photo-picker.component';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';

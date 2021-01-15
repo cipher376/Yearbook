@@ -9,7 +9,7 @@ import { AudioRecorderComponent } from '../audio-recorder/audio-recorder.compone
 import { FileUploadResult } from '@ionic-native/file-transfer/ngx';
 import { MediaType } from 'src/app/models/my-media';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/services/model-service/user.service';

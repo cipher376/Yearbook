@@ -7,7 +7,7 @@ import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { Platform } from '@ionic/angular';
 import { VideoLocal } from 'src/app/models/LocalMediaInterfaces';
 import { MySignals } from 'src/app/shared/services/my-signals';
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { PermissionsService } from 'src/app/shared/services/providers/permission.service';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { Plugins } from '@capacitor/core';

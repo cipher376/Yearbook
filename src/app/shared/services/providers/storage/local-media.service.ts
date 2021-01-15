@@ -1,7 +1,7 @@
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Video } from 'src/app/models/my-media';
-import { AudioLocal, VideoLocal, PhotoLocal } from './../../../models/LocalMediaInterfaces';
+import { AudioLocal, VideoLocal, PhotoLocal } from '../../../../models/LocalMediaInterfaces';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { MySignals } from 'src/app/shared/services/my-signals';
@@ -10,7 +10,7 @@ import { Subject, throwError, Observable, observable } from 'rxjs';
 import { Platform } from '@ionic/angular';
 import { PhotoLibrary, GetLibraryOptions } from '@ionic-native/photo-library/ngx';
 import { Injectable } from '@angular/core';
-import { MyStorage } from './storage/my-storage.service';
+import { MyStorage } from './my-storage.service';
 import { Capacitor, CameraResultType, Plugins, FilesystemDirectory, CameraOptions, CameraSource, FileWriteOptions, FileReadResult } from '@capacitor/core';
 import { Entry, File, } from '@ionic-native/file/ngx';
 import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-capture/ngx';
@@ -25,9 +25,9 @@ import { FileChooser, FileChooserOptions } from '@ionic-native/file-chooser/ngx'
 
 import { CreateThumbnailOptions, VideoEditor } from '@ionic-native/video-editor/ngx';
 import * as PluginsLibrary from 'capacitor-video-player'; // ios
-import { PermissionsService } from './permission.service';
+import { PermissionsService } from '../permission.service';
 import { FileTransfer, FileTransferObject, FileUploadOptions, FileUploadResult } from '@ionic-native/file-transfer/ngx';
-import { UPLOAD_URL } from '../../config';
+import { UPLOAD_URL } from '../../../config';
 import { User } from 'src/app/models/user';
 import { Media } from '@ionic-native/media/ngx';
 const { CapacitorVideoPlayer, Device } = Plugins; // android

@@ -10,7 +10,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Platform, ModalController } from '@ionic/angular';
 import { PhotoLocal } from 'src/app/models/LocalMediaInterfaces';
 import { MySignals } from 'src/app/shared/services/my-signals';
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { PermissionsService } from 'src/app/shared/services/providers/permission.service';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';

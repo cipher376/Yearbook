@@ -1,4 +1,4 @@
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
