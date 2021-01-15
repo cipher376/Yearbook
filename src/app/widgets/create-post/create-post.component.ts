@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PostPhotoLink, PostVideoLink, Audio, PostAudioLink } from './../../models/my-media';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { MediaService } from './../../shared/services/model-service/media.service';
@@ -46,7 +47,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     private toaster: ToasterService,
     private signals: MySignals,
     private mediaService: MediaService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public router: Router
   ) {
 
   }
@@ -247,7 +249,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       this.uploadSub$ = this.signals.uploadCompleteSource$.subscribe(file => {
         console.log('Upload complete');
         const temVideo = file as Video;
-        // post the message object and further post the photos
+        // post the message object and further post the videos
         // set owner Id
         // set post Id
         temVideo.userId = this.user?.id;
@@ -265,11 +267,14 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       // when all upload complete, do house keeping
       this.sub$.push(this.signals.allUploadCompleteSource$.subscribe(_ => {
         // reload cloud images
-        this.myVideoPicker.loadCloudVideos();
+        setTimeout(() => {
+          // this.myVideoPicker.loadCloudVideos();
+        }, 10000);
         this.mediaPage = '';
-        this.signals.announcePostReload();
 
-
+        setTimeout(() => {
+          //  this.signals.announcePostReload();
+        }, 3000);
       }));
 
       // Trigger upload event
@@ -278,6 +283,11 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   }
 
   async post() {
+    if (!this.isAuthenticated()) {
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
     // cancel all upload subscription
     UtilityService.destroySubscription(this.uploadSub$);
 
@@ -325,6 +335,10 @@ export class CreatePostComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  isAuthenticated() {
+    return this.userService.isAuthenticated();
   }
 
   async postMessage(allowEmpty = false) {

@@ -110,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     private permissions: PermissionsService,
     private signals: MySignals,
     private cdr: ChangeDetectorRef,
-    private pushService: PushSocketService,
+    // private pushService: PushSocketService,
     private device: Device,
     private connectivityProvider: ConnectivityProvider,
     private router: Router
