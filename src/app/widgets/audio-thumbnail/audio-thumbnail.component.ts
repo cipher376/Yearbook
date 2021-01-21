@@ -1,3 +1,4 @@
+import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Audio } from './../../models/my-media';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AudioLocal } from 'src/app/models/LocalMediaInterfaces';
@@ -11,7 +12,7 @@ import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 })
 export class AudioThumbnailComponent implements OnInit {
   @Input() location = 'cloud'; // cloud || local
-  @Input() thumb: any; // Audio || AudioLocal
+  thumb: any; // Audio || AudioLocal
   selected = false;
   @Input() count = 0;
 
@@ -21,42 +22,63 @@ export class AudioThumbnailComponent implements OnInit {
 
   downloadUrlRoot = DOWNLOAD_CONTAINER;
 
+  audioFile: MediaObject;
+  filePath: string;
+
   constructor(
     private previewAnyFile: PreviewAnyFile,
+    private media: Media
   ) { }
 
   ngOnInit() { }
+
+  @Input() set Thumb(file: any){
+    this.thumb = file;
+    this.init();
+  }
+
   select() {
     this.selected = !this.selected;
     this.isSelected.emit(this.thumb);
   }
 
-  onDoubleClickAudioThumbnail() {
-    this.preview();
-  }
+  // onDoubleClickAudioThumbnail() {
+  //   this.preview();
+  // }
 
   togglePlay(a: any, b: any) {
     a.el.name === 'play' ? a.el.name = 'pause' : a.el.name = 'play';
+    if (a.el.name === 'play') {
+      this.audioFile?.play();
+    } else {
+      this.audioFile?.stop(); // stop recording
+    }
   }
 
-  preview() {
-    let path = '';
-    console.log(this.location);
+  init() {
     try {
-      if (this.location == 'cloud') {
+      if (this.location === 'cloud') {
         console.log('cloud');
-        path = this.downloadUrlRoot + (this.thumb as Audio).fileName;
-      } else if (this.location == 'local') {
+        this.filePath = this.downloadUrlRoot + (this.thumb as Audio).fileName;
+        // download the file from server b4 playing
+      } else if (this.location === 'local') {
         console.log('local');
-        path = (this.thumb as AudioLocal).nativeURL;
-        path = path.replace('file//', '');
+        this.filePath = (this.thumb as AudioLocal).nativeURL;
+        // this.filePath = this.filePath.replace('file//', '');
       } else {
         console.log('Unknown location');
       }
       console.log(JSON.stringify(this.thumb));
-      this.previewAnyFile.preview(path)
-        .then((res: any) => console.log(JSON.stringify(res)))
-        .catch((error: any) => console.error(JSON.stringify(error)));
+      console.log(this.filePath);
+
+      if (!this.audioFile) {
+        this.audioFile = this.media.create(this.filePath);
+      }
+      console.log(JSON.stringify(this.audioFile));
+
+      // this.previewAnyFile.preview(path)
+      //   .then((res: any) => console.log(JSON.stringify(res)))
+      //   .catch((error: any) => console.error(JSON.stringify(error)));
     } catch (e) {
       console.log(JSON.stringify(e));
     }

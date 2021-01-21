@@ -110,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
     private permissions: PermissionsService,
     private signals: MySignals,
     private cdr: ChangeDetectorRef,
-    private pushService: PushSocketService,
+    // private pushService: PushSocketService,
     private device: Device,
     private connectivityProvider: ConnectivityProvider,
     private router: Router
@@ -162,9 +162,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
 
   getOnlineStatus() {
     this.connectivityProvider.appIsOnline$
-    .subscribe(online => {
-      if (!online) this.router.navigateByUrl('/no-connection');
-    });
+      .subscribe(online => {
+        if (!online) this.router.navigateByUrl('/no-connection');
+      });
   }
 
   async ngAfterViewInit() {
@@ -182,6 +182,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
+    this.identityPhoto = UserService.getUserIdentityPhoto(this.user);
+   
 
   }
 

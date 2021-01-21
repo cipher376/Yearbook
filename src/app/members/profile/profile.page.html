@@ -14,7 +14,8 @@
     </ion-col>
   </ion-row>
 
-  <ion-row appWatchElement [elementId]="'profileMenu'" id="profileMenu" (isOut)="profileFixedMenu=$event">
+  <!-- <ion-row appWatchElement [elementId]="'profileMenu'" id="profileMenu" (isOut)="profileFixedMenu=$event"> -->
+    <ion-row  id="profileMenu" >
     <ion-card class=" w-100" style="height: 250px;">
       <div class="backdrop h-100 w-100"></div>
       <ion-card-header id="userprofile-bg" [background-image]="identityPhoto?.cover?.fileUrl"
@@ -59,8 +60,6 @@
             <!-- <ion-col size="3" class="text-center">
               <ion-note class="poppins-regular fs-13 min-menu">Videos</ion-note>
             </ion-col> -->
-
-            
           </ion-row>
         </ion-col>
         <ion-row class="ion-no-padding ion-no-margin w-100" *ngIf="!profileFixedMenu" >
@@ -99,7 +98,7 @@
       <ion-row>
         <ion-col size="{{user?.id !== selectedUser?.id ? 12: 8}}" *ngIf="user?.id !== selectedUser?.id">
           <app-follow [LeaderId]="selectedUser?.id" [FollowerId]="user?.id" [color]="'primary'" [modelName]="'user'"
-            (reload)="countFollowers(true)"></app-follow>
+            (reload)="countFollowers()"></app-follow>
         </ion-col>
 
         <!-- <ion-col *ngIf="user?.id === selectedUser?.id" size="{{user?.id === selectedUser?.id ? 12: 4}}">

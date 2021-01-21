@@ -1,6 +1,6 @@
 import { UserCloudPhotosComponent } from './../../widgets/user-cloud-photos/user-cloud-photos.component';
 import { MediaService } from 'src/app/shared/services/model-service/media.service';
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { MyPhotoPickerComponent } from './../../widgets/my-photo-picker/my-photo-picker.component';
 import { MySignals } from 'src/app/shared/services/my-signals';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
@@ -258,10 +258,10 @@ export class UserProfilePage implements OnInit, OnDestroy {
               this.mediaService.clearAllUserProfilePhotos(this.user?.id).subscribe(_ => {
                 this.mediaService.updatePhoto(photo).subscribe(ph => {
                   this.changeState = 'complete';
-                  console.log(JSON.stringify(ph));
+                  // console.log(JSON.stringify(ph));
                   this.userService.getUserDetails(this.user?.id).subscribe(u => {
                     this.user = new User(u, u as any);
-                    console.log(JSON.stringify(this.user));
+                    // console.log(JSON.stringify(this.user));
                     this.identityPhoto = UserService.getUserIdentityPhoto(this.user);
                     sub$.unsubscribe();
                     this.modal.dismiss();
@@ -386,10 +386,10 @@ export class UserProfilePage implements OnInit, OnDestroy {
         this.mediaService.clearAllUserProfilePhotos(this.user?.id).subscribe(_ => {
           this.subs$.push(this.mediaService.createUserPhoto(this.user.id, uploadedPhoto).subscribe(ph => {
             this.changeState = 'complete';
-            console.log(JSON.stringify(ph));
+            // console.log(JSON.stringify(ph));
             this.userService.getUserDetails(this.user?.id).subscribe(u => {
               this.user = new User(u, u as any);
-              console.log(JSON.stringify(u));
+              // console.log(JSON.stringify(u));
               this.identityPhoto = UserService.getUserIdentityPhoto(this.user);
             });
           }, error => {

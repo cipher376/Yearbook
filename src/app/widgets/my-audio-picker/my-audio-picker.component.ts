@@ -9,7 +9,7 @@ import { AudioRecorderComponent } from '../audio-recorder/audio-recorder.compone
 import { FileUploadResult } from '@ionic-native/file-transfer/ngx';
 import { MediaType } from 'src/app/models/my-media';
 import { ToasterService } from 'src/app/shared/services/providers/widgets/toaster.service';
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/services/model-service/user.service';
@@ -39,11 +39,11 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     private signals: MySignals,
     private cdr: ChangeDetectorRef,
     private modalController: ModalController,
-    private toaster: ToasterService, 
+    private toaster: ToasterService,
     private mediaService: MediaService,
     private userService: UserService
 
-     ) {
+  ) {
 
 
   }
@@ -65,7 +65,7 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
 
- 
+
 
   // playAudio(aud: AudioLocal) {
   //   this.previewAnyFile.preview(aud.nativeURL.replace('file//', ''))
@@ -94,7 +94,10 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
   async recordAudio() {
     const modal = await this.modalController.create({
       component: AudioRecorderComponent,
-      cssClass: 'record-modal-class'
+      cssClass: 'record-modal-class',
+      // componentProps: {
+      //   location: 'local'
+      // }
     });
     this.sub$.push(this.signals.closeModalSource$.subscribe(modalName => {
       if (modalName === 'audio-recorder') { // check if its the recorded modal
@@ -103,14 +106,15 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     }));
 
     // get the recorded file path
-    this.sub$.push(this.signals.audioRecordingCompleteSource$.subscribe(aud => {
+    const record$ = this.signals.audioRecordingCompleteSource$.subscribe(aud => {
       this.deviceAudios = [...this.deviceAudios, aud];
+      this.deviceAudios = [aud];
       console.log(JSON.stringify(this.deviceAudios));
       this.cdr.detectChanges();
       modal?.dismiss();
-    }));
+      record$.unsubscribe();
+    });
     await modal.present();
-
   }
 
   uploadAudios() {
@@ -201,6 +205,10 @@ export class MyAudioPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     }, error => {
       console.log(error);
     });
+  }
+
+  changeLocation() {
+    
   }
 
 }

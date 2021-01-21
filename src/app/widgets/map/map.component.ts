@@ -32,12 +32,12 @@ export class MapComponent implements OnInit, OnDestroy {
     lng: -1.1
   };
 
-  private currentLocation: LatLng = {
+   currentLocation: LatLng = {
     lat: 8.1,
     lng: -1.1
   } as any;
 
-  private geoCoder;
+   geoCoder;
   address;
 
   options: any = {
@@ -51,8 +51,8 @@ export class MapComponent implements OnInit, OnDestroy {
   public markers: any[] = [];
   polyline;
   circles = [];
-  private mapsLoaded = false;
-  private networkHandler = null;
+   mapsLoaded = false;
+   networkHandler = null;
 
   sub$ = [];
 

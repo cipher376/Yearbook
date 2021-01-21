@@ -1,6 +1,6 @@
 {
-  "appId": "io.yearbook",
-  "appName": "yearbook",
+  "appId": "io.almamater",
+  "appName": "almamater",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

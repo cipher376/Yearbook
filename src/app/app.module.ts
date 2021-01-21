@@ -48,6 +48,7 @@ import { PushSocket, PushSocketService } from './shared/services/model-service/s
 import { Device } from '@ionic-native/device/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 // const config: SocketIoConfig = { url: SOCKET_ROOT_URL, options: {} };
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 @NgModule({
   declarations: [AppComponent, DoubleTapDirective],
@@ -100,10 +101,11 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     VgBufferingModule,
     SocialSharing,
     Keyboard,
-    PushSocket,
-    PushSocketService,
+    // PushSocket,
+    // PushSocketService,
     Device,
-    InAppBrowser,
+    // InAppBrowser,
+    SQLite,
     // MarkerManager,
     // GoogleMapsAPIWrapper,
     // PolylineManager,

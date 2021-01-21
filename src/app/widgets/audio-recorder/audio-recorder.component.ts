@@ -1,4 +1,4 @@
-import { LocalMediaService } from 'src/app/shared/services/providers/local-media.service';
+import { LocalMediaService } from 'src/app/shared/services/providers/storage/local-media.service';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
@@ -39,23 +39,28 @@ export class AudioRecorderComponent implements OnInit {
 
   stop() {
     this.audioFile?.stopRecord();
-    this.status = 'stopped';
-    this.filePath.emit(this.currentFile);
-    const uri = this.currentFile;
-    const fileName = uri.substr(uri.lastIndexOf('/') + 1);
-    const resolvedUri = Capacitor.convertFileSrc(uri);
-    // create a local audio object and return
-    const aud = {
-      id: '0;' + uri,
-      nativeURL: uri,
-      posterNativeURL: '',
-      resolvedURL: resolvedUri,
-      posterResolvedURL: '',
-      fileName,
-      creationDate: new Date(Date.now()), 
-      length:  this.audioFile.getDuration()
-    } as AudioLocal;
-    this.signals.announceAudioRecordingComplete(aud);
+
+    // wait for 2 seconds
+    setTimeout(() => {
+      this.status = 'stopped';
+      this.filePath.emit(this.currentFile);
+      const uri = this.currentFile;
+      const fileName = uri.substr(uri.lastIndexOf('/') + 1);
+      const resolvedUri = Capacitor.convertFileSrc(uri);
+      // create a local audio object and return
+      const aud = {
+        id: '0;' + uri,
+        nativeURL: uri,
+        posterNativeURL: '',
+        resolvedURL: resolvedUri,
+        posterResolvedURL: '',
+        fileName,
+        creationDate: new Date(Date.now()),
+        length: this.audioFile.getDuration()
+      } as AudioLocal;
+      this.signals.announceAudioRecordingComplete(aud);
+    }, 2000);
+
     // this.closeModals(); // close the modal its used as a modal;
   }
 
@@ -68,7 +73,7 @@ export class AudioRecorderComponent implements OnInit {
     this.audioFile.stop();
   }
 
-  closeModals(){
+  closeModals() {
     this.signals.announceCloseModal('audio-recorder');
   }
 

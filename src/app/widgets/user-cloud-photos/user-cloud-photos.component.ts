@@ -15,7 +15,7 @@ import { PageInfo } from 'src/app/models/page';
 })
 export class UserCloudPhotosComponent implements OnInit, OnDestroy {
 
-  protected cloudPhotos: Photo[] = [];
+  cloudPhotos: Photo[] = [];
   selectedCloudPhotos: Photo[] = [];
 
   @Input() returnPhotosCount = 1;

@@ -16,7 +16,7 @@ export const SOCKET_ROOT_URL = `http://yearbook-socket.devtek-limited.tech:${SOC
  * LOCAL API SERVER
 */
 
-// export const API_HOST = `http://192.168.0.102:`;
+// export const API_HOST = `http://192.168.0.100:`;
 // export const API_PORT = 3001; // comment out to use remote
 // export const API_ROOT_URL = `${API_HOST}${API_PORT || 80}`; // comment out to user remote
 

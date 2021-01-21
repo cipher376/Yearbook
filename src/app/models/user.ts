@@ -6,7 +6,8 @@ import { Photo } from './my-media';
 export enum UserConfigAction {
   AccountDeactivation = 'AccountDeactivation',
   PostFromStateOnly = 'PostFromStateOnly',
-  PostFromMySchoolsOnly = 'PostFromMySchoolsOnly'
+  PostFromMySchoolsOnly = 'PostFromMySchoolsOnly',
+  SaveLoggedInUser = 'SaveLoggedInUser'
 }
 
 export class UserConfig {
@@ -14,7 +15,7 @@ export class UserConfig {
   action: UserConfigAction;
   response: string;
   reason?: string;
-  userId: number;
+  userId?: number;
 }
 
 export interface CredentialsInterface {

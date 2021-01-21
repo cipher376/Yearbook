@@ -1,5 +1,5 @@
 import { MySignals } from 'src/app/shared/services/my-signals';
-import { UserConfig } from './../../../models/user';
+import { UserConfig, UserConfigAction } from './../../../models/user';
 import { PageInfo, getPagedData } from '../../../models/page';
 import { Router } from '@angular/router';
 import { API_ROOT_URL, DOWNLOAD_CONTAINER, USER_DEFAULT_COVER_URL, USER_DEFAULT_PHOTO_URL } from '../../config';
@@ -14,6 +14,7 @@ import { PhotoType, IdentityPhoto, Photo } from 'src/app/models/my-media';
 import { MyDevice } from 'src/app/models/my-device';
 import { SchoolInterface } from 'src/app/models/school';
 import { Address } from 'src/app/models/address';
+import { MySqlStorage } from '../providers/storage/my-sqldb.service';
 
 export interface Token {
   token: '';
@@ -26,7 +27,7 @@ export interface Token {
 })
 export class UserService {
   token: Token = null;
-  showTutorial = false;
+  showTutorial = true;
   redirectUrl = '';
 
 
@@ -36,6 +37,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private store: MyStorage,
+    private sqlStorage: MySqlStorage,
     private router: Router,
     private signals: MySignals) {
 
@@ -57,7 +59,6 @@ export class UserService {
         ph.thumbnailUrl = DOWNLOAD_CONTAINER + 'thumb_' + ph.fileName ?? USER_DEFAULT_PHOTO_URL;
         photo.profile = ph;
       }
-
       if (ph.coverImage) {
         ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileName ?? USER_DEFAULT_COVER_URL;
         photo.cover = ph;
@@ -207,7 +208,7 @@ export class UserService {
     return this.http.get<User>('/users/my-profile').pipe(
       map(res => {
         /** Save the authentication token **/
-        this.setUserLocal(res);
+        this.setUserLocal(res); // memory storage
         this.announceUserAuthenticated(res);
         return res as any;
       }),
@@ -348,7 +349,7 @@ export class UserService {
     return this.http.get<User[]>('/users/count').pipe(
       map(res => {
         if (res) {
-          return (res as any).count;
+          return res as any;
         }
         return 0;
       }),
@@ -527,9 +528,15 @@ export class UserService {
 
 
 
-  // Read user object from sesson storage
+  // Read user object from session storage
   async getUserLocal(): Promise<User> {
-    return await this.store.getObject('user');
+    const user = (await this.store.getObject('user')) as User;
+    if (user) {
+      return user; // memory
+    } else {
+      // check the permanent storage for user details
+      return this.sqlStorage.getUserPermanent();
+    }
   }
 
   deleteUserLocal() {
@@ -537,6 +544,7 @@ export class UserService {
   }
 
   async setUserLocal(user: User): Promise<boolean> {
+    this.sqlStorage.saveUserPermanent(user);
     return await this.store.setObject('user', user);
   }
 
@@ -575,7 +583,7 @@ export class UserService {
 
   async isFirstTime(email?: string) {
     const user = await this.getUserLocal();
-    if (user) {
+    if (user?.id) {
       this.showTutorial = false;
       // if (!u) { // user does not exit
       //   // check server for previous config

@@ -52,7 +52,9 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   profileFixedMenu = false;
-
+  showMedia = false;
+  showPost = false;
+  
   sub$ = [];
   previousPage = '';
 
@@ -89,7 +91,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
   }
 
   ngAfterContentInit() {
-    this.checkOwnerShip();
+    // this.checkOwnerShip();
   }
 
   checkOwnerShip() {
@@ -100,6 +102,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
     this.sub$.push(this.signals.selectedUserSource$.subscribe(_ => {
       this.init();
     }));
+
     this.init();
   }
 
@@ -113,7 +116,7 @@ export class ProfilePage implements OnInit, AfterContentInit, OnDestroy, AfterVi
       this.selectedUser = this.user;
       // console.log(this.route.snapshot.params.user);
       await this.userService.setSelectedUserLocal(this.user);
-      window.location.href = '/links/profile';
+      // window.location.href = '/links/profile';
     } else {
       this.selectedUser = await this.userService.getSelectedUserLocal();
     }

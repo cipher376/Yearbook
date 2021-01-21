@@ -30,7 +30,7 @@ export class ForgotPasswordPage implements OnInit {
     private browserHistory: BrowserHistoryService,
     private loadCtrl: LoadingController,
     private userService: UserService,
-    private browser: InAppBrowser
+    // private browser: InAppBrowser
   ) {
     this.user = new User();
   }

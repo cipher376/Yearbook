@@ -46,9 +46,10 @@ import { BackgroundImageDirective } from '../shared/directives/image-background.
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { EmojiModalComponent } from './emoji-modal/emoji-modal.component';
-import {  WatchElementDirective } from '../shared/directives/watch-element.directive';
+import { WatchElementDirective } from '../shared/directives/watch-element.directive';
 import { FollowComponent } from './follow/follow.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     GoogleMapsModule,
     PipesModule,
     PickerModule,
-    EmojiModule,
+    EmojiModule
   ],
   declarations: [
     PostWidget1Component, PostWidget2Component, TrendingComponent, PopularSchoolsComponent,
@@ -77,7 +78,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent, SchoolListItemComponent,
-    UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent, UserCloudPhotosComponent
+    UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent, UserCloudPhotosComponent, LoaderComponent
   ],
   exports: [
     FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
@@ -87,8 +88,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
     EmojiModalComponent, WatchElementDirective, SchoolCardComponent, UserCardComponent,
-     SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, UserCloudPhotosComponent,
-     AudioPlayerComponent
+    SchoolListItemComponent, UserListItemComponent, FollowComponent, NotificationsComponent, UserCloudPhotosComponent,
+    AudioPlayerComponent, LoaderComponent
   ]
 })
 export class WidgetsModule { }

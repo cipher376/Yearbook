@@ -35,7 +35,7 @@
 
   <ion-row class="mt-1">
     <ion-col size="12" class="ion-no-padding">
-      <app-create-post appWatchElement [elementId]="'create-post'" id="create-post" (isOut)="showPost=$event">
+      <app-create-post appWatchElement [elementId]="'create-post'" id="create-post" (isOut)="showPost=$event"  >
       </app-create-post>
       <ng-template ngFor let-post [ngForOf]="posts">
         <app-post-widget1 [Post]="post"></app-post-widget1>
