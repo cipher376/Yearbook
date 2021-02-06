@@ -1,5 +1,5 @@
-<div class="video-player-wrapper" *ngIf="items?.length>0">
-  <vg-player (onPlayerReady)="videoPlayerInit($event)" style="max-height: 50vh !important">
+<div class="video-player-wrapper" *ngIf="items?.length>0  ">
+  <vg-player (onPlayerReady)="videoPlayerInit($event)" style="max-height: 50vh !important" *ngIf="showPlayer">
     <vg-overlay-play></vg-overlay-play>
     <vg-buffering></vg-buffering>
 
@@ -22,7 +22,7 @@
       <vg-fullscreen></vg-fullscreen>  
     </vg-controls>
 
-    <video #media [vgMedia]="media"  id="singleVideo" preload="auto" crossorigin>
+    <video *ngIf="currentVideo?.src" #media [vgMedia]="media"  id="singleVideo" preload="'none'" crossorigin>
       <source [src]="currentVideo?.src" [type]="currentVideo?.type">
     </video>
   </vg-player>

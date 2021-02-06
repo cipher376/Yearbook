@@ -54,63 +54,67 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
     // const files = this.files;
     // this.audio.src = URL.createObjectURL(files[0]);
     console.log(this.audio);
+    if (this.audio) {
 
-    this.audio.src = this.fileUrl;
-    this.audio.crossOrigin = 'anonymous';
-    this.audio.load();
-    this.audio.play();
-    const context = new AudioContext();
-    const src = context.createMediaElementSource(this.audio);
-    const analyser = context.createAnalyser();
+      this.audio.src = this.fileUrl;
+      this.audio.crossOrigin = 'anonymous';
+      this.audio.load();
+      this.audio.play();
+      const context = new AudioContext();
+      const src = context.createMediaElementSource(this.audio);
+      const analyser = context.createAnalyser();
 
-    const canvas: any = document.getElementById('canvas');
-    canvas.style.width = '' + window.innerWidth;
-    canvas.style.height = '' + window.innerHeight;
-    const ctx = canvas.getContext('2d');
+      const canvas: any = document.getElementById('canvas');
+      canvas.style.width = '' + window.innerWidth;
+      canvas.style.height = '' + window.innerHeight;
+      const ctx = canvas.getContext('2d');
 
-    src.connect(analyser);
-    analyser.connect(context.destination);
+      src.connect(analyser);
+      analyser.connect(context.destination);
 
-    analyser.fftSize = 256;
+      analyser.fftSize = 256;
 
-    const bufferLength = analyser.frequencyBinCount;
-    console.log(bufferLength);
+      const bufferLength = analyser.frequencyBinCount;
+      console.log(bufferLength);
 
-    const dataArray = new Uint8Array(bufferLength);
+      const dataArray = new Uint8Array(bufferLength);
 
-    const WIDTH = canvas.width;
-    const HEIGHT = (canvas.height + 0.5 * canvas.height);
+      const WIDTH = canvas.width;
+      const HEIGHT = (canvas.height + 0.5 * canvas.height);
 
-    const barWidth = (WIDTH / bufferLength) * 2.5;
-    let barHeight;
-    let x = 0;
+      const barWidth = (WIDTH / bufferLength) * 2.5;
+      let barHeight;
+      let x = 0;
 
-    function renderFrame() {
-      requestAnimationFrame(renderFrame);
+      function renderFrame() {
+        requestAnimationFrame(renderFrame);
 
-      x = 0;
+        x = 0;
 
-      analyser.getByteFrequencyData(dataArray);
+        analyser.getByteFrequencyData(dataArray);
 
-      ctx.fillStyle = '#000';
-      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-      for (let i = 0; i < bufferLength; i++) {
-        barHeight = dataArray[i];
+        for (let i = 0; i < bufferLength; i++) {
+          barHeight = dataArray[i];
 
-        const r = barHeight + (25 * (i / bufferLength));
-        const g = 250 * (i / bufferLength);
-        const b = 50;
+          const r = barHeight + (25 * (i / bufferLength));
+          const g = 250 * (i / bufferLength);
+          const b = 50;
 
-        ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
-        ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+          ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+          ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 
-        x += barWidth + 1;
+          x += barWidth + 1;
+        }
       }
-    }
 
-    // this.audio.play();
-    renderFrame();
+
+
+      // this.audio.play();
+      renderFrame();
+    }
   }
 
 }

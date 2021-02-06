@@ -118,6 +118,49 @@ export class LocalMediaService {
         if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA)).hasPermission) {
           await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA]);
         }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.WRITE_MEDIA_STORAGE)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.WRITE_MEDIA_STORAGE]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.VIBRATE)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.VIBRATE]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_FRAME_BUFFER)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.READ_FRAME_BUFFER]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.RECORD_AUDIO)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.RECORD_AUDIO]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE]);
+
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.MOUNT_UNMOUNT_FILESYSTEMS)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.MOUNT_UNMOUNT_FILESYSTEMS]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CLEAR_APP_CACHE)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CLEAR_APP_CACHE]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS]);
+        }
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CACHE_CONTENT)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CACHE_CONTENT]);
+        }
+
+        if (!(await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_CACHE_FILESYSTEM)).hasPermission) {
+          await this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.ACCESS_CACHE_FILESYSTEM]);
+        }
+
+
+
+
+
       } catch (error) {
 
       }

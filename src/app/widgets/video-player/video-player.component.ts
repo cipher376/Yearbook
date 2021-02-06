@@ -1,3 +1,4 @@
+import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { DEFAULT_AUDIO_COVER, DEFAULT_AUDIO_ICON, DOWNLOAD_CONTAINER } from 'src/app/shared/config';
 import { CONTENT_ATTR } from '@angular/compiler';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
@@ -24,6 +25,8 @@ export class VideoPlayerComponent implements OnInit {
 
   };
 
+  showPlayer = false;
+
   constructor(
     private cdref: ChangeDetectorRef
   ) { }
@@ -37,10 +40,13 @@ export class VideoPlayerComponent implements OnInit {
       this.items.push({
         name: obj?.description ?? obj.fileName,
         src: DOWNLOAD_CONTAINER + obj.fileName,
-        type: obj.mimeType ?? 'video/mp4'
+        type: obj.mimeType ?? UtilityService.getMimeTypeFromExtension(obj.fileName) ?? 'video/mp4'
       });
       this.itemPhotos.push(this.getThumbnail(obj));
     });
+
+    this.showPlayer = true;
+
   }
 
   get Items() {
@@ -80,10 +86,14 @@ export class VideoPlayerComponent implements OnInit {
     if (this.Items?.length > 0) {
       this.activeIndex = 0;
       this.currentVideo = this.items[this.activeIndex];
+      console.log(JSON.stringify(this.currentVideo));
       this.cdref.detectChanges();
+ 
     }
-    console.log(this.currentVideo);
-    this.player.play();
+    setTimeout(() => {
+
+      this.player.play();
+    }, 1000);
   }
 
   startPlaylistVdo(index: number) {

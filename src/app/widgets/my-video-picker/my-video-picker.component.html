@@ -10,13 +10,13 @@
 </ion-segment>
 <div [ngSwitch]="galleryType">
   <ion-grid *ngSwitchCase="'cloud'" id="cloud">
-    <ion-row  *ngIf="deviceVideos?.length>0">
+    <ion-row *ngIf="cloudVideos?.length>0">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1 mb-1" *ngFor="let vid of cloudVideos">
-        <app-video-thumbnail [thumb]='vid' (delete)="deleteFromCloudVideos(vid)" 
-        (isSelected)="selectFromCloudVideos($event)" [location]="'cloud'"> </app-video-thumbnail>
+        <app-video-thumbnail [thumb]='vid' (delete)="deleteFromCloudVideos(vid)"
+          (isSelected)="selectFromCloudVideos($event)" [location]="'cloud'"> </app-video-thumbnail>
       </ion-col>
     </ion-row>
-    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg" *ngIf="deviceVideos?.length<=0">
+    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg" *ngIf="cloudVideos?.length<1">
       <ion-img [src]="noVideoPhoto"></ion-img>
     </ion-col>
   </ion-grid>
@@ -38,11 +38,12 @@
     </ion-row>
     <ion-row class="image-container-row" *ngIf="deviceVideos?.length>0">
       <ion-col class="col-6 col-md-4 col-xl-3 px-1 mt-1" *ngFor="let vid of deviceVideos">
-        <app-video-thumbnail [thumb]='vid' (delete)="deleteFromCloudVideos(vid)" 
-        [location]="'local'"> </app-video-thumbnail>
+        <app-video-thumbnail [thumb]='vid' (delete)="deleteFromCloudVideos(vid)" [location]="'local'">
+        </app-video-thumbnail>
       </ion-col>
     </ion-row>
-    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg" *ngIf="deviceVideos?.length<=0">
+    <ion-col class="col-12 col-sm-4 col-md-4 col-xl-3 px-1 audio_bg"
+      *ngIf="deviceVideos?.length<1">
       <ion-img class="pic_adj" [src]="noVideoPhoto"></ion-img>
     </ion-col>
   </ion-grid>

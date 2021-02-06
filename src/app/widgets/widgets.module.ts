@@ -13,7 +13,6 @@ import { PipesModule } from './../shared/pipes/pipes.module';
 
 import { RouterModule } from '@angular/router';
 import { FeedFilterPopoverComponent } from './feed-filter-popover/feed-filter-popover.component';
-import { PostWidget3Component } from './post-widget3/post-widget3.component';
 import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
 import { PopularSchoolsComponent } from './popular-schools/popular-schools.component';
 import { TrendingComponent } from './trending/trending.component';
@@ -23,7 +22,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { PostWidget1Component } from './post-widget1/post-widget1.component';
-import { PostWidget2Component } from './post-widget2/post-widget2.component';
 
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
@@ -72,8 +70,8 @@ import { LoaderComponent } from './loader/loader.component';
     EmojiModule
   ],
   declarations: [
-    PostWidget1Component, PostWidget2Component, TrendingComponent, PopularSchoolsComponent,
-    ImageGalleryComponent, PostWidget3Component, FeedFilterPopoverComponent, MyPhotoPickerComponent, MyAudioPickerComponent
+    PostWidget1Component, TrendingComponent, PopularSchoolsComponent,
+    ImageGalleryComponent, FeedFilterPopoverComponent, MyPhotoPickerComponent, MyAudioPickerComponent
     , MyVideoPickerComponent, CreatePostComponent, PhotoThumbnailComponent, VideoThumbnailComponent,
     AudioRecorderComponent, AudioThumbnailComponent, BackgroundImageDirective, VideoPlayerComponent,
     MapComponent, MySliderComponent, SchoolJoinComponent, CommentsComponent, LikeComponent, MyShareComponent,
@@ -81,8 +79,8 @@ import { LoaderComponent } from './loader/loader.component';
     UserListItemComponent, FollowComponent, NotificationsComponent, AudioPlayerComponent, UserCloudPhotosComponent, LoaderComponent
   ],
   exports: [
-    FormsModule, CommonModule, PostWidget1Component, PostWidget2Component, TrendingComponent,
-    PopularSchoolsComponent, PostWidget3Component, ImageGalleryComponent, FeedFilterPopoverComponent,
+    FormsModule, CommonModule, PostWidget1Component, TrendingComponent,
+    PopularSchoolsComponent, ImageGalleryComponent, FeedFilterPopoverComponent,
     MyPhotoPickerComponent, MyAudioPickerComponent, MyVideoPickerComponent, CreatePostComponent,
     PhotoThumbnailComponent, VideoThumbnailComponent,
     AudioThumbnailComponent, AudioRecorderComponent, BackgroundImageDirective, VideoPlayerComponent,
