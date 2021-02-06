@@ -118,7 +118,7 @@ export class UsersSearchPage implements OnInit, OnDestroy, AfterViewInit {
       if (keyTrigger) {
         console.log(users);
         this.users = users;
-        this.usersIdentityPhoto = UtilityService.getIdentityPhotos(users);
+        this.usersIdentityPhoto = UserService.getUsersIdentityPhotos(users);
       } else {
         this.users = this.users.concat(users);
         this.searchOffset = this.users.length;

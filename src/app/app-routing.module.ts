@@ -101,10 +101,7 @@ const routes: Routes = [
     path: 'about-settings',
     loadChildren: () => import('./public/about/about.module').then( m => m.AboutModule)
   },
-  {
-    path: 'no-connection',
-    loadChildren: () => import('./public/no-connection/no-connection.module').then( m => m.NoConnectionPageModule)
-  },
+  
   // {
   //   path: 'report-bug',
   //   loadChildren: () => import('./public/report-bug/report-bug.module').then( m => m.ReportBugPageModule)

@@ -35,6 +35,8 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   searchLimit = 10; // pull 20 schools at a time
   searchKey = '';
 
+  isLoaded = false;
+
   infiniteScrollTarget: any;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
@@ -123,7 +125,8 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
   // if search term change, it means key
   // trigger is true
   search(keyTrigger = true) {
-
+    this.isLoaded = false;
+    this.showLoader();
     // if ( this.schools.length === 0 ) {
     //   this.presentLoading().then((res: any) => {
     //     this.schools.length === 0 ? res.dismiss() : this.toast.toast('Sorry, something went wrong!')
@@ -144,12 +147,13 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
       if (keyTrigger) {
         console.log(schools);
         this.schools = schools;
-        this.schoolsIdentityPhoto = UtilityService.getIdentityPhotos(schools);
+        this.schoolsIdentityPhoto = SchoolService.getSchoolsIdentityPhotos(schools);
       } else {
         this.schools = this.schools.concat(schools);
         this.searchOffset = this.schools.length;
         this.infiniteScrollTarget?.complete();
       }
+      this.isLoaded = true;
     });
 
     // this.schoolService.getSchools(pageInfo).subscribe(schools => {
@@ -169,4 +173,11 @@ export class SchoolsSearchPage implements OnInit, AfterViewInit, OnDestroy {
     return SchoolService.getSchoolProfilePhotoUrl(identityPhoto);
   }
 
+
+
+  showLoader() {
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 3000);
+  }
 }

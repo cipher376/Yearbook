@@ -86,6 +86,14 @@ export class UserService {
     return identityPhoto?.cover?.thumbnailUrl || USER_DEFAULT_COVER_URL;
   }
 
+  static getUsersIdentityPhotos(subjects: User[]) {
+    const photos: IdentityPhoto[] = [];
+    subjects.forEach(sub => {
+      photos.push(this.getUserIdentityPhoto(sub));
+    });
+    return photos;
+  }
+
   static checkOwnerShip(user1: User, user2: User) {
     console.log(user1)
     console.log(user2)

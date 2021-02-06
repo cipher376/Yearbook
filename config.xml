@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='0.0.1' encoding='utf-8'?>
 <widget id="io.alma.mata" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Alma mater</name>
     <description>App to link alumni to the old schools.</description>
-    <author email="admin@devtek-limited.tech" href="http://devtek-limited.com">Alfred Andy Kelly (AAK)</author>
+    <author email="admin@devtek-limited.tech" href="http://devtek-limited.com">Alfred  Kelly Andy(AKA)</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -21,6 +21,9 @@
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
+            <application android:allowBackup="true" />
+            <application android:hardwareAccelerated="false" />
+            <application android:largeHeap="true" /> 
         </edit-config>
         <resource-file src="resources/android/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
         <allow-intent href="market:*" />

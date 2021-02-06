@@ -194,7 +194,10 @@ export class MediaService {
       );
     }
   }
+
   createUserVideo(userId: any, video: Video) {
+    console.log(JSON.stringify(video));
+    console.log(userId);
     if (!video?.id) {
       return this.http.post<Video>(`/users/${userId}/videos`, video).pipe(
         map(res => {

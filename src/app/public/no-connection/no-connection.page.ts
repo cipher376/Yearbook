@@ -1,3 +1,4 @@
+import { BrowserHistoryService } from 'src/app/shared/services/providers/navigation/browser-history.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
@@ -18,18 +19,26 @@ export class NoConnectionPage implements OnInit, OnDestroy {
     private connectivityProvider: ConnectivityProvider,
     private router: Router,
     private toastController: ToastController,
+    private browserHistory: BrowserHistoryService
   ) { }
 
   subs$: Subscription;
+  sub$ = [];
+  previousPage = '';
 
   ngOnInit() {
+    this.sub$.push(this.browserHistory.previousPageSource$.subscribe(previousPage => {
+      this.previousPage = previousPage;
+    }));
+
+
     this.subs$ = this.connectivityProvider.appIsOnline$
       .subscribe(online => {
         console.log(online);
         if (online) {
           // for online functions
           this.isOnline = true;
-          this.router.navigateByUrl('/links/home')
+          this.router.navigateByUrl('/links/home');
         } else {
           // for offline functions
           this.isOnline = false;
@@ -45,11 +54,16 @@ export class NoConnectionPage implements OnInit, OnDestroy {
   async toast(message: string, duration) {
     const toast = await this.toastController.create({
       header: 'Error!',
-      message: message,
+      message,
       duration: duration * 1000
     });
 
     toast.present();
   }
+
+  goBack() {
+    this.router.navigateByUrl(this.browserHistory.getPreviousUrl());
+  }
+
 
 }

@@ -209,7 +209,7 @@ export class MyPhotoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     const photos: Photo[] = [];
     this.devicePhotos.forEach(photo => {
       // make a copy of the image to permanent storage
-      this.localMediaService.writeVideoToMediaDirectory(photo?.nativeURL).then(ph => {
+      this.localMediaService.writePhotoToMediaDirectory(photo?.nativeURL).then(ph => {
 
         // upload photo and instruct to create thumbnail on server
         this.localMediaService.upload(ph?.nativeURL, ph?.fileName, true).then(result => {

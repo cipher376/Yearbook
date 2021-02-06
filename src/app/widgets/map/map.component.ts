@@ -28,16 +28,16 @@ declare var google: any;
 export class MapComponent implements OnInit, OnDestroy {
 
   center: LatLng = {
-    lat: 8.1,
-    lng: -1.1
+    lat: 7.9039268,
+    lng: -3.2744266
   };
 
-   currentLocation: LatLng = {
-    lat: 8.1,
-    lng: -1.1
+  currentLocation: LatLng = {
+    lat: 7.9039268,
+    lng: -3.2744266
   } as any;
 
-   geoCoder;
+  geoCoder;
   address;
 
   options: any = {
@@ -48,11 +48,13 @@ export class MapComponent implements OnInit, OnDestroy {
     maxZoom: 24,
     minZoom: 8,
   };
-  public markers: any[] = [];
+  public schoolMarkers: any[] = [];
+  public usersMarkers: any[] = [];
+
   polyline;
   circles = [];
-   mapsLoaded = false;
-   networkHandler = null;
+  mapsLoaded = false;
+  networkHandler = null;
 
   sub$ = [];
 
@@ -60,9 +62,11 @@ export class MapComponent implements OnInit, OnDestroy {
   school: School;
   schoolIdentityPhoto: IdentityPhoto;
 
+  isUserMarker: boolean;
+
   apiKey = 'AIzaSyBfKFrI5-iEUhsZyxjc2B56RNmoQoAeBmk';
 
-  @ViewChild(GoogleMap) map: GoogleMap
+  @ViewChild(GoogleMap) map: GoogleMap;
   /**
    *
    */
@@ -71,6 +75,7 @@ export class MapComponent implements OnInit, OnDestroy {
     private schoolService: SchoolService,
     private renderer: Renderer2,
     private element: ElementRef,
+    // tslint:disable-next-line:variable-name
     @Inject(DOCUMENT) private _document,
     private signals: MySignals
   ) {
@@ -81,9 +86,11 @@ export class MapComponent implements OnInit, OnDestroy {
     this.User = await this.userService.getUserLocal();
     this.School = await this.schoolService.getSchoolLocal();
     console.log(this.school);
+    this.schoolIdentityPhoto = SchoolService.getSchoolIdentityPhoto(this.school);
+
     this.init().then((res) => {
-      console.log("Google Maps ready.")
-      this.plotUserMarker(this.currentLocation.lat, this.currentLocation.lng);
+      console.log('Google Maps ready.');
+      this.plotMarkers(this.currentLocation.lat, this.currentLocation.lng);
     }, (err) => {
       console.log(err);
     });
@@ -107,18 +114,25 @@ export class MapComponent implements OnInit, OnDestroy {
     if (school?.address?.latLng) {
       this.center = UtilityService.parseLatLngStringToObj(school.address.latLng);
       if (this.mapsLoaded) {
-        this.plotUserMarker(this.currentLocation.lat, this.currentLocation.lng);
+        this.plotMarkers(this.currentLocation.lat, this.currentLocation.lng);
       }
     }
+    this.schoolIdentityPhoto = SchoolService.getSchoolIdentityPhoto(this.school);
+
   }
 
   @Input() set SchoolIdentityPhoto(photo: IdentityPhoto) {
-    this.schoolIdentityPhoto = photo;
+    if (photo) {
+      this.schoolIdentityPhoto = photo;
+    }
   }
 
   clearMap() {
     this.polyline?.setMap(null);
-    this.markers.forEach(m => {
+    this.schoolMarkers.forEach(m => {
+      m.setMap(null);
+    });
+    this.usersMarkers.forEach(m => {
       m.setMap(null);
     });
     this.circles.forEach(c => {
@@ -141,7 +155,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
       this.loadSDK().then((res) => {
 
-        this.initMap().then((res) => {
+        this.initMap().then((r) => {
           resolve(true);
         }, (err) => {
           reject(err);
@@ -159,7 +173,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   private loadSDK(): Promise<any> {
 
-    console.log("Loading Google Maps SDK");
+    console.log('Loading Google Maps SDK');
 
     return new Promise((resolve, reject) => {
 
@@ -179,14 +193,14 @@ export class MapComponent implements OnInit, OnDestroy {
 
             if (this.networkHandler == null) {
 
-              this.networkHandler = Network.addListener('networkStatusChange', (status) => {
+              this.networkHandler = Network.addListener('networkStatusChange', (stat) => {
 
-                if (status.connected) {
+                if (stat.connected) {
 
                   this.networkHandler.remove();
 
                   this.init().then((res) => {
-                    console.log("Google Maps ready.")
+                    console.log('Google Maps ready.');
                   }, (err) => {
                     console.log(err);
                   });
@@ -207,8 +221,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
             this.injectSDK().then((res) => {
               resolve(true);
-            }, (err) => {
-              reject(err);
+            }, (error) => {
+              reject(error);
             });
 
           } else {
@@ -230,12 +244,13 @@ export class MapComponent implements OnInit, OnDestroy {
 
     return new Promise((resolve, reject) => {
 
+      // tslint:disable-next-line:no-string-literal
       window['mapInit'] = () => {
         this.mapsLoaded = true;
         resolve(true);
       };
 
-      let script = this.renderer.createElement('script');
+      const script = this.renderer.createElement('script');
       script.id = 'googleMaps';
 
       if (this.apiKey) {
@@ -281,18 +296,18 @@ export class MapComponent implements OnInit, OnDestroy {
 
   }
 
-  public addMarker(lat: number, lng: number): void {
+  // public addMarker(lat: number, lng: number): void {
 
-    let latLng = new google.maps.LatLng(lat, lng);
+  //   const latLng = new google.maps.LatLng(lat, lng);
 
-    let marker = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: latLng
-    });
+  //   const marker = new google.maps.Marker({
+  //     map: this.map,
+  //     animation: google.maps.Animation.DROP,
+  //     position: latLng
+  //   });
 
-    this.markers.push(marker);
-  }
+  //   // this.markers.push(marker);
+  // }
 
   toggleBounce(marker: any) {
     if (marker.getAnimation() !== null) {
@@ -304,7 +319,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
 
 
-  plotUserMarker(lat: number, lng: number) {
+  plotMarkers(lat: number, lng: number) {
+    this.clearMap();
     // const image = {
     //   url: ,
     //   // This marker is 20 pixels wide by 32 pixels high.
@@ -315,22 +331,8 @@ export class MapComponent implements OnInit, OnDestroy {
     //   anchor: new google.maps.Point(0, 0),
     // };
 
+    this.plotUserMarker(lat, lng);
 
-    let latLng = new google.maps.LatLng(lat, lng);
-    let marker = new google.maps.Marker({
-      map: this.map.googleMap,
-      animation: google.maps.Animation.DROP,
-      position: latLng,
-      icon: USER_LOCATION_POINTER,
-    });
-    const infowindow = new google.maps.InfoWindow({
-      content: 'You are currently at: ' + this.address,
-    });
-    marker.addListener("click", () => {
-      infowindow.open(this.map, marker);
-    });
-
-    this.map.center = { lat, lng };
     setTimeout(() => {
       if (this.school) {
         // draw line to connect them
@@ -341,18 +343,40 @@ export class MapComponent implements OnInit, OnDestroy {
     }, 2000);
 
     const circle = new google.maps.Circle({
-      strokeColor: "#FF0000",
+      strokeColor: '#FF0000',
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: "#FF0000",
+      fillColor: '#FF0000',
       fillOpacity: 0.35,
       map: this.map.googleMap,
       center: { lat, lng },
       radius: 10000,
     });
     this.circles.push(circle);
-    this.markers.push(marker);
+
+    this.isUserMarker = true;
   }
+
+  plotUserMarker(lat: number, lng: number) {
+    const latLng = new google.maps.LatLng(lat, lng);
+    const marker = new google.maps.Marker({
+      map: this.map.googleMap,
+      animation: google.maps.Animation.DROP,
+      position: latLng,
+      icon: USER_LOCATION_POINTER,
+    });
+    const infowindow = new google.maps.InfoWindow({
+      content: 'You are currently at: ' + this.address,
+    });
+    marker.addListener('click', () => {
+      infowindow.open(this.map, marker);
+    });
+
+    this.map.center = { lat, lng };
+    this.usersMarkers.push(marker);
+
+  }
+
 
   plotSchoolMarker(lat: number, lng: number) {
     // const image = {
@@ -366,8 +390,8 @@ export class MapComponent implements OnInit, OnDestroy {
     // };
 
 
-    let latLng = new google.maps.LatLng(lat, lng);
-    let marker = new google.maps.Marker({
+    const latLng = new google.maps.LatLng(lat, lng);
+    const marker = new google.maps.Marker({
       map: this.map.googleMap,
       animation: google.maps.Animation.BOUNCE,
       position: latLng,
@@ -376,7 +400,7 @@ export class MapComponent implements OnInit, OnDestroy {
     const infowindow = new google.maps.InfoWindow({
       content: `
       <div style="width: 48vw;
-      height: 24vh;">
+      height: 34vh;">
         <div style="background-color: #fff;
         color: #000;
         box-shadow: 0 0 0.25em rgb(255 67 26 / 77%);
@@ -386,39 +410,39 @@ export class MapComponent implements OnInit, OnDestroy {
         height: auto;
         left: 20%;
         top: 100%;">
-          <header style="background-color: #ff431a; padding-bottom: 0.5vh; padding: 0.8vh;">
-            <img src="${this.schoolIdentityPhoto?.cover ?? this.schoolIdentityPhoto?.profile}" width="100%"> 
+          <header style="background-color: #f76361; padding-bottom: 0.5vh; padding: 0.8vh;">
+            <img src="${this.getSchoolProfilePhotoUrl()}" width="100%">
             <h6 style="margin: 1.5vw 0vh 0vh 0vh;">${this.school?.name}</h6>
           </header>
           <main>
           <small class="mx-auto w-50" *ngIf="this.school?.address">
-          <span *ngIf="this.school?.address?.city">${this.school?.address?.city}</span>
-          <span *ngIf="this.school?.address?.state"> ${this.school?.address?.state}</span>
-          <span *ngIf="this.school?.address?.country"> ${this.school?.address?.country}</span>
+          <span *ngIf="this.school?.address?.city">${this.school?.address?.city || ''}</span>
+          <span *ngIf="this.school?.address?.state"> ${this.school?.address?.state || ''}</span>
+          <span *ngIf="this.school?.address?.country"> ${this.school?.address?.country || ''}</span>
         </small>
           </main>
         </div>
       </div>
       `,
     });
-    marker.addListener("click", () => {
+    marker.addListener('click', () => {
       infowindow.open(this.map, marker);
     });
 
     this.map.panTo({ lat, lng });
-    this.map.zoom = 11;
+    this.map.zoom = 8;
     const circle = new google.maps.Circle({
-      strokeColor: "#FF0000",
+      strokeColor: '#FF0000',
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: "#FF0000",
+      fillColor: '#FF0000',
       fillOpacity: 0.35,
       map: this.map.googleMap,
       center: { lat, lng },
       radius: 10000,
     });
     this.circles.push(circle);
-    this.markers.push(marker);
+    this.schoolMarkers.push(marker);
   }
 
   drawLineFromUserToSchool() {
@@ -439,11 +463,11 @@ export class MapComponent implements OnInit, OnDestroy {
       path.push(endMid);
       path.push(end);
       let i = 0;
-      let interval = setInterval(() => {
+      const interval = setInterval(() => {
         this.polyline = new google.maps.Polyline({
           path: [path[i], path[i + 1]],
           geodesic: true,
-          strokeColor: "#FF0000",
+          strokeColor: '#FF0000',
           strokeOpacity: 0.7,
           strokeWeight: 2,
         }).setMap(this.map.googleMap);
@@ -478,9 +502,14 @@ export class MapComponent implements OnInit, OnDestroy {
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
+      console.log(results);
       if (status === 'OK') {
         if (results[0]) {
           this.address = results[0].formatted_address;
+          if (this.isUserMarker) {
+            this.usersMarkers.forEach(m => m.setMap(null));
+            this.plotUserMarker(this.currentLocation.lat, this.currentLocation.lng);
+          }
         } else {
           window.alert('No results found');
         }
@@ -489,6 +518,11 @@ export class MapComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  getSchoolProfilePhotoUrl() {
+    return SchoolService.getSchoolProfilePhotoUrl(this.schoolIdentityPhoto);
+  }
+
 
 
 }

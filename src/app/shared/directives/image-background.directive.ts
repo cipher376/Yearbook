@@ -1,14 +1,15 @@
-import { Directive, ElementRef, Input, AfterViewInit } from '@angular/core';
- 
+import { Directive, ElementRef, Input, AfterViewInit, AfterContentInit } from '@angular/core';
+
 @Directive({
     selector: '[background-image]'
 })
-export class BackgroundImageDirective implements AfterViewInit {
+export class BackgroundImageDirective implements AfterViewInit, AfterContentInit {
     private el: HTMLElement;
 
     constructor(el: ElementRef) {
         this.el = el.nativeElement;
     }
+
 
     @Input('background-image') backgroundImage: string;
     @Input('background-position') backgroundPosition: string;
@@ -16,10 +17,16 @@ export class BackgroundImageDirective implements AfterViewInit {
     @Input('background-repeat') backgroundRepeat: string;
 
     ngAfterViewInit() {
-        this.el.style.backgroundImage = 'url(' + this.backgroundImage + ')';
+
+    }
+
+    ngAfterContentInit(): void {
+        if (this.backgroundImage) {
+            this.el.style.backgroundImage = 'url(' + this.backgroundImage + ')';
+        }
         this.el.style.backgroundPosition = 'center';
         this.el.style.backgroundSize = 'cover';
         this.el.style.backgroundRepeat = 'no-repeat';
     }
- 
+
 }

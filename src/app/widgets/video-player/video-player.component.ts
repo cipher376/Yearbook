@@ -37,7 +37,7 @@ export class VideoPlayerComponent implements OnInit {
       this.items.push({
         name: obj?.description ?? obj.fileName,
         src: DOWNLOAD_CONTAINER + obj.fileName,
-        type: 'video/mp4'
+        type: obj.mimeType ?? 'video/mp4'
       });
       this.itemPhotos.push(this.getThumbnail(obj));
     });

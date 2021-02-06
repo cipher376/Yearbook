@@ -27,7 +27,7 @@ import { UserService } from 'src/app/shared/services/model-service/user.service'
 })
 export class MyVideoPickerComponent implements OnInit, OnDestroy, AfterViewInit {
   galleryType = 'cloud';  // local or cloud
-  noVideoPhoto =  NO_VIDEO_PHOTO;
+  noVideoPhoto = NO_VIDEO_PHOTO;
   sub$ = [];
   deviceVideos: VideoLocal[] = [];
   cloudVideos: Video[] = [];
@@ -125,8 +125,11 @@ export class MyVideoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
     // move videos to permanent storage folder
     const videos: Video[] = [];
     this.deviceVideos.forEach(video => {
-      // copy video to permanent location 
+      console.log(JSON.stringify(video));
+
+      // copy video to permanent location
       this.localMediaService.writeVideoToMediaDirectory(video?.nativeURL).then(vid => {
+        console.log(JSON.stringify(vid));
         // upload video and instruct to create thumbnail on server
         this.localMediaService.upload(vid?.nativeURL, vid?.fileName, true).then(result => {
           // {"bytesSent":169025,
@@ -139,7 +142,6 @@ export class MyVideoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
           console.log(JSON.stringify(result));
           result = result as FileUploadResult;
 
-
           if (result) {
             const fileName = vid.fileName.substr(0, vid.fileName.lastIndexOf('.'));
             const uploadedVideo = {
@@ -150,7 +152,8 @@ export class MyVideoPickerComponent implements OnInit, OnDestroy, AfterViewInit 
               type: MediaType.VIDEO,
               thumbnailUrl: '/thumb_' + fileName + '.jpg',
               posterUrl: '/poster_' + fileName + '.jpg',
-              length: vid.length
+              length: vid.length,
+              mimeType: UtilityService.getMimeTypeFromExtension(vid.fileName)
             } as any;
 
             videos.push(uploadedVideo);

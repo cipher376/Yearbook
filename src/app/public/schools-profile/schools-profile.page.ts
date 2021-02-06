@@ -6,7 +6,7 @@ import { SchoolJoinComponent } from './../../widgets/school-join/school-join.com
 import { UserService } from 'src/app/shared/services/model-service/user.service';
 import { SchoolService } from './../../shared/services/model-service/school.service';
 import { MySignals } from './../../shared/services/my-signals';
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, AfterContentInit } from '@angular/core';
 import { School } from 'src/app/models/school';
 import { UtilityService } from 'src/app/shared/services/providers/utility.service';
 import { Router } from '@angular/router';
@@ -24,7 +24,7 @@ import { Alumni } from 'src/app/models/alumni';
   templateUrl: './schools-profile.page.html',
   styleUrls: ['./schools-profile.page.scss'],
 })
-export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
+export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit, AfterContentInit {
   currentSegment = 'posts';
   school: School;
   identityPhoto: IdentityPhoto; // includes cover, profile and flag
@@ -50,7 +50,7 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
   showLocation = false;
   showPost = false;
   showAbout = false;
-  
+
 
   infiniteScrollTarget: any;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
@@ -64,6 +64,8 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
   followersLimit = 5;
   followersOffset = 0;
 
+
+  isLoaded = false;
   constructor(
     private signals: MySignals,
     private router: Router,
@@ -79,6 +81,8 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
   }
 
   async ngAfterViewInit() {
+
+
     this.user = await this.userService.getUserLocal();
     this.sub$.push(this.signals.selectedSchoolSource$.subscribe(school => {
       this.school = school;
@@ -95,6 +99,10 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
+  ngAfterContentInit() {
+
+  }
+
   ngOnInit() {
     this.sub$.push(
       this.signals.reloadUserSchoolsSource$.subscribe(_ => {
@@ -108,6 +116,21 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
   }
 
   init() {
+    this.fixedMenu = false;
+    this.isLoaded = false;
+    this.showLoader();
+
+    this.totalAlumni = 0;
+    this.totalPost = 0;
+    this.totalFollowers = 0;
+    this.postOffset = 0;
+    this.followersOffset = 0;
+    this.alumniOffset = 0;
+
+    this.schoolPosts = [];
+    this.alumni = [];
+    this.followers = [];
+
     this.countAlumni();
     this.getSchoolAlumni(true);
     this.getSchoolPosts();
@@ -121,7 +144,7 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
   }
 
   set schoolFixedMenu(value: boolean) {
-    this.fixedMenu = value;
+    this.fixedMenu = this.isLoaded && value;
   }
 
 
@@ -197,6 +220,7 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
   getCoverPhotoUrl() {
     return SchoolService.getSchoolCoverPhotoUrl(this.identityPhoto);
   }
+
   countAlumni() {
     this.sub$.push(this.alumniService.countAlumni(this.school?.id).subscribe(count => {
       this.totalAlumni = count;
@@ -295,5 +319,10 @@ export class SchoolsProfilePage implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+  showLoader() {
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 3000);
+  }
 
 }

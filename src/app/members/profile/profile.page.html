@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content *ngIf="isLoaded">
   <ion-row class="ion-padding tag">
     <ion-col size="12" class="ion-no-padding">
       <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
@@ -14,8 +14,8 @@
     </ion-col>
   </ion-row>
 
-  <!-- <ion-row appWatchElement [elementId]="'profileMenu'" id="profileMenu" (isOut)="profileFixedMenu=$event"> -->
-    <ion-row  id="profileMenu" >
+  <ion-row appWatchElement [elementId]="'profileMenu'" id="profileMenu" (isOut)="profileFixedMenu=$event">
+    <!-- <ion-row  id="profileMenu" > -->
     <ion-card class=" w-100" style="height: 250px;">
       <div class="backdrop h-100 w-100"></div>
       <ion-card-header id="userprofile-bg" [background-image]="identityPhoto?.cover?.fileUrl"

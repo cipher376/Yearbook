@@ -63,7 +63,7 @@ export class MySchoolsPage implements OnInit, AfterViewInit, OnDestroy {
     if (this.user) {
       this.sub$.push(this.schoolService.getUserSchools(this.user?.id).subscribe(schools => {
         this.userSchools = schools;
-        this.schoolsIdentityPhoto = UtilityService.getIdentityPhotos(schools);
+        this.schoolsIdentityPhoto = SchoolService.getSchoolsIdentityPhotos(schools);
       }));
     }
   }

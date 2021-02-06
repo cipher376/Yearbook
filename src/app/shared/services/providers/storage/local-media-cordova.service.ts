@@ -46,7 +46,7 @@ export interface UploadCallBackOption { callerRef: any; func: any; createThumb?:
 @Injectable({
   providedIn: 'root',
 })
-export class LocalMediaService {
+export class LocalMediaCordovaService {
   redirectUrl = '';
   mediaFolderName = 'media';
   mediaPath = '';
@@ -470,7 +470,6 @@ export class LocalMediaService {
     vid.posterNativeURL = thumbUrl;
     vid.posterResolvedURL = Capacitor.convertFileSrc(thumbUrl);
     return vid;
-
   }
 
   // /***
@@ -642,7 +641,7 @@ export class LocalMediaService {
   async uploadJs(fileUri: string, fileName: string, createThumb = false) {
 
     const fileBlob: FileReadResult = (await Filesystem.readFile({ path: fileUri })
-      .catch(e => console.log(JSON.stringify(e)))) as any;; // Read file from cache
+      .catch(e => console.log(JSON.stringify(e)))) as any; // Read file from cache
     // Update UI progress bar
     this.stacked.push({ value: 0, type: this.progressColors[Math.floor(Math.random() * 4)], label: '0%' });
 
@@ -680,7 +679,7 @@ export class LocalMediaService {
         case HttpEventType.Response:
           this.signals.announceUploadComplete(percent);
           return data;
-          break;
+          // break;
         default:
       }
       console.log(data);

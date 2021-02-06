@@ -5,6 +5,22 @@
 </ion-header> -->
 
 <ion-content>
+  <ion-row class="ion-padding tag">
+    <ion-col size="12" class="ion-no-padding">
+      <ion-item lines="none" class="fs-12 poppins-bold ion-no-padding ion-text-nowrap">
+        <ion-row class="ion-row" (click)="goBack()" >
+          <ion-icon class="fs-25" name="chevron-back-outline"></ion-icon>&nbsp;&nbsp;
+        </ion-row>
+        <!-- <ion-row slot="end" *ngIf="isOwner">
+          <span class="fs-14" (click)="edit()">
+            <ion-icon name="create-outline"></ion-icon> Edit
+          </span>
+        </ion-row> -->
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
   <ion-img src="../../../assets/images/network Error.svg" class="mt-5 w-100 mx-auto"></ion-img>
   <h5 class="mx-auto" style="text-align: center;"> {{ isOnline ? '🟢 Online' : '🔴 Offline' }} </h5>
 </ion-content>

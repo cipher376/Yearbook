@@ -1134,25 +1134,27 @@ export class UtilityService {
   // get all profile photo of each school and store
   // in the same index location as the school;
   // return array of photos
-  static getIdentityPhotos(subjects: School[] | User[]) {
-    const photos: IdentityPhoto[] = [];
-    subjects.forEach(sub => {
-      const photo: IdentityPhoto = {} as any;
-      sub?.photos?.forEach(ph => {
-        if (ph.profile) {
-          photo.profile = ph;
-        }
-        if (ph.coverImage) {
-          photo.cover = ph;
-        }
-        if (ph.flag) {
-          photo.flag = ph;
-        }
-      });
-      photos.push(photo);
-    })
-    return photos;
-  }
+  // static getIdentityPhotos(subjects: School[] | User[]) {
+  //   const photos: IdentityPhoto[] = [];
+  //   subjects.forEach(sub => {
+  //     const photo: IdentityPhoto = {} as any;
+  //     sub?.photos?.forEach(ph => {
+  //       if (ph.profile) {
+  //         photo.profile = ph;
+  //       }
+  //       if (ph.coverImage) {
+  //         photo.cover = ph;
+  //       }
+  //       if (ph.flag) {
+  //         photo.flag = ph;
+  //       }
+  //     });
+  //     photos.push(photo);
+  //   })
+  //   return photos;
+  // }
+
+  
 
 
 
@@ -1273,6 +1275,36 @@ export class UtilityService {
   static parseLatLngStringToObj(latLng: string): LatLng {
     const tem = latLng.split(',');
     return { lat: parseFloat(tem[0]), lng: parseFloat(tem[1]) };
+  }
+
+  static getMimeTypeFromExtension(fileName: string) {
+    try {
+      const tmp = fileName.split('.');
+      const ext = tmp[tmp.length - 1];
+
+      switch (ext) {
+        case '3gp':
+          return 'video/3gpp';
+        case 'avi':
+          return 'video/x-msvideo'
+        case 'mov':
+          return 'video/mp4';
+        case 'mp4':
+          return 'video/mp4';
+        case 'webm':
+          return 'video/webm';
+        case 'ogg':
+          return 'video/ogg';
+        case 'mkv':
+          return 'video/x-matroska';
+        default:
+          return 'video/mp4';
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return 'video/mp4';
+
   }
 
 }

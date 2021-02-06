@@ -2,6 +2,15 @@ export const MEDIA_TYPE = [
   'Photo', 'Video', 'Audio', 'Document', 'Website'
 ];
 
+export enum MyFileType {
+  PHOTO = 1,
+  VIDEO = 2,
+  AUDIO = 3,
+  DOCUMENT = 4,
+  OTHER = 5
+}
+
+
 export enum MediaType {
   PHOTO = 0,
   VIDEO = 1,

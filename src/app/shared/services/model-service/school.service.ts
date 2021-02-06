@@ -36,33 +36,36 @@ export class SchoolService {
     const photo: IdentityPhoto = {} as any;
     school?.photos?.forEach(ph => {
       if (ph.profile) {
-        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileUrl ?? SCHOOL_DEFAULT_PHOTO_URL;
+        ph.fileUrl = ph.fileUrl ? API_ROOT_URL + ph.fileUrl : SCHOOL_DEFAULT_PHOTO_URL;
+        ph.thumbnailUrl = ph.fileUrl ? DOWNLOAD_CONTAINER + 'thumb_' + ph.fileName : SCHOOL_DEFAULT_PHOTO_URL;
         photo.profile = ph;
       }
 
       if (ph.coverImage) {
-        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileUrl ?? NO_SCHOOL_COVER_PHOTO_URL;
-        ph.fileUrl = DOWNLOAD_CONTAINER + ph.thumbnailUrl ?? NO_SCHOOL_COVER_PHOTO_URL;
+        // console.log(ph);
+        ph.fileUrl = ph.fileUrl ? API_ROOT_URL + ph.fileUrl : SCHOOL_DEFAULT_PHOTO_URL;
+        ph.thumbnailUrl = ph.thumbnailUrl ? DOWNLOAD_CONTAINER + 'thumb_' + ph.fileName : NO_SCHOOL_COVER_PHOTO_URL;
         photo.cover = ph;
       }
 
       if (ph.flag) {
-        ph.fileUrl = DOWNLOAD_CONTAINER + ph.fileUrl ?? CREST_DEFAULT_PHOTO_URL;
+        ph.fileUrl = ph.fileUrl ? API_ROOT_URL + ph.fileUrl : CREST_DEFAULT_PHOTO_URL;
+        ph.thumbnailUrl = ph.fileUrl ? DOWNLOAD_CONTAINER + 'thumb_' + ph.fileName : CREST_DEFAULT_PHOTO_URL;
         photo.flag = ph;
       }
 
     });
 
     if (school?.photos?.length < 1) {
-      photo.profile = new Photo()
+      photo.profile = new Photo();
       photo.profile.fileUrl = SCHOOL_DEFAULT_PHOTO_URL;
       photo.profile.thumbnailUrl = SCHOOL_DEFAULT_PHOTO_URL;
 
-      photo.cover = new Photo()
+      photo.cover = new Photo();
       photo.cover.fileUrl = NO_SCHOOL_COVER_PHOTO_URL;
       photo.cover.thumbnailUrl = NO_SCHOOL_COVER_PHOTO_URL;
 
-      photo.flag = new Photo()
+      photo.flag = new Photo();
       photo.flag.fileUrl = CREST_DEFAULT_PHOTO_URL;
       photo.flag.thumbnailUrl = CREST_DEFAULT_PHOTO_URL;
     }
@@ -75,8 +78,18 @@ export class SchoolService {
   }
 
   static getSchoolCoverPhotoUrl(identityPhoto: IdentityPhoto) {
-    return identityPhoto?.cover?.thumbnailUrl || NO_SCHOOL_COVER_PHOTO_URL;
+    return identityPhoto?.cover?.fileUrl ?? NO_SCHOOL_COVER_PHOTO_URL;
   }
+
+
+  static getSchoolsIdentityPhotos(subjects: School[]) {
+    const photos: IdentityPhoto[] = [];
+    subjects.forEach(sub => {
+      photos.push(this.getSchoolIdentityPhoto(sub));
+    });
+    return photos;
+  }
+
 
   createUpdateSchool(school: SchoolInterface): Observable<SchoolInterface> {
     if (school.id) { // perform update

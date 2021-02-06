@@ -42,7 +42,7 @@ export class BrowserHistoryService {
         // console.log(this.history);
 
         // announce previous page name
-        const lastUrls = (this.history[this.history.length - 2] || '/link/home').split('/');
+        const lastUrls = (this.history[this.history.length - 2] || '/links/home').split('/');
         this.announcePreviousPage(lastUrls[lastUrls?.length - 1]);
       });
   }
@@ -66,7 +66,7 @@ export class BrowserHistoryService {
 
   public getPreviousUrl() {
     this.history.pop();
-    const url = this.history[this.history.length - 1] || 'link/home';
+    const url = this.history[this.history.length - 1] || 'links/home';
     return '/' + url;
   }
 

@@ -97,8 +97,10 @@ const routes: Routes = [
         path: 'help-and-support',
         loadChildren: () => import('../../public/help-and-support/help-and-support.module').then(m => m.HelpAndSupportPageModule)
       },
-
-
+      {
+        path: 'no-connection',
+        loadChildren: () => import('../../public/no-connection/no-connection.module').then( m => m.NoConnectionPageModule)
+      },
     ]
   },
   {

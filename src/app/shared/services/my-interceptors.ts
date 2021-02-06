@@ -91,10 +91,11 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           console.log('Unauthenticated');
           myError = new HttpErrorResponse({ status: 401, statusText: 'Authentication failed' });
           this.router.navigateByUrl('/login-auth');
-          this.toaster.toast('Authentication error, please login!');
+          this.toaster.toast('Authentication failed, please login!');
         } else if (err.status === 0) {
           console.log('No connection');
           myError = new HttpErrorResponse({ status: 0, statusText: 'No internet connection' });
+          this.toaster.toast('No connection');
         } else if (err.status === 423) {
           this.toaster.toast('Account deactivated');
         } else if (err.status === 403) {
@@ -107,6 +108,8 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           this.toaster.toast('Something went wrong');
         } else if (err.status === 409) {
           this.toaster.toast(err.error?.error?.message ?? 'Already in use');
+        }  else if (err.status === 404) {
+          this.toaster.toast('Connection problem');
         }
       }
       return of(myError); // forward error to service or component for proper handling
